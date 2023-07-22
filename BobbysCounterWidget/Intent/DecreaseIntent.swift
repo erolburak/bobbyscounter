@@ -19,8 +19,7 @@ struct DecreaseIntent: AppIntent {
 	/// Fetch todays counter and decrease counter count value if count greater than 0
 	@MainActor
 	func perform() async throws -> some IntentResult {
-		guard let modelContainer = try? ModelContainer(for: [Counter.self]),
-			  let counter = try Repository.shared.fetchTodaysCounter(modelContext: modelContainer.mainContext),
+		guard let counter = try Repository.shared.fetchTodaysCounter(),
 			  counter.count > 0 else {
 			return .result()
 		}

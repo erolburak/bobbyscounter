@@ -78,16 +78,19 @@ struct ContentView: View {
 			}
 		}
 		.onAppear {
-			viewModel.setCounter(counters: counters,
-								 modelContext: modelContext)
+			Task {
+				try await viewModel.setCounter(counters: counters)
+			}
 		}
 		.onChange(of: scenePhase) {
 			switch scenePhase {
 			case .active:
-				try? viewModel.fetchAndOverwriteTodaysCounter(counters: counters,
-															  modelContext: modelContext)
+				/// Update counter count if scenePhase is active
+				Task {
+					try await viewModel.setCount()
+				}
 			case .background:
-				/// Update widgets if scenePhase is in background
+				/// Update widgets if scenePhase is background
 				WidgetCenter.shared.reloadAllTimelines()
 			default: break
 			}

@@ -17,11 +17,12 @@ class Constant {
 	// MARK: - Type Definitions
 
 	enum Errors: LocalizedError {
-		case fetch, reset
+		case fetch, insert, reset
 
 		var errorDescription: String? {
 			switch self {
 			case .fetch: return String(localized: "ErrorDescription\("Fetch")")
+			case .insert: return String(localized: "ErrorDescription\("Insert")")
 			case .reset: return String(localized: "ErrorDescription\("Reset")")
 			}
 		}
@@ -29,6 +30,7 @@ class Constant {
 		var recoverySuggestion: String? {
 			switch self {
 			case .fetch: return String(localized: "ErrorFetchRecoverySuggestion")
+			case .insert: return String(localized: "ErrorInsertRecoverySuggestion")
 			case .reset: return String(localized: "ErrorResetRecoverySuggestion")
 			}
 		}

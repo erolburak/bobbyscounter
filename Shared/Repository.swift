@@ -15,16 +15,7 @@ class Repository {
 	static let shared = Repository()
 	static let fetchDescriptor = FetchDescriptor<Counter>(sortBy: [SortDescriptor(\.date,
 																				   order: .forward)])
-
-	/// Fetch counter where date is matching today and return object
-	@MainActor
-	func fetchTodaysCounter(modelContext: ModelContext) throws -> Counter? {
-		guard let counters = try? modelContext.fetch(Repository.fetchDescriptor),
-			  let counter = counters.first(where: { $0.date.isDateToday }) else {
-			throw Constant.Errors.fetch
-		}
-		return counter
-	}
+	var modelContainer: ModelContainer? { try? ModelContainer(for: [Counter.self]) }
 
 	/// Decrease counter count value if count greater than 0
 	func decreaseCount(counter: Counter?) {
@@ -41,28 +32,44 @@ class Repository {
 		}
 	}
 
+	/// Set counter matching selected date otherwise insert new counter and return object
+	func setCounter(counters: [Counter],
+					selectedDate: Date) async throws -> Counter? {
+		guard let counter = counters.first(where: { Calendar.current.isDate($0.date,
+																			inSameDayAs: selectedDate) }) else {
+			return try await insertCounter(selectedDate: selectedDate)
+		}
+		return counter
+	}
+
 	/// Delete counters
-	func deleteCounters(modelContext: ModelContext) throws {
+	@MainActor
+	func deleteCounters() throws {
+		guard let modelContext = modelContainer?.mainContext else {
+			throw Constant.Errors.reset
+		}
 		try modelContext.enumerate(Repository.fetchDescriptor) { counter in
 			modelContext.delete(counter)
 		}
 	}
 
-	/// Set counter matching selected date otherwise insert new counter and return object
-	func setCounter(counters: [Counter],
-					selectedDate: Date,
-					modelContext: ModelContext) -> Counter? {
-		guard let counter = counters.first(where: { Calendar.current.isDate($0.date,
-																	 inSameDayAs: selectedDate) }) else {
-			return insertCounter(selectedDate: selectedDate,
-								 modelContext: modelContext)
+	/// Fetch counter where date is matching today and return object
+	@MainActor
+	func fetchTodaysCounter() throws -> Counter? {
+		guard let modelContext = modelContainer?.mainContext,
+			  let counters = try? modelContext.fetch(Repository.fetchDescriptor),
+			  let counter = counters.first(where: { $0.date.isDateToday }) else {
+			throw Constant.Errors.fetch
 		}
 		return counter
 	}
 
 	/// Insert new counter and return new object
-	private func insertCounter(selectedDate: Date,
-					   modelContext: ModelContext) -> Counter {
+	@MainActor
+	private func insertCounter(selectedDate: Date) throws -> Counter {
+		guard let modelContext = modelContainer?.mainContext else {
+			throw Constant.Errors.insert
+		}
 		let counter = Counter(count: 0,
 							  date: selectedDate)
 		modelContext.insert(counter)

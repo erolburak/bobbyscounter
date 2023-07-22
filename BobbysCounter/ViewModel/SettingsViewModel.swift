@@ -20,17 +20,15 @@ class SettingsViewModel {
 	// MARK: - Actions
 
 	/// Delete counters, reset view model properties, set counter and return object
-	func reset(selectedDate: Date,
-			   modelContext: ModelContext) -> Counter? {
+	func reset(selectedDate: Date) async throws -> Counter? {
 		do {
-			try Repository.shared.deleteCounters(modelContext: modelContext)
+			try await Repository.shared.deleteCounters()
 			alertError = nil
 			showAlert = false
 			showConfirmationDialog = false
-			return setCounter(counters: [],
-							  selectedDate: selectedDate,
-							  modelContext: modelContext)
-		} catch {
+			return try await setCounter(counters: [],
+										selectedDate: selectedDate)
+		} catch Constant.Errors.reset {
 			alertError = .reset
 			showAlert.toggle()
 		}
@@ -39,10 +37,8 @@ class SettingsViewModel {
 
 	/// Set counter matching selected date otherwise insert new one and return object
 	func setCounter(counters: [Counter],
-					selectedDate: Date,
-					modelContext: ModelContext) -> Counter? {
-		return Repository.shared.setCounter(counters: counters,
-											selectedDate: selectedDate,
-											modelContext: modelContext)
+					selectedDate: Date) async throws -> Counter? {
+		return try await Repository.shared.setCounter(counters: counters,
+													  selectedDate: selectedDate)
 	}
 }

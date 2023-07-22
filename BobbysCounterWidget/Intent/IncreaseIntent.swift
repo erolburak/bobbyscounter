@@ -19,8 +19,7 @@ struct IncreaseIntent: AppIntent {
 	/// Fetch todays counter and increase counter count value
 	@MainActor
 	func perform() async throws -> some IntentResult {
-		guard let modelContainer = try? ModelContainer(for: [Counter.self]),
-			  let counter = try Repository.shared.fetchTodaysCounter(modelContext: modelContainer.mainContext) else {
+		guard let counter = try Repository.shared.fetchTodaysCounter() else {
 			return .result()
 		}
 		counter.count += 1

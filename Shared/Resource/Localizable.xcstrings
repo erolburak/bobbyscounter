@@ -84,6 +84,22 @@
         }
       }
     },
+    "ErrorInsertRecoverySuggestion" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bitter erneut hinzufügen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please insert again."
+          }
+        }
+      }
+    },
     "ErrorResetRecoverySuggestion" : {
       "extractionState" : "manual",
       "localizations" : {

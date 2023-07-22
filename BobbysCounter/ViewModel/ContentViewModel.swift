@@ -31,30 +31,24 @@ class ContentViewModel {
 		Repository.shared.increaseCount(counter: counter)
 	}
 
-	/// Set counter matching selected date otherwise insert new one
-	func setCounter(counters: [Counter],
-					modelContext: ModelContext) {
-		counter = Repository.shared.setCounter(counters: counters,
-											   selectedDate: selectedDate,
-											   modelContext: modelContext)
+	/// Set counter count value matching todays counter otherwise set 0
+	func setCount() async throws {
+		do {
+			counter?.count = try await Repository.shared.fetchTodaysCounter()?.count ?? 0
+		} catch Constant.Errors.fetch {
+			alertError = .fetch
+			showAlert.toggle()
+		}
 	}
 
-	/// Fetch counter where date is matching today and overwrite
-	@MainActor
-	func fetchAndOverwriteTodaysCounter(counters: [Counter],
-										modelContext: ModelContext) throws {
-		Task {
-			do {
-				guard let fetchedCounter = try? Repository.shared.fetchTodaysCounter(modelContext: modelContext) else {
-					throw Constant.Errors.fetch
-				}
-				let oldCounter = counters.first { $0.id == fetchedCounter.id }
-				oldCounter?.count = fetchedCounter.count
-				counter = fetchedCounter
-			} catch Constant.Errors.fetch {
-				alertError = .fetch
-				showAlert.toggle()
-			}
+	/// Set counter matching selected date otherwise insert new one
+	func setCounter(counters: [Counter]) async throws {
+		do {
+			counter = try await Repository.shared.setCounter(counters: counters,
+															 selectedDate: selectedDate)
+		} catch Constant.Errors.insert {
+			alertError = .insert
+			showAlert.toggle()
 		}
 	}
 }

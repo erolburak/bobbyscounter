@@ -35,8 +35,7 @@ struct BobbysCounterWidgetProvider: TimelineProvider {
 	/// Fetch todays counter and return object
 	@MainActor
 	private func fetchCounter() -> Counter {
-		guard let modelContainer = try? ModelContainer(for: [Counter.self]),
-			  let counter = try? Repository.shared.fetchTodaysCounter(modelContext: modelContainer.mainContext) else {
+		guard let counter = try? Repository.shared.fetchTodaysCounter() else {
 			return Counter(count: 0,
 						   date: .now)
 		}

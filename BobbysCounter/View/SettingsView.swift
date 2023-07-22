@@ -62,8 +62,9 @@ struct SettingsView: View {
 				Button("Reset",
 					   role: .destructive) {
 					selectedDate = .now
-					counter = viewModel.reset(selectedDate: selectedDate,
-											  modelContext: modelContext)
+					Task {
+						counter = try await viewModel.reset(selectedDate: selectedDate)
+					}
 					dismiss()
 				}
 			}
@@ -75,9 +76,10 @@ struct SettingsView: View {
 				}
 			}
 			.onChange(of: selectedDate) {
-				counter = viewModel.setCounter(counters: counters,
-											   selectedDate: selectedDate,
-											   modelContext: modelContext)
+				Task {
+					counter = try await viewModel.setCounter(counters: counters,
+															 selectedDate: selectedDate)
+				}
 				dismiss()
 			}
 		}
