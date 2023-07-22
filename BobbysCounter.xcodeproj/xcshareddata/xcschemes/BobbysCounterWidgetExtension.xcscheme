@@ -16,8 +16,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "BFF55EB32A57314E00EE0B3A"
-               BuildableName = "BobbysCounterWidgetExtension.appex"
-               BlueprintName = "BobbysCounterWidgetExtension"
+               BuildableName = "BobbysCounterWidget.appex"
+               BlueprintName = "BobbysCounterWidget"
                ReferencedContainer = "container:BobbysCounter.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -62,8 +62,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BFF55EB32A57314E00EE0B3A"
-            BuildableName = "BobbysCounterWidgetExtension.appex"
-            BlueprintName = "BobbysCounterWidgetExtension"
+            BuildableName = "BobbysCounterWidget.appex"
+            BlueprintName = "BobbysCounterWidget"
             ReferencedContainer = "container:BobbysCounter.xcodeproj">
          </BuildableReference>
       </RemoteRunnable>

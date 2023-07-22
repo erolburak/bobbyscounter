@@ -33,11 +33,9 @@
 		BFE12E802A65857C001960F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF2C453D2A4B3EB900D48C36 /* Assets.xcassets */; };
 		BFE12E842A65D1C9001960F6 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE12E832A65D1C9001960F6 /* Date+Extension.swift */; };
 		BFE12E852A65D1DE001960F6 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE12E832A65D1C9001960F6 /* Date+Extension.swift */; };
-		BFF55EB62A57314E00EE0B3A /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFF55EB52A57314E00EE0B3A /* WidgetKit.framework */; };
-		BFF55EB72A57314E00EE0B3A /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFF55E862A572B8B00EE0B3A /* SwiftUI.framework */; };
 		BFF55EBA2A57314E00EE0B3A /* BobbysCounterWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF55EB92A57314E00EE0B3A /* BobbysCounterWidgetBundle.swift */; };
 		BFF55EBC2A57314E00EE0B3A /* BobbysCounterWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF55EBB2A57314E00EE0B3A /* BobbysCounterWidget.swift */; };
-		BFF55EC22A57315100EE0B3A /* BobbysCounterWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BFF55EB42A57314E00EE0B3A /* BobbysCounterWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BFF55EC22A57315100EE0B3A /* BobbysCounterWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BFF55EB42A57314E00EE0B3A /* BobbysCounterWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,7 +69,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				BFF55EC22A57315100EE0B3A /* BobbysCounterWidgetExtension.appex in Embed Foundation Extensions */,
+				BFF55EC22A57315100EE0B3A /* BobbysCounterWidget.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -100,13 +98,10 @@
 		BFB86DAD2A66E0D90092EAEC /* BobbysCounterWidgetEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BobbysCounterWidgetEntryView.swift; sourceTree = "<group>"; };
 		BFB86DB02A66E1690092EAEC /* BobbysCounterWidgetEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BobbysCounterWidgetEntry.swift; sourceTree = "<group>"; };
 		BFB86DB42A66E22A0092EAEC /* BobbysCounterWidgetProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BobbysCounterWidgetProvider.swift; sourceTree = "<group>"; };
-		BFDF3C7F2A619EEF001E4076 /* BobbysCounterWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BobbysCounterWidgetExtension.entitlements; sourceTree = "<group>"; };
 		BFDF3C812A61A7FA001E4076 /* DecreaseIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecreaseIntent.swift; sourceTree = "<group>"; };
 		BFDF3C832A61A84D001E4076 /* IncreaseIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncreaseIntent.swift; sourceTree = "<group>"; };
 		BFE12E832A65D1C9001960F6 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
-		BFF55E862A572B8B00EE0B3A /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		BFF55EB42A57314E00EE0B3A /* BobbysCounterWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BobbysCounterWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		BFF55EB52A57314E00EE0B3A /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		BFF55EB42A57314E00EE0B3A /* BobbysCounterWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BobbysCounterWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFF55EB92A57314E00EE0B3A /* BobbysCounterWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BobbysCounterWidgetBundle.swift; sourceTree = "<group>"; };
 		BFF55EBB2A57314E00EE0B3A /* BobbysCounterWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BobbysCounterWidget.swift; sourceTree = "<group>"; };
 		BFF55EBF2A57315100EE0B3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -138,14 +133,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFF55EB72A57314E00EE0B3A /* SwiftUI.framework in Frameworks */,
-				BFF55EB62A57314E00EE0B3A /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF071D232A6C09AB001F1258 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				BF2C453D2A4B3EB900D48C36 /* Assets.xcassets */,
+				BF7C46762A6B04CC00CA47D1 /* BobbysCounter.entitlements */,
+				BFF55EBF2A57315100EE0B3A /* Info.plist */,
+				BFB702AB2A605631001AADE9 /* Localizable.xcstrings */,
+				BF2C45412A4B3EB900D48C36 /* Preview Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		BF2C452B2A4B3EB900D48C36 = {
 			isa = PBXGroup;
 			children = (
@@ -153,7 +158,6 @@
 				BF2C454B2A4B3EBA00D48C36 /* BobbysCounterTests */,
 				BF2C45552A4B3EBA00D48C36 /* BobbysCounterUITests */,
 				BFF55EB82A57314E00EE0B3A /* BobbysCounterWidget */,
-				BFF55E832A572B8B00EE0B3A /* Frameworks */,
 				BF6D1D9F2A6603A700264753 /* Shared */,
 				BF2C45352A4B3EB900D48C36 /* Products */,
 			);
@@ -165,7 +169,7 @@
 				BF2C45342A4B3EB900D48C36 /* BobbysCounter.app */,
 				BF2C45482A4B3EBA00D48C36 /* BobbysCounterTests.xctest */,
 				BF2C45522A4B3EBA00D48C36 /* BobbysCounterUITests.xctest */,
-				BFF55EB42A57314E00EE0B3A /* BobbysCounterWidgetExtension.appex */,
+				BFF55EB42A57314E00EE0B3A /* BobbysCounterWidget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -173,8 +177,6 @@
 		BF2C45362A4B3EB900D48C36 /* BobbysCounter */ = {
 			isa = PBXGroup;
 			children = (
-				BF7C46762A6B04CC00CA47D1 /* BobbysCounter.entitlements */,
-				BF2C45412A4B3EB900D48C36 /* Preview Assets.xcassets */,
 				BF2C45662A4B532700D48C36 /* View */,
 				BFB702AE2A605AB3001AADE9 /* ViewModel */,
 			);
@@ -219,10 +221,9 @@
 		BF6D1D9F2A6603A700264753 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				BF2C453D2A4B3EB900D48C36 /* Assets.xcassets */,
-				BFB702AB2A605631001AADE9 /* Localizable.xcstrings */,
 				BF6D1DA22A66048D00264753 /* Extension */,
 				BF2C45652A4B530E00D48C36 /* Model */,
+				BF071D232A6C09AB001F1258 /* Resource */,
 				BF6D1DA02A6603CA00264753 /* Constant.swift */,
 				BFB86DA82A66C9060092EAEC /* Repository.swift */,
 			);
@@ -267,20 +268,9 @@
 			path = Intent;
 			sourceTree = "<group>";
 		};
-		BFF55E832A572B8B00EE0B3A /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				BFF55E862A572B8B00EE0B3A /* SwiftUI.framework */,
-				BFF55EB52A57314E00EE0B3A /* WidgetKit.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		BFF55EB82A57314E00EE0B3A /* BobbysCounterWidget */ = {
 			isa = PBXGroup;
 			children = (
-				BFDF3C7F2A619EEF001E4076 /* BobbysCounterWidgetExtension.entitlements */,
-				BFF55EBF2A57315100EE0B3A /* Info.plist */,
 				BFDF3C802A61A7D2001E4076 /* Intent */,
 				BFB86DAC2A66CC110092EAEC /* View */,
 			);
@@ -345,9 +335,9 @@
 			productReference = BF2C45522A4B3EBA00D48C36 /* BobbysCounterUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		BFF55EB32A57314E00EE0B3A /* BobbysCounterWidgetExtension */ = {
+		BFF55EB32A57314E00EE0B3A /* BobbysCounterWidget */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BFF55EC32A57315100EE0B3A /* Build configuration list for PBXNativeTarget "BobbysCounterWidgetExtension" */;
+			buildConfigurationList = BFF55EC32A57315100EE0B3A /* Build configuration list for PBXNativeTarget "BobbysCounterWidget" */;
 			buildPhases = (
 				BFF55EB02A57314E00EE0B3A /* Sources */,
 				BFF55EB12A57314E00EE0B3A /* Frameworks */,
@@ -357,9 +347,9 @@
 			);
 			dependencies = (
 			);
-			name = BobbysCounterWidgetExtension;
+			name = BobbysCounterWidget;
 			productName = BobbysCounterWidgetExtension;
-			productReference = BFF55EB42A57314E00EE0B3A /* BobbysCounterWidgetExtension.appex */;
+			productReference = BFF55EB42A57314E00EE0B3A /* BobbysCounterWidget.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -405,7 +395,7 @@
 				BF2C45332A4B3EB900D48C36 /* BobbysCounter */,
 				BF2C45472A4B3EBA00D48C36 /* BobbysCounterTests */,
 				BF2C45512A4B3EBA00D48C36 /* BobbysCounterUITests */,
-				BFF55EB32A57314E00EE0B3A /* BobbysCounterWidgetExtension */,
+				BFF55EB32A57314E00EE0B3A /* BobbysCounterWidget */,
 			);
 		};
 /* End PBXProject section */
@@ -513,7 +503,7 @@
 		};
 		BFF55EC12A57315100EE0B3A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = BFF55EB32A57314E00EE0B3A /* BobbysCounterWidgetExtension */;
+			target = BFF55EB32A57314E00EE0B3A /* BobbysCounterWidget */;
 			targetProxy = BFF55EC02A57315100EE0B3A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -573,6 +563,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_PKGINFO_FILE = YES;
+				INFOPLIST_FILE = "";
+				INFOPLIST_KEY_CFBundleDisplayName = BobbysCounter;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
@@ -632,6 +627,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_PKGINFO_FILE = YES;
+				INFOPLIST_FILE = "";
+				INFOPLIST_KEY_CFBundleDisplayName = BobbysCounter;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
@@ -647,7 +647,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = BobbysCounter/BobbysCounter.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Shared/Resource/BobbysCounter.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -655,7 +655,8 @@
 				DEVELOPMENT_TEAM = 94JQJE3TWJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = BobbysCounter/Info.plist;
+				GENERATE_PKGINFO_FILE = YES;
+				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -693,7 +694,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = BobbysCounter/BobbysCounter.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Shared/Resource/BobbysCounter.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -701,7 +702,8 @@
 				DEVELOPMENT_TEAM = 94JQJE3TWJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = BobbysCounter/Info.plist;
+				GENERATE_PKGINFO_FILE = YES;
+				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -742,6 +744,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 94JQJE3TWJ;
 				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_PKGINFO_FILE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MACOSX_DEPLOYMENT_TARGET = 13.4;
 				MARKETING_VERSION = 1.0;
@@ -770,6 +774,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 94JQJE3TWJ;
 				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_PKGINFO_FILE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MACOSX_DEPLOYMENT_TARGET = 13.4;
 				MARKETING_VERSION = 1.0;
@@ -797,13 +803,18 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 94JQJE3TWJ;
 				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_PKGINFO_FILE = YES;
+				INFOPLIST_FILE = "";
+				INFOPLIST_OUTPUT_FORMAT = "same-as-input";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MACOSX_DEPLOYMENT_TARGET = 13.4;
 				MARKETING_VERSION = 1.0;
+				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
 				PRODUCT_BUNDLE_IDENTIFIER = com.burakerol.BobbysCounter.BobbysCounterUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -824,13 +835,18 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 94JQJE3TWJ;
 				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_PKGINFO_FILE = YES;
+				INFOPLIST_FILE = "";
+				INFOPLIST_OUTPUT_FORMAT = "same-as-input";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MACOSX_DEPLOYMENT_TARGET = 13.4;
 				MARKETING_VERSION = 1.0;
+				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
 				PRODUCT_BUNDLE_IDENTIFIER = com.burakerol.BobbysCounter.BobbysCounterUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -847,15 +863,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = BobbysCounterWidget/BobbysCounterWidgetExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Shared/Resource/BobbysCounter.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 94JQJE3TWJ;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = BobbysCounterWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = BobbysCounterWidget;
+				GENERATE_PKGINFO_FILE = YES;
+				INFOPLIST_FILE = Shared/Resource/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = BobbysCounter;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_OUTPUT_FORMAT = "same-as-input";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -863,11 +881,13 @@
 				);
 				MARKETING_VERSION = 1.0;
 				ONLY_ACTIVE_ARCH = YES;
+				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
 				PRODUCT_BUNDLE_IDENTIFIER = com.burakerol.BobbysCounter.BobbysCounterWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -883,15 +903,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = BobbysCounterWidget/BobbysCounterWidgetExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Shared/Resource/BobbysCounter.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 94JQJE3TWJ;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = BobbysCounterWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = BobbysCounterWidget;
+				GENERATE_PKGINFO_FILE = YES;
+				INFOPLIST_FILE = Shared/Resource/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = BobbysCounter;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_OUTPUT_FORMAT = "same-as-input";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -899,11 +921,13 @@
 				);
 				MARKETING_VERSION = 1.0;
 				ONLY_ACTIVE_ARCH = NO;
+				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
 				PRODUCT_BUNDLE_IDENTIFIER = com.burakerol.BobbysCounter.BobbysCounterWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -954,7 +978,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BFF55EC32A57315100EE0B3A /* Build configuration list for PBXNativeTarget "BobbysCounterWidgetExtension" */ = {
+		BFF55EC32A57315100EE0B3A /* Build configuration list for PBXNativeTarget "BobbysCounterWidget" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BFF55EC42A57315100EE0B3A /* Debug */,
