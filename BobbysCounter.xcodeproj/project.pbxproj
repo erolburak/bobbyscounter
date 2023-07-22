@@ -15,6 +15,7 @@
 		BF2C454D2A4B3EBA00D48C36 /* BobbysCounterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2C454C2A4B3EBA00D48C36 /* BobbysCounterTests.swift */; };
 		BF2C45572A4B3EBA00D48C36 /* BobbysCounterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2C45562A4B3EBA00D48C36 /* BobbysCounterUITests.swift */; };
 		BF2C45592A4B3EBA00D48C36 /* BobbysCounterUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2C45582A4B3EBA00D48C36 /* BobbysCounterUITestsLaunchTests.swift */; };
+		BF6048B22A6C231F00B4D119 /* ContentViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6048B12A6C231F00B4D119 /* ContentViewModelTest.swift */; };
 		BF6D1DA12A6603CA00264753 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6D1DA02A6603CA00264753 /* Constant.swift */; };
 		BF6D1DA32A6604CC00264753 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6D1DA02A6603CA00264753 /* Constant.swift */; };
 		BFB702AC2A605631001AADE9 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BFB702AB2A605631001AADE9 /* Localizable.xcstrings */; };
@@ -88,6 +89,8 @@
 		BF2C45522A4B3EBA00D48C36 /* BobbysCounterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BobbysCounterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF2C45562A4B3EBA00D48C36 /* BobbysCounterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BobbysCounterUITests.swift; sourceTree = "<group>"; };
 		BF2C45582A4B3EBA00D48C36 /* BobbysCounterUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BobbysCounterUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		BF6048B12A6C231F00B4D119 /* ContentViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModelTest.swift; sourceTree = "<group>"; };
+		BF6048B62A6C292300B4D119 /* Tests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Tests.xctestplan; sourceTree = "<group>"; };
 		BF6D1DA02A6603CA00264753 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		BF7C46762A6B04CC00CA47D1 /* BobbysCounter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BobbysCounter.entitlements; sourceTree = "<group>"; };
 		BFB702AB2A605631001AADE9 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
@@ -147,6 +150,7 @@
 				BFF55EBF2A57315100EE0B3A /* Info.plist */,
 				BFB702AB2A605631001AADE9 /* Localizable.xcstrings */,
 				BF2C45412A4B3EB900D48C36 /* Preview Assets.xcassets */,
+				BF6048B62A6C292300B4D119 /* Tests.xctestplan */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -187,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				BF2C454C2A4B3EBA00D48C36 /* BobbysCounterTests.swift */,
+				BF6048B12A6C231F00B4D119 /* ContentViewModelTest.swift */,
 			);
 			path = BobbysCounterTests;
 			sourceTree = "<group>";
@@ -457,6 +462,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF6048B22A6C231F00B4D119 /* ContentViewModelTest.swift in Sources */,
 				BF2C454D2A4B3EBA00D48C36 /* BobbysCounterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
