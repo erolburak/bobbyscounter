@@ -30,6 +30,7 @@ struct SettingsView: View {
 						   displayedComponents: [.date])
 				.datePickerStyle(.compact)
 				.padding()
+				.accessibilityIdentifier("DatePicker")
 
 				Spacer()
 			}
@@ -39,6 +40,7 @@ struct SettingsView: View {
 						viewModel.showConfirmationDialog.toggle()
 					}
 					.disabled(counters.isEmpty)
+					.accessibilityIdentifier("ResetButton")
 				}
 
 				ToolbarItem(placement: .topBarTrailing) {
@@ -47,6 +49,7 @@ struct SettingsView: View {
 					} label: {
 						Image(systemName: "xmark.circle.fill")
 					}
+					.accessibilityIdentifier("DismissButton")
 				}
 
 				ToolbarItem(placement: .bottomBar) {
@@ -54,6 +57,7 @@ struct SettingsView: View {
 						selectedDate = .now
 					}
 					.disabled(selectedDate.isDateToday)
+					.accessibilityIdentifier("TodayButton")
 				}
 			}
 			.confirmationDialog("ConfirmationDialogTitle",
@@ -67,6 +71,7 @@ struct SettingsView: View {
 					}
 					dismiss()
 				}
+				.accessibilityIdentifier("ResetConfirmationButton")
 			}
 			.alert(isPresented: $viewModel.showAlert,
 				   error: viewModel.alertError) { _ in

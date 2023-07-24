@@ -1,6 +1,6 @@
 //
 //  Counter.swift
-//  BobbysCounter
+//  Shared
 //
 //  Created by Burak Erol on 27.06.23.
 //
@@ -25,11 +25,4 @@ final class Counter {
 		self.count = count
 		self.date = date
 	}
-
-	// MARK: - Previev
-
-	static let preview = {
-		Counter(count: 7,
-				date: .now)
-	}()
 }

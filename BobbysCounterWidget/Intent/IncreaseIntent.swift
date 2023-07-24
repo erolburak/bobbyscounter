@@ -1,6 +1,6 @@
 //
 //  IncreaseIntent.swift
-//  BobbysCounter
+//  BobbysCounterWidget
 //
 //  Created by Burak Erol on 14.07.23.
 //

@@ -29,6 +29,7 @@ struct ContentView: View {
 				.minimumScaleFactor(0.001)
 				.lineLimit(1)
 				.opacity(0.25)
+				.accessibilityIdentifier("CountText")
 
 			HStack {
 				Button {
@@ -39,6 +40,7 @@ struct ContentView: View {
 							   maxHeight: .infinity)
 				}
 				.disabled(viewModel.counter?.count == 0)
+				.accessibilityIdentifier("MinusButton")
 
 				Button {
 					viewModel.increaseCount()
@@ -47,6 +49,7 @@ struct ContentView: View {
 						.frame(maxWidth: .infinity,
 							   maxHeight: .infinity)
 				}
+				.accessibilityIdentifier("PlusButton")
 			}
 		}
 		.edgesIgnoringSafeArea(.all)
@@ -59,11 +62,13 @@ struct ContentView: View {
 							  weight: .bold,
 							  design: .monospaced))
 				.padding(.trailing)
+				.accessibilityIdentifier("DateText")
 		}
 		.overlay(alignment: .bottom) {
 			Button("Settings") {
 				viewModel.showSettingsSheet.toggle()
 			}
+			.accessibilityIdentifier("SettingsButton")
 		}
 		.sheet(isPresented: $viewModel.showSettingsSheet) {
 			SettingsView(counter: $viewModel.counter,
@@ -98,20 +103,3 @@ struct ContentView: View {
 		.tint(.accent)
 	}
 }
-
-#Preview {
-	ContentView(viewModel: ContentViewModel())
-		.modelContainer(previewContainer)
-}
-
-@MainActor
-private let previewContainer: ModelContainer = {
-	do {
-		let container = try ModelContainer(for: Counter.self,
-										   ModelConfiguration(inMemory: true))
-		container.mainContext.insert(Counter.preview)
-		return container
-	} catch {
-		fatalError("Failed to create container")
-	}
-}()
