@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%lld" : {
+
+    },
     "AppName" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -18,6 +21,22 @@
         }
       }
     },
+    "ChartDescription" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Um die Charts zu sehen, müssen mindestens Zähler für 2 Tage angelegt sein."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To see the charts, counters for at least 2 days must be created."
+          }
+        }
+      }
+    },
     "ConfirmationDialogTitle" : {
       "localizations" : {
         "de" : {
@@ -30,6 +49,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Do you want to clear all counters?"
+          }
+        }
+      }
+    },
+    "Count" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zähler"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Count"
+          }
+        }
+      }
+    },
+    "Date" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datum"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Date"
           }
         }
       }

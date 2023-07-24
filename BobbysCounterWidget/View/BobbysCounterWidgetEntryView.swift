@@ -18,9 +18,7 @@ struct BobbysCounterWidgetEntryView: View {
 	var body: some View {
 		ZStack {
 			Text(entry.counter.count.description)
-				.font(.system(size: 100000.0,
-							  weight: .bold,
-							  design: .monospaced))
+				.font(.system(size: 100000))
 				.minimumScaleFactor(0.001)
 				.lineLimit(1)
 				.opacity(0.25)
@@ -39,18 +37,16 @@ struct BobbysCounterWidgetEntryView: View {
 							   maxHeight: .infinity)
 				}
 			}
+			.font(.system(size: 100))
 			.buttonStyle(.plain)
 		}
 		.edgesIgnoringSafeArea(.all)
 		.overlay(alignment: .topTrailing) {
 			Text(entry.counter.date.relative)
-				.font(.system(size: 8,
-							  weight: .bold,
-							  design: .monospaced))
+				.font(.system(size: 8))
 		}
-		.font(.system(size: 100.0,
-					  weight: .bold,
-					  design: .monospaced))
+		.fontWeight(.bold)
+		.fontDesign(.monospaced)
 		.tint(.accent)
 	}
 }
