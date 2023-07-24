@@ -16,7 +16,7 @@ class Constant {
 
 	// MARK: - Type Definitions
 
-	enum Errors: LocalizedError {
+	enum Errors: CaseIterable, LocalizedError {
 		case fetch, insert, reset
 
 		var errorDescription: String? {

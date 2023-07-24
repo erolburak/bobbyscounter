@@ -36,8 +36,7 @@ class ContentViewModel {
 		do {
 			counter?.count = try await Repository.shared.fetchTodaysCounter()?.count ?? 0
 		} catch Constant.Errors.fetch {
-			alertError = .fetch
-			showAlert.toggle()
+			showAlert(error: .fetch)
 		}
 	}
 
@@ -47,8 +46,13 @@ class ContentViewModel {
 			counter = try await Repository.shared.setCounter(counters: counters,
 															 selectedDate: selectedDate)
 		} catch Constant.Errors.insert {
-			alertError = .insert
-			showAlert.toggle()
+			showAlert(error: .insert)
 		}
+	}
+
+	/// Set alert error and show alert
+	func showAlert(error: Constant.Errors) {
+		alertError = error
+		showAlert.toggle()
 	}
 }

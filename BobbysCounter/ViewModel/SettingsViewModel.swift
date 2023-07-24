@@ -29,8 +29,7 @@ class SettingsViewModel {
 			return try await setCounter(counters: [],
 										selectedDate: selectedDate)
 		} catch Constant.Errors.reset {
-			alertError = .reset
-			showAlert.toggle()
+			showAlert(error: .reset)
 		}
 		return nil
 	}
@@ -40,5 +39,11 @@ class SettingsViewModel {
 					selectedDate: Date) async throws -> Counter? {
 		return try await Repository.shared.setCounter(counters: counters,
 													  selectedDate: selectedDate)
+	}
+
+	/// Set alert error and show alert
+	func showAlert(error: Constant.Errors) {
+		alertError = error
+		showAlert.toggle()
 	}
 }
