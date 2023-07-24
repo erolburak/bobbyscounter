@@ -81,19 +81,34 @@ final class SettingsViewTests: XCTestCase {
 		XCTAssertTrue(countText.waitForExistence(timeout: 5))
 		let countTextAsInt = Int(app.staticTexts["CountText"].label)
 		XCTAssertEqual(countTextAsInt, 0)
+		XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
 		settingsButton.tap()
 		let chartDescriptionText = app.staticTexts["ChartDescriptionText"]
 		XCTAssertTrue(chartDescriptionText.waitForExistence(timeout: 5))
 	}
 
-	/// Test if `Chart` exists while first increasing counter count value twice and then opening settings view
+	/// Test if `Chart` exists while first increasing counter count value for current day
+	/// Then increasing counter count value for first day of previous month and then opening settings view
 	func testChart() {
 		let app = XCUIApplication()
 		app.launch()
 		let plusButton = app.buttons["PlusButton"]
 		XCTAssertTrue(plusButton.waitForExistence(timeout: 5))
-		plusButton.tap(withNumberOfTaps: 2, numberOfTouches: 2)
+		plusButton.tap()
 		let settingsButton = app.buttons["SettingsButton"]
+		XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
+		settingsButton.tap()
+		let datePicker = app.datePickers["DatePicker"]
+		XCTAssertTrue(datePicker.waitForExistence(timeout: 5))
+		datePicker.tap()
+		let previousMonthButton = app.buttons["Previous Month"]
+		XCTAssertTrue(previousMonthButton.waitForExistence(timeout: 5))
+		previousMonthButton.tap()
+		let firstDayOfMonthButton = app.datePickers.collectionViews.staticTexts["1"]
+		XCTAssertTrue(previousMonthButton.waitForExistence(timeout: 5))
+		firstDayOfMonthButton.tap()
+		XCTAssertTrue(plusButton.waitForExistence(timeout: 5))
+		plusButton.tap()
 		XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
 		settingsButton.tap()
 		let chart = app.scrollViews["Chart"]
