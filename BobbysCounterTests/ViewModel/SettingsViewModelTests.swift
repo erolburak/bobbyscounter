@@ -20,6 +20,7 @@ class SettingsViewModelTests: XCTestCase {
 		sut = nil
 	}
 
+	/// Test reset
 	func testReset() async throws {
 		// Given
 		let expected = Counter(count: 0,
@@ -37,6 +38,7 @@ class SettingsViewModelTests: XCTestCase {
 		XCTAssertEqual(counter?.date.isDateToday, expected.date.isDateToday)
 	}
 
+	/// Test set counter
 	func testSetCounter() async throws {
 		// Given
 		let expected = Counter(count: 0,
@@ -56,12 +58,14 @@ class SettingsViewModelTests: XCTestCase {
 		XCTAssertEqual(counter?.date.isDateToday, expected.date.isDateToday)
 	}
 
+	/// Test all alert errors
 	func testAlertErrors() {
 		for error in Constant.Errors.allCases {
 			testAlertError(error: error)
 		}
 	}
 
+	/// Test all alert errors helper
 	private func testAlertError(error: Constant.Errors) {
 		// Given
 		sut.showAlert = false

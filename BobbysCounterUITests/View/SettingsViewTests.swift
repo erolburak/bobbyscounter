@@ -13,6 +13,7 @@ final class SettingsViewTests: XCTestCase {
 		continueAfterFailure = false
 	}
 
+	/// Test reset and confirm reset while first opening settings view
 	func testResetButton() {
 		let app = XCUIApplication()
 		app.launch()
@@ -24,6 +25,7 @@ final class SettingsViewTests: XCTestCase {
 		XCTAssertTrue(resetConfirmationButton.waitForExistence(timeout: 5))
 	}
 
+	/// Test dismiss settings view while first opening settings view
 	func testDismissButton() {
 		let app = XCUIApplication()
 		app.launch()
@@ -33,6 +35,8 @@ final class SettingsViewTests: XCTestCase {
 		dismissButton.tap()
 	}
 
+	/// Test set selected date to today while first opening settings view
+	/// Afterwards select first day of previous month and then select today
 	func testTodayButton() {
 		let app = XCUIApplication()
 		app.launch()
@@ -60,6 +64,7 @@ final class SettingsViewTests: XCTestCase {
 		}
 	}
 
+	/// Test final reset confirmation while first opening settings view
 	func testResetConfirmationButton() {
 		let app = XCUIApplication()
 		app.launch()
@@ -67,7 +72,7 @@ final class SettingsViewTests: XCTestCase {
 		XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
 		settingsButton.tap()
 		let resetButton = app.buttons["ResetButton"]
-		XCTAssertNotNil(resetButton)
+		XCTAssertTrue(resetButton.waitForExistence(timeout: 5))
 		resetButton.tap()
 		let resetConfirmationButton = app.buttons["ResetConfirmationButton"]
 		XCTAssertTrue(resetConfirmationButton.waitForExistence(timeout: 5))
@@ -81,13 +86,13 @@ final class SettingsViewTests: XCTestCase {
 		XCTAssertTrue(chartDescriptionText.waitForExistence(timeout: 5))
 	}
 
+	/// Test if `Chart` exists while first increasing counter count value twice and then opening settings view
 	func testChart() {
 		let app = XCUIApplication()
 		app.launch()
 		let plusButton = app.buttons["PlusButton"]
 		XCTAssertTrue(plusButton.waitForExistence(timeout: 5))
-		plusButton.tap()
-		plusButton.tap()
+		plusButton.tap(withNumberOfTaps: 2, numberOfTouches: 2)
 		let settingsButton = app.buttons["SettingsButton"]
 		XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
 		settingsButton.tap()
