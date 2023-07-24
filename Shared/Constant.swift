@@ -1,6 +1,6 @@
 //
 //  Constant.swift
-//  BobbysCounter
+//  Shared
 //
 //  Created by Burak Erol on 18.07.23.
 //

@@ -1,6 +1,6 @@
 //
 //  BobbysCounterWidgetProvider.swift
-//  BobbysCounter
+//  BobbysCounterWidget
 //
 //  Created by Burak Erol on 18.07.23.
 //

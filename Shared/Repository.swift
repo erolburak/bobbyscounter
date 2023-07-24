@@ -1,6 +1,6 @@
 //
 //  Repository.swift
-//  BobbysCounter
+//  Shared
 //
 //  Created by Burak Erol on 18.07.23.
 //
@@ -15,7 +15,7 @@ class Repository {
 	static let shared = Repository()
 	static let fetchDescriptor = FetchDescriptor<Counter>(sortBy: [SortDescriptor(\.date,
 																				   order: .forward)])
-	var modelContainer: ModelContainer? { try? ModelContainer(for: [Counter.self]) }
+	private var modelContainer: ModelContainer? { try? ModelContainer(for: [Counter.self]) }
 
 	/// Decrease counter count value if count greater than 0
 	func decreaseCount(counter: Counter?) {
