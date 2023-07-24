@@ -19,7 +19,7 @@ class SettingsViewModel {
 
 	// MARK: - Actions
 
-	/// Delete counters, reset view model properties, set counter and return object
+	/// Reset counters, reset view model properties, set counter and return object
 	func reset(selectedDate: Date) async throws -> Counter? {
 		do {
 			try await Repository.shared.deleteCounters()
