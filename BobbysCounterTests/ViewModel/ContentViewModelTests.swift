@@ -68,4 +68,23 @@ class ContentViewModelTests: XCTestCase {
 		XCTAssertEqual(sut.counter, expected)
 		XCTAssertNotEqual(sut.counter, counters.last)
 	}
+
+	func testAlertErrors() {
+		for error in Constant.Errors.allCases {
+			testAlertError(error: error)
+		}
+	}
+
+	private func testAlertError(error: Constant.Errors) {
+		// Given
+		sut.showAlert = false
+		let expected = error
+		// When
+		sut.showAlert(error: error)
+		// Then
+		XCTAssertTrue(sut.showAlert)
+		XCTAssertEqual(sut.alertError, expected)
+		XCTAssertNotNil(sut.alertError?.errorDescription)
+		XCTAssertNotNil(sut.alertError?.recoverySuggestion)
+	}
 }

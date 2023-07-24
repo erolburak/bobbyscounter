@@ -55,4 +55,23 @@ class SettingsViewModelTests: XCTestCase {
 		XCTAssertEqual(counter?.count, expected.count)
 		XCTAssertEqual(counter?.date.isDateToday, expected.date.isDateToday)
 	}
+
+	func testAlertErrors() {
+		for error in Constant.Errors.allCases {
+			testAlertError(error: error)
+		}
+	}
+
+	private func testAlertError(error: Constant.Errors) {
+		// Given
+		sut.showAlert = false
+		let expected = error
+		// When
+		sut.showAlert(error: error)
+		// Then
+		XCTAssertTrue(sut.showAlert)
+		XCTAssertEqual(sut.alertError, expected)
+		XCTAssertNotNil(sut.alertError?.errorDescription)
+		XCTAssertNotNil(sut.alertError?.recoverySuggestion)
+	}
 }
