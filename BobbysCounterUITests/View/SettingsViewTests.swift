@@ -63,7 +63,9 @@ final class SettingsViewTests: XCTestCase {
 	func testResetConfirmationButton() {
 		let app = XCUIApplication()
 		app.launch()
-		app.buttons["SettingsButton"].tap()
+		let settingsButton = app.buttons["SettingsButton"]
+		XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
+		settingsButton.tap()
 		let resetButton = app.buttons["ResetButton"]
 		XCTAssertNotNil(resetButton)
 		resetButton.tap()
@@ -74,5 +76,22 @@ final class SettingsViewTests: XCTestCase {
 		XCTAssertTrue(countText.waitForExistence(timeout: 5))
 		let countTextAsInt = Int(app.staticTexts["CountText"].label)
 		XCTAssertEqual(countTextAsInt, 0)
+		settingsButton.tap()
+		let chartDescriptionText = app.staticTexts["ChartDescriptionText"]
+		XCTAssertTrue(chartDescriptionText.waitForExistence(timeout: 5))
+	}
+
+	func testChart() {
+		let app = XCUIApplication()
+		app.launch()
+		let plusButton = app.buttons["PlusButton"]
+		XCTAssertTrue(plusButton.waitForExistence(timeout: 5))
+		plusButton.tap()
+		plusButton.tap()
+		let settingsButton = app.buttons["SettingsButton"]
+		XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
+		settingsButton.tap()
+		let chart = app.scrollViews["Chart"]
+		XCTAssertTrue(chart.waitForExistence(timeout: 5))
 	}
 }

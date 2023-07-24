@@ -23,9 +23,7 @@ struct ContentView: View {
 	var body: some View {
 		ZStack {
 			Text(viewModel.counter?.count.description ?? "0")
-				.font(.system(size: 100000.0,
-							  weight: .bold,
-							  design: .monospaced))
+				.font(.system(size: 100000))
 				.minimumScaleFactor(0.001)
 				.lineLimit(1)
 				.opacity(0.25)
@@ -51,16 +49,12 @@ struct ContentView: View {
 				}
 				.accessibilityIdentifier("PlusButton")
 			}
+			.font(.system(size: 140.0))
 		}
 		.edgesIgnoringSafeArea(.all)
-		.font(.system(size: 100.0,
-					  weight: .bold,
-					  design: .monospaced))
 		.overlay(alignment: .topTrailing) {
 			Text(viewModel.counter?.date.relative ?? "")
-				.font(.system(size: 8,
-							  weight: .bold,
-							  design: .monospaced))
+				.font(.system(size: 8))
 				.padding(.trailing)
 				.accessibilityIdentifier("DateText")
 		}
@@ -74,6 +68,7 @@ struct ContentView: View {
 			SettingsView(counter: $viewModel.counter,
 						 selectedDate: $viewModel.selectedDate,
 						 viewModel: SettingsViewModel())
+			.modelContainer(for: Counter.self)
 		}
 		.alert(isPresented: $viewModel.showAlert,
 			   error: viewModel.alertError) { _ in
@@ -100,6 +95,8 @@ struct ContentView: View {
 			default: break
 			}
 		}
+		.fontWeight(.bold)
+		.fontDesign(.monospaced)
 		.tint(.accent)
 	}
 }
