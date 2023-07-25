@@ -17,7 +17,8 @@ struct SettingsView: View {
 	@Binding var selectedDate: Date
 	@Environment(\.dismiss) private var dismiss
 	@Environment(\.modelContext) private var modelContext
-	@Query(sort: \.date, order: .forward) private var counters: [Counter]
+	@Query(sort: [SortDescriptor<Counter>(\.date,
+										   order: .forward)]) private var counters: [Counter]
 	@State var viewModel: SettingsViewModel
 
 	// MARK: - Layouts
@@ -128,5 +129,17 @@ struct SettingsView: View {
 		.fontWeight(.bold)
 		.fontDesign(.monospaced)
 		.tint(.red)
+	}
+}
+
+#Preview {
+	Color
+		.clear
+		.sheet(isPresented: .constant(true)) {
+			SettingsView(counter: .constant(nil),
+						 selectedDate: .constant(.now),
+						 viewModel: SettingsViewModel())
+			.modelContainer(for: Counter.self,
+							inMemory: true)
 	}
 }
