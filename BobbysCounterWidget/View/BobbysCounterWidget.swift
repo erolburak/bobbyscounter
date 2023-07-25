@@ -27,3 +27,10 @@ struct BobbysCounterWidget: Widget {
 		.description("WidgetDescription")
 	}
 }
+
+#Preview(as: .systemSmall) {
+	BobbysCounterWidget()
+} timeline: {
+	BobbysCounterWidgetEntry(counter: Counter(count: 7,
+											  date: .now))
+}

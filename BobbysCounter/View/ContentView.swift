@@ -15,7 +15,8 @@ struct ContentView: View {
 
 	@Environment(\.scenePhase) private var scenePhase
 	@Environment(\.modelContext) private var modelContext
-	@Query(sort: \.date, order: .forward) private var counters: [Counter]
+	@Query(sort: [SortDescriptor<Counter>(\.date,
+										   order: .forward)]) private var counters: [Counter]
 	@State var viewModel: ContentViewModel
 
 	// MARK: - Layouts
@@ -99,4 +100,10 @@ struct ContentView: View {
 		.fontDesign(.monospaced)
 		.tint(.accent)
 	}
+}
+
+#Preview {
+	ContentView(viewModel: ContentViewModel())
+		.modelContainer(for: Counter.self,
+						inMemory: true)
 }
