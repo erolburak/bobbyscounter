@@ -2,17 +2,22 @@
   "configurations" : [
     {
       "id" : "3689EE4D-06BE-4D2E-8DC4-1DEBDB6EBFD4",
-      "name" : "Configuration 1",
+      "name" : "Test Scheme Action",
       "options" : {
 
       }
     }
   ],
   "defaultOptions" : {
-
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:BobbysCounter.xcodeproj",
+      "identifier" : "BF2C45332A4B3EB900D48C36",
+      "name" : "BobbysCounter"
+    }
   },
   "testTargets" : [
     {
+      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:BobbysCounter.xcodeproj",
         "identifier" : "BF2C45472A4B3EBA00D48C36",
@@ -20,6 +25,7 @@
       }
     },
     {
+      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:BobbysCounter.xcodeproj",
         "identifier" : "BF2C45512A4B3EBA00D48C36",

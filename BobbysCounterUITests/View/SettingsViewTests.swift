@@ -17,7 +17,9 @@ final class SettingsViewTests: XCTestCase {
 	func testResetButton() {
 		let app = XCUIApplication()
 		app.launch()
-		app.buttons["SettingsButton"].tap()
+		let settingsButton = app.buttons["SettingsButton"]
+		XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
+		settingsButton.tap()
 		let resetButton = app.buttons["ResetButton"]
 		XCTAssertTrue(resetButton.waitForExistence(timeout: 5))
 		resetButton.tap()
@@ -29,7 +31,9 @@ final class SettingsViewTests: XCTestCase {
 	func testDismissButton() {
 		let app = XCUIApplication()
 		app.launch()
-		app.buttons["SettingsButton"].tap()
+		let settingsButton = app.buttons["SettingsButton"]
+		XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
+		settingsButton.tap()
 		let dismissButton = app.buttons["DismissButton"]
 		XCTAssertTrue(dismissButton.waitForExistence(timeout: 5))
 		dismissButton.tap()
@@ -46,7 +50,7 @@ final class SettingsViewTests: XCTestCase {
 		let datePicker = app.datePickers["DatePicker"]
 		XCTAssertTrue(datePicker.waitForExistence(timeout: 5))
 		datePicker.tap()
-		let previousMonthButton = app.buttons["Previous Month"]
+		let previousMonthButton = app.buttons[Locale.current.language.languageCode == "en" ? "Previous Month" : "Vorheriger Monat"]
 		XCTAssertTrue(previousMonthButton.waitForExistence(timeout: 5))
 		previousMonthButton.tap()
 		let firstDayOfMonthButton = app.datePickers.collectionViews.staticTexts["1"]
@@ -60,7 +64,7 @@ final class SettingsViewTests: XCTestCase {
 			todayButton.tap()
 			let dateText = app.staticTexts["DateText"]
 			XCTAssertTrue(dateText.waitForExistence(timeout: 5))
-			XCTAssertEqual(dateText.label, "Today")
+			XCTAssertEqual(dateText.label, Locale.current.language.languageCode == "en" ? "Today" : "Heute")
 		}
 	}
 
@@ -101,7 +105,7 @@ final class SettingsViewTests: XCTestCase {
 		let datePicker = app.datePickers["DatePicker"]
 		XCTAssertTrue(datePicker.waitForExistence(timeout: 5))
 		datePicker.tap()
-		let previousMonthButton = app.buttons["Previous Month"]
+		let previousMonthButton = app.buttons[Locale.current.language.languageCode == "en" ? "Previous Month" : "Vorheriger Monat"]
 		XCTAssertTrue(previousMonthButton.waitForExistence(timeout: 5))
 		previousMonthButton.tap()
 		let firstDayOfMonthButton = app.datePickers.collectionViews.staticTexts["1"]
