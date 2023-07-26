@@ -12,5 +12,5 @@ struct BobbysCounterWidgetEntry: TimelineEntry {
 	// MARK: - Properties
 
 	let date: Date = .now
-	let counter: Counter
+	let counterIntent: CounterIntent
 }

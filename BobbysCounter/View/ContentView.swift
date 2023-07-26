@@ -24,10 +24,11 @@ struct ContentView: View {
 	var body: some View {
 		ZStack {
 			Text(viewModel.counter?.count.description ?? "0")
-				.font(.system(size: 100000))
+				.font(.system(size: 1000))
 				.minimumScaleFactor(0.001)
 				.lineLimit(1)
 				.opacity(0.25)
+				.padding()
 				.accessibilityIdentifier("CountText")
 
 			HStack {

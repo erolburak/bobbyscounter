@@ -17,8 +17,9 @@ struct BobbysCounterWidget: Widget {
 	// MARK: - Layouts
 
 	var body: some WidgetConfiguration {
-		StaticConfiguration(kind: kind,
-							provider: BobbysCounterWidgetProvider()) { entry in
+		AppIntentConfiguration(kind: kind,
+							   intent: CounterIntent.self,
+							   provider: BobbysCounterWidgetProvider()) { entry in
 			BobbysCounterWidgetEntryView(entry: entry)
 				.containerBackground(.widgetBackground,
 									 for: .widget)
@@ -28,9 +29,49 @@ struct BobbysCounterWidget: Widget {
 	}
 }
 
-#Preview(as: .systemSmall) {
+fileprivate extension CounterIntent {
+
+	// MARK: - Properties
+
+	/// Create CounterIntent with small number for preview
+	static var smallNumber: CounterIntent {
+		let counter = CounterIntent()
+		counter.count = 7
+		counter.date = Date().relative
+		return counter
+	}
+
+	/// Create CounterIntent with large number for preview
+	static var largeNumber: CounterIntent {
+		let counter = CounterIntent()
+		counter.count = 7777
+		counter.date = Date().relative
+		return counter
+	}
+
+	/// Create CounterIntent with extra large number for preview
+	static var extraLargeNumber: CounterIntent {
+		let counter = CounterIntent()
+		counter.count = 7777777777777777777
+		counter.date = Date().relative
+		return counter
+	}
+}
+
+#Preview("System Small",
+		 as: .systemSmall) {
 	BobbysCounterWidget()
 } timeline: {
-	BobbysCounterWidgetEntry(counter: Counter(count: 7,
-											  date: .now))
+	BobbysCounterWidgetEntry(counterIntent: .smallNumber)
+	BobbysCounterWidgetEntry(counterIntent: .largeNumber)
+	BobbysCounterWidgetEntry(counterIntent: .extraLargeNumber)
+}
+
+#Preview("System Extra Large",
+		 as: .systemExtraLarge) {
+	BobbysCounterWidget()
+} timeline: {
+	BobbysCounterWidgetEntry(counterIntent: .smallNumber)
+	BobbysCounterWidgetEntry(counterIntent: .largeNumber)
+	BobbysCounterWidgetEntry(counterIntent: .extraLargeNumber)
 }

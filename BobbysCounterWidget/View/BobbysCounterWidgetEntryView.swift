@@ -17,11 +17,12 @@ struct BobbysCounterWidgetEntryView: View {
 
 	var body: some View {
 		ZStack {
-			Text(entry.counter.count.description)
-				.font(.system(size: 100000))
-				.minimumScaleFactor(0.001)
+			Text(entry.counterIntent.count.description)
+				.font(.system(size: 100))
+				.minimumScaleFactor(0.01)
 				.lineLimit(1)
 				.opacity(0.25)
+				.padding()
 
 			HStack {
 				Button(intent: DecreaseIntent()) {
@@ -29,7 +30,7 @@ struct BobbysCounterWidgetEntryView: View {
 						.frame(maxWidth: .infinity,
 							   maxHeight: .infinity)
 				}
-				.disabled(entry.counter.count == 0)
+				.disabled(entry.counterIntent.count == 0)
 
 				Button(intent: IncreaseIntent()) {
 					Text("Plus")
@@ -37,12 +38,12 @@ struct BobbysCounterWidgetEntryView: View {
 							   maxHeight: .infinity)
 				}
 			}
-			.font(.system(size: 100))
+			.font(.system(size: 70))
 			.buttonStyle(.plain)
 		}
 		.edgesIgnoringSafeArea(.all)
 		.overlay(alignment: .topTrailing) {
-			Text(entry.counter.date.relative)
+			Text(entry.counterIntent.date)
 				.font(.system(size: 8))
 		}
 		.fontWeight(.bold)

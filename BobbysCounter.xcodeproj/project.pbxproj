@@ -18,6 +18,7 @@
 		BF5A26282A6E7E1600B47FD4 /* ContentViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5A26272A6E7E1600B47FD4 /* ContentViewTests.swift */; };
 		BF5A262B2A6E8D6100B47FD4 /* SettingsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5A262A2A6E8D6100B47FD4 /* SettingsViewTests.swift */; };
 		BF6048B22A6C231F00B4D119 /* ContentViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6048B12A6C231F00B4D119 /* ContentViewModelTests.swift */; };
+		BF67A3E92A716DC70081616C /* CounterIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF67A3E82A716DC70081616C /* CounterIntent.swift */; };
 		BF6D1DA12A6603CA00264753 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6D1DA02A6603CA00264753 /* Constant.swift */; };
 		BF6D1DA32A6604CC00264753 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6D1DA02A6603CA00264753 /* Constant.swift */; };
 		BFB702AC2A605631001AADE9 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BFB702AB2A605631001AADE9 /* Localizable.xcstrings */; };
@@ -95,6 +96,7 @@
 		BF5A262A2A6E8D6100B47FD4 /* SettingsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewTests.swift; sourceTree = "<group>"; };
 		BF6048B12A6C231F00B4D119 /* ContentViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModelTests.swift; sourceTree = "<group>"; };
 		BF6048B62A6C292300B4D119 /* Tests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Tests.xctestplan; sourceTree = "<group>"; };
+		BF67A3E82A716DC70081616C /* CounterIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterIntent.swift; sourceTree = "<group>"; };
 		BF6D1DA02A6603CA00264753 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		BF7C46762A6B04CC00CA47D1 /* BobbysCounter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BobbysCounter.entitlements; sourceTree = "<group>"; };
 		BFB702AB2A605631001AADE9 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 		BFDF3C802A61A7D2001E4076 /* Intent */ = {
 			isa = PBXGroup;
 			children = (
+				BF67A3E82A716DC70081616C /* CounterIntent.swift */,
 				BFDF3C812A61A7FA001E4076 /* DecreaseIntent.swift */,
 				BFDF3C832A61A84D001E4076 /* IncreaseIntent.swift */,
 			);
@@ -516,6 +519,7 @@
 				BFB86DB62A66E22A0092EAEC /* BobbysCounterWidgetProvider.swift in Sources */,
 				BFDF3C852A61ACEF001E4076 /* DecreaseIntent.swift in Sources */,
 				BF6D1DA32A6604CC00264753 /* Constant.swift in Sources */,
+				BF67A3E92A716DC70081616C /* CounterIntent.swift in Sources */,
 				BFB702B42A608DE1001AADE9 /* Counter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
