@@ -19,16 +19,21 @@ final class ContentViewTests: XCTestCase {
 	func testDecreaseCountText() {
 		let app = XCUIApplication()
 		app.launch()
-		let currentCountTextAsInt = Int(app.staticTexts["CountText"].label)
+		let currentCountTest = app.staticTexts["CountText"]
+		XCTAssertTrue(currentCountTest.waitForExistence(timeout: 5))
+		let currentCountTextAsInt = Int(currentCountTest.label)
 		XCTAssertNotNil(currentCountTextAsInt)
 		let minusButton = app.buttons["MinusButton"]
 		XCTAssertTrue(minusButton.waitForExistence(timeout: 5))
-		if minusButton.isEnabled {
+		if let currentCountTextAsInt,
+		   minusButton.isEnabled {
 			minusButton.tap()
-			let newCountTextAsInt = Int(app.staticTexts["CountText"].label)
-			XCTAssertEqual(currentCountTextAsInt!-1, newCountTextAsInt)
+			let newCountText = app.staticTexts["CountText"]
+			XCTAssertTrue(newCountText.waitForExistence(timeout: 5))
+			let newCountTextAsInt = Int(newCountText.label)
+			XCTAssertEqual(currentCountTextAsInt-1, newCountTextAsInt)
 		} else {
-			XCTAssertEqual(currentCountTextAsInt!, 0)
+			XCTAssertEqual(currentCountTextAsInt, 0)
 		}
 	}
 
@@ -37,13 +42,19 @@ final class ContentViewTests: XCTestCase {
 	func testIncreaseCountText() {
 		let app = XCUIApplication()
 		app.launch()
-		let currentCountTextAsInt = Int(app.staticTexts["CountText"].label)
+		let currentCountTest = app.staticTexts["CountText"]
+		XCTAssertTrue(currentCountTest.waitForExistence(timeout: 5))
+		let currentCountTextAsInt = Int(currentCountTest.label)
 		XCTAssertNotNil(currentCountTextAsInt)
 		let plusButton = app.buttons["PlusButton"]
 		XCTAssertTrue(plusButton.waitForExistence(timeout: 5))
-		plusButton.tap()
-		let newCountTextAsInt = Int(app.staticTexts["CountText"].label)
-		XCTAssertEqual(currentCountTextAsInt!+1, newCountTextAsInt)
+		if let currentCountTextAsInt {
+			plusButton.tap()
+			let newCountText = app.staticTexts["CountText"]
+			XCTAssertTrue(newCountText.waitForExistence(timeout: 5))
+			let newCountTextAsInt = Int(newCountText.label)
+			XCTAssertEqual(currentCountTextAsInt+1, newCountTextAsInt)
+		}
 	}
 
 	/// Test if `DateText` is set to today after launch
@@ -52,7 +63,7 @@ final class ContentViewTests: XCTestCase {
 		app.launch()
 		let dateText = app.staticTexts["DateText"]
 		XCTAssertTrue(dateText.waitForExistence(timeout: 5))
-		XCTAssertEqual(dateText.label, "Today")
+		XCTAssertEqual(dateText.label, Locale.current.language.languageCode == "en" ? "Today" : "Heute")
 	}
 
 	/// Test if `SettingsButton` exists and is enabled
