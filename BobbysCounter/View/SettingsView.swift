@@ -39,23 +39,67 @@ struct SettingsView: View {
 						Chart {
 							ForEach(counters) { counter in
 								LineMark(x: .value("Date",
-												   counter.date),
+												   counter.date,
+												   unit: .day),
 										 y: .value("Count",
 												   counter.count))
-								.interpolationMethod(.catmullRom)
+								.interpolationMethod(.monotone)
 								.lineStyle(StrokeStyle(lineWidth: 1,
 													   dash: [2]))
 
 								PointMark(x: .value("Date",
-													counter.date),
+													counter.date,
+													unit: .day),
 										  y: .value("Count",
 													counter.count))
+								.annotation(position: .topLeading,
+											spacing: 4,
+											overflowResolution: .init(x: .fit(to: .chart),
+																	  y: .fit(to: .chart))) {
+									if viewModel.showAnnotation(date: counter.date),
+									   let selectedPointMarkCounter = viewModel.selectedPointMarkCounter(counters: counters) {
+										VStack {
+											Text(selectedPointMarkCounter.count.description)
+												.font(.system(size: 100))
+												.minimumScaleFactor(0.01)
+												.lineLimit(1)
+												.opacity(0.25)
+												.padding(2)
+										}
+										.frame(width: 60,
+											   height: 60)
+										.background {
+											RoundedRectangle(cornerRadius: 4)
+												.fill(Color(uiColor: .systemBackground))
+												.shadow(color: .black,
+														radius: 2)
+										}
+										.overlay(alignment: .topTrailing) {
+											Text(selectedPointMarkCounter.date.relative)
+												.font(.system(size: 4))
+												.padding(2)
+										}
+										.padding(2)
+									}
+								}
 							}
 						}
 						.chartScrollableAxes(.horizontal)
-						.chartScrollPosition(initialX: counters.last?.date ?? .now)
+						.chartScrollPosition(x: $viewModel.chartScrollPosition)
+						.chartXVisibleDomain(length: viewModel.chartXVisibleDomainLength(counters: counters))
+						.chartXSelection(value: $viewModel.selectedPointMarkDate)
+						.chartXScale(range: .plotDimension(padding: 12))
+						.chartYScale(range: .plotDimension(padding: 12))
 						.foregroundStyle(.red)
 						.accessibilityIdentifier("Chart")
+						.onAppear {
+							/// Update chartScrollPosition
+							Task {
+								withAnimation {
+									viewModel.chartScrollPosition = .now
+								}
+							}
+						}
 					} else {
 						Text("ChartDescription")
 							.multilineTextAlignment(.center)

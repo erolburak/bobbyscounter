@@ -14,8 +14,7 @@ final class ContentViewTests: XCTestCase {
     }
 
 	/// Test decrease counter count value if `MinusButton` is enabled
-	/// Check `CountText` for updated value
-	/// Otherwise check if `CountText` is 0
+	/// Check `CountText` for updated value otherwise check if `CountText` is 0
 	func testDecreaseCountText() {
 		let app = XCUIApplication()
 		app.launch()

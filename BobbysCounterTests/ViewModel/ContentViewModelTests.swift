@@ -25,11 +25,10 @@ class ContentViewModelTests: XCTestCase {
 		// Given
 		sut.counter = Counter(count: 1,
 							  date: .now)
-		let expected = 0
 		// When
 		sut.decreaseCount()
 		// Then
-		XCTAssertEqual(sut.counter?.count, expected)
+		XCTAssertEqual(sut.counter?.count, 0)
 	}
 
 	/// Test increase counter count value
@@ -37,21 +36,21 @@ class ContentViewModelTests: XCTestCase {
 		// Given
 		sut.counter = Counter(count: 0,
 							  date: .now)
-		let expected = 1
 		// When
 		sut.increaseCount()
 		// Then
-		XCTAssertEqual(sut.counter?.count, expected)
+		XCTAssertEqual(sut.counter?.count, 1)
 	}
 
-	/// Test set counter count value
-	func testSetCount() async throws {
+	/// Test fetch counter count value
+	func testFetchCount() async throws {
 		// Given
-		let expected = sut.counter?.count
+		sut.counter = Counter(count: 0,
+							  date: .now)
 		// When
-		try await sut.setCount()
+		let count = try await sut.fetchCount()
 		// Then
-		XCTAssertEqual(sut.counter?.count, expected)
+		XCTAssertEqual(sut.counter?.count, 0)
 	}
 
 	/// Test set counter
@@ -84,12 +83,11 @@ class ContentViewModelTests: XCTestCase {
 	private func testAlertError(error: Constant.Errors) {
 		// Given
 		sut.showAlert = false
-		let expected = error
 		// When
 		sut.showAlert(error: error)
 		// Then
 		XCTAssertTrue(sut.showAlert)
-		XCTAssertEqual(sut.alertError, expected)
+		XCTAssertEqual(sut.alertError, error)
 		XCTAssertNotNil(sut.alertError?.errorDescription)
 		XCTAssertNotNil(sut.alertError?.recoverySuggestion)
 	}

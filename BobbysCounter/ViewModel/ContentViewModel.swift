@@ -31,12 +31,13 @@ class ContentViewModel {
 		Repository.shared.increaseCount(counter: counter)
 	}
 
-	/// Set counter count value matching todays counter otherwise set 0
-	func setCount() async throws {
+	/// Fetch counter count value matching todays counter otherwise return 0
+	func fetchCount() async throws -> Int {
 		do {
-			counter?.count = try await Repository.shared.fetchTodaysCounter()?.count ?? 0
+			return try await Repository.shared.fetchTodaysCounter()?.count ?? 0
 		} catch Constant.Errors.fetch {
 			showAlert(error: .fetch)
+			return 0
 		}
 	}
 

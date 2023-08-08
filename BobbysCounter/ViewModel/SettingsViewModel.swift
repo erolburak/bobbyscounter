@@ -14,6 +14,8 @@ class SettingsViewModel {
 	// MARK: - Properties
 
 	var alertError: Constant.Errors?
+	var chartScrollPosition: Date = .now
+	var selectedPointMarkDate: Date? = nil
 	var showAlert: Bool = false
 	var showConfirmationDialog: Bool = false
 
@@ -30,8 +32,8 @@ class SettingsViewModel {
 										selectedDate: selectedDate)
 		} catch Constant.Errors.reset {
 			showAlert(error: .reset)
+			return nil
 		}
-		return nil
 	}
 
 	/// Set counter matching selected date otherwise insert new one and return object
@@ -45,5 +47,29 @@ class SettingsViewModel {
 	func showAlert(error: Constant.Errors) {
 		alertError = error
 		showAlert.toggle()
+	}
+
+	/// Show annotation if date matching selectedPointMarkDate
+	func showAnnotation(date: Date) -> Bool {
+		date.formatted(date: .complete,
+					   time: .omitted) == selectedPointMarkDate?.formatted(date: .complete,
+																		  time: .omitted)
+	}
+
+	// MARK: - Helper
+
+	/// Calculate and return length for chartXVisibleDomain
+	func chartXVisibleDomainLength(counters: [Counter]) -> Int {
+		/// Calculate factor by multiplying seconds, minutes and hours together
+		let factor = 60 * 60 * 24
+		let count = counters.count
+		let range = 3...4
+		return range.contains(count) ? count * factor : range.upperBound * factor
+	}
+
+	/// Return counter matching selectedPointMarkDate otherwise return nil
+	func selectedPointMarkCounter(counters: [Counter]) -> Counter? {
+		counters.first { Calendar.current.isDate($0.date,
+												 inSameDayAs: selectedPointMarkDate ?? .now) }
 	}
 }

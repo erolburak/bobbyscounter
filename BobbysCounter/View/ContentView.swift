@@ -89,7 +89,7 @@ struct ContentView: View {
 			case .active:
 				/// Update counter count if scenePhase is active
 				Task {
-					try await viewModel.setCount()
+					viewModel.counter?.count = try await viewModel.fetchCount()
 				}
 			case .background:
 				/// Update widgets if scenePhase is background
