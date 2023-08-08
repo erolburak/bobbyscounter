@@ -50,7 +50,7 @@ class ContentViewModelTests: XCTestCase {
 		// When
 		let count = try await sut.fetchCount()
 		// Then
-		XCTAssertEqual(sut.counter?.count, 0)
+		XCTAssertEqual(count, 0)
 	}
 
 	/// Test set counter
