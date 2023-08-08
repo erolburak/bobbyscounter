@@ -117,5 +117,8 @@ final class SettingsViewTests: XCTestCase {
 		settingsButton.tap()
 		let chart = app.scrollViews["Chart"]
 		XCTAssertTrue(chart.waitForExistence(timeout: 5))
+		let pointMark = app.scrollViews["Chart"].children(matching: .other).element.children(matching: .other).element(boundBy: 0)
+		XCTAssertTrue(pointMark.waitForExistence(timeout: 5))
+		pointMark.press(forDuration: 2)
 	}
 }
