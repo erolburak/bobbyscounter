@@ -13,8 +13,7 @@ class Repository {
 	// MARK: - Properties
 
 	static let shared = Repository()
-	static let fetchDescriptor = FetchDescriptor<Counter>(sortBy: [SortDescriptor(\.date,
-																				   order: .forward)])
+	private let fetchDescriptor = FetchDescriptor<Counter>()
 	private var modelContainer: ModelContainer? { try? ModelContainer(for: [Counter.self]) }
 
 	/// Decrease counter count value if count greater than 0
@@ -32,36 +31,32 @@ class Repository {
 		}
 	}
 
-	/// Set counter matching selected date otherwise insert new counter and return object
-	func setCounter(counters: [Counter],
-					selectedDate: Date) async throws -> Counter? {
-		guard let counter = counters.first(where: { Calendar.current.isDate($0.date,
-																			inSameDayAs: selectedDate) }) else {
-			return try await insertCounter(selectedDate: selectedDate)
-		}
-		return counter
-	}
-
 	/// Delete counters
 	@MainActor
 	func deleteCounters() throws {
 		guard let modelContext = modelContainer?.mainContext else {
 			throw Constant.Errors.reset
 		}
-		try modelContext.enumerate(Repository.fetchDescriptor) { counter in
+		try modelContext.enumerate(fetchDescriptor) { counter in
 			modelContext.delete(counter)
 		}
 	}
 
-	/// Fetch counter where date is matching today and return object
+	/// Fetch counter matching selected date otherwise insert new counter and return object
 	@MainActor
-	func fetchTodaysCounter() throws -> Counter? {
-		guard let modelContext = modelContainer?.mainContext,
-			  let counters = try? modelContext.fetch(Repository.fetchDescriptor),
-			  let counter = counters.first(where: { $0.date.isDateToday }) else {
+	func fetchCounter(selectedDate: Date) throws -> Counter {
+		do {
+			let counter = try? modelContainer?.mainContext.fetch(fetchDescriptor).first { Calendar.current.isDate($0.date,
+																												  inSameDayAs: selectedDate) }
+			guard let counter else {
+				return try insertCounter(selectedDate: selectedDate)
+			}
+			return counter
+		} catch Constant.Errors.fetch {
 			throw Constant.Errors.fetch
+		} catch Constant.Errors.insert {
+			throw Constant.Errors.insert
 		}
-		return counter
 	}
 
 	/// Insert new counter and return new object

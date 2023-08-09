@@ -13,7 +13,7 @@ final class Counter {
 
 	// MARK: - Properties
 
-	@Attribute(.unique) private let id: String
+	@Attribute(.unique) internal let id: String
 	var count: Int
 	var date: Date
 

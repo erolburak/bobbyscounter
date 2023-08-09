@@ -15,8 +15,8 @@ struct ContentView: View {
 
 	@Environment(\.scenePhase) private var scenePhase
 	@Environment(\.modelContext) private var modelContext
-	@Query(sort: [SortDescriptor<Counter>(\.date,
-										   order: .forward)]) private var counters: [Counter]
+	@Query(sort: \Counter.date,
+		   order: .forward) private var counters: [Counter]
 	@State var viewModel: ContentViewModel
 
 	// MARK: - Layouts
@@ -81,18 +81,19 @@ struct ContentView: View {
 		}
 		.onAppear {
 			Task {
-				try await viewModel.setCounter(counters: counters)
+				/// Fetch counter on appear
+				try await viewModel.fetchCounter()
 			}
 		}
 		.onChange(of: scenePhase) {
 			switch scenePhase {
 			case .active:
-				/// Update counter count if scenePhase is active
+				/// Fetch counter if scene phase is active
 				Task {
-					viewModel.counter?.count = try await viewModel.fetchCount()
+					try await viewModel.fetchCounter()
 				}
 			case .background:
-				/// Update widgets if scenePhase is background
+				/// Update widgets if scene phase is background
 				WidgetCenter.shared.reloadAllTimelines()
 			default: break
 			}

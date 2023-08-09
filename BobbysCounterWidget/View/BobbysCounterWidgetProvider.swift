@@ -27,7 +27,7 @@ struct BobbysCounterWidgetProvider: AppIntentTimelineProvider {
 					   policy: .atEnd)
 	}
 
-	/// Set CounterIntent for configuration after todays counter is fetched
+	/// Set counter intent for configuration after todays counter is fetched
 	@MainActor
 	private func setCounterIntent(for configuration: CounterIntent?) -> CounterIntent {
 		guard let configuration,
@@ -39,12 +39,9 @@ struct BobbysCounterWidgetProvider: AppIntentTimelineProvider {
 		return configuration
 	}
 
-	/// Fetch todays counter and return object
+	/// Fetch counter where date is matching today and return object
 	@MainActor
 	private func fetchCounter() -> Counter? {
-		guard let counter = try? Repository.shared.fetchTodaysCounter() else {
-			return nil
-		}
-		return counter
+		return try? Repository.shared.fetchCounter(selectedDate: .now)
 	}
 }
