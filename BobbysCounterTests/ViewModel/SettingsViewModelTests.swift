@@ -20,6 +20,17 @@ class SettingsViewModelTests: XCTestCase {
 		sut = nil
 	}
 
+	/// Test fetch counter
+	func testFetchCounter() async throws {
+		// Given
+		let expected = Counter(count: 0,
+							   date: .now)
+		// When
+		let counter = try await sut.fetchCounter(selectedDate: .now)
+		// Then
+		XCTAssertEqual(counter?.date.isDateToday, expected.date.isDateToday)
+	}
+
 	/// Test reset
 	func testReset() async throws {
 		// Given
@@ -34,26 +45,6 @@ class SettingsViewModelTests: XCTestCase {
 		XCTAssertEqual(sut.alertError, nil)
 		XCTAssertEqual(sut.showAlert, false)
 		XCTAssertEqual(sut.showConfirmationDialog, false)
-		XCTAssertEqual(counter?.count, expected.count)
-		XCTAssertEqual(counter?.date.isDateToday, expected.date.isDateToday)
-	}
-
-	/// Test set counter
-	func testSetCounter() async throws {
-		// Given
-		let expected = Counter(count: 0,
-							   date: .now)
-		let counters = [expected,
-						Counter(count: 1,
-								date: Calendar.current.date(byAdding: DateComponents(day: -1),
-															to: .now) ?? .now),
-						Counter(count: 2,
-								date: Calendar.current.date(byAdding: DateComponents(day: 1),
-															to: .now) ?? .now)]
-		// When
-		let counter = try await sut.setCounter(counters: counters,
-											   selectedDate: .now)
-		// Then
 		XCTAssertEqual(counter?.count, expected.count)
 		XCTAssertEqual(counter?.date.isDateToday, expected.date.isDateToday)
 	}
@@ -79,7 +70,27 @@ class SettingsViewModelTests: XCTestCase {
 		XCTAssertEqual(show, false)
 	}
 
-	/// Test chartXVisibleDomainLength in range
+	/// Test show alert errors
+	func testShowAlertErrors() {
+		for error in Constant.Errors.allCases {
+			testShowAlertError(error: error)
+		}
+	}
+
+	/// Test show alert errors helper
+	private func testShowAlertError(error: Constant.Errors) {
+		// Given
+		sut.showAlert = false
+		// When
+		sut.showAlert(error: error)
+		// Then
+		XCTAssertTrue(sut.showAlert)
+		XCTAssertEqual(sut.alertError, error)
+		XCTAssertNotNil(sut.alertError?.errorDescription)
+		XCTAssertNotNil(sut.alertError?.recoverySuggestion)
+	}
+
+	/// Test chart x visible domain length in range
 	func testChartXVisibleDomainLengthInRange() {
 		// Given
 		/// Calculate factor by multiplying 3 items with seconds, minutes and hours together
@@ -94,7 +105,7 @@ class SettingsViewModelTests: XCTestCase {
 		XCTAssertEqual(length, expected)
 	}
 
-	/// Test chartXVisibleDomainLength out of range
+	/// Test chart x visible domain length out of range
 	func testChartXVisibleDomainLengthOutOfRange() {
 		// Given
 		/// Calculate factor by multiplying 4 items with seconds, minutes and hours together
@@ -128,25 +139,5 @@ class SettingsViewModelTests: XCTestCase {
 		let counter = sut.selectedPointMarkCounter(counters: counters)
 		// Then
 		XCTAssertEqual(counter, expected)
-	}
-
-	/// Test all alert errors
-	func testAlertErrors() {
-		for error in Constant.Errors.allCases {
-			testAlertError(error: error)
-		}
-	}
-
-	/// Test all alert errors helper
-	private func testAlertError(error: Constant.Errors) {
-		// Given
-		sut.showAlert = false
-		// When
-		sut.showAlert(error: error)
-		// Then
-		XCTAssertTrue(sut.showAlert)
-		XCTAssertEqual(sut.alertError, error)
-		XCTAssertNotNil(sut.alertError?.errorDescription)
-		XCTAssertNotNil(sut.alertError?.recoverySuggestion)
 	}
 }

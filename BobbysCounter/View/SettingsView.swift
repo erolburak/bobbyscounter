@@ -17,8 +17,8 @@ struct SettingsView: View {
 	@Binding var selectedDate: Date
 	@Environment(\.dismiss) private var dismiss
 	@Environment(\.modelContext) private var modelContext
-	@Query(sort: [SortDescriptor<Counter>(\.date,
-										   order: .forward)]) private var counters: [Counter]
+	@Query(sort: \Counter.date,
+		   order: .forward) private var counters: [Counter]
 	@State var viewModel: SettingsViewModel
 
 	// MARK: - Layouts
@@ -93,7 +93,7 @@ struct SettingsView: View {
 						.foregroundStyle(.red)
 						.accessibilityIdentifier("Chart")
 						.onAppear {
-							/// Update chartScrollPosition
+							/// Update chart scroll position
 							Task {
 								withAnimation {
 									viewModel.chartScrollPosition = .now
@@ -163,8 +163,7 @@ struct SettingsView: View {
 			}
 			.onChange(of: selectedDate) {
 				Task {
-					counter = try await viewModel.setCounter(counters: counters,
-															 selectedDate: selectedDate)
+					counter = try await viewModel.fetchCounter(selectedDate: selectedDate)
 				}
 				dismiss()
 			}

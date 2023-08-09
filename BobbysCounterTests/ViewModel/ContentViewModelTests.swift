@@ -42,45 +42,28 @@ class ContentViewModelTests: XCTestCase {
 		XCTAssertEqual(sut.counter?.count, 1)
 	}
 
-	/// Test fetch counter count value
-	func testFetchCount() async throws {
+	/// Test fetch counter
+	func testFetchCounter() async throws {
 		// Given
 		sut.counter = Counter(count: 0,
-							  date: .now)
+							  date: Calendar.current.date(byAdding: DateComponents(day: -1),
+														  to: .now) ?? .now)
+		sut.selectedDate = .now
 		// When
-		let count = try await sut.fetchCount()
+		try await sut.fetchCounter()
 		// Then
-		XCTAssertEqual(count, 0)
+		XCTAssertEqual(sut.counter?.date.isDateToday, true)
 	}
 
-	/// Test set counter
-	func testSetCounter() async throws {
-		// Given
-		let expected = Counter(count: 0,
-							   date: .now)
-		let countersMock = [expected,
-							Counter(count: 1,
-									date: Calendar.current.date(byAdding: DateComponents(day: -1),
-																to: .now) ?? .now),
-							Counter(count: 2,
-									date: Calendar.current.date(byAdding: DateComponents(day: 1),
-																to: .now) ?? .now)]
-		// When
-		try await sut.setCounter(counters: countersMock)
-		// Then
-		XCTAssertEqual(sut.counter, expected)
-		XCTAssertNotEqual(sut.counter, countersMock.last)
-	}
-
-	/// Test all alert errors
-	func testAlertErrors() {
+	/// Test show alert errors
+	func testShowAlertErrors() {
 		for error in Constant.Errors.allCases {
-			testAlertError(error: error)
+			testShowAlertError(error: error)
 		}
 	}
 
-	/// Test all alert errors helper
-	private func testAlertError(error: Constant.Errors) {
+	/// Test show alert errors helper
+	private func testShowAlertError(error: Constant.Errors) {
 		// Given
 		sut.showAlert = false
 		// When

@@ -21,6 +21,16 @@ class SettingsViewModel {
 
 	// MARK: - Actions
 
+	/// Fetch counter matching selected date
+	func fetchCounter(selectedDate: Date) async throws -> Counter? {
+		do {
+			return try await Repository.shared.fetchCounter(selectedDate: selectedDate)
+		} catch Constant.Errors.insert {
+			showAlert(error: .insert)
+			return nil
+		}
+	}
+
 	/// Reset counters, reset view model properties, set counter and return object
 	func reset(selectedDate: Date) async throws -> Counter? {
 		do {
@@ -28,37 +38,29 @@ class SettingsViewModel {
 			alertError = nil
 			showAlert = false
 			showConfirmationDialog = false
-			return try await setCounter(counters: [],
-										selectedDate: selectedDate)
+			return try await fetchCounter(selectedDate: selectedDate)
 		} catch Constant.Errors.reset {
 			showAlert(error: .reset)
 			return nil
 		}
 	}
 
-	/// Set counter matching selected date otherwise insert new one and return object
-	func setCounter(counters: [Counter],
-					selectedDate: Date) async throws -> Counter? {
-		return try await Repository.shared.setCounter(counters: counters,
-													  selectedDate: selectedDate)
-	}
-
 	/// Set alert error and show alert
 	func showAlert(error: Constant.Errors) {
 		alertError = error
-		showAlert.toggle()
+		showAlert = true
 	}
 
-	/// Show annotation if date matching selectedPointMarkDate
+	/// Show annotation if date matching selected point mark date
 	func showAnnotation(date: Date) -> Bool {
 		date.formatted(date: .complete,
 					   time: .omitted) == selectedPointMarkDate?.formatted(date: .complete,
-																		  time: .omitted)
+																		   time: .omitted)
 	}
 
 	// MARK: - Helper
 
-	/// Calculate and return length for chartXVisibleDomain
+	/// Calculate and return length for chart x visible domain
 	func chartXVisibleDomainLength(counters: [Counter]) -> Int {
 		/// Calculate factor by multiplying seconds, minutes and hours together
 		let factor = 60 * 60 * 24
@@ -67,7 +69,7 @@ class SettingsViewModel {
 		return range.contains(count) ? count * factor : range.upperBound * factor
 	}
 
-	/// Return counter matching selectedPointMarkDate otherwise return nil
+	/// Return counter matching  selected point mark date otherwise return nil
 	func selectedPointMarkCounter(counters: [Counter]) -> Counter? {
 		counters.first { Calendar.current.isDate($0.date,
 												 inSameDayAs: selectedPointMarkDate ?? .now) }

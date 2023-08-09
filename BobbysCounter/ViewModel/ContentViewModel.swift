@@ -31,21 +31,12 @@ class ContentViewModel {
 		Repository.shared.increaseCount(counter: counter)
 	}
 
-	/// Fetch counter count value matching todays counter otherwise return 0
-	func fetchCount() async throws -> Int {
+	/// Fetch counter matching selected date
+	func fetchCounter() async throws {
 		do {
-			return try await Repository.shared.fetchTodaysCounter()?.count ?? 0
+			counter = try await Repository.shared.fetchCounter(selectedDate: selectedDate)
 		} catch Constant.Errors.fetch {
 			showAlert(error: .fetch)
-			return 0
-		}
-	}
-
-	/// Set counter matching selected date otherwise insert new one
-	func setCounter(counters: [Counter]) async throws {
-		do {
-			counter = try await Repository.shared.setCounter(counters: counters,
-															 selectedDate: selectedDate)
 		} catch Constant.Errors.insert {
 			showAlert(error: .insert)
 		}
@@ -54,6 +45,6 @@ class ContentViewModel {
 	/// Set alert error and show alert
 	func showAlert(error: Constant.Errors) {
 		alertError = error
-		showAlert.toggle()
+		showAlert = true
 	}
 }

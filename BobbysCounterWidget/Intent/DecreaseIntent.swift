@@ -16,14 +16,13 @@ struct DecreaseIntent: AppIntent {
 
 	// MARK: - Actions
 
-	/// Fetch todays counter and decrease counter count value if count greater than 0
+	/// Fetch counter matching today and decrease counter count value if count greater than 0
 	@MainActor
-	func perform() async throws -> some IntentResult {
-		guard let counter = try Repository.shared.fetchTodaysCounter(),
-			  counter.count > 0 else {
-			return .result()
+	func perform() throws -> some IntentResult {
+		let counter = try Repository.shared.fetchCounter(selectedDate: .now)
+		if counter.count > 0 {
+			counter.count -= 1
 		}
-		counter.count -= 1
 		return .result()
 	}
 }

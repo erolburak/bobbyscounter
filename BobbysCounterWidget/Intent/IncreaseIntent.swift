@@ -16,12 +16,10 @@ struct IncreaseIntent: AppIntent {
 
 	// MARK: - Actions
 
-	/// Fetch todays counter and increase counter count value
+	/// Fetch counter matching today and increase counter count value
 	@MainActor
-	func perform() async throws -> some IntentResult {
-		guard let counter = try Repository.shared.fetchTodaysCounter() else {
-			return .result()
-		}
+	func perform() throws -> some IntentResult {
+		let counter = try Repository.shared.fetchCounter(selectedDate: .now)
 		counter.count += 1
 		return .result()
 	}
