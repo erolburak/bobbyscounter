@@ -13,8 +13,6 @@ struct SettingsView: View {
 
 	// MARK: - Properties
 
-	@Binding var counter: Counter?
-	@Binding var selectedDate: Date
 	@Environment(\.dismiss) private var dismiss
 	@Environment(\.modelContext) private var modelContext
 	@Query(sort: \Counter.date,
@@ -27,7 +25,7 @@ struct SettingsView: View {
 		NavigationStack {
 			VStack {
 				DatePicker("SelectedDate",
-						   selection: $selectedDate,
+						   selection: $viewModel.counterSelected.selectedDate,
 						   in: ...Date(),
 						   displayedComponents: [.date])
 				.datePickerStyle(.compact)
@@ -93,10 +91,13 @@ struct SettingsView: View {
 						.foregroundStyle(.red)
 						.accessibilityIdentifier("Chart")
 						.onAppear {
-							/// Update chart scroll position
+							/// Update chart scroll position on appear
 							Task {
 								withAnimation {
-									viewModel.chartScrollPosition = .now
+									let date = viewModel.counterSelected.selectedDate
+									let dateMinusOne = Calendar.current.date(byAdding: DateComponents(day: -1),
+																			 to: date) ?? date
+									viewModel.chartScrollPosition = dateMinusOne
 								}
 							}
 						}
@@ -118,7 +119,7 @@ struct SettingsView: View {
 			.toolbar {
 				ToolbarItem(placement: .topBarLeading) {
 					Button("Reset") {
-						viewModel.showConfirmationDialog.toggle()
+						viewModel.showConfirmationDialog = true
 					}
 					.disabled(counters.isEmpty)
 					.accessibilityIdentifier("ResetButton")
@@ -135,9 +136,9 @@ struct SettingsView: View {
 
 				ToolbarItem(placement: .bottomBar) {
 					Button("Today") {
-						selectedDate = .now
+						viewModel.counterSelected.selectedDate = .now
 					}
-					.disabled(selectedDate.isDateToday)
+					.disabled(viewModel.counterSelected.selectedDate.isDateToday)
 					.accessibilityIdentifier("TodayButton")
 				}
 			}
@@ -146,9 +147,8 @@ struct SettingsView: View {
 								titleVisibility: .visible) {
 				Button("Reset",
 					   role: .destructive) {
-					selectedDate = .now
 					Task {
-						counter = try await viewModel.reset(selectedDate: selectedDate)
+						try await viewModel.reset()
 					}
 					dismiss()
 				}
@@ -161,9 +161,10 @@ struct SettingsView: View {
 					Text(message)
 				}
 			}
-			.onChange(of: selectedDate) {
+			.onChange(of: viewModel.counterSelected.selectedDate) {
+				/// Fetch counter on selected date change
 				Task {
-					counter = try await viewModel.fetchCounter(selectedDate: selectedDate)
+					try await viewModel.fetchCounter()
 				}
 				dismiss()
 			}
@@ -179,10 +180,8 @@ struct SettingsView: View {
 	Color
 		.clear
 		.sheet(isPresented: .constant(true)) {
-			SettingsView(counter: .constant(nil),
-						 selectedDate: .constant(.now),
-						 viewModel: SettingsViewModel())
-			.modelContainer(for: Counter.self,
-							inMemory: true)
+			SettingsView(viewModel: SettingsViewModel(counterSelected: CounterSelected()))
+				.modelContainer(for: Counter.self,
+								inMemory: true)
 	}
 }
