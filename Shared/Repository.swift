@@ -5,8 +5,8 @@
 //  Created by Burak Erol on 18.07.23.
 //
 
+import Foundation
 import SwiftData
-import SwiftUI
 
 class Repository {
 

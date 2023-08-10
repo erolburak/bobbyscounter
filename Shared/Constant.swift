@@ -5,8 +5,7 @@
 //  Created by Burak Erol on 18.07.23.
 //
 
-import SwiftData
-import SwiftUI
+import Foundation
 
 class Constant {
 

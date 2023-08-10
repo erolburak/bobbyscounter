@@ -21,6 +21,7 @@
 		BF67A3E92A716DC70081616C /* CounterIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF67A3E82A716DC70081616C /* CounterIntent.swift */; };
 		BF6D1DA12A6603CA00264753 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6D1DA02A6603CA00264753 /* Constant.swift */; };
 		BF6D1DA32A6604CC00264753 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6D1DA02A6603CA00264753 /* Constant.swift */; };
+		BFA156F62A850D9200DFD37D /* CounterSelected.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA156F52A850D9200DFD37D /* CounterSelected.swift */; };
 		BFB702AC2A605631001AADE9 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BFB702AB2A605631001AADE9 /* Localizable.xcstrings */; };
 		BFB702B22A605AD7001AADE9 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB702B12A605AD7001AADE9 /* ContentViewModel.swift */; };
 		BFB702B32A605D1F001AADE9 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BFB702AB2A605631001AADE9 /* Localizable.xcstrings */; };
@@ -99,6 +100,7 @@
 		BF67A3E82A716DC70081616C /* CounterIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterIntent.swift; sourceTree = "<group>"; };
 		BF6D1DA02A6603CA00264753 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		BF7C46762A6B04CC00CA47D1 /* BobbysCounter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BobbysCounter.entitlements; sourceTree = "<group>"; };
+		BFA156F52A850D9200DFD37D /* CounterSelected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterSelected.swift; sourceTree = "<group>"; };
 		BFB702AB2A605631001AADE9 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		BFB702B12A605AD7001AADE9 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		BFB86DA42A66AD630092EAEC /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 		BF2C45362A4B3EB900D48C36 /* BobbysCounter */ = {
 			isa = PBXGroup;
 			children = (
+				BFA156F72A851C3A00DFD37D /* Model */,
 				BF2C45662A4B532700D48C36 /* View */,
 				BFB702AE2A605AB3001AADE9 /* ViewModel */,
 			);
@@ -257,6 +260,14 @@
 				BFE12E832A65D1C9001960F6 /* Date+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		BFA156F72A851C3A00DFD37D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BFA156F52A850D9200DFD37D /* CounterSelected.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		BFB702AE2A605AB3001AADE9 /* ViewModel */ = {
@@ -473,6 +484,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFA156F62A850D9200DFD37D /* CounterSelected.swift in Sources */,
 				BFB86DA52A66AD630092EAEC /* SettingsView.swift in Sources */,
 				BF6D1DA12A6603CA00264753 /* Constant.swift in Sources */,
 				BFE12E842A65D1C9001960F6 /* Date+Extension.swift in Sources */,

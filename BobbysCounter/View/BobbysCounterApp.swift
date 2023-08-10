@@ -5,7 +5,6 @@
 //  Created by Burak Erol on 27.06.23.
 //
 
-import SwiftData
 import SwiftUI
 
 @main
@@ -15,7 +14,7 @@ struct BobbysCounterApp: App {
 
 	var body: some Scene {
 		WindowGroup {
-			ContentView(viewModel: ContentViewModel())
+			ContentView(viewModel: ContentViewModel(counterSelected: CounterSelected()))
 		}
 		.modelContainer(for: Counter.self)
 	}

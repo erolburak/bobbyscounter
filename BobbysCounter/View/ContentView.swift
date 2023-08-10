@@ -23,7 +23,7 @@ struct ContentView: View {
 
 	var body: some View {
 		ZStack {
-			Text(viewModel.counter?.count.description ?? "0")
+			Text(viewModel.counterSelected.counter?.count.description ?? "0")
 				.font(.system(size: 1000))
 				.minimumScaleFactor(0.001)
 				.lineLimit(1)
@@ -39,7 +39,7 @@ struct ContentView: View {
 						.frame(maxWidth: .infinity,
 							   maxHeight: .infinity)
 				}
-				.disabled(viewModel.counter?.count == 0)
+				.disabled(viewModel.counterSelected.counter?.count == 0)
 				.accessibilityIdentifier("MinusButton")
 
 				Button {
@@ -55,34 +55,26 @@ struct ContentView: View {
 		}
 		.edgesIgnoringSafeArea(.all)
 		.overlay(alignment: .topTrailing) {
-			Text(viewModel.counter?.date.relative ?? "")
+			Text(viewModel.counterSelected.counter?.date.relative ?? "")
 				.font(.system(size: 8))
 				.padding(.trailing)
 				.accessibilityIdentifier("DateText")
 		}
 		.overlay(alignment: .bottom) {
 			Button("Settings") {
-				viewModel.showSettingsSheet.toggle()
+				viewModel.showSettingsSheet = true
 			}
 			.accessibilityIdentifier("SettingsButton")
 		}
 		.sheet(isPresented: $viewModel.showSettingsSheet) {
-			SettingsView(counter: $viewModel.counter,
-						 selectedDate: $viewModel.selectedDate,
-						 viewModel: SettingsViewModel())
-			.modelContainer(for: Counter.self)
+			SettingsView(viewModel: SettingsViewModel(counterSelected: viewModel.counterSelected))
+				.modelContainer(for: Counter.self)
 		}
 		.alert(isPresented: $viewModel.showAlert,
 			   error: viewModel.alertError) { _ in
 		} message: { error in
 			if let message = error.recoverySuggestion {
 				Text(message)
-			}
-		}
-		.onAppear {
-			Task {
-				/// Fetch counter on appear
-				try await viewModel.fetchCounter()
 			}
 		}
 		.onChange(of: scenePhase) {
@@ -105,7 +97,7 @@ struct ContentView: View {
 }
 
 #Preview {
-	ContentView(viewModel: ContentViewModel())
+	ContentView(viewModel: ContentViewModel(counterSelected: CounterSelected()))
 		.modelContainer(for: Counter.self,
 						inMemory: true)
 }

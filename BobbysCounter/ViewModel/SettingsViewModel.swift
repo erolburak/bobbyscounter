@@ -5,8 +5,7 @@
 //  Created by Burak Erol on 18.07.23.
 //
 
-import SwiftData
-import SwiftUI
+import Foundation
 
 @Observable
 class SettingsViewModel {
@@ -15,33 +14,38 @@ class SettingsViewModel {
 
 	var alertError: Constant.Errors?
 	var chartScrollPosition: Date = .now
+	var counterSelected: CounterSelected
 	var selectedPointMarkDate: Date? = nil
 	var showAlert: Bool = false
 	var showConfirmationDialog: Bool = false
 
+	// MARK: - Life Cycle
+
+	init(counterSelected: CounterSelected) {
+		self.counterSelected = counterSelected
+	}
+
 	// MARK: - Actions
 
 	/// Fetch counter matching selected date
-	func fetchCounter(selectedDate: Date) async throws -> Counter? {
-		do {
-			return try await Repository.shared.fetchCounter(selectedDate: selectedDate)
-		} catch Constant.Errors.insert {
-			showAlert(error: .insert)
-			return nil
-		}
+	func fetchCounter() async throws {
+		counterSelected.counter = try await Repository.shared.fetchCounter(selectedDate: counterSelected.selectedDate)
 	}
 
-	/// Reset counters, reset view model properties, set counter and return object
-	func reset(selectedDate: Date) async throws -> Counter? {
+	/// Reset counters and reset view model properties
+	func reset() async throws {
 		do {
 			try await Repository.shared.deleteCounters()
 			alertError = nil
+			chartScrollPosition = .now
+			counterSelected.counter = Counter(count: 0,
+											  date: .now)
+			counterSelected.selectedDate = .now
+			selectedPointMarkDate = nil
 			showAlert = false
 			showConfirmationDialog = false
-			return try await fetchCounter(selectedDate: selectedDate)
 		} catch Constant.Errors.reset {
 			showAlert(error: .reset)
-			return nil
 		}
 	}
 
