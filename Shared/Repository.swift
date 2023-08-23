@@ -14,7 +14,7 @@ class Repository {
 
 	static let shared = Repository()
 	private let fetchDescriptor = FetchDescriptor<Counter>()
-	private var modelContainer: ModelContainer? { try? ModelContainer(for: [Counter.self]) }
+	private var modelContainer: ModelContainer? { try? ModelContainer(for: Counter.self) }
 
 	/// Decrease counter count value if count greater than 0
 	func decreaseCount(counter: Counter?) {
