@@ -8,7 +8,6 @@
 import Foundation
 import SwiftData
 
-
 class Repository {
 
 	// MARK: - Properties
