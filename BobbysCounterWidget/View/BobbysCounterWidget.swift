@@ -37,7 +37,7 @@ fileprivate extension CounterIntent {
 	static var smallNumber: CounterIntent {
 		let counter = CounterIntent()
 		counter.count = 7
-		counter.date = Date().relative
+		counter.date = Date.now.relative
 		return counter
 	}
 
@@ -45,7 +45,7 @@ fileprivate extension CounterIntent {
 	static var largeNumber: CounterIntent {
 		let counter = CounterIntent()
 		counter.count = 7777
-		counter.date = Date().relative
+		counter.date = Date.now.relative
 		return counter
 	}
 
@@ -53,7 +53,7 @@ fileprivate extension CounterIntent {
 	static var extraLargeNumber: CounterIntent {
 		let counter = CounterIntent()
 		counter.count = 7777777777777777777
-		counter.date = Date().relative
+		counter.date = Date.now.relative
 		return counter
 	}
 }

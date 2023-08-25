@@ -26,7 +26,7 @@ struct SettingsView: View {
 			VStack {
 				DatePicker("SelectedDate",
 						   selection: $viewModel.counterSelected.selectedDate,
-						   in: ...Date(),
+						   in: ...Date.now,
 						   displayedComponents: [.date])
 				.datePickerStyle(.compact)
 				.padding()

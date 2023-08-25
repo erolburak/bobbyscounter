@@ -64,6 +64,7 @@ struct ContentView: View {
 			Button("Settings") {
 				viewModel.showSettingsSheet = true
 			}
+			.padding(.bottom)
 			.accessibilityIdentifier("SettingsButton")
 		}
 		.sheet(isPresented: $viewModel.showSettingsSheet) {

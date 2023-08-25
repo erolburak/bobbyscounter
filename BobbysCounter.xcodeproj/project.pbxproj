@@ -83,6 +83,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BF0921C72A9918C3004EE211 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		BF2C45342A4B3EB900D48C36 /* BobbysCounter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BobbysCounter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF2C45372A4B3EB900D48C36 /* BobbysCounterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BobbysCounterApp.swift; sourceTree = "<group>"; };
 		BF2C45392A4B3EB900D48C36 /* Counter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counter.swift; sourceTree = "<group>"; };
@@ -190,6 +191,7 @@
 		BF2C45362A4B3EB900D48C36 /* BobbysCounter */ = {
 			isa = PBXGroup;
 			children = (
+				BF0921C72A9918C3004EE211 /* Info.plist */,
 				BFA156F72A851C3A00DFD37D /* Model */,
 				BF2C45662A4B532700D48C36 /* View */,
 				BFB702AE2A605AB3001AADE9 /* ViewModel */,
@@ -704,7 +706,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				GENERATE_PKGINFO_FILE = YES;
-				INFOPLIST_FILE = "";
+				INFOPLIST_FILE = BobbysCounter/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = BobbysCounter;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -751,7 +754,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				GENERATE_PKGINFO_FILE = YES;
-				INFOPLIST_FILE = "";
+				INFOPLIST_FILE = BobbysCounter/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = BobbysCounter;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
