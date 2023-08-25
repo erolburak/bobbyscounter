@@ -6,6 +6,14 @@ BobbysCounter
 ## Description
 This project is used for the iOS BobbysCounter app.
 
+## APIs
+Following APIs are used in this project:
+- SwiftUI
+- SwiftData
+- Charts
+- WidgetKit
+- CloudKit Database
+
 ## Support
 Feel free to email me if there are any problems: erolburak@icloud.com
 
