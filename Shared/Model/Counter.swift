@@ -13,15 +13,13 @@ final class Counter {
 
 	// MARK: - Properties
 
-	@Attribute(.unique) internal let id: String
-	var count: Int
-	var date: Date
+	var count: Int = 0
+	var date: Date = Date.now
 
 	// MARK: - Life Cycle
 
 	init(count: Int,
 		 date: Date) {
-		self.id = UUID().uuidString
 		self.count = count
 		self.date = date
 	}
