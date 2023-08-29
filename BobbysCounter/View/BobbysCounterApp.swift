@@ -16,6 +16,5 @@ struct BobbysCounterApp: App {
 		WindowGroup {
 			ContentView(viewModel: ContentViewModel(counterSelected: CounterSelected()))
 		}
-		.modelContainer(for: Counter.self)
 	}
 }

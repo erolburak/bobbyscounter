@@ -5,7 +5,6 @@
 //  Created by Burak Erol on 27.06.23.
 //
 
-import SwiftData
 import SwiftUI
 import WidgetKit
 
@@ -14,9 +13,6 @@ struct ContentView: View {
 	// MARK: - Properties
 
 	@Environment(\.scenePhase) private var scenePhase
-	@Environment(\.modelContext) private var modelContext
-	@Query(sort: \Counter.date,
-		   order: .forward) private var counters: [Counter]
 	@State var viewModel: ContentViewModel
 
 	// MARK: - Layouts
@@ -99,6 +95,4 @@ struct ContentView: View {
 
 #Preview {
 	ContentView(viewModel: ContentViewModel(counterSelected: CounterSelected()))
-		.modelContainer(for: Counter.self,
-						inMemory: true)
 }

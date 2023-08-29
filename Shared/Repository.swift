@@ -14,7 +14,17 @@ class Repository {
 
 	static let shared = Repository()
 	private let fetchDescriptor = FetchDescriptor<Counter>()
-	private var modelContainer: ModelContainer? { try? ModelContainer(for: Counter.self) }
+	private var modelContainer: ModelContainer? = {
+		let schema = Schema([Counter.self])
+		let modelConfiguration = ModelConfiguration(schema: schema,
+													isStoredInMemoryOnly: false)
+		do {
+			return try ModelContainer(for: schema,
+									  configurations: [modelConfiguration])
+		} catch {
+			fatalError("Could not create ModelContainer: \(error)")
+		}
+	}()
 
 	/// Decrease counter count value if count greater than 0
 	func decreaseCount(counter: Counter?) {
