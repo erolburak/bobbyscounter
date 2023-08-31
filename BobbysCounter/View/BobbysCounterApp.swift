@@ -14,7 +14,7 @@ struct BobbysCounterApp: App {
 
 	var body: some Scene {
 		WindowGroup {
-			ContentView(viewModel: ContentViewModel(counterSelected: CounterSelected()))
+			ContentView(viewModel: ContentViewModel())
 		}
 	}
 }

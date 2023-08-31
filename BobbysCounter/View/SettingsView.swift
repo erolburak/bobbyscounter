@@ -13,11 +13,14 @@ struct SettingsView: View {
 
 	// MARK: - Properties
 
+	@State var viewModel: SettingsViewModel
+
+	// MARK: - Private Properties
+
 	@Environment(\.dismiss) private var dismiss
 	@Environment(\.modelContext) private var modelContext
 	@Query(sort: \Counter.date,
 		   order: .forward) private var counters: [Counter]
-	@State var viewModel: SettingsViewModel
 
 	// MARK: - Layouts
 
@@ -121,7 +124,6 @@ struct SettingsView: View {
 					Button("Reset") {
 						viewModel.showConfirmationDialog = true
 					}
-					.disabled(counters.isEmpty)
 					.accessibilityIdentifier("ResetButton")
 				}
 
@@ -164,7 +166,7 @@ struct SettingsView: View {
 			.onChange(of: viewModel.counterSelected.selectedDate) {
 				/// Fetch counter on selected date change
 				Task {
-					try await viewModel.fetchCounter()
+					await viewModel.fetchCounter()
 				}
 				dismiss()
 			}
@@ -181,7 +183,6 @@ struct SettingsView: View {
 		.clear
 		.sheet(isPresented: .constant(true)) {
 			SettingsView(viewModel: SettingsViewModel(counterSelected: CounterSelected()))
-				.modelContainer(for: Counter.self,
-								inMemory: true)
+				.modelContainer(Repository.shared.modelContainer)
 	}
 }

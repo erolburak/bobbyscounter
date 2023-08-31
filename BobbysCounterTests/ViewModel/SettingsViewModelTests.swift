@@ -21,14 +21,14 @@ class SettingsViewModelTests: XCTestCase {
 	}
 
 	/// Test fetch counter
-	func testFetchCounter() async throws {
+	func testFetchCounter() async {
 		// Given
 		sut.counterSelected.selectedDate = .now
 		sut.counterSelected.counter = Counter(count: 0,
 											  date: Calendar.current.date(byAdding: DateComponents(day: -1),
 																		  to: .now) ?? .now)
 		// When
-		try await sut.fetchCounter()
+		await sut.fetchCounter()
 		// Then
 		XCTAssertEqual(sut.counterSelected.counter?.date.isDateToday, true)
 	}
@@ -38,24 +38,14 @@ class SettingsViewModelTests: XCTestCase {
 		// Given
 		let date = Calendar.current.date(byAdding: DateComponents(day: -1),
 										 to: .now) ?? .now
-		sut.alertError = .fetch
-		sut.chartScrollPosition = date
+		sut.counterSelected.selectedDate = date
 		sut.counterSelected.counter = Counter(count: 1,
 											  date: date)
-		sut.counterSelected.selectedDate = date
-		sut.selectedPointMarkDate = date
-		sut.showAlert = true
-		sut.showConfirmationDialog = true
 		// When
 		try await sut.reset()
 		// Then
-		XCTAssertEqual(sut.alertError, nil)
-		XCTAssertEqual(sut.chartScrollPosition.isDateToday, true)
-		XCTAssertEqual(sut.counterSelected.counter?.count, 0)
 		XCTAssertEqual(sut.counterSelected.counter?.date.isDateToday, true)
-		XCTAssertEqual(sut.selectedPointMarkDate, nil)
-		XCTAssertEqual(sut.showAlert, false)
-		XCTAssertEqual(sut.showConfirmationDialog, false)
+		XCTAssertEqual(sut.counterSelected.counter?.count, 0)
 	}
 
 	/// Test show annotation is true

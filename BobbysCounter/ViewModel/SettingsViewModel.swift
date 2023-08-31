@@ -28,22 +28,16 @@ class SettingsViewModel {
 	// MARK: - Actions
 
 	/// Fetch counter matching selected date
-	func fetchCounter() async throws {
-		counterSelected.counter = try await Repository.shared.fetchCounter(selectedDate: counterSelected.selectedDate)
+	func fetchCounter() async {
+		counterSelected.counter = await Repository.shared.fetchCounter(selectedDate: counterSelected.selectedDate)
 	}
 
-	/// Reset counters and reset view model properties
+	/// Reset counters and view model properties
 	func reset() async throws {
 		do {
-			try await Repository.shared.deleteCounters()
-			alertError = nil
-			chartScrollPosition = .now
-			counterSelected.counter = Counter(count: 0,
-											  date: .now)
+			try await Repository.shared.resetCounters()
 			counterSelected.selectedDate = .now
-			selectedPointMarkDate = nil
-			showAlert = false
-			showConfirmationDialog = false
+			await fetchCounter()
 		} catch Constant.Errors.reset {
 			showAlert(error: .reset)
 		}
@@ -73,7 +67,7 @@ class SettingsViewModel {
 		return range.contains(count) ? count * factor : range.upperBound * factor
 	}
 
-	/// Return counter matching  selected point mark date otherwise return nil
+	/// Return counter matching selected point mark date otherwise return nil
 	func selectedPointMarkCounter(counters: [Counter]) -> Counter? {
 		counters.first { Calendar.current.isDate($0.date,
 												 inSameDayAs: selectedPointMarkDate ?? .now) }
