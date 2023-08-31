@@ -9,7 +9,7 @@ which you can look at in this GitHub project.
 
 ## SETUP
 - Minimum iOS target: 17.0
-- Build with: Xcode 15.0.0 Beta 17
+- Build with: Xcode 15.0.0 Beta 8
 
 ## APIS
 Following APIs are used in this project:
