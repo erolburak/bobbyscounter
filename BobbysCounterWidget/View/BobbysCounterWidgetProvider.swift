@@ -9,8 +9,6 @@ import WidgetKit
 
 struct BobbysCounterWidgetProvider: AppIntentTimelineProvider {
 
-	// MARK: - Properties
-
 	@MainActor
 	func placeholder(in context: Context) -> BobbysCounterWidgetEntry {
 		BobbysCounterWidgetEntry(counterIntent: setCounterIntent(for: nil))
@@ -39,9 +37,9 @@ struct BobbysCounterWidgetProvider: AppIntentTimelineProvider {
 		return configuration
 	}
 
-	/// Fetch counter where date is matching today and return object
+	/// Fetch counter where date is matching today and return object otherwise return nil
 	@MainActor
 	private func fetchCounter() -> Counter? {
-		return try? Repository.shared.fetchCounter(selectedDate: .now)
+		Repository.shared.fetchCounter(selectedDate: .now)
 	}
 }

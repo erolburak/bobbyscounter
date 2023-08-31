@@ -12,8 +12,11 @@ struct ContentView: View {
 
 	// MARK: - Properties
 
-	@Environment(\.scenePhase) private var scenePhase
 	@State var viewModel: ContentViewModel
+
+	// MARK: - Private Properties
+
+	@Environment(\.scenePhase) private var scenePhase
 
 	// MARK: - Layouts
 
@@ -65,7 +68,7 @@ struct ContentView: View {
 		}
 		.sheet(isPresented: $viewModel.showSettingsSheet) {
 			SettingsView(viewModel: SettingsViewModel(counterSelected: viewModel.counterSelected))
-				.modelContainer(for: Counter.self)
+				.modelContainer(Repository.shared.modelContainer)
 		}
 		.alert(isPresented: $viewModel.showAlert,
 			   error: viewModel.alertError) { _ in
@@ -77,9 +80,10 @@ struct ContentView: View {
 		.onChange(of: scenePhase) {
 			switch scenePhase {
 			case .active:
-				/// Fetch counter if scene phase is active
+				/// Update model container and fetch counter if scene phase is active
 				Task {
-					try await viewModel.fetchCounter()
+					Repository.shared.updateModelContainer()
+					await viewModel.fetchCounter()
 				}
 			case .background:
 				/// Update widgets if scene phase is background
@@ -94,5 +98,5 @@ struct ContentView: View {
 }
 
 #Preview {
-	ContentView(viewModel: ContentViewModel(counterSelected: CounterSelected()))
+	ContentView(viewModel: ContentViewModel())
 }

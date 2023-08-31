@@ -13,7 +13,7 @@ class ContentViewModelTests: XCTestCase {
 	private var sut: ContentViewModel!
 
 	override func setUpWithError() throws {
-		sut = ContentViewModel(counterSelected: CounterSelected())
+		sut = ContentViewModel()
 	}
 
 	override func tearDownWithError() throws {
@@ -24,7 +24,7 @@ class ContentViewModelTests: XCTestCase {
 	func testDecreaseCount() {
 		// Given
 		sut.counterSelected.counter = Counter(count: 1,
-									date: .now)
+											  date: .now)
 		// When
 		sut.decreaseCount()
 		// Then
@@ -45,14 +45,14 @@ class ContentViewModelTests: XCTestCase {
 	}
 
 	/// Test fetch counter
-	func testFetchCounter() async throws {
+	func testFetchCounter() async {
 		// Given
 		sut.counterSelected.selectedDate = .now
 		sut.counterSelected.counter = Counter(count: 0,
 											  date: Calendar.current.date(byAdding: DateComponents(day: -1),
 																		  to: .now) ?? .now)
 		// When
-		try await sut.fetchCounter()
+		await sut.fetchCounter()
 		// Then
 		XCTAssertEqual(sut.counterSelected.counter?.date.isDateToday, true)
 	}

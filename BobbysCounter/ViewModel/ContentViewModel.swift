@@ -13,15 +13,9 @@ class ContentViewModel {
 	// MARK: - Properties
 
 	var alertError: Constant.Errors?
-	var counterSelected: CounterSelected
+	var counterSelected: CounterSelected = CounterSelected()
 	var showAlert: Bool = false
 	var showSettingsSheet: Bool = false
-
-	// MARK: - Life Cycle
-
-	init(counterSelected: CounterSelected) {
-		self.counterSelected = counterSelected
-	}
 
 	// MARK: - Actions
 
@@ -36,14 +30,8 @@ class ContentViewModel {
 	}
 
 	/// Fetch counter matching selected date
-	func fetchCounter() async throws {
-		do {
-			counterSelected.counter = try await Repository.shared.fetchCounter(selectedDate: counterSelected.selectedDate)
-		} catch Constant.Errors.fetch {
-			showAlert(error: .fetch)
-		} catch Constant.Errors.insert {
-			showAlert(error: .insert)
-		}
+	func fetchCounter() async {
+		counterSelected.counter = await Repository.shared.fetchCounter(selectedDate: counterSelected.selectedDate)
 	}
 
 	/// Set alert error and show alert

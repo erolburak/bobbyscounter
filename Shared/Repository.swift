@@ -13,18 +13,11 @@ class Repository {
 	// MARK: - Properties
 
 	static let shared = Repository()
+	lazy var modelContainer: ModelContainer = getModelContainer()
+
+	// MARK: - Private Properties
+
 	private let fetchDescriptor = FetchDescriptor<Counter>()
-	private var modelContainer: ModelContainer? = {
-		let schema = Schema([Counter.self])
-		let modelConfiguration = ModelConfiguration(schema: schema,
-													isStoredInMemoryOnly: false)
-		do {
-			return try ModelContainer(for: schema,
-									  configurations: [modelConfiguration])
-		} catch {
-			fatalError("Could not create ModelContainer: \(error)")
-		}
-	}()
 
 	/// Decrease counter count value if count greater than 0
 	func decreaseCount(counter: Counter?) {
@@ -41,43 +34,49 @@ class Repository {
 		}
 	}
 
-	/// Delete counters
-	@MainActor
-	func deleteCounters() throws {
-		guard let modelContext = modelContainer?.mainContext else {
-			throw Constant.Errors.reset
-		}
-		try modelContext.enumerate(fetchDescriptor) { counter in
-			modelContext.delete(counter)
-		}
-	}
-
 	/// Fetch counter matching selected date otherwise insert new counter and return object
 	@MainActor
-	func fetchCounter(selectedDate: Date) throws -> Counter {
+	func fetchCounter(selectedDate: Date) -> Counter {
+		let counter = try? modelContainer.mainContext.fetch(fetchDescriptor).first { Calendar.current.isDate($0.date,
+																											 inSameDayAs: selectedDate) }
+		guard let counter else {
+			return insertCounter(selectedDate: selectedDate)
+		}
+		return counter
+	}
+
+	/// Reset counters
+	@MainActor
+	func resetCounters() throws {
 		do {
-			let counter = try? modelContainer?.mainContext.fetch(fetchDescriptor).first { Calendar.current.isDate($0.date,
-																												  inSameDayAs: selectedDate) }
-			guard let counter else {
-				return try insertCounter(selectedDate: selectedDate)
+			try modelContainer.mainContext.enumerate(fetchDescriptor) { counter in
+				modelContainer.mainContext.delete(counter)
 			}
-			return counter
-		} catch Constant.Errors.fetch {
-			throw Constant.Errors.fetch
-		} catch Constant.Errors.insert {
-			throw Constant.Errors.insert
+		} catch {
+			throw Constant.Errors.reset
 		}
 	}
 
 	/// Insert new counter and return new object
 	@MainActor
-	private func insertCounter(selectedDate: Date) throws -> Counter {
-		guard let modelContext = modelContainer?.mainContext else {
-			throw Constant.Errors.insert
-		}
+	private func insertCounter(selectedDate: Date) -> Counter {
 		let counter = Counter(count: 0,
 							  date: selectedDate)
-		modelContext.insert(counter)
+		modelContainer.mainContext.insert(counter)
 		return counter
+	}
+
+	/// Update model container
+	func updateModelContainer() {
+		modelContainer = getModelContainer()
+	}
+
+	/// Get model container and return object
+	private func getModelContainer() -> ModelContainer {
+		do {
+			return try ModelContainer(for: Counter.self)
+		} catch {
+			fatalError("Could not get model container: \(error)")
+		}
 	}
 }

@@ -39,13 +39,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Möchtest du alle Zähler leeren?"
+            "value" : "Möchtest Du wirklich alle Daten zurücksetzen?"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Do you want to clear all counters?"
+            "value" : "Do you really want to reset all data?"
           }
         }
       }
@@ -131,69 +131,19 @@
         }
       }
     },
-    "ErrorFetchRecoverySuggestion" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bitte erneut abfragen."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Please fetch again."
-          }
-        }
-      }
-    },
-    "ErrorInsertRecoverySuggestion" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bitte erneut hinzufügen."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Please insert again."
-          }
-        }
-      }
-    },
     "ErrorResetRecoverySuggestion" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bitte erneut zurücksetzen."
+            "value" : "Zurücksetzen fehlgeschlagen. Bitte versuche es erneut."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Please reset again."
-          }
-        }
-      }
-    },
-    "Fetch" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Abfragen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fetch"
+            "value" : "Failed to reset. Please try again."
           }
         }
       }
@@ -312,30 +262,13 @@
         }
       }
     },
-    "Unknown" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unbekannt"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unknown"
-          }
-        }
-      }
-    },
     "WidgetDescription" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zähle was immer du möchtest."
+            "value" : "Zähle was immer Du möchtest."
           }
         },
         "en" : {
