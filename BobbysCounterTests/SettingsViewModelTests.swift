@@ -13,7 +13,7 @@ class SettingsViewModelTests: XCTestCase {
 	private var sut: SettingsViewModel!
 
 	override func setUpWithError() throws {
-		sut = SettingsViewModel(counterSelected: CounterSelected())
+		sut = SettingsViewModel(counterSelectedModel: CounterSelectedModel())
 	}
 
 	override func tearDownWithError() throws {
@@ -23,14 +23,14 @@ class SettingsViewModelTests: XCTestCase {
 	/// Test fetch counter
 	func testFetchCounter() async {
 		// Given
-		sut.counterSelected.selectedDate = .now
-		sut.counterSelected.counter = Counter(count: 0,
-											  date: Calendar.current.date(byAdding: DateComponents(day: -1),
-																		  to: .now) ?? .now)
+		sut.counterSelectedModel.selectedDate = .now
+		sut.counterSelectedModel.counter = Counter(count: 0,
+												   date: Calendar.current.date(byAdding: DateComponents(day: -1),
+																			   to: .now) ?? .now)
 		// When
 		await sut.fetchCounter()
 		// Then
-		XCTAssertEqual(sut.counterSelected.counter?.date.isDateToday, true)
+		XCTAssertEqual(sut.counterSelectedModel.counter?.date.isDateToday, true)
 	}
 
 	/// Test reset
@@ -38,14 +38,14 @@ class SettingsViewModelTests: XCTestCase {
 		// Given
 		let date = Calendar.current.date(byAdding: DateComponents(day: -1),
 										 to: .now) ?? .now
-		sut.counterSelected.selectedDate = date
-		sut.counterSelected.counter = Counter(count: 1,
-											  date: date)
+		sut.counterSelectedModel.selectedDate = date
+		sut.counterSelectedModel.counter = Counter(count: 1,
+												   date: date)
 		// When
 		try await sut.reset()
 		// Then
-		XCTAssertEqual(sut.counterSelected.counter?.date.isDateToday, true)
-		XCTAssertEqual(sut.counterSelected.counter?.count, 0)
+		XCTAssertEqual(sut.counterSelectedModel.counter?.date.isDateToday, true)
+		XCTAssertEqual(sut.counterSelectedModel.counter?.count, 0)
 	}
 
 	/// Test show annotation is true
@@ -71,13 +71,13 @@ class SettingsViewModelTests: XCTestCase {
 
 	/// Test show alerts
 	func testShowAlerts() {
-		for error in Constant.Errors.allCases {
+		for error in Constants.Errors.allCases {
 			testShowAlert(error: error)
 		}
 	}
 
 	/// Test show alert helper
-	private func testShowAlert(error: Constant.Errors) {
+	private func testShowAlert(error: Constants.Errors) {
 		// Given
 		sut.showAlert = false
 		// When

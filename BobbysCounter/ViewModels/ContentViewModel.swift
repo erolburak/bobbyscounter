@@ -12,8 +12,8 @@ class ContentViewModel {
 
 	// MARK: - Properties
 
-	var alertError: Constant.Errors?
-	var counterSelected: CounterSelected = CounterSelected()
+	var alertError: Constants.Errors?
+	var counterSelectedModel: CounterSelectedModel = CounterSelectedModel()
 	var showAlert: Bool = false
 	var showSettingsSheet: Bool = false
 
@@ -21,21 +21,21 @@ class ContentViewModel {
 
 	/// Decrease counter count value if count greater than 0
 	func decreaseCount() {
-		Repository.shared.decreaseCount(counter: counterSelected.counter)
+		DataController.shared.decreaseCount(counter: counterSelectedModel.counter)
 	}
 
 	/// Increase counter count value
 	func increaseCount() {
-		Repository.shared.increaseCount(counter: counterSelected.counter)
+		DataController.shared.increaseCount(counter: counterSelectedModel.counter)
 	}
 
 	/// Fetch counter matching selected date
 	func fetchCounter() async {
-		counterSelected.counter = await Repository.shared.fetchCounter(selectedDate: counterSelected.selectedDate)
+		counterSelectedModel.counter = await DataController.shared.fetchCounter(selectedDate: counterSelectedModel.selectedDate)
 	}
 
 	/// Set alert error and show alert
-	func showAlert(error: Constant.Errors) {
+	func showAlert(error: Constants.Errors) {
 		alertError = error
 		showAlert = true
 	}

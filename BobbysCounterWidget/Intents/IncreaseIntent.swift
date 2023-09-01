@@ -19,7 +19,7 @@ struct IncreaseIntent: AppIntent {
 	/// Fetch counter matching today and increase counter count value
 	@MainActor
 	func perform() throws -> some IntentResult {
-		let counter = Repository.shared.fetchCounter(selectedDate: .now)
+		let counter = DataController.shared.fetchCounter(selectedDate: .now)
 		counter.count += 1
 		return .result()
 	}

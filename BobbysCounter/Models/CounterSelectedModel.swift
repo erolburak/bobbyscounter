@@ -1,5 +1,5 @@
 //
-//  CounterSelected.swift
+//  CounterSelectedModel.swift
 //  BobbysCounter
 //
 //  Created by Burak Erol on 10.08.23.
@@ -8,7 +8,7 @@
 import Foundation
 
 @Observable
-class CounterSelected {
+class CounterSelectedModel {
 
 	// MARK: - Properties
 

@@ -11,34 +11,32 @@
 		BF2C453A2A4B3EB900D48C36 /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2C45392A4B3EB900D48C36 /* Counter.swift */; };
 		BF2C453C2A4B3EB900D48C36 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2C453B2A4B3EB900D48C36 /* ContentView.swift */; };
 		BF2C453E2A4B3EB900D48C36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF2C453D2A4B3EB900D48C36 /* Assets.xcassets */; };
-		BF2C45422A4B3EB900D48C36 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF2C45412A4B3EB900D48C36 /* Preview Assets.xcassets */; };
 		BF2C45572A4B3EBA00D48C36 /* BobbysCounterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2C45562A4B3EBA00D48C36 /* BobbysCounterUITests.swift */; };
 		BF2C45592A4B3EBA00D48C36 /* BobbysCounterUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2C45582A4B3EBA00D48C36 /* BobbysCounterUITestsLaunchTests.swift */; };
-		BF5A26242A6E783C00B47FD4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF2C45412A4B3EB900D48C36 /* Preview Assets.xcassets */; };
 		BF5A26282A6E7E1600B47FD4 /* ContentViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5A26272A6E7E1600B47FD4 /* ContentViewTests.swift */; };
 		BF5A262B2A6E8D6100B47FD4 /* SettingsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5A262A2A6E8D6100B47FD4 /* SettingsViewTests.swift */; };
 		BF6048B22A6C231F00B4D119 /* ContentViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6048B12A6C231F00B4D119 /* ContentViewModelTests.swift */; };
 		BF67A3E92A716DC70081616C /* CounterIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF67A3E82A716DC70081616C /* CounterIntent.swift */; };
-		BF6D1DA12A6603CA00264753 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6D1DA02A6603CA00264753 /* Constant.swift */; };
-		BF6D1DA32A6604CC00264753 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6D1DA02A6603CA00264753 /* Constant.swift */; };
-		BFA156F62A850D9200DFD37D /* CounterSelected.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA156F52A850D9200DFD37D /* CounterSelected.swift */; };
+		BF6D1DA12A6603CA00264753 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6D1DA02A6603CA00264753 /* Constants.swift */; };
+		BF6D1DA32A6604CC00264753 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6D1DA02A6603CA00264753 /* Constants.swift */; };
+		BFA156F62A850D9200DFD37D /* CounterSelectedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA156F52A850D9200DFD37D /* CounterSelectedModel.swift */; };
 		BFB702AC2A605631001AADE9 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BFB702AB2A605631001AADE9 /* Localizable.xcstrings */; };
 		BFB702B22A605AD7001AADE9 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB702B12A605AD7001AADE9 /* ContentViewModel.swift */; };
 		BFB702B32A605D1F001AADE9 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BFB702AB2A605631001AADE9 /* Localizable.xcstrings */; };
-		BFB702B42A608DE1001AADE9 /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2C45392A4B3EB900D48C36 /* Counter.swift */; };
 		BFB86DA52A66AD630092EAEC /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB86DA42A66AD630092EAEC /* SettingsView.swift */; };
 		BFB86DA72A66ADC90092EAEC /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB86DA62A66ADC90092EAEC /* SettingsViewModel.swift */; };
-		BFB86DA92A66C9060092EAEC /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB86DA82A66C9060092EAEC /* Repository.swift */; };
-		BFB86DAA2A66C9060092EAEC /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB86DA82A66C9060092EAEC /* Repository.swift */; };
+		BFB86DA92A66C9060092EAEC /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB86DA82A66C9060092EAEC /* DataController.swift */; };
+		BFB86DAA2A66C9060092EAEC /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB86DA82A66C9060092EAEC /* DataController.swift */; };
 		BFB86DAF2A66E0D90092EAEC /* BobbysCounterWidgetEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB86DAD2A66E0D90092EAEC /* BobbysCounterWidgetEntryView.swift */; };
 		BFB86DB22A66E1690092EAEC /* BobbysCounterWidgetEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB86DB02A66E1690092EAEC /* BobbysCounterWidgetEntry.swift */; };
 		BFB86DB62A66E22A0092EAEC /* BobbysCounterWidgetProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB86DB42A66E22A0092EAEC /* BobbysCounterWidgetProvider.swift */; };
 		BFC0AF4C2A6C8B3B0037A2B7 /* SettingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC0AF4B2A6C8B3B0037A2B7 /* SettingsViewModelTests.swift */; };
+		BFDCAEE12AA240C3004B0316 /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2C45392A4B3EB900D48C36 /* Counter.swift */; };
 		BFDF3C852A61ACEF001E4076 /* DecreaseIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDF3C812A61A7FA001E4076 /* DecreaseIntent.swift */; };
 		BFDF3C862A61ACF3001E4076 /* IncreaseIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDF3C832A61A84D001E4076 /* IncreaseIntent.swift */; };
 		BFE12E802A65857C001960F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF2C453D2A4B3EB900D48C36 /* Assets.xcassets */; };
-		BFE12E842A65D1C9001960F6 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE12E832A65D1C9001960F6 /* Date+Extension.swift */; };
-		BFE12E852A65D1DE001960F6 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE12E832A65D1C9001960F6 /* Date+Extension.swift */; };
+		BFE12E842A65D1C9001960F6 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE12E832A65D1C9001960F6 /* Date+Extensions.swift */; };
+		BFE12E852A65D1DE001960F6 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE12E832A65D1C9001960F6 /* Date+Extensions.swift */; };
 		BFF55EBA2A57314E00EE0B3A /* BobbysCounterWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF55EB92A57314E00EE0B3A /* BobbysCounterWidgetBundle.swift */; };
 		BFF55EBC2A57314E00EE0B3A /* BobbysCounterWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF55EBB2A57314E00EE0B3A /* BobbysCounterWidget.swift */; };
 		BFF55EC22A57315100EE0B3A /* BobbysCounterWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BFF55EB42A57314E00EE0B3A /* BobbysCounterWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -83,13 +81,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		BF0921C72A9918C3004EE211 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		BF2C45342A4B3EB900D48C36 /* BobbysCounter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BobbysCounter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF2C45372A4B3EB900D48C36 /* BobbysCounterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BobbysCounterApp.swift; sourceTree = "<group>"; };
 		BF2C45392A4B3EB900D48C36 /* Counter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counter.swift; sourceTree = "<group>"; };
 		BF2C453B2A4B3EB900D48C36 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BF2C453D2A4B3EB900D48C36 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		BF2C45412A4B3EB900D48C36 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BF2C45482A4B3EBA00D48C36 /* BobbysCounterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BobbysCounterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF2C45522A4B3EBA00D48C36 /* BobbysCounterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BobbysCounterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF2C45562A4B3EBA00D48C36 /* BobbysCounterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BobbysCounterUITests.swift; sourceTree = "<group>"; };
@@ -99,21 +95,21 @@
 		BF6048B12A6C231F00B4D119 /* ContentViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModelTests.swift; sourceTree = "<group>"; };
 		BF6048B62A6C292300B4D119 /* Tests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Tests.xctestplan; sourceTree = "<group>"; };
 		BF67A3E82A716DC70081616C /* CounterIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterIntent.swift; sourceTree = "<group>"; };
-		BF6D1DA02A6603CA00264753 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		BF6D1DA02A6603CA00264753 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BF7C46762A6B04CC00CA47D1 /* BobbysCounter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BobbysCounter.entitlements; sourceTree = "<group>"; };
-		BFA156F52A850D9200DFD37D /* CounterSelected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterSelected.swift; sourceTree = "<group>"; };
+		BFA156F52A850D9200DFD37D /* CounterSelectedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterSelectedModel.swift; sourceTree = "<group>"; };
 		BFB702AB2A605631001AADE9 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		BFB702B12A605AD7001AADE9 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		BFB86DA42A66AD630092EAEC /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		BFB86DA62A66ADC90092EAEC /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
-		BFB86DA82A66C9060092EAEC /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		BFB86DA82A66C9060092EAEC /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		BFB86DAD2A66E0D90092EAEC /* BobbysCounterWidgetEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BobbysCounterWidgetEntryView.swift; sourceTree = "<group>"; };
 		BFB86DB02A66E1690092EAEC /* BobbysCounterWidgetEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BobbysCounterWidgetEntry.swift; sourceTree = "<group>"; };
 		BFB86DB42A66E22A0092EAEC /* BobbysCounterWidgetProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BobbysCounterWidgetProvider.swift; sourceTree = "<group>"; };
 		BFC0AF4B2A6C8B3B0037A2B7 /* SettingsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModelTests.swift; sourceTree = "<group>"; };
 		BFDF3C812A61A7FA001E4076 /* DecreaseIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecreaseIntent.swift; sourceTree = "<group>"; };
 		BFDF3C832A61A84D001E4076 /* IncreaseIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncreaseIntent.swift; sourceTree = "<group>"; };
-		BFE12E832A65D1C9001960F6 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		BFE12E832A65D1C9001960F6 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		BFF55EB42A57314E00EE0B3A /* BobbysCounterWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BobbysCounterWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFF55EB92A57314E00EE0B3A /* BobbysCounterWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BobbysCounterWidgetBundle.swift; sourceTree = "<group>"; };
 		BFF55EBB2A57314E00EE0B3A /* BobbysCounterWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BobbysCounterWidget.swift; sourceTree = "<group>"; };
@@ -152,17 +148,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		BF071D232A6C09AB001F1258 /* Resource */ = {
+		BF071D232A6C09AB001F1258 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				BF2C453D2A4B3EB900D48C36 /* Assets.xcassets */,
 				BF7C46762A6B04CC00CA47D1 /* BobbysCounter.entitlements */,
 				BFF55EBF2A57315100EE0B3A /* Info.plist */,
 				BFB702AB2A605631001AADE9 /* Localizable.xcstrings */,
-				BF2C45412A4B3EB900D48C36 /* Preview Assets.xcassets */,
 				BF6048B62A6C292300B4D119 /* Tests.xctestplan */,
 			);
-			path = Resource;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		BF2C452B2A4B3EB900D48C36 = {
@@ -172,7 +167,6 @@
 				BF2C454B2A4B3EBA00D48C36 /* BobbysCounterTests */,
 				BF2C45552A4B3EBA00D48C36 /* BobbysCounterUITests */,
 				BFF55EB82A57314E00EE0B3A /* BobbysCounterWidget */,
-				BF6D1D9F2A6603A700264753 /* Shared */,
 				BF2C45352A4B3EB900D48C36 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -191,10 +185,13 @@
 		BF2C45362A4B3EB900D48C36 /* BobbysCounter */ = {
 			isa = PBXGroup;
 			children = (
-				BF0921C72A9918C3004EE211 /* Info.plist */,
-				BFA156F72A851C3A00DFD37D /* Model */,
-				BF2C45662A4B532700D48C36 /* View */,
-				BFB702AE2A605AB3001AADE9 /* ViewModel */,
+				BF6D1DA02A6603CA00264753 /* Constants.swift */,
+				BFDCAEE02AA240B5004B0316 /* Data */,
+				BF6D1DA22A66048D00264753 /* Extensions */,
+				BFA156F72A851C3A00DFD37D /* Models */,
+				BF071D232A6C09AB001F1258 /* Resources */,
+				BF2C45662A4B532700D48C36 /* Views */,
+				BFB702AE2A605AB3001AADE9 /* ViewModels */,
 			);
 			path = BobbysCounter;
 			sourceTree = "<group>";
@@ -202,7 +199,8 @@
 		BF2C454B2A4B3EBA00D48C36 /* BobbysCounterTests */ = {
 			isa = PBXGroup;
 			children = (
-				BFC0AF4A2A6C41D50037A2B7 /* ViewModel */,
+				BF6048B12A6C231F00B4D119 /* ContentViewModelTests.swift */,
+				BFC0AF4B2A6C8B3B0037A2B7 /* SettingsViewModelTests.swift */,
 			);
 			path = BobbysCounterTests;
 			sourceTree = "<group>";
@@ -212,76 +210,48 @@
 			children = (
 				BF2C45562A4B3EBA00D48C36 /* BobbysCounterUITests.swift */,
 				BF2C45582A4B3EBA00D48C36 /* BobbysCounterUITestsLaunchTests.swift */,
-				BF5A26292A6E7E1C00B47FD4 /* View */,
+				BF5A26272A6E7E1600B47FD4 /* ContentViewTests.swift */,
+				BF5A262A2A6E8D6100B47FD4 /* SettingsViewTests.swift */,
 			);
 			path = BobbysCounterUITests;
 			sourceTree = "<group>";
 		};
-		BF2C45652A4B530E00D48C36 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				BF2C45392A4B3EB900D48C36 /* Counter.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		BF2C45662A4B532700D48C36 /* View */ = {
+		BF2C45662A4B532700D48C36 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				BF2C45372A4B3EB900D48C36 /* BobbysCounterApp.swift */,
 				BF2C453B2A4B3EB900D48C36 /* ContentView.swift */,
 				BFB86DA42A66AD630092EAEC /* SettingsView.swift */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		BF5A26292A6E7E1C00B47FD4 /* View */ = {
+		BF6D1DA22A66048D00264753 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				BF5A26272A6E7E1600B47FD4 /* ContentViewTests.swift */,
-				BF5A262A2A6E8D6100B47FD4 /* SettingsViewTests.swift */,
+				BFE12E832A65D1C9001960F6 /* Date+Extensions.swift */,
 			);
-			path = View;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
-		BF6D1D9F2A6603A700264753 /* Shared */ = {
+		BFA156F72A851C3A00DFD37D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				BF6D1DA22A66048D00264753 /* Extension */,
-				BF2C45652A4B530E00D48C36 /* Model */,
-				BF071D232A6C09AB001F1258 /* Resource */,
-				BF6D1DA02A6603CA00264753 /* Constant.swift */,
-				BFB86DA82A66C9060092EAEC /* Repository.swift */,
+				BFA156F52A850D9200DFD37D /* CounterSelectedModel.swift */,
 			);
-			path = Shared;
+			path = Models;
 			sourceTree = "<group>";
 		};
-		BF6D1DA22A66048D00264753 /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				BFE12E832A65D1C9001960F6 /* Date+Extension.swift */,
-			);
-			path = Extension;
-			sourceTree = "<group>";
-		};
-		BFA156F72A851C3A00DFD37D /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				BFA156F52A850D9200DFD37D /* CounterSelected.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		BFB702AE2A605AB3001AADE9 /* ViewModel */ = {
+		BFB702AE2A605AB3001AADE9 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				BFB702B12A605AD7001AADE9 /* ContentViewModel.swift */,
 				BFB86DA62A66ADC90092EAEC /* SettingsViewModel.swift */,
 			);
-			path = ViewModel;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		BFB86DAC2A66CC110092EAEC /* View */ = {
+		BFB86DAC2A66CC110092EAEC /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				BFF55EBB2A57314E00EE0B3A /* BobbysCounterWidget.swift */,
@@ -290,33 +260,33 @@
 				BFB86DAD2A66E0D90092EAEC /* BobbysCounterWidgetEntryView.swift */,
 				BFB86DB42A66E22A0092EAEC /* BobbysCounterWidgetProvider.swift */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		BFC0AF4A2A6C41D50037A2B7 /* ViewModel */ = {
+		BFDCAEE02AA240B5004B0316 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				BF6048B12A6C231F00B4D119 /* ContentViewModelTests.swift */,
-				BFC0AF4B2A6C8B3B0037A2B7 /* SettingsViewModelTests.swift */,
+				BF2C45392A4B3EB900D48C36 /* Counter.swift */,
+				BFB86DA82A66C9060092EAEC /* DataController.swift */,
 			);
-			path = ViewModel;
+			path = Data;
 			sourceTree = "<group>";
 		};
-		BFDF3C802A61A7D2001E4076 /* Intent */ = {
+		BFDF3C802A61A7D2001E4076 /* Intents */ = {
 			isa = PBXGroup;
 			children = (
 				BF67A3E82A716DC70081616C /* CounterIntent.swift */,
 				BFDF3C812A61A7FA001E4076 /* DecreaseIntent.swift */,
 				BFDF3C832A61A84D001E4076 /* IncreaseIntent.swift */,
 			);
-			path = Intent;
+			path = Intents;
 			sourceTree = "<group>";
 		};
 		BFF55EB82A57314E00EE0B3A /* BobbysCounterWidget */ = {
 			isa = PBXGroup;
 			children = (
-				BFDF3C802A61A7D2001E4076 /* Intent */,
-				BFB86DAC2A66CC110092EAEC /* View */,
+				BFDF3C802A61A7D2001E4076 /* Intents */,
+				BFB86DAC2A66CC110092EAEC /* Views */,
 			);
 			path = BobbysCounterWidget;
 			sourceTree = "<group>";
@@ -449,7 +419,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF2C45422A4B3EB900D48C36 /* Preview Assets.xcassets in Resources */,
 				BF2C453E2A4B3EB900D48C36 /* Assets.xcassets in Resources */,
 				BFB702AC2A605631001AADE9 /* Localizable.xcstrings in Resources */,
 			);
@@ -474,7 +443,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFB702B32A605D1F001AADE9 /* Localizable.xcstrings in Resources */,
-				BF5A26242A6E783C00B47FD4 /* Preview Assets.xcassets in Resources */,
 				BFE12E802A65857C001960F6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -486,16 +454,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFA156F62A850D9200DFD37D /* CounterSelected.swift in Sources */,
+				BFA156F62A850D9200DFD37D /* CounterSelectedModel.swift in Sources */,
 				BFB86DA52A66AD630092EAEC /* SettingsView.swift in Sources */,
-				BF6D1DA12A6603CA00264753 /* Constant.swift in Sources */,
-				BFE12E842A65D1C9001960F6 /* Date+Extension.swift in Sources */,
+				BF6D1DA12A6603CA00264753 /* Constants.swift in Sources */,
+				BFE12E842A65D1C9001960F6 /* Date+Extensions.swift in Sources */,
 				BFB702B22A605AD7001AADE9 /* ContentViewModel.swift in Sources */,
 				BF2C453A2A4B3EB900D48C36 /* Counter.swift in Sources */,
 				BF2C45382A4B3EB900D48C36 /* BobbysCounterApp.swift in Sources */,
 				BF2C453C2A4B3EB900D48C36 /* ContentView.swift in Sources */,
 				BFB86DA72A66ADC90092EAEC /* SettingsViewModel.swift in Sources */,
-				BFB86DA92A66C9060092EAEC /* Repository.swift in Sources */,
+				BFB86DA92A66C9060092EAEC /* DataController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,13 +496,13 @@
 				BFF55EBA2A57314E00EE0B3A /* BobbysCounterWidgetBundle.swift in Sources */,
 				BFF55EBC2A57314E00EE0B3A /* BobbysCounterWidget.swift in Sources */,
 				BFDF3C862A61ACF3001E4076 /* IncreaseIntent.swift in Sources */,
-				BFB86DAA2A66C9060092EAEC /* Repository.swift in Sources */,
-				BFE12E852A65D1DE001960F6 /* Date+Extension.swift in Sources */,
+				BFB86DAA2A66C9060092EAEC /* DataController.swift in Sources */,
+				BFE12E852A65D1DE001960F6 /* Date+Extensions.swift in Sources */,
 				BFB86DB62A66E22A0092EAEC /* BobbysCounterWidgetProvider.swift in Sources */,
+				BFDCAEE12AA240C3004B0316 /* Counter.swift in Sources */,
 				BFDF3C852A61ACEF001E4076 /* DecreaseIntent.swift in Sources */,
-				BF6D1DA32A6604CC00264753 /* Constant.swift in Sources */,
+				BF6D1DA32A6604CC00264753 /* Constants.swift in Sources */,
 				BF67A3E92A716DC70081616C /* CounterIntent.swift in Sources */,
-				BFB702B42A608DE1001AADE9 /* Counter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -697,7 +665,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Shared/Resource/BobbysCounter.entitlements;
+				CODE_SIGN_ENTITLEMENTS = BobbysCounter/Resources/BobbysCounter.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -706,7 +674,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				GENERATE_PKGINFO_FILE = YES;
-				INFOPLIST_FILE = BobbysCounter/Info.plist;
+				INFOPLIST_FILE = BobbysCounter/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = BobbysCounter;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -745,7 +713,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Shared/Resource/BobbysCounter.entitlements;
+				CODE_SIGN_ENTITLEMENTS = BobbysCounter/Resources/BobbysCounter.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -754,7 +722,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				GENERATE_PKGINFO_FILE = YES;
-				INFOPLIST_FILE = BobbysCounter/Info.plist;
+				INFOPLIST_FILE = BobbysCounter/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = BobbysCounter;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -915,14 +883,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = Shared/Resource/BobbysCounter.entitlements;
+				CODE_SIGN_ENTITLEMENTS = BobbysCounter/Resources/BobbysCounter.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 94JQJE3TWJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				GENERATE_PKGINFO_FILE = YES;
-				INFOPLIST_FILE = Shared/Resource/Info.plist;
+				INFOPLIST_FILE = BobbysCounter/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = BobbysCounter;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_OUTPUT_FORMAT = "same-as-input";
@@ -955,14 +923,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = Shared/Resource/BobbysCounter.entitlements;
+				CODE_SIGN_ENTITLEMENTS = BobbysCounter/Resources/BobbysCounter.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 94JQJE3TWJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				GENERATE_PKGINFO_FILE = YES;
-				INFOPLIST_FILE = Shared/Resource/Info.plist;
+				INFOPLIST_FILE = BobbysCounter/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = BobbysCounter;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_OUTPUT_FORMAT = "same-as-input";

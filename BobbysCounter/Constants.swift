@@ -1,5 +1,5 @@
 //
-//  Constant.swift
+//  Constants.swift
 //  Shared
 //
 //  Created by Burak Erol on 18.07.23.
@@ -7,15 +7,18 @@
 
 import Foundation
 
-class Constant {
+class Constants {
 
 	// MARK: - Properties
 
-	static let shared = Constant()
+	static let shared = Constants()
 
 	// MARK: - Type Definitions
 
 	enum Errors: CaseIterable, LocalizedError {
+
+		// MARK: - Properties
+
 		case reset
 
 		var errorDescription: String? {

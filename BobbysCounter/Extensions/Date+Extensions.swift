@@ -1,5 +1,5 @@
 //
-//  Date+Extension.swift
+//  Date+Extensions.swift
 //  Shared
 //
 //  Created by Burak Erol on 17.07.23.

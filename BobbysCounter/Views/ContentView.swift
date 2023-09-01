@@ -22,7 +22,7 @@ struct ContentView: View {
 
 	var body: some View {
 		ZStack {
-			Text(viewModel.counterSelected.counter?.count.description ?? "0")
+			Text(viewModel.counterSelectedModel.counter?.count.description ?? "0")
 				.font(.system(size: 1000))
 				.minimumScaleFactor(0.001)
 				.lineLimit(1)
@@ -38,7 +38,7 @@ struct ContentView: View {
 						.frame(maxWidth: .infinity,
 							   maxHeight: .infinity)
 				}
-				.disabled(viewModel.counterSelected.counter?.count == 0)
+				.disabled(viewModel.counterSelectedModel.counter?.count == 0)
 				.accessibilityIdentifier("MinusButton")
 
 				Button {
@@ -54,7 +54,7 @@ struct ContentView: View {
 		}
 		.edgesIgnoringSafeArea(.all)
 		.overlay(alignment: .topTrailing) {
-			Text(viewModel.counterSelected.counter?.date.relative ?? "")
+			Text(viewModel.counterSelectedModel.counter?.date.relative ?? "")
 				.font(.system(size: 8))
 				.padding(.trailing)
 				.accessibilityIdentifier("DateText")
@@ -67,8 +67,8 @@ struct ContentView: View {
 			.accessibilityIdentifier("SettingsButton")
 		}
 		.sheet(isPresented: $viewModel.showSettingsSheet) {
-			SettingsView(viewModel: SettingsViewModel(counterSelected: viewModel.counterSelected))
-				.modelContainer(Repository.shared.modelContainer)
+			SettingsView(viewModel: SettingsViewModel(counterSelectedModel: viewModel.counterSelectedModel))
+				.modelContainer(DataController.shared.modelContainer)
 		}
 		.alert(isPresented: $viewModel.showAlert,
 			   error: viewModel.alertError) { _ in
@@ -82,7 +82,7 @@ struct ContentView: View {
 			case .active:
 				/// Update model container and fetch counter if scene phase is active
 				Task {
-					Repository.shared.updateModelContainer()
+					DataController.shared.updateModelContainer()
 					await viewModel.fetchCounter()
 				}
 			case .background:
