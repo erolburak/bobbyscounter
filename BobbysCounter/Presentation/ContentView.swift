@@ -22,7 +22,7 @@ struct ContentView: View {
 
 	var body: some View {
 		ZStack {
-			Text(viewModel.counterSelectedModel.counter?.count.description ?? "0")
+			Text(viewModel.counterSelected.counter?.count.description ?? "0")
 				.font(.system(size: 1000))
 				.minimumScaleFactor(0.001)
 				.lineLimit(1)
@@ -38,7 +38,7 @@ struct ContentView: View {
 						.frame(maxWidth: .infinity,
 							   maxHeight: .infinity)
 				}
-				.disabled(viewModel.counterSelectedModel.counter?.count == 0)
+				.disabled(viewModel.counterSelected.counter?.count == 0)
 				.accessibilityIdentifier("MinusButton")
 
 				Button {
@@ -54,7 +54,7 @@ struct ContentView: View {
 		}
 		.edgesIgnoringSafeArea(.all)
 		.overlay(alignment: .topTrailing) {
-			Text(viewModel.counterSelectedModel.counter?.date.relative ?? "")
+			Text(viewModel.counterSelected.counter?.date.relative ?? "")
 				.font(.system(size: 8))
 				.padding(.trailing)
 				.accessibilityIdentifier("DateText")
@@ -67,7 +67,7 @@ struct ContentView: View {
 			.accessibilityIdentifier("SettingsButton")
 		}
 		.sheet(isPresented: $viewModel.showSettingsSheet) {
-			SettingsView(viewModel: SettingsViewModel(counterSelectedModel: viewModel.counterSelectedModel))
+			SettingsView(viewModel: SettingsViewModel(counterSelected: viewModel.counterSelected))
 				.modelContainer(DataController.shared.modelContainer)
 		}
 		.alert(isPresented: $viewModel.showAlert,

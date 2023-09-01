@@ -18,8 +18,7 @@
 		BF6048B22A6C231F00B4D119 /* ContentViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6048B12A6C231F00B4D119 /* ContentViewModelTests.swift */; };
 		BF67A3E92A716DC70081616C /* CounterIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF67A3E82A716DC70081616C /* CounterIntent.swift */; };
 		BF6D1DA12A6603CA00264753 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6D1DA02A6603CA00264753 /* Constants.swift */; };
-		BF6D1DA32A6604CC00264753 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6D1DA02A6603CA00264753 /* Constants.swift */; };
-		BFA156F62A850D9200DFD37D /* CounterSelectedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA156F52A850D9200DFD37D /* CounterSelectedModel.swift */; };
+		BFA156F62A850D9200DFD37D /* CounterSelected.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA156F52A850D9200DFD37D /* CounterSelected.swift */; };
 		BFB702AC2A605631001AADE9 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BFB702AB2A605631001AADE9 /* Localizable.xcstrings */; };
 		BFB702B22A605AD7001AADE9 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB702B12A605AD7001AADE9 /* ContentViewModel.swift */; };
 		BFB702B32A605D1F001AADE9 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BFB702AB2A605631001AADE9 /* Localizable.xcstrings */; };
@@ -32,6 +31,7 @@
 		BFB86DB62A66E22A0092EAEC /* BobbysCounterWidgetProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB86DB42A66E22A0092EAEC /* BobbysCounterWidgetProvider.swift */; };
 		BFC0AF4C2A6C8B3B0037A2B7 /* SettingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC0AF4B2A6C8B3B0037A2B7 /* SettingsViewModelTests.swift */; };
 		BFDCAEE12AA240C3004B0316 /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2C45392A4B3EB900D48C36 /* Counter.swift */; };
+		BFDCAEFA2AA28E79004B0316 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6D1DA02A6603CA00264753 /* Constants.swift */; };
 		BFDF3C852A61ACEF001E4076 /* DecreaseIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDF3C812A61A7FA001E4076 /* DecreaseIntent.swift */; };
 		BFDF3C862A61ACF3001E4076 /* IncreaseIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDF3C832A61A84D001E4076 /* IncreaseIntent.swift */; };
 		BFE12E802A65857C001960F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF2C453D2A4B3EB900D48C36 /* Assets.xcassets */; };
@@ -97,7 +97,7 @@
 		BF67A3E82A716DC70081616C /* CounterIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterIntent.swift; sourceTree = "<group>"; };
 		BF6D1DA02A6603CA00264753 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BF7C46762A6B04CC00CA47D1 /* BobbysCounter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BobbysCounter.entitlements; sourceTree = "<group>"; };
-		BFA156F52A850D9200DFD37D /* CounterSelectedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterSelectedModel.swift; sourceTree = "<group>"; };
+		BFA156F52A850D9200DFD37D /* CounterSelected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterSelected.swift; sourceTree = "<group>"; };
 		BFB702AB2A605631001AADE9 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		BFB702B12A605AD7001AADE9 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		BFB86DA42A66AD630092EAEC /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -148,7 +148,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		BF071D232A6C09AB001F1258 /* Resources */ = {
+		BF071D232A6C09AB001F1258 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
 				BF2C453D2A4B3EB900D48C36 /* Assets.xcassets */,
@@ -157,7 +157,7 @@
 				BFB702AB2A605631001AADE9 /* Localizable.xcstrings */,
 				BF6048B62A6C292300B4D119 /* Tests.xctestplan */,
 			);
-			path = Resources;
+			path = Resource;
 			sourceTree = "<group>";
 		};
 		BF2C452B2A4B3EB900D48C36 = {
@@ -185,13 +185,12 @@
 		BF2C45362A4B3EB900D48C36 /* BobbysCounter */ = {
 			isa = PBXGroup;
 			children = (
-				BF6D1DA02A6603CA00264753 /* Constants.swift */,
+				BFDCAEF92AA28ABF004B0316 /* App */,
 				BFDCAEE02AA240B5004B0316 /* Data */,
-				BF6D1DA22A66048D00264753 /* Extensions */,
-				BFA156F72A851C3A00DFD37D /* Models */,
-				BF071D232A6C09AB001F1258 /* Resources */,
-				BF2C45662A4B532700D48C36 /* Views */,
-				BFB702AE2A605AB3001AADE9 /* ViewModels */,
+				BF6D1DA22A66048D00264753 /* Extension */,
+				BFA156F72A851C3A00DFD37D /* Domain */,
+				BF2C45662A4B532700D48C36 /* Presentation */,
+				BF071D232A6C09AB001F1258 /* Resource */,
 			);
 			path = BobbysCounter;
 			sourceTree = "<group>";
@@ -216,42 +215,34 @@
 			path = BobbysCounterUITests;
 			sourceTree = "<group>";
 		};
-		BF2C45662A4B532700D48C36 /* Views */ = {
+		BF2C45662A4B532700D48C36 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				BF2C45372A4B3EB900D48C36 /* BobbysCounterApp.swift */,
 				BF2C453B2A4B3EB900D48C36 /* ContentView.swift */,
+				BFB702B12A605AD7001AADE9 /* ContentViewModel.swift */,
 				BFB86DA42A66AD630092EAEC /* SettingsView.swift */,
+				BFB86DA62A66ADC90092EAEC /* SettingsViewModel.swift */,
 			);
-			path = Views;
+			path = Presentation;
 			sourceTree = "<group>";
 		};
-		BF6D1DA22A66048D00264753 /* Extensions */ = {
+		BF6D1DA22A66048D00264753 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
 				BFE12E832A65D1C9001960F6 /* Date+Extensions.swift */,
 			);
-			path = Extensions;
+			path = Extension;
 			sourceTree = "<group>";
 		};
-		BFA156F72A851C3A00DFD37D /* Models */ = {
+		BFA156F72A851C3A00DFD37D /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				BFA156F52A850D9200DFD37D /* CounterSelectedModel.swift */,
+				BFA156F52A850D9200DFD37D /* CounterSelected.swift */,
 			);
-			path = Models;
+			path = Domain;
 			sourceTree = "<group>";
 		};
-		BFB702AE2A605AB3001AADE9 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				BFB702B12A605AD7001AADE9 /* ContentViewModel.swift */,
-				BFB86DA62A66ADC90092EAEC /* SettingsViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		BFB86DAC2A66CC110092EAEC /* Views */ = {
+		BFB86DAC2A66CC110092EAEC /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
 				BFF55EBB2A57314E00EE0B3A /* BobbysCounterWidget.swift */,
@@ -260,7 +251,7 @@
 				BFB86DAD2A66E0D90092EAEC /* BobbysCounterWidgetEntryView.swift */,
 				BFB86DB42A66E22A0092EAEC /* BobbysCounterWidgetProvider.swift */,
 			);
-			path = Views;
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 		BFDCAEE02AA240B5004B0316 /* Data */ = {
@@ -270,6 +261,15 @@
 				BFB86DA82A66C9060092EAEC /* DataController.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		BFDCAEF92AA28ABF004B0316 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				BF2C45372A4B3EB900D48C36 /* BobbysCounterApp.swift */,
+				BF6D1DA02A6603CA00264753 /* Constants.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 		BFDF3C802A61A7D2001E4076 /* Intents */ = {
@@ -286,7 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				BFDF3C802A61A7D2001E4076 /* Intents */,
-				BFB86DAC2A66CC110092EAEC /* Views */,
+				BFB86DAC2A66CC110092EAEC /* Presentation */,
 			);
 			path = BobbysCounterWidget;
 			sourceTree = "<group>";
@@ -454,7 +454,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFA156F62A850D9200DFD37D /* CounterSelectedModel.swift in Sources */,
+				BFA156F62A850D9200DFD37D /* CounterSelected.swift in Sources */,
 				BFB86DA52A66AD630092EAEC /* SettingsView.swift in Sources */,
 				BF6D1DA12A6603CA00264753 /* Constants.swift in Sources */,
 				BFE12E842A65D1C9001960F6 /* Date+Extensions.swift in Sources */,
@@ -501,8 +501,8 @@
 				BFB86DB62A66E22A0092EAEC /* BobbysCounterWidgetProvider.swift in Sources */,
 				BFDCAEE12AA240C3004B0316 /* Counter.swift in Sources */,
 				BFDF3C852A61ACEF001E4076 /* DecreaseIntent.swift in Sources */,
-				BF6D1DA32A6604CC00264753 /* Constants.swift in Sources */,
 				BF67A3E92A716DC70081616C /* CounterIntent.swift in Sources */,
+				BFDCAEFA2AA28E79004B0316 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -665,7 +665,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = BobbysCounter/Resources/BobbysCounter.entitlements;
+				CODE_SIGN_ENTITLEMENTS = BobbysCounter/Resource/BobbysCounter.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -674,7 +674,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				GENERATE_PKGINFO_FILE = YES;
-				INFOPLIST_FILE = BobbysCounter/Resources/Info.plist;
+				INFOPLIST_FILE = BobbysCounter/Resource/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = BobbysCounter;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -713,7 +713,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = BobbysCounter/Resources/BobbysCounter.entitlements;
+				CODE_SIGN_ENTITLEMENTS = BobbysCounter/Resource/BobbysCounter.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -722,7 +722,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				GENERATE_PKGINFO_FILE = YES;
-				INFOPLIST_FILE = BobbysCounter/Resources/Info.plist;
+				INFOPLIST_FILE = BobbysCounter/Resource/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = BobbysCounter;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -883,14 +883,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = BobbysCounter/Resources/BobbysCounter.entitlements;
+				CODE_SIGN_ENTITLEMENTS = BobbysCounter/Resource/BobbysCounter.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 94JQJE3TWJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				GENERATE_PKGINFO_FILE = YES;
-				INFOPLIST_FILE = BobbysCounter/Resources/Info.plist;
+				INFOPLIST_FILE = BobbysCounter/Resource/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = BobbysCounter;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_OUTPUT_FORMAT = "same-as-input";
@@ -923,14 +923,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = BobbysCounter/Resources/BobbysCounter.entitlements;
+				CODE_SIGN_ENTITLEMENTS = BobbysCounter/Resource/BobbysCounter.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 94JQJE3TWJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				GENERATE_PKGINFO_FILE = YES;
-				INFOPLIST_FILE = BobbysCounter/Resources/Info.plist;
+				INFOPLIST_FILE = BobbysCounter/Resource/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = BobbysCounter;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_OUTPUT_FORMAT = "same-as-input";
