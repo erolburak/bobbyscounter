@@ -1,5 +1,5 @@
 //
-//  Repository.swift
+//  DataController.swift
 //  Shared
 //
 //  Created by Burak Erol on 18.07.23.
@@ -8,11 +8,11 @@
 import Foundation
 import SwiftData
 
-class Repository {
+class DataController {
 
 	// MARK: - Properties
 
-	static let shared = Repository()
+	static let shared = DataController()
 	lazy var modelContainer: ModelContainer = getModelContainer()
 
 	// MARK: - Private Properties
@@ -53,7 +53,7 @@ class Repository {
 				modelContainer.mainContext.delete(counter)
 			}
 		} catch {
-			throw Constant.Errors.reset
+			throw Constants.Errors.reset
 		}
 	}
 

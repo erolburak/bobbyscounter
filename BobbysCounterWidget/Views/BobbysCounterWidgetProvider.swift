@@ -40,6 +40,6 @@ struct BobbysCounterWidgetProvider: AppIntentTimelineProvider {
 	/// Fetch counter where date is matching today and return object otherwise return nil
 	@MainActor
 	private func fetchCounter() -> Counter? {
-		Repository.shared.fetchCounter(selectedDate: .now)
+		DataController.shared.fetchCounter(selectedDate: .now)
 	}
 }

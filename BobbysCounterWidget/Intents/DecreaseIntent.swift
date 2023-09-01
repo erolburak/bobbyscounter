@@ -19,7 +19,7 @@ struct DecreaseIntent: AppIntent {
 	/// Fetch counter matching today and decrease counter count value if count greater than 0
 	@MainActor
 	func perform() throws -> some IntentResult {
-		let counter = Repository.shared.fetchCounter(selectedDate: .now)
+		let counter = DataController.shared.fetchCounter(selectedDate: .now)
 		if counter.count > 0 {
 			counter.count -= 1
 		}

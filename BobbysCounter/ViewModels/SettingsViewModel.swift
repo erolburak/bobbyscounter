@@ -12,39 +12,39 @@ class SettingsViewModel {
 
 	// MARK: - Properties
 
-	var alertError: Constant.Errors?
+	var alertError: Constants.Errors?
 	var chartScrollPosition: Date = .now
-	var counterSelected: CounterSelected
+	var counterSelectedModel: CounterSelectedModel
 	var selectedPointMarkDate: Date? = nil
 	var showAlert: Bool = false
 	var showConfirmationDialog: Bool = false
 
 	// MARK: - Life Cycle
 
-	init(counterSelected: CounterSelected) {
-		self.counterSelected = counterSelected
+	init(counterSelectedModel: CounterSelectedModel) {
+		self.counterSelectedModel = counterSelectedModel
 	}
 
 	// MARK: - Actions
 
 	/// Fetch counter matching selected date
 	func fetchCounter() async {
-		counterSelected.counter = await Repository.shared.fetchCounter(selectedDate: counterSelected.selectedDate)
+		counterSelectedModel.counter = await DataController.shared.fetchCounter(selectedDate: counterSelectedModel.selectedDate)
 	}
 
 	/// Reset counters and view model properties
 	func reset() async throws {
 		do {
-			try await Repository.shared.resetCounters()
-			counterSelected.selectedDate = .now
+			try await DataController.shared.resetCounters()
+			counterSelectedModel.selectedDate = .now
 			await fetchCounter()
-		} catch Constant.Errors.reset {
+		} catch Constants.Errors.reset {
 			showAlert(error: .reset)
 		}
 	}
 
 	/// Set alert error and show alert
-	func showAlert(error: Constant.Errors) {
+	func showAlert(error: Constants.Errors) {
 		alertError = error
 		showAlert = true
 	}
