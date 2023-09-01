@@ -1,6 +1,6 @@
 //
 //  Constants.swift
-//  Shared
+//  BobbysCounter
 //
 //  Created by Burak Erol on 18.07.23.
 //
@@ -11,7 +11,7 @@ class Constants {
 
 	// MARK: - Properties
 
-	static let shared = Constants()
+	static let shared: Constants = Constants()
 
 	// MARK: - Type Definitions
 

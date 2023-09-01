@@ -28,7 +28,7 @@ struct SettingsView: View {
 		NavigationStack {
 			VStack {
 				DatePicker("SelectedDate",
-						   selection: $viewModel.counterSelectedModel.selectedDate,
+						   selection: $viewModel.counterSelected.selectedDate,
 						   in: ...Date.now,
 						   displayedComponents: [.date])
 				.datePickerStyle(.compact)
@@ -97,7 +97,7 @@ struct SettingsView: View {
 							/// Update chart scroll position on appear
 							Task {
 								withAnimation {
-									let date = viewModel.counterSelectedModel.selectedDate
+									let date = viewModel.counterSelected.selectedDate
 									let dateMinusOne = Calendar.current.date(byAdding: DateComponents(day: -1),
 																			 to: date) ?? date
 									viewModel.chartScrollPosition = dateMinusOne
@@ -138,9 +138,9 @@ struct SettingsView: View {
 
 				ToolbarItem(placement: .bottomBar) {
 					Button("Today") {
-						viewModel.counterSelectedModel.selectedDate = .now
+						viewModel.counterSelected.selectedDate = .now
 					}
-					.disabled(viewModel.counterSelectedModel.selectedDate.isDateToday)
+					.disabled(viewModel.counterSelected.selectedDate.isDateToday)
 					.accessibilityIdentifier("TodayButton")
 				}
 			}
@@ -163,7 +163,7 @@ struct SettingsView: View {
 					Text(message)
 				}
 			}
-			.onChange(of: viewModel.counterSelectedModel.selectedDate) {
+			.onChange(of: viewModel.counterSelected.selectedDate) {
 				/// Fetch counter on selected date change
 				Task {
 					await viewModel.fetchCounter()
@@ -182,7 +182,7 @@ struct SettingsView: View {
 	Color
 		.clear
 		.sheet(isPresented: .constant(true)) {
-			SettingsView(viewModel: SettingsViewModel(counterSelectedModel: CounterSelectedModel()))
+			SettingsView(viewModel: SettingsViewModel(counterSelected: CounterSelected()))
 				.modelContainer(DataController.shared.modelContainer)
 	}
 }

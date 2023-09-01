@@ -1,6 +1,6 @@
 //
 //  DataController.swift
-//  Shared
+//  BobbysCounter
 //
 //  Created by Burak Erol on 18.07.23.
 //
@@ -12,7 +12,7 @@ class DataController {
 
 	// MARK: - Properties
 
-	static let shared = DataController()
+	static let shared: DataController = DataController()
 	lazy var modelContainer: ModelContainer = getModelContainer()
 
 	// MARK: - Private Properties

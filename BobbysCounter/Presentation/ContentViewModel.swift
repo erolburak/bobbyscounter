@@ -13,7 +13,7 @@ class ContentViewModel {
 	// MARK: - Properties
 
 	var alertError: Constants.Errors?
-	var counterSelectedModel: CounterSelectedModel = CounterSelectedModel()
+	var counterSelected: CounterSelected = CounterSelected()
 	var showAlert: Bool = false
 	var showSettingsSheet: Bool = false
 
@@ -21,17 +21,17 @@ class ContentViewModel {
 
 	/// Decrease counter count value if count greater than 0
 	func decreaseCount() {
-		DataController.shared.decreaseCount(counter: counterSelectedModel.counter)
+		DataController.shared.decreaseCount(counter: counterSelected.counter)
 	}
 
 	/// Increase counter count value
 	func increaseCount() {
-		DataController.shared.increaseCount(counter: counterSelectedModel.counter)
+		DataController.shared.increaseCount(counter: counterSelected.counter)
 	}
 
 	/// Fetch counter matching selected date
 	func fetchCounter() async {
-		counterSelectedModel.counter = await DataController.shared.fetchCounter(selectedDate: counterSelectedModel.selectedDate)
+		counterSelected.counter = await DataController.shared.fetchCounter(selectedDate: counterSelected.selectedDate)
 	}
 
 	/// Set alert error and show alert
