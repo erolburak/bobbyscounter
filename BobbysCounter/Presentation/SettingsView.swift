@@ -76,7 +76,7 @@ struct SettingsView: View {
 														radius: 2)
 										}
 										.overlay(alignment: .topTrailing) {
-											Text(selectedPointMarkCounter.date.relative)
+											Text(selectedPointMarkCounter.date.toRelative)
 												.font(.system(size: 4))
 												.padding(2)
 										}

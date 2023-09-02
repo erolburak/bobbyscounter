@@ -261,7 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				BFA156F52A850D9200DFD37D /* CounterSelected.swift */,
-				BFE12E832A65D1C9001960F6 /* Date+Extensions.swift */,
+				BFDD669B2AA3B72400BB49CE /* Extension */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -400,6 +400,14 @@
 				BFDD66942AA387AF00BB49CE /* InsertCounterUseCaseTests.swift */,
 			);
 			path = CounterUseCase;
+			sourceTree = "<group>";
+		};
+		BFDD669B2AA3B72400BB49CE /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				BFE12E832A65D1C9001960F6 /* Date+Extensions.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		BFDF3C802A61A7D2001E4076 /* Intents */ = {

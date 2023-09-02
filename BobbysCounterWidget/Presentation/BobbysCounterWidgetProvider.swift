@@ -46,7 +46,7 @@ struct BobbysCounterWidgetProvider: AppIntentTimelineProvider {
 			return CounterIntent()
 		}
 		configuration.count = counter.count
-		configuration.date = counter.date.relative
+		configuration.date = counter.date.toRelative
 		return configuration
 	}
 
