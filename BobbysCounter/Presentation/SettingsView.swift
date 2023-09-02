@@ -150,7 +150,7 @@ struct SettingsView: View {
 				Button("Reset",
 					   role: .destructive) {
 					Task {
-						try await viewModel.reset()
+						try viewModel.reset()
 					}
 					dismiss()
 				}
@@ -165,9 +165,7 @@ struct SettingsView: View {
 			}
 			.onChange(of: viewModel.counterSelected.selectedDate) {
 				/// Fetch counter on selected date change
-				Task {
-					await viewModel.fetchCounter()
-				}
+				viewModel.fetchCounter()
 				dismiss()
 			}
 		}
@@ -182,7 +180,10 @@ struct SettingsView: View {
 	Color
 		.clear
 		.sheet(isPresented: .constant(true)) {
-			SettingsView(viewModel: SettingsViewModel(counterSelected: CounterSelected()))
+			SettingsView(viewModel: SettingsViewModel(counterSelected: CounterSelected(),
+													  fetchCounterUseCase: FetchCounterUseCase(),
+													  insertCounterUseCase: InsertCounterUseCase(),
+													  resetCountersUseCase: ResetCountersUseCase()))
 				.modelContainer(DataController.shared.modelContainer)
 	}
 }

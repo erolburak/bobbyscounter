@@ -10,6 +10,12 @@ import Foundation
 @Observable
 class SettingsViewModel {
 
+	// MARK: - Use Cases
+
+	private let fetchCounterUseCase: PFetchCounterUseCase
+	private let insertCounterUseCase: PInsertCounterUseCase
+	private let resetCountersUseCase: PResetCountersUseCase
+
 	// MARK: - Properties
 
 	var alertError: Constants.Errors?
@@ -21,23 +27,37 @@ class SettingsViewModel {
 
 	// MARK: - Life Cycle
 
-	init(counterSelected: CounterSelected) {
+	init(counterSelected: CounterSelected,
+		 fetchCounterUseCase: PFetchCounterUseCase,
+		 insertCounterUseCase: PInsertCounterUseCase,
+		 resetCountersUseCase: PResetCountersUseCase) {
 		self.counterSelected = counterSelected
+		self.fetchCounterUseCase = fetchCounterUseCase
+		self.insertCounterUseCase = insertCounterUseCase
+		self.resetCountersUseCase = resetCountersUseCase
 	}
 
 	// MARK: - Actions
 
-	/// Fetch counter matching selected date
-	func fetchCounter() async {
-		counterSelected.counter = await DataController.shared.fetchCounter(selectedDate: counterSelected.selectedDate)
+	/// Fetch counter matching selected date otherwise insert new counter
+	func fetchCounter() {
+		guard let fetchedCounter = fetchCounterUseCase
+			.fetchCounter(selectedDate: counterSelected.selectedDate) else {
+			counterSelected.counter = insertCounterUseCase
+					.insertCounter(selectedDate: counterSelected.selectedDate)
+			return
+		}
+		counterSelected.counter = fetchedCounter
 	}
 
+	
 	/// Reset counters and view model properties
-	func reset() async throws {
+	func reset() throws {
 		do {
-			try await DataController.shared.resetCounters()
+			try resetCountersUseCase
+				.resetCounters()
 			counterSelected.selectedDate = .now
-			await fetchCounter()
+			fetchCounter()
 		} catch Constants.Errors.reset {
 			showAlert(error: .reset)
 		}

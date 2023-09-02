@@ -10,6 +10,13 @@ import Foundation
 @Observable
 class ContentViewModel {
 
+	// MARK: - Use Cases
+
+	private let decreaseCounterCountUseCase: PDecreaseCounterCountUseCase
+	private let fetchCounterUseCase: PFetchCounterUseCase
+	private let increaseCounterCountUseCase: PIncreaseCounterCountUseCase
+	private let insertCounterUseCase: PInsertCounterUseCase
+
 	// MARK: - Properties
 
 	var alertError: Constants.Errors?
@@ -17,21 +24,41 @@ class ContentViewModel {
 	var showAlert: Bool = false
 	var showSettingsSheet: Bool = false
 
+	// MARK: - Life Cycle
+
+	init(decreaseCounterCountUseCase: PDecreaseCounterCountUseCase,
+		 fetchCounterUseCase: PFetchCounterUseCase,
+		 increaseCounterCountUseCase: PIncreaseCounterCountUseCase,
+		 insertCounterUseCase: PInsertCounterUseCase) {
+		self.decreaseCounterCountUseCase = decreaseCounterCountUseCase
+		self.fetchCounterUseCase = fetchCounterUseCase
+		self.increaseCounterCountUseCase = increaseCounterCountUseCase
+		self.insertCounterUseCase = insertCounterUseCase
+	}
+
 	// MARK: - Actions
 
-	/// Decrease counter count value if count greater than 0
-	func decreaseCount() {
-		DataController.shared.decreaseCount(counter: counterSelected.counter)
+	/// Decrease counter count value
+	func decreaseCounterCount() {
+		decreaseCounterCountUseCase
+			.decreaseCount(counter: counterSelected.counter)
 	}
 
 	/// Increase counter count value
-	func increaseCount() {
-		DataController.shared.increaseCount(counter: counterSelected.counter)
+	func increaseCounterCount() {
+		increaseCounterCountUseCase
+			.increaseCount(counter: counterSelected.counter)
 	}
 
-	/// Fetch counter matching selected date
-	func fetchCounter() async {
-		counterSelected.counter = await DataController.shared.fetchCounter(selectedDate: counterSelected.selectedDate)
+	/// Fetch counter matching selected date otherwise insert new counter
+	func fetchCounter() {
+		guard let fetchedCounter = fetchCounterUseCase
+			.fetchCounter(selectedDate: counterSelected.selectedDate) else {
+			counterSelected.counter = insertCounterUseCase
+					.insertCounter(selectedDate: counterSelected.selectedDate)
+			return
+		}
+		counterSelected.counter = fetchedCounter
 	}
 
 	/// Set alert error and show alert

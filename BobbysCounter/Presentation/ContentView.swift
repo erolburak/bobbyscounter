@@ -32,7 +32,7 @@ struct ContentView: View {
 
 			HStack {
 				Button {
-					viewModel.decreaseCount()
+					viewModel.decreaseCounterCount()
 				} label: {
 					Text("Minus")
 						.frame(maxWidth: .infinity,
@@ -42,7 +42,7 @@ struct ContentView: View {
 				.accessibilityIdentifier("MinusButton")
 
 				Button {
-					viewModel.increaseCount()
+					viewModel.increaseCounterCount()
 				} label: {
 					Text("Plus")
 						.frame(maxWidth: .infinity,
@@ -67,7 +67,10 @@ struct ContentView: View {
 			.accessibilityIdentifier("SettingsButton")
 		}
 		.sheet(isPresented: $viewModel.showSettingsSheet) {
-			SettingsView(viewModel: SettingsViewModel(counterSelected: viewModel.counterSelected))
+			SettingsView(viewModel: SettingsViewModel(counterSelected: viewModel.counterSelected,
+													  fetchCounterUseCase: FetchCounterUseCase(),
+													  insertCounterUseCase: InsertCounterUseCase(),
+													  resetCountersUseCase: ResetCountersUseCase()))
 				.modelContainer(DataController.shared.modelContainer)
 		}
 		.alert(isPresented: $viewModel.showAlert,
@@ -81,10 +84,8 @@ struct ContentView: View {
 			switch scenePhase {
 			case .active:
 				/// Update model container and fetch counter if scene phase is active
-				Task {
-					DataController.shared.updateModelContainer()
-					await viewModel.fetchCounter()
-				}
+				DataController.shared.updateModelContainer()
+				viewModel.fetchCounter()
 			case .background:
 				/// Update widgets if scene phase is background
 				WidgetCenter.shared.reloadAllTimelines()
@@ -98,5 +99,8 @@ struct ContentView: View {
 }
 
 #Preview {
-	ContentView(viewModel: ContentViewModel())
+	ContentView(viewModel: ContentViewModel(decreaseCounterCountUseCase: DecreaseCounterCountUseCase(),
+											fetchCounterUseCase: FetchCounterUseCase(),
+											increaseCounterCountUseCase: IncreaseCounterCountUseCase(),
+											insertCounterUseCase: InsertCounterUseCase()))
 }

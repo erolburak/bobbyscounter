@@ -19,7 +19,8 @@ struct BobbysCounterWidget: Widget {
 	var body: some WidgetConfiguration {
 		AppIntentConfiguration(kind: kind,
 							   intent: CounterIntent.self,
-							   provider: BobbysCounterWidgetProvider()) { entry in
+							   provider: BobbysCounterWidgetProvider(fetchCounterUseCase: FetchCounterUseCase(),
+																	 insertCounterUseCase: InsertCounterUseCase())) { entry in
 			BobbysCounterWidgetEntryView(entry: entry)
 				.containerBackground(.widgetBackground,
 									 for: .widget)
