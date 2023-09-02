@@ -41,21 +41,19 @@ struct BobbysCounterWidgetProvider: AppIntentTimelineProvider {
 	/// Set counter intent for configuration after todays counter is fetched
 	@MainActor
 	private func setCounterIntent(for configuration: CounterIntent?) -> CounterIntent {
-		guard let configuration else {
+		guard let configuration,
+			  let counter = fetchCounter() else {
 			return CounterIntent()
 		}
-		let counter = fetchCounter()
 		configuration.count = counter.count
 		configuration.date = counter.date.relative
 		return configuration
 	}
 
-	/// Fetch counter matching selected date otherwise insert new counter and return object
-	private func fetchCounter() -> Counter {
-		guard let fetchedCounter = fetchCounterUseCase
-			.fetchCounter(selectedDate: .now) else {
-			return insertCounterUseCase
-				.insertCounter(selectedDate: .now)
+	/// Fetch counter matching selected date otherwise insert counter and return object
+	private func fetchCounter() -> Counter? {
+		guard let fetchedCounter = fetchCounterUseCase.fetch(selectedDate: .now) else {
+			return insertCounterUseCase.insert(selectedDate: .now)
 		}
 		return fetchedCounter
 	}

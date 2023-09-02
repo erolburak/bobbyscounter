@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 protocol PFetchCounterUseCase: Sendable {
-	func fetchCounter(selectedDate: Date) -> Counter?
+	func fetch(selectedDate: Date) -> Counter?
 }
 
 final class FetchCounterUseCase: PFetchCounterUseCase {
@@ -18,7 +18,7 @@ final class FetchCounterUseCase: PFetchCounterUseCase {
 
 	/// Fetch counter matching selected date and return object otherwise return nil
 	@MainActor
-	func fetchCounter(selectedDate: Date) -> Counter? {
+	func fetch(selectedDate: Date) -> Counter? {
 		try? DataController.shared.modelContainer.mainContext.fetch(FetchDescriptor<Counter>()).first { Calendar.current.isDate($0.date,
 																																inSameDayAs: selectedDate) }
 	}

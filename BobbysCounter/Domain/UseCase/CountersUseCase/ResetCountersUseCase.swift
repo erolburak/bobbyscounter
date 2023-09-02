@@ -8,7 +8,7 @@
 import SwiftData
 
 protocol PResetCountersUseCase {
-	func resetCounters() throws
+	func reset() throws
 }
 
 final class ResetCountersUseCase: PResetCountersUseCase {
@@ -17,7 +17,7 @@ final class ResetCountersUseCase: PResetCountersUseCase {
 
 	/// Reset counters
 	@MainActor
-	func resetCounters() throws {
+	func reset() throws {
 		do {
 			let mainContext = DataController.shared.modelContainer.mainContext
 			try mainContext.enumerate(FetchDescriptor<Counter>()) { counter in

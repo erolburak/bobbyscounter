@@ -8,16 +8,17 @@
 import Foundation
 
 protocol PInsertCounterUseCase {
-	func insertCounter(selectedDate: Date) -> Counter
+	func insert(selectedDate: Date) -> Counter?
 }
 
 class InsertCounterUseCase: PInsertCounterUseCase {
 
 	// MARK: - Actions
 
-	/// Insert new counter and return new object
+	/// Insert counter if selected date is smaller than or equal now and return object otherwise return nil
 	@MainActor
-	func insertCounter(selectedDate: Date) -> Counter {
+	func insert(selectedDate: Date) -> Counter? {
+		guard selectedDate <= .now else { return nil }
 		let counter = Counter(count: 0,
 							  date: selectedDate)
 		DataController.shared.modelContainer.mainContext.insert(counter)

@@ -24,7 +24,7 @@ class ContentViewModelTests: XCTestCase {
 	}
 
 	/// Test decrease counter count value
-	func testDecreaseCount() {
+	func testDecreaseCounterCount() {
 		// Given
 		sut.counterSelected.counter = Counter(count: 1,
 											  date: .now)
@@ -36,7 +36,7 @@ class ContentViewModelTests: XCTestCase {
 	}
 
 	/// Test increase counter count value
-	func testIncreaseCount() {
+	func testIncreaseCounterCount() {
 		// Given
 		sut.counterSelected.counter = Counter(count: 0,
 											  date: .now)
@@ -48,7 +48,7 @@ class ContentViewModelTests: XCTestCase {
 	}
 
 	/// Test fetch counter
-	func testFetchCounter() async {
+	func testFetchCounter() {
 		// Given
 		sut.counterSelected.selectedDate = .now
 		sut.counterSelected.counter = Counter(count: 0,

@@ -13,8 +13,8 @@ final class Counter {
 
 	// MARK: - Properties
 
-	var count: Int = 0
-	var date: Date = Date.now
+	var count = 0
+	var date = Date.now
 
 	// MARK: - Life Cycle
 

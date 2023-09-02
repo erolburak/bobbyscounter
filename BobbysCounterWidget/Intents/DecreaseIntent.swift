@@ -31,10 +31,8 @@ struct DecreaseIntent: AppIntent {
 	/// Fetch counter matching today and decrease counter count value
 	@MainActor
 	func perform() throws -> some IntentResult {
-		let counter = fetchCounterUseCase
-			.fetchCounter(selectedDate: .now)
-		decreaseCounterCountUseCase
-			.decreaseCount(counter: counter)
+		let counter = fetchCounterUseCase.fetch(selectedDate: .now)
+		decreaseCounterCountUseCase.decrease(counter: counter)
 		return .result()
 	}
 }
