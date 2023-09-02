@@ -54,7 +54,7 @@ struct ContentView: View {
 		}
 		.edgesIgnoringSafeArea(.all)
 		.overlay(alignment: .topTrailing) {
-			Text(viewModel.counterSelected.counter?.date.relative ?? "")
+			Text(viewModel.counterSelected.counter?.date.toRelative ?? "")
 				.font(.system(size: 8))
 				.padding(.trailing)
 				.accessibilityIdentifier("DateText")

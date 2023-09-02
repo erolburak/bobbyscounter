@@ -17,7 +17,7 @@ extension Date {
 	}
 
 	/// Formats date to string in a relative form -> `Yesterday`, `Today`, `Tomorrow`...
-	var relative: String {
+	var toRelative: String {
 		let dateFormatter = DateFormatter()
 		dateFormatter.dateStyle = .medium
 		dateFormatter.timeStyle = .none
