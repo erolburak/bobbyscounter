@@ -12,7 +12,7 @@ struct BobbysCounterWidget: Widget {
 
 	// MARK: - Properties
 
-	let kind: String = "BobbysCounterWidget"
+	let kind = "BobbysCounterWidget"
 
 	// MARK: - Layouts
 

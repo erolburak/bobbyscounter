@@ -6,7 +6,7 @@
 //
 
 protocol PDecreaseCounterCountUseCase: Sendable {
-	func decreaseCount(counter: Counter?)
+	func decrease(counter: Counter?)
 }
 
 final class DecreaseCounterCountUseCase: PDecreaseCounterCountUseCase {
@@ -14,7 +14,7 @@ final class DecreaseCounterCountUseCase: PDecreaseCounterCountUseCase {
 	// MARK: - Actions
 
 	/// Decrease counter count value if count greater than 0
-	func decreaseCount(counter: Counter?) {
+	func decrease(counter: Counter?) {
 		if let counter,
 		   counter.count > 0 {
 			counter.count -= 1

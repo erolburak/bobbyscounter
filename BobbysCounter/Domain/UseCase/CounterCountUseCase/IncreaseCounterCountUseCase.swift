@@ -6,7 +6,7 @@
 //
 
 protocol PIncreaseCounterCountUseCase: Sendable {
-	func increaseCount(counter: Counter?)
+	func increase(counter: Counter?)
 }
 
 final class IncreaseCounterCountUseCase: PIncreaseCounterCountUseCase {
@@ -14,7 +14,7 @@ final class IncreaseCounterCountUseCase: PIncreaseCounterCountUseCase {
 	// MARK: - Actions
 
 	/// Increase counter count value
-	func increaseCount(counter: Counter?) {
+	func increase(counter: Counter?) {
 		if let counter {
 			counter.count += 1
 		}

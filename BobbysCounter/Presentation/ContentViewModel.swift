@@ -20,9 +20,9 @@ class ContentViewModel {
 	// MARK: - Properties
 
 	var alertError: Constants.Errors?
-	var counterSelected: CounterSelected = CounterSelected()
-	var showAlert: Bool = false
-	var showSettingsSheet: Bool = false
+	var counterSelected = CounterSelected()
+	var showAlert = false
+	var showSettingsSheet = false
 
 	// MARK: - Life Cycle
 
@@ -40,22 +40,18 @@ class ContentViewModel {
 
 	/// Decrease counter count value
 	func decreaseCounterCount() {
-		decreaseCounterCountUseCase
-			.decreaseCount(counter: counterSelected.counter)
+		decreaseCounterCountUseCase.decrease(counter: counterSelected.counter)
 	}
 
 	/// Increase counter count value
 	func increaseCounterCount() {
-		increaseCounterCountUseCase
-			.increaseCount(counter: counterSelected.counter)
+		increaseCounterCountUseCase.increase(counter: counterSelected.counter)
 	}
 
-	/// Fetch counter matching selected date otherwise insert new counter
+	/// Fetch counter matching selected date otherwise insert counter
 	func fetchCounter() {
-		guard let fetchedCounter = fetchCounterUseCase
-			.fetchCounter(selectedDate: counterSelected.selectedDate) else {
-			counterSelected.counter = insertCounterUseCase
-					.insertCounter(selectedDate: counterSelected.selectedDate)
+		guard let fetchedCounter = fetchCounterUseCase.fetch(selectedDate: counterSelected.selectedDate) else {
+			counterSelected.counter = insertCounterUseCase.insert(selectedDate: counterSelected.selectedDate)
 			return
 		}
 		counterSelected.counter = fetchedCounter

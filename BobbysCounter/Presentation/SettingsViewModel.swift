@@ -19,11 +19,11 @@ class SettingsViewModel {
 	// MARK: - Properties
 
 	var alertError: Constants.Errors?
-	var chartScrollPosition: Date = .now
+	var chartScrollPosition = Date.now
 	var counterSelected: CounterSelected
-	var selectedPointMarkDate: Date? = nil
-	var showAlert: Bool = false
-	var showConfirmationDialog: Bool = false
+	var selectedPointMarkDate: Date?
+	var showAlert = false
+	var showConfirmationDialog = false
 
 	// MARK: - Life Cycle
 
@@ -39,23 +39,19 @@ class SettingsViewModel {
 
 	// MARK: - Actions
 
-	/// Fetch counter matching selected date otherwise insert new counter
+	/// Fetch counter matching selected date otherwise insert counter
 	func fetchCounter() {
-		guard let fetchedCounter = fetchCounterUseCase
-			.fetchCounter(selectedDate: counterSelected.selectedDate) else {
-			counterSelected.counter = insertCounterUseCase
-					.insertCounter(selectedDate: counterSelected.selectedDate)
+		guard let fetchedCounter = fetchCounterUseCase.fetch(selectedDate: counterSelected.selectedDate) else {
+			counterSelected.counter = insertCounterUseCase.insert(selectedDate: counterSelected.selectedDate)
 			return
 		}
 		counterSelected.counter = fetchedCounter
 	}
 
-	
 	/// Reset counters and view model properties
 	func reset() throws {
 		do {
-			try resetCountersUseCase
-				.resetCounters()
+			try resetCountersUseCase.reset()
 			counterSelected.selectedDate = .now
 			fetchCounter()
 		} catch Constants.Errors.reset {

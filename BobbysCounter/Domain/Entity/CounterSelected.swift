@@ -13,5 +13,5 @@ class CounterSelected {
 	// MARK: - Properties
 
 	var counter: Counter?
-	var selectedDate: Date = .now
+	var selectedDate = Date.now
 }

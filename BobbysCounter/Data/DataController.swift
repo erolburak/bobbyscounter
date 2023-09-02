@@ -11,8 +11,8 @@ class DataController {
 
 	// MARK: - Properties
 
-	static let shared: DataController = DataController()
-	lazy var modelContainer: ModelContainer = getModelContainer()
+	static let shared = DataController()
+	lazy var modelContainer = getModelContainer()
 
 	/// Update model container
 	func updateModelContainer() {

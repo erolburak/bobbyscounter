@@ -11,7 +11,7 @@ class Constants {
 
 	// MARK: - Properties
 
-	static let shared: Constants = Constants()
+	static let shared = Constants()
 
 	// MARK: - Type Definitions
 

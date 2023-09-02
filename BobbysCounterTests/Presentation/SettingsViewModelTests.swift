@@ -24,7 +24,7 @@ class SettingsViewModelTests: XCTestCase {
 	}
 
 	/// Test fetch counter
-	func testFetchCounter() async {
+	func testFetchCounter() {
 		// Given
 		sut.counterSelected.selectedDate = .now
 		sut.counterSelected.counter = Counter(count: 0,
@@ -37,7 +37,7 @@ class SettingsViewModelTests: XCTestCase {
 	}
 
 	/// Test reset
-	func testReset() async throws {
+	func testReset() throws {
 		// Given
 		let date = Calendar.current.date(byAdding: DateComponents(day: -1),
 										 to: .now) ?? .now
@@ -45,7 +45,7 @@ class SettingsViewModelTests: XCTestCase {
 		sut.counterSelected.counter = Counter(count: 1,
 											  date: date)
 		// When
-		try await sut.reset()
+		try sut.reset()
 		// Then
 		XCTAssertEqual(sut.counterSelected.counter?.date.isDateToday, true)
 		XCTAssertEqual(sut.counterSelected.counter?.count, 0)
