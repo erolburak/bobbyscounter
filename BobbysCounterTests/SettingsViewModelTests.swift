@@ -13,7 +13,10 @@ class SettingsViewModelTests: XCTestCase {
 	private var sut: SettingsViewModel!
 
 	override func setUpWithError() throws {
-		sut = SettingsViewModel(counterSelected: CounterSelected())
+		sut = SettingsViewModel(counterSelected: CounterSelected(),
+								fetchCounterUseCase: FetchCounterUseCase(),
+								insertCounterUseCase: InsertCounterUseCase(),
+								resetCountersUseCase: ResetCountersUseCase())
 	}
 
 	override func tearDownWithError() throws {
@@ -28,7 +31,7 @@ class SettingsViewModelTests: XCTestCase {
 											  date: Calendar.current.date(byAdding: DateComponents(day: -1),
 																		  to: .now) ?? .now)
 		// When
-		await sut.fetchCounter()
+		sut.fetchCounter()
 		// Then
 		XCTAssertEqual(sut.counterSelected.counter?.date.isDateToday, true)
 	}

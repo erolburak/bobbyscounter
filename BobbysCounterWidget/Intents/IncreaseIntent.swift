@@ -10,17 +10,31 @@ import SwiftData
 
 struct IncreaseIntent: AppIntent {
 
+	// MARK: - Use Cases
+
+	private let fetchCounterUseCase: PFetchCounterUseCase
+	private let increaseCounterCountUseCase: PIncreaseCounterCountUseCase
+
 	// MARK: - Properties
 
 	static var title: LocalizedStringResource = "Increase"
+
+	// MARK: - Life Cycle
+
+	init() {
+		self.fetchCounterUseCase = FetchCounterUseCase()
+		self.increaseCounterCountUseCase = IncreaseCounterCountUseCase()
+	}
 
 	// MARK: - Actions
 
 	/// Fetch counter matching today and increase counter count value
 	@MainActor
 	func perform() throws -> some IntentResult {
-		let counter = DataController.shared.fetchCounter(selectedDate: .now)
-		counter.count += 1
+		let counter = fetchCounterUseCase
+			.fetchCounter(selectedDate: .now)
+		increaseCounterCountUseCase
+			.increaseCount(counter: counter)
 		return .result()
 	}
 }
