@@ -23,7 +23,6 @@ class SettingsViewModelTests: XCTestCase {
 		sut = nil
 	}
 
-	/// Test fetch counter
 	func testFetchCounter() {
 		// Given
 		sut.counterSelected.selectedDate = .now
@@ -36,7 +35,6 @@ class SettingsViewModelTests: XCTestCase {
 		XCTAssertEqual(sut.counterSelected.counter?.date.isDateToday, true)
 	}
 
-	/// Test reset
 	func testReset() throws {
 		// Given
 		let date = Calendar.current.date(byAdding: DateComponents(day: -1),
@@ -51,7 +49,6 @@ class SettingsViewModelTests: XCTestCase {
 		XCTAssertEqual(sut.counterSelected.counter?.count, 0)
 	}
 
-	/// Test show annotation is true
 	func testShowAnnotationIsTrue() {
 		// Given
 		sut.selectedPointMarkDate = .now
@@ -61,7 +58,6 @@ class SettingsViewModelTests: XCTestCase {
 		XCTAssertEqual(show, true)
 	}
 
-	/// Test show annotation is false
 	func testShowAnnotationIsFalse() {
 		// Given
 		sut.selectedPointMarkDate = Calendar.current.date(byAdding: DateComponents(day: -1),
@@ -72,14 +68,12 @@ class SettingsViewModelTests: XCTestCase {
 		XCTAssertEqual(show, false)
 	}
 
-	/// Test show alerts
 	func testShowAlerts() {
 		for error in Constants.Errors.allCases {
 			testShowAlert(error: error)
 		}
 	}
 
-	/// Test show alert helper
 	private func testShowAlert(error: Constants.Errors) {
 		// Given
 		sut.showAlert = false
@@ -92,7 +86,6 @@ class SettingsViewModelTests: XCTestCase {
 		XCTAssertNotNil(sut.alertError?.recoverySuggestion)
 	}
 
-	/// Test chart x visible domain length lower bound
 	func testChartXVisibleDomainLengthLowerBound() {
 		// Given
 		/// Calculate factor by multiplying 3 items with seconds, minutes and hours together
@@ -107,7 +100,6 @@ class SettingsViewModelTests: XCTestCase {
 		XCTAssertEqual(length, expected)
 	}
 
-	/// Test chart x visible domain length upper bound
 	func testChartXVisibleDomainLengthUpperBound() {
 		// Given
 		/// Calculate factor by multiplying 4 items with seconds, minutes and hours together
@@ -122,7 +114,6 @@ class SettingsViewModelTests: XCTestCase {
 		XCTAssertEqual(length, expected)
 	}
 
-	/// Test selected point mark counter
 	func testSelectedPointMarkCounter() {
 		// Given
 		sut.selectedPointMarkDate = .now

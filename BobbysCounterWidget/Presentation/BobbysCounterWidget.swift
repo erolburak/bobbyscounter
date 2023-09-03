@@ -34,7 +34,6 @@ fileprivate extension CounterIntent {
 
 	// MARK: - Properties
 
-	/// Create CounterIntent with small number for preview
 	static var smallNumber: CounterIntent {
 		let counter = CounterIntent()
 		counter.count = 7
@@ -42,7 +41,6 @@ fileprivate extension CounterIntent {
 		return counter
 	}
 
-	/// Create CounterIntent with large number for preview
 	static var largeNumber: CounterIntent {
 		let counter = CounterIntent()
 		counter.count = 7777
@@ -50,7 +48,6 @@ fileprivate extension CounterIntent {
 		return counter
 	}
 
-	/// Create CounterIntent with extra large number for preview
 	static var extraLargeNumber: CounterIntent {
 		let counter = CounterIntent()
 		counter.count = 7777777777777777777

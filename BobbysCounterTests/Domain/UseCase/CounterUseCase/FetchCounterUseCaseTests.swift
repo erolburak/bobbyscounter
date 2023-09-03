@@ -20,7 +20,6 @@ class FetchCounterUseCaseTests: XCTestCase {
 		sut = nil
 	}
 
-	/// Test fetch counter with selected date is now
 	func testFetchCounterSelectedDateNow() async {
 		// Given
 		let selectedDate = Date.now
@@ -30,7 +29,6 @@ class FetchCounterUseCaseTests: XCTestCase {
 		XCTAssertNotNil(counter)
 	}
 
-	/// Test fetch counter with selected date is tomorrow
 	func testFetchCounterSelectedDateTomorrow() async {
 		// Given
 		let selectedDate = Calendar.current.date(byAdding: DateComponents(day: +1),

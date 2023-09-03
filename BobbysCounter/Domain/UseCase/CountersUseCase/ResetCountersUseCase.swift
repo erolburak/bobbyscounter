@@ -15,7 +15,6 @@ final class ResetCountersUseCase: PResetCountersUseCase {
 
 	// MARK: - Actions
 
-	/// Reset counters
 	@MainActor
 	func reset() throws {
 		do {

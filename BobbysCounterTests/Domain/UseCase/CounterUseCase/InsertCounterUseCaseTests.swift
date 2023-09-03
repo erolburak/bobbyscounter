@@ -20,7 +20,6 @@ class InsertCounterUseCaseTests: XCTestCase {
 		sut = nil
 	}
 
-	/// Test insert counter with selected date is now
 	func testInsertCounterSelectedDateNow() async {
 		// Given
 		let selectedDate = Date.now
@@ -33,7 +32,6 @@ class InsertCounterUseCaseTests: XCTestCase {
 		XCTAssertEqual(counter?.date.isDateToday, expected.date.isDateToday)
 	}
 
-	/// Test insert counter with selected date is tomorrow
 	func testInsertCounterSelectedDateTomorrow() async {
 		// Given
 		let selectedDate = Calendar.current.date(byAdding: DateComponents(day: +1),

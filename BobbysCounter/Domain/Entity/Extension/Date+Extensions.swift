@@ -11,7 +11,6 @@ extension Date {
 
 	// MARK: - Properties
 
-	/// Validates if date is in today
 	var isDateToday: Bool {
 		Calendar.current.isDateInToday(self)
 	}

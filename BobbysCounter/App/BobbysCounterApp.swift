@@ -14,10 +14,7 @@ struct BobbysCounterApp: App {
 
 	var body: some Scene {
 		WindowGroup {
-			ContentView(viewModel: ContentViewModel(decreaseCounterCountUseCase: DecreaseCounterCountUseCase(),
-													fetchCounterUseCase: FetchCounterUseCase(),
-													increaseCounterCountUseCase: IncreaseCounterCountUseCase(),
-													insertCounterUseCase: InsertCounterUseCase()))
+			ContentView(viewModel: ViewModelDI.shared.contentViewModel())
 		}
 	}
 }

@@ -13,7 +13,6 @@ final class IncreaseCounterCountUseCase: PIncreaseCounterCountUseCase {
 
 	// MARK: - Actions
 
-	/// Increase counter count value
 	func increase(counter: Counter?) {
 		if let counter {
 			counter.count += 1

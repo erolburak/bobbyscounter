@@ -14,12 +14,12 @@ class DataController {
 	static let shared = DataController()
 	lazy var modelContainer = getModelContainer()
 
-	/// Update model container
+	// MARK: - Actions
+
 	func updateModelContainer() {
 		modelContainer = getModelContainer()
 	}
 
-	/// Get model container and return object
 	private func getModelContainer() -> ModelContainer {
 		do {
 			return try ModelContainer(for: Counter.self)

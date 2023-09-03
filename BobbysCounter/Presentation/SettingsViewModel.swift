@@ -39,7 +39,6 @@ class SettingsViewModel {
 
 	// MARK: - Actions
 
-	/// Fetch counter matching selected date otherwise insert counter
 	func fetchCounter() {
 		guard let fetchedCounter = fetchCounterUseCase.fetch(selectedDate: counterSelected.selectedDate) else {
 			counterSelected.counter = insertCounterUseCase.insert(selectedDate: counterSelected.selectedDate)
@@ -48,7 +47,6 @@ class SettingsViewModel {
 		counterSelected.counter = fetchedCounter
 	}
 
-	/// Reset counters and view model properties
 	func reset() throws {
 		do {
 			try resetCountersUseCase.reset()
@@ -59,13 +57,11 @@ class SettingsViewModel {
 		}
 	}
 
-	/// Set alert error and show alert
 	func showAlert(error: Constants.Errors) {
 		alertError = error
 		showAlert = true
 	}
 
-	/// Show annotation if date matching selected point mark date
 	func showAnnotation(date: Date) -> Bool {
 		date.formatted(date: .complete,
 					   time: .omitted) == selectedPointMarkDate?.formatted(date: .complete,
@@ -74,7 +70,6 @@ class SettingsViewModel {
 
 	// MARK: - Helper
 
-	/// Calculate and return length for chart x visible domain
 	func chartXVisibleDomainLength(counters: [Counter]) -> Int {
 		/// Calculate factor by multiplying seconds, minutes and hours together
 		let factor = 60 * 60 * 24
@@ -83,7 +78,6 @@ class SettingsViewModel {
 		return range.contains(count) ? count * factor : range.upperBound * factor
 	}
 
-	/// Return counter matching selected point mark date otherwise return nil
 	func selectedPointMarkCounter(counters: [Counter]) -> Counter? {
 		counters.first { Calendar.current.isDate($0.date,
 												 inSameDayAs: selectedPointMarkDate ?? .now) }

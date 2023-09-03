@@ -28,7 +28,6 @@ struct IncreaseIntent: AppIntent {
 
 	// MARK: - Actions
 
-	/// Fetch counter matching today and increase counter count value
 	@MainActor
 	func perform() throws -> some IntentResult {
 		let counter = fetchCounterUseCase.fetch(selectedDate: .now)

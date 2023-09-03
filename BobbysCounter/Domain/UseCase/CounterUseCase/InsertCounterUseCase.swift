@@ -15,7 +15,6 @@ class InsertCounterUseCase: PInsertCounterUseCase {
 
 	// MARK: - Actions
 
-	/// Insert counter if selected date is smaller than or equal now and return object otherwise return nil
 	@MainActor
 	func insert(selectedDate: Date) -> Counter? {
 		guard selectedDate <= .now else { return nil }
