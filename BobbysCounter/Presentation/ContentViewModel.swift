@@ -19,9 +19,7 @@ class ContentViewModel {
 
 	// MARK: - Properties
 
-	var alertError: Constants.Errors?
 	var counterSelected = CounterSelected()
-	var showAlert = false
 	var showSettingsSheet = false
 
 	// MARK: - Life Cycle
@@ -38,28 +36,19 @@ class ContentViewModel {
 
 	// MARK: - Actions
 
-	/// Decrease counter count value
 	func decreaseCounterCount() {
 		decreaseCounterCountUseCase.decrease(counter: counterSelected.counter)
 	}
 
-	/// Increase counter count value
 	func increaseCounterCount() {
 		increaseCounterCountUseCase.increase(counter: counterSelected.counter)
 	}
 
-	/// Fetch counter matching selected date otherwise insert counter
 	func fetchCounter() {
 		guard let fetchedCounter = fetchCounterUseCase.fetch(selectedDate: counterSelected.selectedDate) else {
 			counterSelected.counter = insertCounterUseCase.insert(selectedDate: counterSelected.selectedDate)
 			return
 		}
 		counterSelected.counter = fetchedCounter
-	}
-
-	/// Set alert error and show alert
-	func showAlert(error: Constants.Errors) {
-		alertError = error
-		showAlert = true
 	}
 }

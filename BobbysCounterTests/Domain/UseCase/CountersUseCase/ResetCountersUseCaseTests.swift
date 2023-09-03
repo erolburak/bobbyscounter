@@ -20,7 +20,6 @@ class ResetCountersUseCaseTests: XCTestCase {
 		sut = nil
 	}
 
-	/// Test reset
 	@MainActor
 	func testReset() {
 		XCTAssertNoThrow(try sut.reset())

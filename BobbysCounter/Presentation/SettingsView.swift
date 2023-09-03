@@ -94,7 +94,6 @@ struct SettingsView: View {
 						.foregroundStyle(.red)
 						.accessibilityIdentifier("Chart")
 						.onAppear {
-							/// Update chart scroll position on appear
 							Task {
 								withAnimation {
 									let date = viewModel.counterSelected.selectedDate
@@ -164,7 +163,6 @@ struct SettingsView: View {
 				}
 			}
 			.onChange(of: viewModel.counterSelected.selectedDate) {
-				/// Fetch counter on selected date change
 				viewModel.fetchCounter()
 				dismiss()
 			}
@@ -180,10 +178,7 @@ struct SettingsView: View {
 	Color
 		.clear
 		.sheet(isPresented: .constant(true)) {
-			SettingsView(viewModel: SettingsViewModel(counterSelected: CounterSelected(),
-													  fetchCounterUseCase: FetchCounterUseCase(),
-													  insertCounterUseCase: InsertCounterUseCase(),
-													  resetCountersUseCase: ResetCountersUseCase()))
+			SettingsView(viewModel: ViewModelDI.shared.settingsViewModel(counterSelected: CounterSelected()))
 				.modelContainer(DataController.shared.modelContainer)
 	}
 }

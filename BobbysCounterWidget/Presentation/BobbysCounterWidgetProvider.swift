@@ -22,6 +22,8 @@ struct BobbysCounterWidgetProvider: AppIntentTimelineProvider {
 		self.insertCounterUseCase = insertCounterUseCase
 	}
 
+	// MARK: - Actions
+
 	@MainActor
 	func placeholder(in context: Context) -> BobbysCounterWidgetEntry {
 		BobbysCounterWidgetEntry(counterIntent: setCounterIntent(for: nil))
@@ -38,7 +40,6 @@ struct BobbysCounterWidgetProvider: AppIntentTimelineProvider {
 					   policy: .atEnd)
 	}
 
-	/// Set counter intent for configuration after todays counter is fetched
 	@MainActor
 	private func setCounterIntent(for configuration: CounterIntent?) -> CounterIntent {
 		guard let configuration,
@@ -50,7 +51,6 @@ struct BobbysCounterWidgetProvider: AppIntentTimelineProvider {
 		return configuration
 	}
 
-	/// Fetch counter matching selected date otherwise insert counter and return object
 	private func fetchCounter() -> Counter? {
 		guard let fetchedCounter = fetchCounterUseCase.fetch(selectedDate: .now) else {
 			return insertCounterUseCase.insert(selectedDate: .now)

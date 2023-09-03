@@ -13,7 +13,6 @@ final class DecreaseCounterCountUseCase: PDecreaseCounterCountUseCase {
 
 	// MARK: - Actions
 
-	/// Decrease counter count value if count greater than 0
 	func decrease(counter: Counter?) {
 		if let counter,
 		   counter.count > 0 {

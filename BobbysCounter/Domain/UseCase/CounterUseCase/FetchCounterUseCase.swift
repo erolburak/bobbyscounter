@@ -16,7 +16,6 @@ final class FetchCounterUseCase: PFetchCounterUseCase {
 
 	// MARK: - Actions
 
-	/// Fetch counter matching selected date and return object otherwise return nil
 	@MainActor
 	func fetch(selectedDate: Date) -> Counter? {
 		try? DataController.shared.modelContainer.mainContext.fetch(FetchDescriptor<Counter>()).first { Calendar.current.isDate($0.date,

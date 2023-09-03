@@ -20,7 +20,6 @@ class DecreaseCounterCountUseCaseTests: XCTestCase {
 		sut = nil
 	}
 
-	/// Test decrease counter count value
 	func testDecreaseCounterCount() {
 		// Given
 		let counter = Counter(count: 1,
@@ -32,7 +31,6 @@ class DecreaseCounterCountUseCaseTests: XCTestCase {
 		XCTAssertEqual(counter.date.isDateToday, true)
 	}
 
-	/// Test decrease counter count zero value
 	func testDecreaseCounterCountZero() {
 		// Given
 		let counter = Counter(count: 0,

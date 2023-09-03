@@ -28,7 +28,6 @@ struct DecreaseIntent: AppIntent {
 
 	// MARK: - Actions
 
-	/// Fetch counter matching today and decrease counter count value
 	@MainActor
 	func perform() throws -> some IntentResult {
 		let counter = fetchCounterUseCase.fetch(selectedDate: .now)

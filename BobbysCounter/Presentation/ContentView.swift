@@ -67,27 +67,15 @@ struct ContentView: View {
 			.accessibilityIdentifier("SettingsButton")
 		}
 		.sheet(isPresented: $viewModel.showSettingsSheet) {
-			SettingsView(viewModel: SettingsViewModel(counterSelected: viewModel.counterSelected,
-													  fetchCounterUseCase: FetchCounterUseCase(),
-													  insertCounterUseCase: InsertCounterUseCase(),
-													  resetCountersUseCase: ResetCountersUseCase()))
+			SettingsView(viewModel: ViewModelDI.shared.settingsViewModel(counterSelected: viewModel.counterSelected))
 				.modelContainer(DataController.shared.modelContainer)
-		}
-		.alert(isPresented: $viewModel.showAlert,
-			   error: viewModel.alertError) { _ in
-		} message: { error in
-			if let message = error.recoverySuggestion {
-				Text(message)
-			}
 		}
 		.onChange(of: scenePhase) {
 			switch scenePhase {
 			case .active:
-				/// Update model container and fetch counter if scene phase is active
 				DataController.shared.updateModelContainer()
 				viewModel.fetchCounter()
 			case .background:
-				/// Update widgets if scene phase is background
 				WidgetCenter.shared.reloadAllTimelines()
 			default: break
 			}
@@ -99,8 +87,5 @@ struct ContentView: View {
 }
 
 #Preview {
-	ContentView(viewModel: ContentViewModel(decreaseCounterCountUseCase: DecreaseCounterCountUseCase(),
-											fetchCounterUseCase: FetchCounterUseCase(),
-											increaseCounterCountUseCase: IncreaseCounterCountUseCase(),
-											insertCounterUseCase: InsertCounterUseCase()))
+	ContentView(viewModel: ViewModelDI.shared.contentViewModel())
 }
