@@ -21,7 +21,7 @@ class ResetCountersUseCaseTests: XCTestCase {
 	}
 
 	@MainActor
-	func testReset() {
+	func testResetNotThrows() {
 		XCTAssertNoThrow(try sut.reset())
 	}
 }

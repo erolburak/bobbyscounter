@@ -20,7 +20,7 @@ class IncreaseCounterCountUseCaseTests: XCTestCase {
 		sut = nil
 	}
 
-	func testIncreaseCounterCount() {
+	func testIncrease() {
 		// Given
 		let counter = Counter(count: 0,
 							  date: .now)

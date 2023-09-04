@@ -70,11 +70,11 @@ class SettingsViewModelTests: XCTestCase {
 
 	func testShowAlerts() {
 		for error in Constants.Errors.allCases {
-			testShowAlert(error: error)
+			testShowAlertNotNil(error: error)
 		}
 	}
 
-	private func testShowAlert(error: Constants.Errors) {
+	private func testShowAlertNotNil(error: Constants.Errors) {
 		// Given
 		sut.showAlert = false
 		// When
@@ -90,43 +90,43 @@ class SettingsViewModelTests: XCTestCase {
 		// Given
 		/// Calculate factor by multiplying 3 items with seconds, minutes and hours together
 		/// 3 items is the lower bound of the range
-		let expected = 3 * 60 * 60 * 24
+		let length = 3 * 60 * 60 * 24
 		let counters = Array(repeating: Counter(count: 1,
 												date: .now),
 							 count: 3)
 		// When
-		let length = sut.chartXVisibleDomainLength(counters: counters)
+		let newLength = sut.chartXVisibleDomainLength(counters: counters)
 		// Then
-		XCTAssertEqual(length, expected)
+		XCTAssertEqual(newLength, length)
 	}
 
 	func testChartXVisibleDomainLengthUpperBound() {
 		// Given
 		/// Calculate factor by multiplying 4 items with seconds, minutes and hours together
 		/// 4 items is the upper bound of the range
-		let expected = 4 * 60 * 60 * 24
+		let length = 4 * 60 * 60 * 24
 		let counters = Array(repeating: Counter(count: 1,
 												date: .now),
 							 count: 4)
 		// When
-		let length = sut.chartXVisibleDomainLength(counters: counters)
+		let newLength = sut.chartXVisibleDomainLength(counters: counters)
 		// Then
-		XCTAssertEqual(length, expected)
+		XCTAssertEqual(newLength, length)
 	}
 
 	func testSelectedPointMarkCounter() {
 		// Given
 		sut.selectedPointMarkDate = .now
-		let expected = Counter(count: 0,
-							   date: .now)
+		let counter = Counter(count: 0,
+							  date: .now)
 		let counters = [Counter(count: 1,
 								date: Calendar.current.date(byAdding: DateComponents(day: -1),
 															to: .now) ?? .now),
-						expected]
+						counter]
 		// When
-		let counter = sut.selectedPointMarkCounter(counters: counters)
+		let newCounter = sut.selectedPointMarkCounter(counters: counters)
 		// Then
-		XCTAssertEqual(counter?.count, expected.count)
-		XCTAssertEqual(counter?.date.isDateToday, expected.date.isDateToday)
+		XCTAssertEqual(newCounter?.count, counter.count)
+		XCTAssertEqual(newCounter?.date.isDateToday, counter.date.isDateToday)
 	}
 }

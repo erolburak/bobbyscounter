@@ -5,7 +5,7 @@
 //  Created by Burak Erol on 04.09.23.
 //
 
-class ViewModelDI {
+struct ViewModelDI {
 
 	// MARK: - Properties
 

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Constants {
+struct Constants {
 
 	// MARK: - Properties
 
