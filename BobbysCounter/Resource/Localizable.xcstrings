@@ -114,7 +114,7 @@
         }
       }
     },
-    "ErrorDescription%@" : {
+    "Error%@" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -131,7 +131,24 @@
         }
       }
     },
-    "ErrorResetRecoverySuggestion" : {
+    "ErrorDescriptionReset" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zurücksetzen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset"
+          }
+        }
+      }
+    },
+    "ErrorRecoverySuggestionReset" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {

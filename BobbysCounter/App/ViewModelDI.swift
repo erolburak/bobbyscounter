@@ -11,6 +11,8 @@ struct ViewModelDI {
 
 	static let shared = ViewModelDI()
 
+	// MARK: - Actions
+
 	func contentViewModel() -> ContentViewModel {
 		ContentViewModel(decreaseCounterCountUseCase: DecreaseCounterCountUseCase(),
 						 fetchCounterUseCase: FetchCounterUseCase(),

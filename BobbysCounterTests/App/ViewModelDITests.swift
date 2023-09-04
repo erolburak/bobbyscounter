@@ -20,14 +20,14 @@ class ViewModelDITests: XCTestCase {
 		sut = nil
 	}
 
-	func testContentViewModelNotNil() {
+	func testContentViewModelIsNotNil() {
 		// When
 		let contentViewModel = sut.contentViewModel()
 		// Then
 		XCTAssertNotNil(contentViewModel)
 	}
 
-	func testSettingsViewModelNotNil() {
+	func testSettingsViewModelIsNotNil() {
 		// Given
 		let counterSelected = CounterSelected()
 		// When

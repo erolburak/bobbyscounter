@@ -20,7 +20,7 @@ class FetchCounterUseCaseTests: XCTestCase {
 		sut = nil
 	}
 
-	func testFetchNowNotNil() async {
+	func testFetchIsNotNil() async {
 		// Given
 		let selectedDate = Date.now
 		// When
@@ -29,7 +29,7 @@ class FetchCounterUseCaseTests: XCTestCase {
 		XCTAssertNotNil(counter)
 	}
 
-	func testFetchTomorrowIsNil() async {
+	func testFetchIsNil() async {
 		// Given
 		let selectedDate = Calendar.current.date(byAdding: DateComponents(day: +1),
 												 to: .now) ?? .now

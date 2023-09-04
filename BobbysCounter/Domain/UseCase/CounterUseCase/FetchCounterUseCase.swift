@@ -8,11 +8,11 @@
 import Foundation
 import SwiftData
 
-protocol PFetchCounterUseCase: Sendable {
+protocol PFetchCounterUseCase {
 	func fetch(selectedDate: Date) -> Counter?
 }
 
-final class FetchCounterUseCase: PFetchCounterUseCase {
+class FetchCounterUseCase: PFetchCounterUseCase {
 
 	// MARK: - Actions
 

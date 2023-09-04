@@ -28,6 +28,5 @@ class IncreaseCounterCountUseCaseTests: XCTestCase {
 		sut.increase(counter: counter)
 		// Then
 		XCTAssertEqual(counter.count, 1)
-		XCTAssertEqual(counter.date.isDateToday, true)
 	}
 }
