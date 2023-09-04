@@ -11,7 +11,7 @@ protocol PResetCountersUseCase {
 	func reset() throws
 }
 
-final class ResetCountersUseCase: PResetCountersUseCase {
+class ResetCountersUseCase: PResetCountersUseCase {
 
 	// MARK: - Actions
 

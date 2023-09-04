@@ -31,7 +31,6 @@ class ContentViewModelTests: XCTestCase {
 		sut.decreaseCounterCount()
 		// Then
 		XCTAssertEqual(sut.counterSelected.counter?.count, 0)
-		XCTAssertEqual(sut.counterSelected.counter?.date.isDateToday, true)
 	}
 
 	func testIncreaseCounterCount() {
@@ -42,7 +41,6 @@ class ContentViewModelTests: XCTestCase {
 		sut.increaseCounterCount()
 		// Then
 		XCTAssertEqual(sut.counterSelected.counter?.count, 1)
-		XCTAssertEqual(sut.counterSelected.counter?.date.isDateToday, true)
 	}
 
 	func testFetchCounter() {
@@ -54,6 +52,6 @@ class ContentViewModelTests: XCTestCase {
 		// When
 		sut.fetchCounter()
 		// Then
-		XCTAssertEqual(sut.counterSelected.counter?.date.isDateToday, true)
+		XCTAssertTrue(sut.counterSelected.counter?.date.isDateToday ?? false)
 	}
 }

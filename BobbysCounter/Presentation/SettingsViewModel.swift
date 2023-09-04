@@ -68,8 +68,6 @@ class SettingsViewModel {
 																		   time: .omitted)
 	}
 
-	// MARK: - Helper
-
 	func chartXVisibleDomainLength(counters: [Counter]) -> Int {
 		/// Calculate factor by multiplying seconds, minutes and hours together
 		let factor = 60 * 60 * 24

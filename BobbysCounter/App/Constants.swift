@@ -23,13 +23,13 @@ struct Constants {
 
 		var errorDescription: String? {
 			switch self {
-			case .reset: return String(localized: "ErrorDescription\("Reset")")
+			case .reset: return String(localized: "Error\("ErrorDescriptionReset")")
 			}
 		}
 
 		var recoverySuggestion: String? {
 			switch self {
-			case .reset: return String(localized: "ErrorResetRecoverySuggestion")
+			case .reset: return String(localized: "ErrorRecoverySuggestionReset")
 			}
 		}
 	}

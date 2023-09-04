@@ -42,6 +42,7 @@
 		BFB86DB62A66E22A0092EAEC /* BobbysCounterWidgetProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB86DB42A66E22A0092EAEC /* BobbysCounterWidgetProvider.swift */; };
 		BFC0AF4C2A6C8B3B0037A2B7 /* SettingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC0AF4B2A6C8B3B0037A2B7 /* SettingsViewModelTests.swift */; };
 		BFD1B8AC2AA5E6E5000ED973 /* ViewModelDITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD1B8AB2AA5E6E5000ED973 /* ViewModelDITests.swift */; };
+		BFD1B8C02AA62EFC000ED973 /* DateExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD1B8BF2AA62EFC000ED973 /* DateExtensionsTests.swift */; };
 		BFDCAEE12AA240C3004B0316 /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2C45392A4B3EB900D48C36 /* Counter.swift */; };
 		BFDCAEFA2AA28E79004B0316 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6D1DA02A6603CA00264753 /* Constants.swift */; };
 		BFDD668C2AA3875A00BB49CE /* IncreaseCounterCountUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDD668B2AA3875A00BB49CE /* IncreaseCounterCountUseCaseTests.swift */; };
@@ -130,6 +131,7 @@
 		BFB86DB42A66E22A0092EAEC /* BobbysCounterWidgetProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BobbysCounterWidgetProvider.swift; sourceTree = "<group>"; };
 		BFC0AF4B2A6C8B3B0037A2B7 /* SettingsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModelTests.swift; sourceTree = "<group>"; };
 		BFD1B8AB2AA5E6E5000ED973 /* ViewModelDITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelDITests.swift; sourceTree = "<group>"; };
+		BFD1B8BF2AA62EFC000ED973 /* DateExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensionsTests.swift; sourceTree = "<group>"; };
 		BFDD668B2AA3875A00BB49CE /* IncreaseCounterCountUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncreaseCounterCountUseCaseTests.swift; sourceTree = "<group>"; };
 		BFDD668D2AA3876900BB49CE /* DecreaseCounterCountUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecreaseCounterCountUseCaseTests.swift; sourceTree = "<group>"; };
 		BFDD66902AA3878200BB49CE /* ResetCountersUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetCountersUseCaseTests.swift; sourceTree = "<group>"; };
@@ -326,6 +328,22 @@
 			path = App;
 			sourceTree = "<group>";
 		};
+		BFD1B8BE2AA62ECD000ED973 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				BFD1B8C52AA634D3000ED973 /* Extension */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		BFD1B8C52AA634D3000ED973 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				BFD1B8BF2AA62EFC000ED973 /* DateExtensionsTests.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		BFDCAEE02AA240B5004B0316 /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -383,6 +401,7 @@
 		BFDD66872AA386E800BB49CE /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				BFD1B8BE2AA62ECD000ED973 /* Entity */,
 				BFDD66882AA386F300BB49CE /* CounterCountUseCase */,
 				BFDD66892AA386FF00BB49CE /* CountersUseCase */,
 				BFDD668A2AA3870A00BB49CE /* CounterUseCase */,
@@ -631,6 +650,7 @@
 			files = (
 				BF6048B22A6C231F00B4D119 /* ContentViewModelTests.swift in Sources */,
 				BFC0AF4C2A6C8B3B0037A2B7 /* SettingsViewModelTests.swift in Sources */,
+				BFD1B8C02AA62EFC000ED973 /* DateExtensionsTests.swift in Sources */,
 				BFDD668E2AA3876900BB49CE /* DecreaseCounterCountUseCaseTests.swift in Sources */,
 				BFDD66912AA3878200BB49CE /* ResetCountersUseCaseTests.swift in Sources */,
 				BFDD668C2AA3875A00BB49CE /* IncreaseCounterCountUseCaseTests.swift in Sources */,

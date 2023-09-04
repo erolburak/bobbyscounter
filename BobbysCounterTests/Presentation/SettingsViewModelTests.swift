@@ -32,7 +32,7 @@ class SettingsViewModelTests: XCTestCase {
 		// When
 		sut.fetchCounter()
 		// Then
-		XCTAssertEqual(sut.counterSelected.counter?.date.isDateToday, true)
+		XCTAssertTrue(sut.counterSelected.counter?.date.isDateToday ?? false)
 	}
 
 	func testReset() throws {
@@ -45,8 +45,8 @@ class SettingsViewModelTests: XCTestCase {
 		// When
 		try sut.reset()
 		// Then
-		XCTAssertEqual(sut.counterSelected.counter?.date.isDateToday, true)
 		XCTAssertEqual(sut.counterSelected.counter?.count, 0)
+		XCTAssertTrue(sut.counterSelected.counter?.date.isDateToday ?? false)
 	}
 
 	func testShowAnnotationIsTrue() {
@@ -55,7 +55,7 @@ class SettingsViewModelTests: XCTestCase {
 		// When
 		let show = sut.showAnnotation(date: .now)
 		// Then
-		XCTAssertEqual(show, true)
+		XCTAssertTrue(show)
 	}
 
 	func testShowAnnotationIsFalse() {
@@ -65,16 +65,16 @@ class SettingsViewModelTests: XCTestCase {
 		// When
 		let show = sut.showAnnotation(date: .now)
 		// Then
-		XCTAssertEqual(show, false)
+		XCTAssertFalse(show)
 	}
 
 	func testShowAlerts() {
 		for error in Constants.Errors.allCases {
-			testShowAlertNotNil(error: error)
+			testShowAlertIsNotNil(error: error)
 		}
 	}
 
-	private func testShowAlertNotNil(error: Constants.Errors) {
+	private func testShowAlertIsNotNil(error: Constants.Errors) {
 		// Given
 		sut.showAlert = false
 		// When

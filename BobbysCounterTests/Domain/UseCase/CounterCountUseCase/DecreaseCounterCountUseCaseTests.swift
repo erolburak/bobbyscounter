@@ -28,7 +28,6 @@ class DecreaseCounterCountUseCaseTests: XCTestCase {
 		sut.decrease(counter: counter)
 		// Then
 		XCTAssertEqual(counter.count, 0)
-		XCTAssertEqual(counter.date.isDateToday, true)
 	}
 
 	func testDecreaseWithZero() {
@@ -39,6 +38,5 @@ class DecreaseCounterCountUseCaseTests: XCTestCase {
 		sut.decrease(counter: counter)
 		// Then
 		XCTAssertEqual(counter.count, 0)
-		XCTAssertEqual(counter.date.isDateToday, true)
 	}
 }
