@@ -41,6 +41,7 @@
 		BFB86DB22A66E1690092EAEC /* BobbysCounterWidgetEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB86DB02A66E1690092EAEC /* BobbysCounterWidgetEntry.swift */; };
 		BFB86DB62A66E22A0092EAEC /* BobbysCounterWidgetProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB86DB42A66E22A0092EAEC /* BobbysCounterWidgetProvider.swift */; };
 		BFC0AF4C2A6C8B3B0037A2B7 /* SettingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC0AF4B2A6C8B3B0037A2B7 /* SettingsViewModelTests.swift */; };
+		BFD1B8AC2AA5E6E5000ED973 /* ViewModelDITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD1B8AB2AA5E6E5000ED973 /* ViewModelDITests.swift */; };
 		BFDCAEE12AA240C3004B0316 /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2C45392A4B3EB900D48C36 /* Counter.swift */; };
 		BFDCAEFA2AA28E79004B0316 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6D1DA02A6603CA00264753 /* Constants.swift */; };
 		BFDD668C2AA3875A00BB49CE /* IncreaseCounterCountUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDD668B2AA3875A00BB49CE /* IncreaseCounterCountUseCaseTests.swift */; };
@@ -128,6 +129,7 @@
 		BFB86DB02A66E1690092EAEC /* BobbysCounterWidgetEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BobbysCounterWidgetEntry.swift; sourceTree = "<group>"; };
 		BFB86DB42A66E22A0092EAEC /* BobbysCounterWidgetProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BobbysCounterWidgetProvider.swift; sourceTree = "<group>"; };
 		BFC0AF4B2A6C8B3B0037A2B7 /* SettingsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModelTests.swift; sourceTree = "<group>"; };
+		BFD1B8AB2AA5E6E5000ED973 /* ViewModelDITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelDITests.swift; sourceTree = "<group>"; };
 		BFDD668B2AA3875A00BB49CE /* IncreaseCounterCountUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncreaseCounterCountUseCaseTests.swift; sourceTree = "<group>"; };
 		BFDD668D2AA3876900BB49CE /* DecreaseCounterCountUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecreaseCounterCountUseCaseTests.swift; sourceTree = "<group>"; };
 		BFDD66902AA3878200BB49CE /* ResetCountersUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetCountersUseCaseTests.swift; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 		BF2C454B2A4B3EBA00D48C36 /* BobbysCounterTests */ = {
 			isa = PBXGroup;
 			children = (
+				BFD1B8AA2AA5E6C8000ED973 /* App */,
 				BFDD66862AA386D900BB49CE /* Domain */,
 				BFDD66832AA386A100BB49CE /* Presentation */,
 			);
@@ -313,6 +316,14 @@
 				BFB86DB42A66E22A0092EAEC /* BobbysCounterWidgetProvider.swift */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		BFD1B8AA2AA5E6C8000ED973 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				BFD1B8AB2AA5E6E5000ED973 /* ViewModelDITests.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 		BFDCAEE02AA240B5004B0316 /* Data */ = {
@@ -623,6 +634,7 @@
 				BFDD668E2AA3876900BB49CE /* DecreaseCounterCountUseCaseTests.swift in Sources */,
 				BFDD66912AA3878200BB49CE /* ResetCountersUseCaseTests.swift in Sources */,
 				BFDD668C2AA3875A00BB49CE /* IncreaseCounterCountUseCaseTests.swift in Sources */,
+				BFD1B8AC2AA5E6E5000ED973 /* ViewModelDITests.swift in Sources */,
 				BFDD66932AA3879D00BB49CE /* FetchCounterUseCaseTests.swift in Sources */,
 				BFDD66952AA387AF00BB49CE /* InsertCounterUseCaseTests.swift in Sources */,
 			);
