@@ -10,7 +10,11 @@ import XCTest
 
 class DecreaseCounterCountUseCaseTests: XCTestCase {
 
+	// MARK: - Private Properties
+
 	private var sut: DecreaseCounterCountUseCase!
+
+	// MARK: - Life Cycle
 
 	override func setUpWithError() throws {
 		sut = DecreaseCounterCountUseCase()
@@ -19,6 +23,8 @@ class DecreaseCounterCountUseCaseTests: XCTestCase {
 	override func tearDownWithError() throws {
 		sut = nil
 	}
+
+	// MARK: - Actions
 
 	func testDecrease() {
 		// Given

@@ -8,6 +8,9 @@
 import Foundation
 
 protocol PInsertCounterUseCase {
+
+	// MARK: - Actions
+
 	func insert(selectedDate: Date) -> Counter?
 }
 

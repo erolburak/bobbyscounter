@@ -10,7 +10,11 @@ import XCTest
 
 class InsertCounterUseCaseTests: XCTestCase {
 
+	// MARK: - Private Properties
+
 	private var sut: InsertCounterUseCase!
+
+	// MARK: - Life Cycle
 
 	override func setUpWithError() throws {
 		sut = InsertCounterUseCase()
@@ -19,6 +23,8 @@ class InsertCounterUseCaseTests: XCTestCase {
 	override func tearDownWithError() throws {
 		sut = nil
 	}
+
+	// MARK: - Actions
 
 	func testInsert() async {
 		// Given

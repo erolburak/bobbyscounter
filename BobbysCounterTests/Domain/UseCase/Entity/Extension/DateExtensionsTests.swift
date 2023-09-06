@@ -10,6 +10,8 @@ import XCTest
 
 class DateExtensionsTests: XCTestCase {
 
+	// MARK: - Actions
+
 	func testIsDateTodayIsTrue() {
 		// Given
 		let date = Date.now
