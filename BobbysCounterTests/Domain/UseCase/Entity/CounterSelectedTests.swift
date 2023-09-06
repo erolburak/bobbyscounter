@@ -10,6 +10,8 @@ import XCTest
 
 class CounterSelectedTests: XCTestCase {
 
+	// MARK: - Actions
+
 	func testCounterSelected() {
 		// Given
 		let counterSelected: CounterSelected?

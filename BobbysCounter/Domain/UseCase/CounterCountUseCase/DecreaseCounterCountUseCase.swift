@@ -5,11 +5,14 @@
 //  Created by Burak Erol on 02.09.23.
 //
 
-protocol PDecreaseCounterCountUseCase {
+protocol PDecreaseCounterCountUseCase: Sendable {
+
+	// MARK: - Actions
+
 	func decrease(counter: Counter?)
 }
 
-class DecreaseCounterCountUseCase: PDecreaseCounterCountUseCase {
+final class DecreaseCounterCountUseCase: PDecreaseCounterCountUseCase {
 
 	// MARK: - Actions
 

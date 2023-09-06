@@ -10,7 +10,11 @@ import XCTest
 
 class SettingsViewModelTests: XCTestCase {
 
+	// MARK: - Private Properties
+
 	private var sut: SettingsViewModel!
+
+	// MARK: - Life Cycle
 
 	override func setUpWithError() throws {
 		sut = SettingsViewModel(counterSelected: CounterSelected(),
@@ -21,6 +25,20 @@ class SettingsViewModelTests: XCTestCase {
 
 	override func tearDownWithError() throws {
 		sut = nil
+	}
+
+	// MARK: - Actions
+
+	func testSettingsViewModelIsNotNil() {
+		// Given
+		let counterSelected = CounterSelected()
+		// When
+		let settingsViewModel = SettingsViewModel(counterSelected: counterSelected,
+												  fetchCounterUseCase: FetchCounterUseCase(),
+									  insertCounterUseCase: InsertCounterUseCase(),
+									  resetCountersUseCase: ResetCountersUseCase())
+		// Then
+		XCTAssertNotNil(settingsViewModel)
 	}
 
 	func testFetchCounter() {

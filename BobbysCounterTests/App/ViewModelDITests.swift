@@ -10,7 +10,11 @@ import XCTest
 
 class ViewModelDITests: XCTestCase {
 
+	// MARK: - Private Properties
+
 	private var sut: ViewModelDI!
+
+	// MARK: - Life Cycle
 
 	override func setUpWithError() throws {
 		sut = ViewModelDI()
@@ -19,6 +23,8 @@ class ViewModelDITests: XCTestCase {
 	override func tearDownWithError() throws {
 		sut = nil
 	}
+
+	// MARK: - Actions
 
 	func testContentViewModelIsNotNil() {
 		// When

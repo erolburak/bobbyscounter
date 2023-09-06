@@ -8,6 +8,9 @@
 import SwiftData
 
 protocol PResetCountersUseCase {
+
+	// MARK: - Actions
+
 	func reset() throws
 }
 

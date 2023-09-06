@@ -9,9 +9,13 @@ import XCTest
 
 final class SettingsViewTests: XCTestCase {
 
+	// MARK: - Life Cycle
+
 	override func setUpWithError() throws {
 		continueAfterFailure = false
 	}
+
+	// MARK: - Actions
 
 	/// Test reset and confirm reset while first opening settings view
 	func testResetButton() {

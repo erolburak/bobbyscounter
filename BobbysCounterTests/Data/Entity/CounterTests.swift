@@ -9,6 +9,8 @@
 import XCTest
 
 class CounterTests: XCTestCase {
+
+	// MARK: - Actions
 	
 	func testCounter() async {
 		// Given

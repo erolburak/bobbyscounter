@@ -10,7 +10,11 @@ import XCTest
 
 class ContentViewModelTests: XCTestCase {
 
+	// MARK: - Private Properties
+
 	private var sut: ContentViewModel!
+
+	// MARK: - Life Cycle
 
 	override func setUpWithError() throws {
 		sut = ContentViewModel(decreaseCounterCountUseCase: DecreaseCounterCountUseCase(),
@@ -21,6 +25,18 @@ class ContentViewModelTests: XCTestCase {
 
 	override func tearDownWithError() throws {
 		sut = nil
+	}
+
+	// MARK: - Actions
+
+	func testContentViewModelIsNotNil() async {
+		// When
+		let contentViewModel = ContentViewModel(decreaseCounterCountUseCase: DecreaseCounterCountUseCase(),
+												fetchCounterUseCase: FetchCounterUseCase(),
+								 increaseCounterCountUseCase: IncreaseCounterCountUseCase(),
+								 insertCounterUseCase: InsertCounterUseCase())
+		// Then
+		XCTAssertNotNil(contentViewModel)
 	}
 
 	func testDecreaseCounterCount() {
