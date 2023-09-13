@@ -12,7 +12,7 @@ class CounterTests: XCTestCase {
 
 	// MARK: - Actions
 	
-	func testCounter() async {
+	func testCounter() {
 		// Given
 		let counter: Counter?
 		// When
