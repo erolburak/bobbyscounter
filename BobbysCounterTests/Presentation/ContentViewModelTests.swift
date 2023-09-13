@@ -29,7 +29,7 @@ class ContentViewModelTests: XCTestCase {
 
 	// MARK: - Actions
 
-	func testContentViewModelIsNotNil() async {
+	func testContentViewModelIsNotNil() {
 		// When
 		let contentViewModel = ContentViewModel(decreaseCounterCountUseCase: DecreaseCounterCountUseCase(),
 												fetchCounterUseCase: FetchCounterUseCase(),
