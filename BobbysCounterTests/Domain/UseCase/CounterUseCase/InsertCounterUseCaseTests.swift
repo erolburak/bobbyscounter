@@ -26,16 +26,29 @@ class InsertCounterUseCaseTests: XCTestCase {
 
 	// MARK: - Actions
 
-	func testInsert() async {
+	func testInsertToday() async {
 		// Given
 		let selectedDate = Date.now
 		let counter = Counter(count: 0,
 							  date: selectedDate)
 		// When
-		let newCounter = await sut.insert(selectedDate: selectedDate)
+		let insertedCounter = await sut.insert(selectedDate: selectedDate)
 		// Then
-		XCTAssertEqual(newCounter?.count, counter.count)
-		XCTAssertEqual(newCounter?.date.isDateToday, counter.date.isDateToday)
+		XCTAssertEqual(insertedCounter?.count, counter.count)
+		XCTAssertEqual(insertedCounter?.date.isDateToday, counter.date.isDateToday)
+	}
+
+	func testInsertYesterday() async {
+		// Given
+		let selectedDate = Calendar.current.date(byAdding: DateComponents(day: -1),
+												 to: .now) ?? .now
+		let counter = Counter(count: 0,
+							  date: selectedDate)
+		// When
+		let insertedCounter = await sut.insert(selectedDate: selectedDate)
+		// Then
+		XCTAssertEqual(insertedCounter?.count, counter.count)
+		XCTAssertEqual(insertedCounter?.date.isDateToday, counter.date.isDateToday)
 	}
 
 	func testInsertTomorrowIsNil() async {

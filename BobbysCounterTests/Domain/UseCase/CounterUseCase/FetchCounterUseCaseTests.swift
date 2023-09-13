@@ -26,13 +26,31 @@ class FetchCounterUseCaseTests: XCTestCase {
 
 	// MARK: - Actions
 
-	func testFetchIsNotNil() async {
+	@MainActor
+	func testFetchTodayIsNotNil() {
 		// Given
 		let selectedDate = Date.now
+		let counter = Counter(count: 0,
+							  date: selectedDate)
+		DataController.shared.modelContainer.mainContext.insert(counter)
 		// When
-		let counter = await sut.fetch(selectedDate: selectedDate)
+		let fetchedCounter = sut.fetch(selectedDate: selectedDate)
 		// Then
-		XCTAssertNotNil(counter)
+		XCTAssertNotNil(fetchedCounter)
+	}
+
+	@MainActor
+	func testFetchYesterdayIsNotNil() {
+		// Given
+		let selectedDate = Calendar.current.date(byAdding: DateComponents(day: -1),
+												 to: .now) ?? .now
+		let counter = Counter(count: 0,
+							  date: selectedDate)
+		DataController.shared.modelContainer.mainContext.insert(counter)
+		// When
+		let fetchedCounter = sut.fetch(selectedDate: selectedDate)
+		// Then
+		XCTAssertNotNil(fetchedCounter)
 	}
 
 	func testFetchIsNil() async {
