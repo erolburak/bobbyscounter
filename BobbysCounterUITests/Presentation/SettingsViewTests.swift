@@ -27,8 +27,8 @@ final class SettingsViewTests: XCTestCase {
 		let resetButton = app.buttons["ResetButton"]
 		XCTAssertTrue(resetButton.waitForExistence(timeout: 5))
 		resetButton.tap()
-		let resetConfirmationButton = app.buttons["ResetConfirmationButton"]
-		XCTAssertTrue(resetConfirmationButton.waitForExistence(timeout: 5))
+		let resetConfirmationDialogButton = app.buttons[UIDevice.current.userInterfaceIdiom == .pad ? "ResetConfirmationDialogButtonPad" : "ResetConfirmationDialogButtonPhone"]
+		XCTAssertTrue(resetConfirmationDialogButton.waitForExistence(timeout: 5))
 	}
 
 	/// Test dismiss settings view while first opening settings view
@@ -82,9 +82,9 @@ final class SettingsViewTests: XCTestCase {
 		let resetButton = app.buttons["ResetButton"]
 		XCTAssertTrue(resetButton.waitForExistence(timeout: 5))
 		resetButton.tap()
-		let resetConfirmationButton = app.buttons["ResetConfirmationButton"]
-		XCTAssertTrue(resetConfirmationButton.waitForExistence(timeout: 5))
-		resetConfirmationButton.tap()
+		let resetConfirmationDialogButton = app.buttons[UIDevice.current.userInterfaceIdiom == .pad ? "ResetConfirmationDialogButtonPad" : "ResetConfirmationDialogButtonPhone"]
+		XCTAssertTrue(resetConfirmationDialogButton.waitForExistence(timeout: 5))
+		resetConfirmationDialogButton.tap()
 		let countText = app.staticTexts["CountText"]
 		XCTAssertTrue(countText.waitForExistence(timeout: 5))
 		let countTextAsInt = Int(app.staticTexts["CountText"].label)

@@ -119,14 +119,18 @@ struct SettingsView: View {
 				Spacer()
 			}
 			.toolbar {
-				ToolbarItem(placement: .topBarLeading) {
+				ToolbarItem(placement: .destructiveAction) {
 					Button("Reset") {
-						viewModel.showConfirmationDialog = true
+						if UIDevice.current.userInterfaceIdiom == .pad {
+							viewModel.showConfirmationDialogPad = true
+						} else {
+							viewModel.showConfirmationDialogPhone = true
+						}
 					}
 					.accessibilityIdentifier("ResetButton")
 				}
 
-				ToolbarItem(placement: .topBarTrailing) {
+				ToolbarItem(placement: .cancellationAction) {
 					Button {
 						dismiss()
 					} label: {
@@ -143,8 +147,8 @@ struct SettingsView: View {
 					.accessibilityIdentifier("TodayButton")
 				}
 			}
-			.confirmationDialog("ConfirmationDialogTitle",
-								isPresented: $viewModel.showConfirmationDialog,
+			.confirmationDialog("ResetConfirmationDialog",
+								isPresented: $viewModel.showConfirmationDialogPhone,
 								titleVisibility: .visible) {
 				Button("Reset",
 					   role: .destructive) {
@@ -153,7 +157,18 @@ struct SettingsView: View {
 					}
 					dismiss()
 				}
-				.accessibilityIdentifier("ResetConfirmationButton")
+				.accessibilityIdentifier("ResetConfirmationDialogButtonPhone")
+			}
+			.alert("Reset", isPresented: $viewModel.showConfirmationDialogPad) {
+				Button("Reset", role: .destructive) {
+					Task {
+						try viewModel.reset()
+					}
+					dismiss()
+				}
+				.accessibilityIdentifier("ResetConfirmationDialogButtonPad")
+			} message: {
+				Text("ResetConfirmationDialog")
 			}
 			.alert(isPresented: $viewModel.showAlert,
 				   error: viewModel.alertError) { _ in

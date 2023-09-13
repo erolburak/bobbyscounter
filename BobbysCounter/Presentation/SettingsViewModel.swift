@@ -23,7 +23,8 @@ class SettingsViewModel {
 	var counterSelected: CounterSelected
 	var selectedPointMarkDate: Date?
 	var showAlert = false
-	var showConfirmationDialog = false
+	var showConfirmationDialogPad = false
+	var showConfirmationDialogPhone = false
 
 	// MARK: - Life Cycle
 
