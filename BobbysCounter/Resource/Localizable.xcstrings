@@ -34,22 +34,6 @@
         }
       }
     },
-    "ConfirmationDialogTitle" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Möchtest Du wirklich alle Daten zurücksetzen?"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Do you really want to reset all data?"
-          }
-        }
-      }
-    },
     "Count" : {
       "localizations" : {
         "de" : {
@@ -227,6 +211,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Reset"
+          }
+        }
+      }
+    },
+    "ResetConfirmationDialog" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gespeicherte Daten auf allen Geräten werden gelöscht und die App wird zurückgesetzt."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saved data on all devices will be deleted and the app will be reset."
           }
         }
       }
