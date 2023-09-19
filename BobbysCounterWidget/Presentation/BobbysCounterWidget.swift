@@ -25,7 +25,7 @@ struct BobbysCounterWidget: Widget {
 				.containerBackground(.widgetBackground,
 									 for: .widget)
 		}
-		.configurationDisplayName("AppName")
+		.configurationDisplayName("WidgetConfigurationDisplayName")
 		.description("WidgetDescription")
 	}
 }
@@ -58,6 +58,24 @@ fileprivate extension CounterIntent {
 
 #Preview("System Small",
 		 as: .systemSmall) {
+	BobbysCounterWidget()
+} timeline: {
+	BobbysCounterWidgetEntry(counterIntent: .smallNumber)
+	BobbysCounterWidgetEntry(counterIntent: .largeNumber)
+	BobbysCounterWidgetEntry(counterIntent: .extraLargeNumber)
+}
+
+#Preview("System Medium",
+		 as: .systemMedium) {
+	BobbysCounterWidget()
+} timeline: {
+	BobbysCounterWidgetEntry(counterIntent: .smallNumber)
+	BobbysCounterWidgetEntry(counterIntent: .largeNumber)
+	BobbysCounterWidgetEntry(counterIntent: .extraLargeNumber)
+}
+
+#Preview("System Large",
+		 as: .systemLarge) {
 	BobbysCounterWidget()
 } timeline: {
 	BobbysCounterWidgetEntry(counterIntent: .smallNumber)

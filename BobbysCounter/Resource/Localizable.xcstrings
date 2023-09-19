@@ -1,23 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "AppName" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "BobbysCounter"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "BobbysCounter"
-          }
-        }
-      }
-    },
     "Count" : {
       "localizations" : {
         "de" : {
@@ -295,19 +278,35 @@
         }
       }
     },
+    "WidgetConfigurationDisplayName" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heutige Zähler"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Today's counter"
+          }
+        }
+      }
+    },
     "WidgetDescription" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zähle was immer Du möchtest."
+            "value" : "Verringere oder erhöhe den heutigen Zähler."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Count whatever you want."
+            "value" : "Decrease or increase today's counter."
           }
         }
       }
