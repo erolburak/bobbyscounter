@@ -18,22 +18,6 @@
         }
       }
     },
-    "ChartDescription" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Um die Charts zu sehen, müssen mindestens Zähler für 2 Tage angelegt sein."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "To see the charts, counters for at least 2 days must be created."
-          }
-        }
-      }
-    },
     "Count" : {
       "localizations" : {
         "de" : {
@@ -94,6 +78,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Decrease"
+          }
+        }
+      }
+    },
+    "EmptyCharts" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kein Diagramm"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No chart"
+          }
+        }
+      }
+    },
+    "EmptyChartsMessage" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zähler für mindestens 2 Tage müssen angelegt sein."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Counters for at least 2 days must be created."
           }
         }
       }
