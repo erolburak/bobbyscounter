@@ -18,7 +18,7 @@ struct BobbysCounterWidget: Widget {
 
 	var body: some WidgetConfiguration {
 		AppIntentConfiguration(kind: kind,
-							   intent: CounterIntent.self,
+							   intent: ConfigurationIntent.self,
 							   provider: BobbysCounterWidgetProvider(fetchCounterUseCase: FetchCounterUseCase(),
 																	 insertCounterUseCase: InsertCounterUseCase())) { entry in
 			BobbysCounterWidgetEntryView(entry: entry)
@@ -30,29 +30,26 @@ struct BobbysCounterWidget: Widget {
 	}
 }
 
-fileprivate extension CounterIntent {
+extension BobbysCounterWidget {
 
 	// MARK: - Properties
 
-	static var smallNumber: CounterIntent {
-		let counter = CounterIntent()
-		counter.count = 7
-		counter.date = Date.now.toRelative
-		return counter
+	static var smallNumberEntry: BobbysCounterWidgetEntry {
+		BobbysCounterWidgetEntry(configurationIntent: ConfigurationIntent(),
+								 counter: Counter(count: 7,
+												  date: .now))
 	}
 
-	static var largeNumber: CounterIntent {
-		let counter = CounterIntent()
-		counter.count = 7777
-		counter.date = Date.now.toRelative
-		return counter
+	static var largeNumberEntry: BobbysCounterWidgetEntry {
+		BobbysCounterWidgetEntry(configurationIntent: ConfigurationIntent(),
+								 counter: Counter(count: 7777,
+												  date: .now))
 	}
 
-	static var extraLargeNumber: CounterIntent {
-		let counter = CounterIntent()
-		counter.count = 7777777777777777777
-		counter.date = Date.now.toRelative
-		return counter
+	static var extraLargeNumberEntry: BobbysCounterWidgetEntry {
+		BobbysCounterWidgetEntry(configurationIntent: ConfigurationIntent(),
+								 counter: Counter(count: 7777777777777777777,
+												  date: .now))
 	}
 }
 
@@ -60,34 +57,34 @@ fileprivate extension CounterIntent {
 		 as: .systemSmall) {
 	BobbysCounterWidget()
 } timeline: {
-	BobbysCounterWidgetEntry(counterIntent: .smallNumber)
-	BobbysCounterWidgetEntry(counterIntent: .largeNumber)
-	BobbysCounterWidgetEntry(counterIntent: .extraLargeNumber)
+	BobbysCounterWidget.smallNumberEntry
+	BobbysCounterWidget.largeNumberEntry
+	BobbysCounterWidget.extraLargeNumberEntry
 }
 
 #Preview("System Medium",
 		 as: .systemMedium) {
 	BobbysCounterWidget()
 } timeline: {
-	BobbysCounterWidgetEntry(counterIntent: .smallNumber)
-	BobbysCounterWidgetEntry(counterIntent: .largeNumber)
-	BobbysCounterWidgetEntry(counterIntent: .extraLargeNumber)
+	BobbysCounterWidget.smallNumberEntry
+	BobbysCounterWidget.largeNumberEntry
+	BobbysCounterWidget.extraLargeNumberEntry
 }
 
 #Preview("System Large",
 		 as: .systemLarge) {
 	BobbysCounterWidget()
 } timeline: {
-	BobbysCounterWidgetEntry(counterIntent: .smallNumber)
-	BobbysCounterWidgetEntry(counterIntent: .largeNumber)
-	BobbysCounterWidgetEntry(counterIntent: .extraLargeNumber)
+	BobbysCounterWidget.smallNumberEntry
+	BobbysCounterWidget.largeNumberEntry
+	BobbysCounterWidget.extraLargeNumberEntry
 }
 
 #Preview("System Extra Large",
 		 as: .systemExtraLarge) {
 	BobbysCounterWidget()
 } timeline: {
-	BobbysCounterWidgetEntry(counterIntent: .smallNumber)
-	BobbysCounterWidgetEntry(counterIntent: .largeNumber)
-	BobbysCounterWidgetEntry(counterIntent: .extraLargeNumber)
+	BobbysCounterWidget.smallNumberEntry
+	BobbysCounterWidget.largeNumberEntry
+	BobbysCounterWidget.extraLargeNumberEntry
 }

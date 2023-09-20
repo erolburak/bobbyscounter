@@ -26,29 +26,30 @@ struct BobbysCounterWidgetProvider: AppIntentTimelineProvider {
 
 	@MainActor
 	func placeholder(in context: Context) -> BobbysCounterWidgetEntry {
-		BobbysCounterWidgetEntry(counterIntent: setCounterIntent(for: nil))
+		BobbysCounterWidgetEntry(configurationIntent: ConfigurationIntent(),
+								 counter: setCounter())
 	}
 
-	func snapshot(for configuration: CounterIntent,
+	func snapshot(for configuration: ConfigurationIntent,
 				  in context: Context) async -> BobbysCounterWidgetEntry {
-		await BobbysCounterWidgetEntry(counterIntent: setCounterIntent(for: configuration))
+		await BobbysCounterWidgetEntry(configurationIntent: ConfigurationIntent(),
+									   counter: setCounter())
 	}
 
-	func timeline(for configuration: CounterIntent,
+	func timeline(for configuration: ConfigurationIntent,
 				  in context: Context) async -> Timeline<BobbysCounterWidgetEntry> {
-		await Timeline(entries: [BobbysCounterWidgetEntry(counterIntent: setCounterIntent(for: configuration))],
+		await Timeline(entries: [BobbysCounterWidgetEntry(configurationIntent: ConfigurationIntent(),
+														  counter: setCounter())],
 					   policy: .atEnd)
 	}
 
 	@MainActor
-	private func setCounterIntent(for configuration: CounterIntent?) -> CounterIntent {
-		guard let configuration,
-			  let counter = fetchCounter() else {
-			return CounterIntent()
+	private func setCounter() -> Counter {
+		guard let counter = fetchCounter() else {
+			return Counter(count: 0,
+						   date: .now)
 		}
-		configuration.count = counter.count
-		configuration.date = counter.date.toRelative
-		return configuration
+		return counter
 	}
 
 	private func fetchCounter() -> Counter? {
