@@ -23,9 +23,10 @@ The BobbysCounter app is a simple app that is supposed to count a value up and d
 - CloudKit Database
 
 ## SCREENSHOTS
-<img src="https://github.com/erolburak/bobbyscounter/assets/140210017/8cd446b7-4ee5-4740-8f4d-45dfa3753907" style=" width:240px">
-<img src="https://github.com/erolburak/bobbyscounter/assets/140210017/506701fe-1cef-4b5a-b23f-a7a868c14efa" style=" width:240px">
-<img src="https://github.com/erolburak/bobbyscounter/assets/140210017/f7d8d995-686c-43c4-a413-d2c7d822edeb" style=" width:240px">
+<img src="https://github.com/erolburak/bobbyscounter/assets/140210017/787f5032-3a93-4002-b2dd-7caf0e937f99" style=" width:240px">
+<img src="https://github.com/erolburak/bobbyscounter/assets/140210017/77d504a9-bd44-4d48-8b48-58eecf2c085e" style=" width:240px">
+<img src="https://github.com/erolburak/bobbyscounter/assets/140210017/763db3b1-e051-4e12-9edb-8b97c8d4eda3" style=" width:240px">
+<img src="https://github.com/erolburak/bobbyscounter/assets/140210017/640a79ec-ea32-4a4e-8cfb-c086e2f74f9d" style=" width:240px">
 
 ## SUPPORT
 Feel free to email me if there are any questions: erolburak@icloud.com
