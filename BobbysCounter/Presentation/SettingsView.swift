@@ -283,13 +283,18 @@ struct SettingsView: View {
 	}
 
 	private func Item(counter: Counter) -> some View {
-		HStack(spacing: 20) {
-			Text(counter.date.toRelative)
+		Button {
+			viewModel.counterSelected.selectedDate = counter.date
+		} label: {
+			HStack(spacing: 20) {
+				Text(counter.date.toRelative)
 
-			Spacer()
+				Spacer()
 
-			Text(counter.count.description)
-				.lineLimit(1)
+				Text(counter.count.description)
+					.lineLimit(1)
+			}
+			.tint(.accent)
 		}
 		.contextMenu {
 			DeleteButton(counter: counter,
