@@ -18,6 +18,7 @@ class SettingsViewModelTests: XCTestCase {
 
 	override func setUpWithError() throws {
 		sut = SettingsViewModel(counterSelected: CounterSelected(),
+								deleteCounterUseCase: DeleteCounterUseCase(),
 								fetchCounterUseCase: FetchCounterUseCase(),
 								insertCounterUseCase: InsertCounterUseCase(),
 								resetCountersUseCase: ResetCountersUseCase())
@@ -34,11 +35,26 @@ class SettingsViewModelTests: XCTestCase {
 		let counterSelected = CounterSelected()
 		// When
 		let settingsViewModel = SettingsViewModel(counterSelected: counterSelected,
+												  deleteCounterUseCase: DeleteCounterUseCase(),
 												  fetchCounterUseCase: FetchCounterUseCase(),
 									  insertCounterUseCase: InsertCounterUseCase(),
 									  resetCountersUseCase: ResetCountersUseCase())
 		// Then
 		XCTAssertNotNil(settingsViewModel)
+	}
+
+	func testDelete() {
+		// Given
+		let counter = Counter(count: 1,
+							  date: Calendar.current.date(byAdding: DateComponents(day: -1),
+														  to: .now) ?? .now)
+		sut.counterDelete = counter
+		sut.counterSelected.counter = counter
+		// When
+		sut.delete()
+		// Then
+		XCTAssertNil(sut.counterDelete)
+		XCTAssertTrue(sut.counterSelected.selectedDate.isDateToday)
 	}
 
 	func testFetchCounter() {
@@ -53,7 +69,7 @@ class SettingsViewModelTests: XCTestCase {
 		XCTAssertTrue(sut.counterSelected.counter?.date.isDateToday ?? false)
 	}
 
-	func testReset() throws {
+	func testReset() {
 		// Given
 		let date = Calendar.current.date(byAdding: DateComponents(day: -1),
 										 to: .now) ?? .now
@@ -61,7 +77,7 @@ class SettingsViewModelTests: XCTestCase {
 		sut.counterSelected.counter = Counter(count: 1,
 											  date: date)
 		// When
-		try sut.reset()
+		sut.reset()
 		// Then
 		XCTAssertEqual(sut.counterSelected.counter?.count, 0)
 		XCTAssertTrue(sut.counterSelected.counter?.date.isDateToday ?? false)
