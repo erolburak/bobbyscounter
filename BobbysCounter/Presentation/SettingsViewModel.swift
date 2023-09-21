@@ -12,6 +12,7 @@ class SettingsViewModel {
 
 	// MARK: - Use Cases
 
+	private let deleteCounterUseCase: PDeleteCounterUseCase
 	private let fetchCounterUseCase: PFetchCounterUseCase
 	private let insertCounterUseCase: PInsertCounterUseCase
 	private let resetCountersUseCase: PResetCountersUseCase
@@ -20,25 +21,41 @@ class SettingsViewModel {
 
 	var alertError: Constants.Errors?
 	var chartScrollPosition = Date.now
+	var counterDelete: Counter?
 	var counterSelected: CounterSelected
 	var selectedPointMarkDate: Date?
 	var showAlert = false
-	var showConfirmationDialogPad = false
-	var showConfirmationDialogPhone = false
+	var showCountersSheet = false
+	var showDeleteConfirmationDialogPad = false
+	var showDeleteConfirmationDialogPhone = false
+	var showResetConfirmationDialogPad = false
+	var showResetConfirmationDialogPhone = false
 
 	// MARK: - Life Cycle
 
 	init(counterSelected: CounterSelected,
+		 deleteCounterUseCase: PDeleteCounterUseCase,
 		 fetchCounterUseCase: PFetchCounterUseCase,
 		 insertCounterUseCase: PInsertCounterUseCase,
 		 resetCountersUseCase: PResetCountersUseCase) {
 		self.counterSelected = counterSelected
+		self.deleteCounterUseCase = deleteCounterUseCase
 		self.fetchCounterUseCase = fetchCounterUseCase
 		self.insertCounterUseCase = insertCounterUseCase
 		self.resetCountersUseCase = resetCountersUseCase
 	}
 
 	// MARK: - Actions
+
+	func delete() {
+		if let counter = counterDelete {
+			deleteCounterUseCase.delete(counter: counter)
+			counterDelete = nil
+			if counter == counterSelected.counter {
+				counterSelected.selectedDate = .now
+			}
+		}
+	}
 
 	func fetchCounter() {
 		guard let fetchedCounter = fetchCounterUseCase.fetch(selectedDate: counterSelected.selectedDate) else {
@@ -48,13 +65,15 @@ class SettingsViewModel {
 		counterSelected.counter = fetchedCounter
 	}
 
-	func reset() throws {
+	func reset() {
 		do {
 			try resetCountersUseCase.reset()
 			counterSelected.selectedDate = .now
 			fetchCounter()
 		} catch Constants.Errors.reset {
 			showAlert(error: .reset)
+		} catch {
+			showAlert(error: .error(error.localizedDescription))
 		}
 	}
 

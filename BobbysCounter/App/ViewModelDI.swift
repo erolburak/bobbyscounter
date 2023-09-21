@@ -22,6 +22,7 @@ struct ViewModelDI {
 
 	func settingsViewModel(counterSelected: CounterSelected) -> SettingsViewModel {
 		SettingsViewModel(counterSelected: counterSelected,
+						  deleteCounterUseCase: DeleteCounterUseCase(),
 						  fetchCounterUseCase: FetchCounterUseCase(),
 						  insertCounterUseCase: InsertCounterUseCase(),
 						  resetCountersUseCase: ResetCountersUseCase())

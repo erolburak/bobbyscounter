@@ -15,21 +15,30 @@ struct Constants {
 
 	// MARK: - Type Definitions
 
-	enum Errors: CaseIterable, LocalizedError {
+	enum Errors: CaseIterable, Equatable, LocalizedError {
 
 		// MARK: - Properties
 
-		case reset
+		case error(String), reset
+
+		static var allCases: [Errors] = [.error(String(localized: "ErrorDescription")),
+										 .reset]
 
 		var errorDescription: String? {
 			switch self {
-			case .reset: return String(localized: "Error\("ErrorDescriptionReset")")
+			case .error(let error):
+				return error.description
+			case .reset:
+				return String(localized: "ErrorDescriptionReset")
 			}
 		}
 
 		var recoverySuggestion: String? {
 			switch self {
-			case .reset: return String(localized: "ErrorRecoverySuggestionReset")
+			case .error:
+				return String(localized: "ErrorRecoverySuggestionError")
+			case .reset:
+				return String(localized: "ErrorRecoverySuggestionReset")
 			}
 		}
 	}

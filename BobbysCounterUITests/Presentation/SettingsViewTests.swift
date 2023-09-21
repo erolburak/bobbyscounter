@@ -17,30 +17,68 @@ final class SettingsViewTests: XCTestCase {
 
 	// MARK: - Actions
 
-	/// Test reset and confirm reset while first opening settings view
+	/// Test delete and confirm delete while first opening settings and then counters view
+	func testDeleteButton() {
+		let app = XCUIApplication()
+		app.launch()
+		let settingsButton = app.buttons["SettingsButton"]
+		XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
+		settingsButton.tap()
+		let countersButton = app.navigationBars[Locale.current.language.languageCode == "en" ? "Settings" : "Einstellungen"].buttons["CountersButton"]
+		XCTAssertTrue(countersButton.waitForExistence(timeout: 5))
+		countersButton.tap()
+		let todayText = app.collectionViews.staticTexts[Locale.current.language.languageCode == "en" ? "Today" : "Heute"]
+		XCTAssertTrue(todayText.waitForExistence(timeout: 5))
+		todayText.swipeLeft()
+		let deleteButton = app.collectionViews.buttons["DeleteButton"]
+		XCTAssertTrue(deleteButton.waitForExistence(timeout: 5))
+		deleteButton.tap()
+		let deleteConfirmationDialogButton = app.scrollViews.otherElements.buttons["DeleteConfirmationDialogButton"]
+		XCTAssertTrue(deleteConfirmationDialogButton.waitForExistence(timeout: 5))
+	}
+
+	/// Test reset and confirm reset while first opening settings and then counters view
 	func testResetButton() {
 		let app = XCUIApplication()
 		app.launch()
 		let settingsButton = app.buttons["SettingsButton"]
 		XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
 		settingsButton.tap()
-		let resetButton = app.buttons["ResetButton"]
+		let countersButton = app.navigationBars[Locale.current.language.languageCode == "en" ? "Settings" : "Einstellungen"].buttons["CountersButton"]
+		XCTAssertTrue(countersButton.waitForExistence(timeout: 5))
+		countersButton.tap()
+		let resetButton = app.navigationBars[Locale.current.language.languageCode == "en" ? "Counters" : "Zähler"].buttons["ResetButton"]
 		XCTAssertTrue(resetButton.waitForExistence(timeout: 5))
 		resetButton.tap()
-		let resetConfirmationDialogButton = app.buttons[UIDevice.current.userInterfaceIdiom == .pad ? "ResetConfirmationDialogButtonPad" : "ResetConfirmationDialogButtonPhone"]
+		let resetConfirmationDialogButton = app.scrollViews.otherElements.buttons["ResetConfirmationDialogButton"]
 		XCTAssertTrue(resetConfirmationDialogButton.waitForExistence(timeout: 5))
 	}
 
-	/// Test dismiss settings view while first opening settings view
-	func testDismissButton() {
+	/// Test close counters view while first opening settings and then counters view
+	func testCloseCountersButton() {
 		let app = XCUIApplication()
 		app.launch()
 		let settingsButton = app.buttons["SettingsButton"]
 		XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
 		settingsButton.tap()
-		let dismissButton = app.buttons["DismissButton"]
-		XCTAssertTrue(dismissButton.waitForExistence(timeout: 5))
-		dismissButton.tap()
+		let countersButton = app.navigationBars[Locale.current.language.languageCode == "en" ? "Settings" : "Einstellungen"].buttons["CountersButton"]
+		XCTAssertTrue(countersButton.waitForExistence(timeout: 5))
+		countersButton.tap()
+		let closeCountersButton = app.navigationBars[Locale.current.language.languageCode == "en" ? "Counters" : "Zähler"].buttons["CloseCountersButton"]
+		XCTAssertTrue(closeCountersButton.waitForExistence(timeout: 5))
+		closeCountersButton.tap()
+	}
+
+	/// Test close settings view while first opening settings view
+	func testCloseSettingsButton() {
+		let app = XCUIApplication()
+		app.launch()
+		let settingsButton = app.buttons["SettingsButton"]
+		XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
+		settingsButton.tap()
+		let closeSettingsButton = app.buttons["CloseSettingsButton"]
+		XCTAssertTrue(closeSettingsButton.waitForExistence(timeout: 5))
+		closeSettingsButton.tap()
 	}
 
 	/// Test set selected date to today while first opening settings view
@@ -72,17 +110,20 @@ final class SettingsViewTests: XCTestCase {
 		}
 	}
 
-	/// Test final reset confirmation while first opening settings view
+	/// Test final reset confirmation while first opening settings and then counters view
 	func testResetConfirmationButton() {
 		let app = XCUIApplication()
 		app.launch()
 		let settingsButton = app.buttons["SettingsButton"]
 		XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
 		settingsButton.tap()
-		let resetButton = app.buttons["ResetButton"]
+		let countersButton = app.navigationBars[Locale.current.language.languageCode == "en" ? "Settings" : "Einstellungen"].buttons["CountersButton"]
+		XCTAssertTrue(countersButton.waitForExistence(timeout: 5))
+		countersButton.tap()
+		let resetButton = app.navigationBars[Locale.current.language.languageCode == "en" ? "Counters" : "Zähler"].buttons["ResetButton"]
 		XCTAssertTrue(resetButton.waitForExistence(timeout: 5))
 		resetButton.tap()
-		let resetConfirmationDialogButton = app.buttons[UIDevice.current.userInterfaceIdiom == .pad ? "ResetConfirmationDialogButtonPad" : "ResetConfirmationDialogButtonPhone"]
+		let resetConfirmationDialogButton = app.scrollViews.otherElements.buttons["ResetConfirmationDialogButton"]
 		XCTAssertTrue(resetConfirmationDialogButton.waitForExistence(timeout: 5))
 		resetConfirmationDialogButton.tap()
 		let countText = app.staticTexts["CountText"]
@@ -91,8 +132,29 @@ final class SettingsViewTests: XCTestCase {
 		XCTAssertEqual(countTextAsInt, 0)
 		XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
 		settingsButton.tap()
-		let chartDescriptionText = app.staticTexts["ChartDescriptionText"]
-		XCTAssertTrue(chartDescriptionText.waitForExistence(timeout: 5))
+		let emptyChartsMessage = app.staticTexts["EmptyChartsMessage"]
+		XCTAssertTrue(emptyChartsMessage.waitForExistence(timeout: 5))
+	}
+
+	/// Test final delete confirmation while first opening settings and then counters view
+	func testDeleteConfirmationButton() {
+		let app = XCUIApplication()
+		app.launch()
+		let settingsButton = app.buttons["SettingsButton"]
+		XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
+		settingsButton.tap()
+		let countersButton = app.navigationBars[Locale.current.language.languageCode == "en" ? "Settings" : "Einstellungen"].buttons["CountersButton"]
+		XCTAssertTrue(countersButton.waitForExistence(timeout: 5))
+		countersButton.tap()
+		let todayText = app.collectionViews.staticTexts[Locale.current.language.languageCode == "en" ? "Today" : "Heute"]
+		XCTAssertTrue(todayText.waitForExistence(timeout: 5))
+		todayText.swipeLeft()
+		let deleteButton = app.collectionViews.buttons["DeleteButton"]
+		XCTAssertTrue(deleteButton.waitForExistence(timeout: 5))
+		deleteButton.tap()
+		let deleteConfirmationDialogButton = app.scrollViews.otherElements.buttons["DeleteConfirmationDialogButton"]
+		XCTAssertTrue(deleteConfirmationDialogButton.waitForExistence(timeout: 5))
+		deleteConfirmationDialogButton.tap()
 	}
 
 	/// Test if `Chart` exists while first increasing counter count value for current day

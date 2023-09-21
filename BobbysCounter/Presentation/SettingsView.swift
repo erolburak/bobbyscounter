@@ -20,7 +20,7 @@ struct SettingsView: View {
 	@Environment(\.dismiss) private var dismiss
 	@Environment(\.modelContext) private var modelContext
 	@Query(sort: \Counter.date,
-		   order: .forward) private var counters: [Counter]
+		   order: .reverse) private var counters: [Counter]
 
 	// MARK: - Layouts
 
@@ -111,6 +111,8 @@ struct SettingsView: View {
 
 				Spacer()
 			}
+			.navigationTitle("Settings")
+			.navigationBarTitleDisplayMode(.inline)
 			.overlay {
 				if counters.count < 2 {
 					ContentUnavailableView {
@@ -118,19 +120,19 @@ struct SettingsView: View {
 							  systemImage: "chart.xyaxis.line")
 					} description: {
 						Text("EmptyChartsMessage")
+							.accessibilityIdentifier("EmptyChartsMessage")
 					}
 				}
 			}
 			.toolbar {
-				ToolbarItem(placement: .destructiveAction) {
-					Button("Reset") {
-						if UIDevice.current.userInterfaceIdiom == .pad {
-							viewModel.showConfirmationDialogPad = true
-						} else {
-							viewModel.showConfirmationDialogPhone = true
-						}
+				ToolbarItem(placement: .primaryAction) {
+					Button {
+						viewModel.showCountersSheet = true
+					} label: {
+						Label("Counters",
+							  systemImage: "list.bullet.rectangle.portrait.fill")
 					}
-					.accessibilityIdentifier("ResetButton")
+					.accessibilityIdentifier("CountersButton")
 				}
 
 				ToolbarItem(placement: .cancellationAction) {
@@ -139,7 +141,7 @@ struct SettingsView: View {
 					} label: {
 						Image(systemName: "xmark.circle.fill")
 					}
-					.accessibilityIdentifier("DismissButton")
+					.accessibilityIdentifier("CloseSettingsButton")
 				}
 
 				ToolbarItem(placement: .bottomBar) {
@@ -150,28 +152,89 @@ struct SettingsView: View {
 					.accessibilityIdentifier("TodayButton")
 				}
 			}
-			.confirmationDialog("ResetConfirmationDialog",
-								isPresented: $viewModel.showConfirmationDialogPhone,
-								titleVisibility: .visible) {
-				Button("Reset",
-					   role: .destructive) {
-					Task {
-						try viewModel.reset()
+			.sheet(isPresented: $viewModel.showCountersSheet) {
+				NavigationStack {
+					List {
+						if let counter = viewModel.counterSelected.counter {
+							Section {
+								Item(counter: counter)
+							} header: {
+								Text("SelectedCounter")
+							}
+						}
+
+						let filteredCounters = counters.filter { $0 != viewModel.counterSelected.counter }
+
+						if filteredCounters.isEmpty == false {
+							Section {
+								ForEach(filteredCounters) { counter in
+									Item(counter: counter)
+								}
+							} header: {
+								Text("Counters")
+							}
+						}
 					}
-					dismiss()
-				}
-				.accessibilityIdentifier("ResetConfirmationDialogButtonPhone")
-			}
-			.alert("Reset", isPresented: $viewModel.showConfirmationDialogPad) {
-				Button("Reset", role: .destructive) {
-					Task {
-						try viewModel.reset()
+					.listStyle(.insetGrouped)
+					.navigationTitle("Counters")
+					.navigationBarTitleDisplayMode(.inline)
+					.overlay {
+						if counters.isEmpty {
+							ContentUnavailableView {
+								Label("EmptyCounters",
+									  systemImage: "list.bullet.rectangle.portrait.fill")
+							} description: {
+								Text("EmptyCountersMessage")
+							}
+						}
 					}
-					dismiss()
+					.toolbar {
+						ToolbarItem(placement: .destructiveAction) {
+							Button(role: .destructive) {
+								if UIDevice.current.userInterfaceIdiom == .pad {
+									viewModel.showResetConfirmationDialogPad = true
+								} else {
+									viewModel.showResetConfirmationDialogPhone = true
+								}
+							} label: {
+								Label("Reset",
+									  systemImage: "trash.circle.fill")
+							}
+							.accessibilityIdentifier("ResetButton")
+						}
+
+						ToolbarItem(placement: .cancellationAction) {
+							Button {
+								viewModel.showCountersSheet = false
+							} label: {
+								Image(systemName: "xmark.circle.fill")
+							}
+							.accessibilityIdentifier("CloseCountersButton")
+						}
+					}
+					.confirmationDialog("DeleteConfirmationDialog",
+										isPresented: $viewModel.showDeleteConfirmationDialogPhone,
+										titleVisibility: .visible) {
+						DeleteButton()
+					}
+					.confirmationDialog("ResetConfirmationDialog",
+										isPresented: $viewModel.showResetConfirmationDialogPhone,
+										titleVisibility: .visible) {
+						ResetButton()
+					}
+					.alert("Delete",
+						   isPresented: $viewModel.showDeleteConfirmationDialogPad) {
+						DeleteButton()
+					} message: {
+						Text("DeleteConfirmationDialog")
+					}
+					.alert("Reset",
+						   isPresented: $viewModel.showResetConfirmationDialogPad) {
+						ResetButton()
+					} message: {
+						Text("ResetConfirmationDialog")
+					}
 				}
-				.accessibilityIdentifier("ResetConfirmationDialogButtonPad")
-			} message: {
-				Text("ResetConfirmationDialog")
 			}
 			.alert(isPresented: $viewModel.showAlert,
 				   error: viewModel.alertError) { _ in
@@ -189,6 +252,63 @@ struct SettingsView: View {
 		.fontWeight(.bold)
 		.fontDesign(.monospaced)
 		.tint(.red)
+	}
+
+	private func DeleteButton() -> some View {
+		Button("Delete",
+			   role: .destructive) {
+			viewModel.delete()
+		}
+		.accessibilityIdentifier("DeleteConfirmationDialogButton")
+	}
+
+	private func DeleteButton(counter: Counter,
+							  isContextMenu: Bool) -> some View {
+		Button(role: .destructive) {
+			viewModel.counterDelete = counter
+			if UIDevice.current.userInterfaceIdiom == .pad {
+				viewModel.showDeleteConfirmationDialogPad = true
+			} else {
+				viewModel.showDeleteConfirmationDialogPhone = true
+			}
+		} label: {
+			if isContextMenu {
+				Label("Delete",
+					  systemImage: "trash.circle.fill")
+			} else {
+				Image(systemName: "trash")
+			}
+		}
+		.accessibilityIdentifier("DeleteButton")
+	}
+
+	private func Item(counter: Counter) -> some View {
+		HStack(spacing: 20) {
+			Text(counter.date.toRelative)
+
+			Spacer()
+
+			Text(counter.count.description)
+				.lineLimit(1)
+		}
+		.contextMenu {
+			DeleteButton(counter: counter,
+						 isContextMenu: true)
+		}
+		.swipeActions(edge: .trailing,
+					  allowsFullSwipe: true) {
+			DeleteButton(counter: counter,
+						 isContextMenu: false)
+		}
+	}
+
+	private func ResetButton() -> some View {
+		Button("Reset",
+			   role: .destructive) {
+			viewModel.reset()
+			dismiss()
+		}
+		.accessibilityIdentifier("ResetConfirmationDialogButton")
 	}
 }
 
