@@ -35,8 +35,7 @@ struct ContentView: View {
 					viewModel.decreaseCounterCount()
 				} label: {
 					Text("Minus")
-						.frame(maxWidth: .infinity,
-							   maxHeight: .infinity)
+						.frame(maxWidth: .infinity)
 				}
 				.disabled(viewModel.counterSelected.counter?.count == 0)
 				.accessibilityIdentifier("MinusButton")
@@ -45,11 +44,11 @@ struct ContentView: View {
 					viewModel.increaseCounterCount()
 				} label: {
 					Text("Plus")
-						.frame(maxWidth: .infinity,
-							   maxHeight: .infinity)
+						.frame(maxWidth: .infinity)
 				}
 				.accessibilityIdentifier("PlusButton")
 			}
+			.frame(maxHeight: .infinity)
 			.font(.system(size: 140.0))
 		}
 		.edgesIgnoringSafeArea(.all)

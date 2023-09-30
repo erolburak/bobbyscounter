@@ -27,15 +27,13 @@ struct BobbysCounterWidgetEntryView: View {
 			HStack {
 				Button(intent: DecreaseIntent()) {
 					Text("Minus")
-						.frame(maxWidth: .infinity,
-							   maxHeight: .infinity)
+						.frame(maxWidth: .infinity)
 				}
 				.disabled(entry.counter?.count == 0)
 
 				Button(intent: IncreaseIntent()) {
 					Text("Plus")
-						.frame(maxWidth: .infinity,
-							   maxHeight: .infinity)
+						.frame(maxWidth: .infinity)
 				}
 			}
 			.font(.system(size: 70))

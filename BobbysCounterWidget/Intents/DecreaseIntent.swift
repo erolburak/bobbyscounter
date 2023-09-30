@@ -6,7 +6,6 @@
 //
 
 import AppIntents
-import SwiftData
 
 struct DecreaseIntent: AppIntent {
 
@@ -28,8 +27,7 @@ struct DecreaseIntent: AppIntent {
 
 	// MARK: - Actions
 
-	@MainActor
-	func perform() throws -> some IntentResult {
+	func perform() -> some IntentResult {
 		let counter = fetchCounterUseCase.fetch(selectedDate: .now)
 		decreaseCounterCountUseCase.decrease(counter: counter)
 		return .result()
