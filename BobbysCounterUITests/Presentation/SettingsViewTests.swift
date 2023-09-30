@@ -24,10 +24,10 @@ final class SettingsViewTests: XCTestCase {
 		let settingsButton = app.buttons["SettingsButton"]
 		XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
 		settingsButton.tap()
-		let countersButton = app.navigationBars[Locale.current.language.languageCode == "en" ? "Settings" : "Einstellungen"].buttons["CountersButton"]
+		let countersButton = app.navigationBars[Locale.current.language.languageCode == "en" ? "Settings" : ""].buttons["CountersButton"]
 		XCTAssertTrue(countersButton.waitForExistence(timeout: 5))
 		countersButton.tap()
-		let todayText = app.collectionViews.staticTexts[Locale.current.language.languageCode == "en" ? "Today" : "Heute"]
+		let todayText = app.collectionViews.staticTexts[Locale.current.language.languageCode == "en" ? "Today" : ""]
 		XCTAssertTrue(todayText.waitForExistence(timeout: 5))
 		todayText.swipeLeft()
 		let deleteButton = app.collectionViews.buttons["DeleteButton"]
@@ -44,10 +44,10 @@ final class SettingsViewTests: XCTestCase {
 		let settingsButton = app.buttons["SettingsButton"]
 		XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
 		settingsButton.tap()
-		let countersButton = app.navigationBars[Locale.current.language.languageCode == "en" ? "Settings" : "Einstellungen"].buttons["CountersButton"]
+		let countersButton = app.navigationBars[Locale.current.language.languageCode == "en" ? "Settings" : ""].buttons["CountersButton"]
 		XCTAssertTrue(countersButton.waitForExistence(timeout: 5))
 		countersButton.tap()
-		let resetButton = app.navigationBars[Locale.current.language.languageCode == "en" ? "Counters" : "Zähler"].buttons["ResetButton"]
+		let resetButton = app.navigationBars[Locale.current.language.languageCode == "en" ? "Counters" : ""].buttons["ResetButton"]
 		XCTAssertTrue(resetButton.waitForExistence(timeout: 5))
 		resetButton.tap()
 		let resetConfirmationDialogButton = app.scrollViews.otherElements.buttons["ResetConfirmationDialogButton"]
@@ -61,10 +61,10 @@ final class SettingsViewTests: XCTestCase {
 		let settingsButton = app.buttons["SettingsButton"]
 		XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
 		settingsButton.tap()
-		let countersButton = app.navigationBars[Locale.current.language.languageCode == "en" ? "Settings" : "Einstellungen"].buttons["CountersButton"]
+		let countersButton = app.navigationBars[Locale.current.language.languageCode == "en" ? "Settings" : ""].buttons["CountersButton"]
 		XCTAssertTrue(countersButton.waitForExistence(timeout: 5))
 		countersButton.tap()
-		let closeCountersButton = app.navigationBars[Locale.current.language.languageCode == "en" ? "Counters" : "Zähler"].buttons["CloseCountersButton"]
+		let closeCountersButton = app.navigationBars[Locale.current.language.languageCode == "en" ? "Counters" : ""].buttons["CloseCountersButton"]
 		XCTAssertTrue(closeCountersButton.waitForExistence(timeout: 5))
 		closeCountersButton.tap()
 	}
@@ -92,7 +92,7 @@ final class SettingsViewTests: XCTestCase {
 		let datePicker = app.datePickers["DatePicker"]
 		XCTAssertTrue(datePicker.waitForExistence(timeout: 5))
 		datePicker.tap()
-		let previousMonthButton = app.buttons[Locale.current.language.languageCode == "en" ? "Previous Month" : "Vorheriger Monat"]
+		let previousMonthButton = app.buttons[Locale.current.language.languageCode == "en" ? "Previous Month" : ""]
 		XCTAssertTrue(previousMonthButton.waitForExistence(timeout: 5))
 		previousMonthButton.tap()
 		let firstDayOfMonthButton = app.datePickers.collectionViews.staticTexts["1"]
@@ -106,7 +106,7 @@ final class SettingsViewTests: XCTestCase {
 			todayButton.tap()
 			let dateText = app.staticTexts["DateText"]
 			XCTAssertTrue(dateText.waitForExistence(timeout: 5))
-			XCTAssertEqual(dateText.label, Locale.current.language.languageCode == "en" ? "Today" : "Heute")
+			XCTAssertEqual(dateText.label, Locale.current.language.languageCode == "en" ? "Today" : "")
 		}
 	}
 
@@ -117,10 +117,10 @@ final class SettingsViewTests: XCTestCase {
 		let settingsButton = app.buttons["SettingsButton"]
 		XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
 		settingsButton.tap()
-		let countersButton = app.navigationBars[Locale.current.language.languageCode == "en" ? "Settings" : "Einstellungen"].buttons["CountersButton"]
+		let countersButton = app.navigationBars[Locale.current.language.languageCode == "en" ? "Settings" : ""].buttons["CountersButton"]
 		XCTAssertTrue(countersButton.waitForExistence(timeout: 5))
 		countersButton.tap()
-		let resetButton = app.navigationBars[Locale.current.language.languageCode == "en" ? "Counters" : "Zähler"].buttons["ResetButton"]
+		let resetButton = app.navigationBars[Locale.current.language.languageCode == "en" ? "Counters" : ""].buttons["ResetButton"]
 		XCTAssertTrue(resetButton.waitForExistence(timeout: 5))
 		resetButton.tap()
 		let resetConfirmationDialogButton = app.scrollViews.otherElements.buttons["ResetConfirmationDialogButton"]
@@ -143,10 +143,10 @@ final class SettingsViewTests: XCTestCase {
 		let settingsButton = app.buttons["SettingsButton"]
 		XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
 		settingsButton.tap()
-		let countersButton = app.navigationBars[Locale.current.language.languageCode == "en" ? "Settings" : "Einstellungen"].buttons["CountersButton"]
+		let countersButton = app.navigationBars[Locale.current.language.languageCode == "en" ? "Settings" : ""].buttons["CountersButton"]
 		XCTAssertTrue(countersButton.waitForExistence(timeout: 5))
 		countersButton.tap()
-		let todayText = app.collectionViews.staticTexts[Locale.current.language.languageCode == "en" ? "Today" : "Heute"]
+		let todayText = app.collectionViews.staticTexts[Locale.current.language.languageCode == "en" ? "Today" : ""]
 		XCTAssertTrue(todayText.waitForExistence(timeout: 5))
 		todayText.swipeLeft()
 		let deleteButton = app.collectionViews.buttons["DeleteButton"]
@@ -171,7 +171,7 @@ final class SettingsViewTests: XCTestCase {
 		let datePicker = app.datePickers["DatePicker"]
 		XCTAssertTrue(datePicker.waitForExistence(timeout: 5))
 		datePicker.tap()
-		let previousMonthButton = app.buttons[Locale.current.language.languageCode == "en" ? "Previous Month" : "Vorheriger Monat"]
+		let previousMonthButton = app.buttons[Locale.current.language.languageCode == "en" ? "Previous Month" : ""]
 		XCTAssertTrue(previousMonthButton.waitForExistence(timeout: 5))
 		previousMonthButton.tap()
 		let firstDayOfMonthButton = app.datePickers.collectionViews.staticTexts["1"]

@@ -66,7 +66,7 @@ final class ContentViewTests: XCTestCase {
 		app.launch()
 		let dateText = app.staticTexts["DateText"]
 		XCTAssertTrue(dateText.waitForExistence(timeout: 5))
-		XCTAssertEqual(dateText.label, Locale.current.language.languageCode == "en" ? "Today" : "Heute")
+		XCTAssertEqual(dateText.label, Locale.current.language.languageCode == "en" ? "Today" : "")
 	}
 
 	/// Test if `SettingsButton` exists and is enabled
