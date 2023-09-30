@@ -7,7 +7,7 @@
 
 import WidgetKit
 
-struct BobbysCounterWidgetProvider: AppIntentTimelineProvider {
+struct BobbysCounterWidgetProvider: TimelineProvider {
 
 	// MARK: - Use Cases
 
@@ -24,26 +24,21 @@ struct BobbysCounterWidgetProvider: AppIntentTimelineProvider {
 
 	// MARK: - Actions
 
-	@MainActor
+	func getSnapshot(in context: Context,
+					 completion: @escaping (BobbysCounterWidgetEntry) -> Void) {
+		completion(BobbysCounterWidgetEntry(counter: setCounter()))
+	}
+
+	func getTimeline(in context: Context,
+					 completion: @escaping (Timeline<BobbysCounterWidgetEntry>) -> Void) {
+		completion(Timeline(entries: [BobbysCounterWidgetEntry(counter: setCounter())],
+							policy: .atEnd))
+	}
+
 	func placeholder(in context: Context) -> BobbysCounterWidgetEntry {
-		BobbysCounterWidgetEntry(configurationIntent: ConfigurationIntent(),
-								 counter: setCounter())
+		BobbysCounterWidgetEntry(counter: setCounter())
 	}
 
-	func snapshot(for configuration: ConfigurationIntent,
-				  in context: Context) async -> BobbysCounterWidgetEntry {
-		await BobbysCounterWidgetEntry(configurationIntent: ConfigurationIntent(),
-									   counter: setCounter())
-	}
-
-	func timeline(for configuration: ConfigurationIntent,
-				  in context: Context) async -> Timeline<BobbysCounterWidgetEntry> {
-		await Timeline(entries: [BobbysCounterWidgetEntry(configurationIntent: ConfigurationIntent(),
-														  counter: setCounter())],
-					   policy: .atEnd)
-	}
-
-	@MainActor
 	private func setCounter() -> Counter {
 		guard let counter = fetchCounter() else {
 			return Counter(count: 0,

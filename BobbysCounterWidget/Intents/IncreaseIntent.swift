@@ -6,7 +6,6 @@
 //
 
 import AppIntents
-import SwiftData
 
 struct IncreaseIntent: AppIntent {
 
@@ -28,8 +27,7 @@ struct IncreaseIntent: AppIntent {
 
 	// MARK: - Actions
 
-	@MainActor
-	func perform() throws -> some IntentResult {
+	func perform() -> some IntentResult {
 		let counter = fetchCounterUseCase.fetch(selectedDate: .now)
 		increaseCounterCountUseCase.increase(counter: counter)
 		return .result()

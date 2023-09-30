@@ -21,7 +21,6 @@
 		BF5A26282A6E7E1600B47FD4 /* ContentViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5A26272A6E7E1600B47FD4 /* ContentViewTests.swift */; };
 		BF5A262B2A6E8D6100B47FD4 /* SettingsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5A262A2A6E8D6100B47FD4 /* SettingsViewTests.swift */; };
 		BF6048B22A6C231F00B4D119 /* ContentViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6048B12A6C231F00B4D119 /* ContentViewModelTests.swift */; };
-		BF67A3E92A716DC70081616C /* ConfigurationIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF67A3E82A716DC70081616C /* ConfigurationIntent.swift */; };
 		BF69167E2AA3493400ED7075 /* FetchCounterUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF69167D2AA3493400ED7075 /* FetchCounterUseCase.swift */; };
 		BF6916802AA3496400ED7075 /* InsertCounterUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF69167F2AA3496400ED7075 /* InsertCounterUseCase.swift */; };
 		BF6916822AA3497800ED7075 /* ResetCountersUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6916812AA3497800ED7075 /* ResetCountersUseCase.swift */; };
@@ -116,7 +115,6 @@
 		BF5A262A2A6E8D6100B47FD4 /* SettingsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewTests.swift; sourceTree = "<group>"; };
 		BF6048B12A6C231F00B4D119 /* ContentViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModelTests.swift; sourceTree = "<group>"; };
 		BF6048B62A6C292300B4D119 /* Tests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Tests.xctestplan; sourceTree = "<group>"; };
-		BF67A3E82A716DC70081616C /* ConfigurationIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationIntent.swift; sourceTree = "<group>"; };
 		BF69167D2AA3493400ED7075 /* FetchCounterUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCounterUseCase.swift; sourceTree = "<group>"; };
 		BF69167F2AA3496400ED7075 /* InsertCounterUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertCounterUseCase.swift; sourceTree = "<group>"; };
 		BF6916812AA3497800ED7075 /* ResetCountersUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetCountersUseCase.swift; sourceTree = "<group>"; };
@@ -490,7 +488,6 @@
 		BFDF3C802A61A7D2001E4076 /* Intents */ = {
 			isa = PBXGroup;
 			children = (
-				BF67A3E82A716DC70081616C /* ConfigurationIntent.swift */,
 				BFDF3C812A61A7FA001E4076 /* DecreaseIntent.swift */,
 				BFDF3C832A61A84D001E4076 /* IncreaseIntent.swift */,
 			);
@@ -735,7 +732,6 @@
 				BFDCAEE12AA240C3004B0316 /* Counter.swift in Sources */,
 				BFDF3C852A61ACEF001E4076 /* DecreaseIntent.swift in Sources */,
 				BF1C715F2AA3672600BA059C /* InsertCounterUseCase.swift in Sources */,
-				BF67A3E92A716DC70081616C /* ConfigurationIntent.swift in Sources */,
 				BFDCAEFA2AA28E79004B0316 /* Constants.swift in Sources */,
 				BF1C71622AA3672D00BA059C /* DecreaseCounterCountUseCase.swift in Sources */,
 				BF1C71602AA3672800BA059C /* FetchCounterUseCase.swift in Sources */,

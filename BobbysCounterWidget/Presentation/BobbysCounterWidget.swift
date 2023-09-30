@@ -17,10 +17,9 @@ struct BobbysCounterWidget: Widget {
 	// MARK: - Layouts
 
 	var body: some WidgetConfiguration {
-		AppIntentConfiguration(kind: kind,
-							   intent: ConfigurationIntent.self,
-							   provider: BobbysCounterWidgetProvider(fetchCounterUseCase: FetchCounterUseCase(),
-																	 insertCounterUseCase: InsertCounterUseCase())) { entry in
+		StaticConfiguration(kind: kind,
+							provider: BobbysCounterWidgetProvider(fetchCounterUseCase: FetchCounterUseCase(),
+																  insertCounterUseCase: InsertCounterUseCase())) { entry in
 			BobbysCounterWidgetEntryView(entry: entry)
 				.containerBackground(.widgetBackground,
 									 for: .widget)
@@ -35,20 +34,17 @@ extension BobbysCounterWidget {
 	// MARK: - Properties
 
 	static var smallNumberEntry: BobbysCounterWidgetEntry {
-		BobbysCounterWidgetEntry(configurationIntent: ConfigurationIntent(),
-								 counter: Counter(count: 7,
+		BobbysCounterWidgetEntry(counter: Counter(count: 7,
 												  date: .now))
 	}
 
 	static var largeNumberEntry: BobbysCounterWidgetEntry {
-		BobbysCounterWidgetEntry(configurationIntent: ConfigurationIntent(),
-								 counter: Counter(count: 7777,
+		BobbysCounterWidgetEntry(counter: Counter(count: 7777,
 												  date: .now))
 	}
 
 	static var extraLargeNumberEntry: BobbysCounterWidgetEntry {
-		BobbysCounterWidgetEntry(configurationIntent: ConfigurationIntent(),
-								 counter: Counter(count: 7777777777777777777,
+		BobbysCounterWidgetEntry(counter: Counter(count: 7777777777777777777,
 												  date: .now))
 	}
 }

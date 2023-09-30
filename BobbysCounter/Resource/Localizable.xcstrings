@@ -17,22 +17,6 @@
         }
       }
     },
-    "Counter" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zähler"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Counter"
-          }
-        }
-      }
-    },
     "Counters" : {
       "localizations" : {
         "de" : {
