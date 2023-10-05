@@ -252,6 +252,11 @@ struct SettingsView: View {
 		.fontWeight(.bold)
 		.fontDesign(.monospaced)
 		.tint(.red)
+		.sensoryFeedback(viewModel.sensoryFeedback,
+						 trigger: viewModel.sensoryFeedbackTrigger) { _, newValue in
+			viewModel.sensoryFeedbackTrigger = false
+			return newValue == true
+		}
 	}
 
 	private func DeleteButton() -> some View {
