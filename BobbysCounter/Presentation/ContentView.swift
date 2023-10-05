@@ -82,6 +82,11 @@ struct ContentView: View {
 		.fontWeight(.bold)
 		.fontDesign(.monospaced)
 		.tint(.accent)
+		.sensoryFeedback(viewModel.sensoryFeedback,
+						 trigger: viewModel.sensoryFeedbackTrigger) { _, newValue in
+			viewModel.sensoryFeedbackTrigger = false
+			return newValue == true
+		}
 	}
 }
 

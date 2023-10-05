@@ -5,7 +5,7 @@
 //  Created by Burak Erol on 18.07.23.
 //
 
-import Foundation
+import SwiftUI
 
 @Observable
 class SettingsViewModel {
@@ -24,6 +24,8 @@ class SettingsViewModel {
 	var counterDelete: Counter?
 	var counterSelected: CounterSelected
 	var selectedPointMarkDate: Date?
+	var sensoryFeedback: SensoryFeedback = .success
+	var sensoryFeedbackTrigger = false
 	var showAlert = false
 	var showCountersSheet = false
 	var showDeleteConfirmationDialogPad = false
@@ -54,6 +56,7 @@ class SettingsViewModel {
 			if counter == counterSelected.counter {
 				counterSelected.selectedDate = .now
 			}
+			sensoryFeedback(feedback: .success)
 		}
 	}
 
@@ -63,13 +66,14 @@ class SettingsViewModel {
 			return
 		}
 		counterSelected.counter = fetchedCounter
+		sensoryFeedback(feedback: .selection)
 	}
 
 	func reset() {
 		do {
 			try resetCountersUseCase.reset()
 			counterSelected.selectedDate = .now
-			fetchCounter()
+			sensoryFeedback(feedback: .success)
 		} catch Constants.Errors.reset {
 			showAlert(error: .reset)
 		} catch {
@@ -80,6 +84,7 @@ class SettingsViewModel {
 	func showAlert(error: Constants.Errors) {
 		alertError = error
 		showAlert = true
+		sensoryFeedback(feedback: .error)
 	}
 
 	func showAnnotation(date: Date) -> Bool {
@@ -99,5 +104,12 @@ class SettingsViewModel {
 	func selectedPointMarkCounter(counters: [Counter]) -> Counter? {
 		counters.first { Calendar.current.isDate($0.date,
 												 inSameDayAs: selectedPointMarkDate ?? .now) }
+	}
+
+	private func sensoryFeedback(feedback: SensoryFeedback) {
+		sensoryFeedback = feedback
+		DispatchQueue.main.async {
+			self.sensoryFeedbackTrigger = true
+		}
 	}
 }

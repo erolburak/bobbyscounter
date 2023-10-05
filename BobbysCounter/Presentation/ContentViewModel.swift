@@ -5,7 +5,7 @@
 //  Created by Burak Erol on 13.07.23.
 //
 
-import Foundation
+import SwiftUI
 
 @Observable
 class ContentViewModel {
@@ -20,6 +20,8 @@ class ContentViewModel {
 	// MARK: - Properties
 
 	var counterSelected = CounterSelected()
+	var sensoryFeedback: SensoryFeedback = .decrease
+	var sensoryFeedbackTrigger = false
 	var showSettingsSheet = false
 
 	// MARK: - Life Cycle
@@ -38,10 +40,14 @@ class ContentViewModel {
 
 	func decreaseCounterCount() {
 		decreaseCounterCountUseCase.decrease(counter: counterSelected.counter)
+		guard let count = counterSelected.counter?.count,
+			  count > 0 else { return }
+		sensoryFeedback(feedback: .decrease)
 	}
 
 	func increaseCounterCount() {
 		increaseCounterCountUseCase.increase(counter: counterSelected.counter)
+		sensoryFeedback(feedback: .increase)
 	}
 
 	func fetchCounter() {
@@ -50,5 +56,12 @@ class ContentViewModel {
 			return
 		}
 		counterSelected.counter = fetchedCounter
+	}
+
+	private func sensoryFeedback(feedback: SensoryFeedback) {
+		sensoryFeedback = feedback
+		DispatchQueue.main.async {
+			self.sensoryFeedbackTrigger = true
+		}
 	}
 }
