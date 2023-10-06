@@ -38,7 +38,8 @@ struct SettingsView: View {
 				if counters.count > 1 {
 					Chart(counters) { counter in
 						LineMark(x: .value("Date",
-										   counter.date),
+										   counter.date,
+										   unit: .day),
 								 y: .value("Count",
 										   counter.count))
 						.interpolationMethod(.monotone)
@@ -46,7 +47,8 @@ struct SettingsView: View {
 											   dash: [2]))
 
 						PointMark(x: .value("Date",
-											counter.date),
+											counter.date,
+											unit: .day),
 								  y: .value("Count",
 											counter.count))
 						.annotation(position: .topLeading,
