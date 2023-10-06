@@ -36,51 +36,47 @@ struct SettingsView: View {
 				.accessibilityIdentifier("DatePicker")
 
 				if counters.count > 1 {
-					Chart {
-						ForEach(counters) { counter in
-							LineMark(x: .value("Date",
-											   counter.date,
-											   unit: .day),
-									 y: .value("Count",
-											   counter.count))
-							.interpolationMethod(.monotone)
-							.lineStyle(StrokeStyle(lineWidth: 1,
-												   dash: [2]))
+					Chart(counters) { counter in
+						LineMark(x: .value("Date",
+										   counter.date),
+								 y: .value("Count",
+										   counter.count))
+						.interpolationMethod(.monotone)
+						.lineStyle(StrokeStyle(lineWidth: 1,
+											   dash: [2]))
 
-							PointMark(x: .value("Date",
-												counter.date,
-												unit: .day),
-									  y: .value("Count",
-												counter.count))
-							.annotation(position: .topLeading,
-										spacing: 4,
-										overflowResolution: .init(x: .fit(to: .chart),
-																  y: .fit(to: .chart))) {
-								if viewModel.showAnnotation(date: counter.date),
-								   let selectedPointMarkCounter = viewModel.selectedPointMarkCounter(counters: counters) {
-									VStack {
-										Text(selectedPointMarkCounter.count.description)
-											.font(.system(size: 100))
-											.minimumScaleFactor(0.01)
-											.lineLimit(1)
-											.opacity(0.25)
-											.padding(2)
-									}
-									.frame(width: 60,
-										   height: 60)
-									.background {
-										RoundedRectangle(cornerRadius: 4)
-											.fill(Color(uiColor: .systemBackground))
-											.shadow(color: .black,
-													radius: 2)
-									}
-									.overlay(alignment: .topTrailing) {
-										Text(selectedPointMarkCounter.date.toRelative)
-											.font(.system(size: 4))
-											.padding(2)
-									}
-									.padding(2)
+						PointMark(x: .value("Date",
+											counter.date),
+								  y: .value("Count",
+											counter.count))
+						.annotation(position: .topLeading,
+									spacing: 4,
+									overflowResolution: .init(x: .fit(to: .chart),
+															  y: .fit(to: .chart))) {
+							if viewModel.showAnnotation(date: counter.date),
+							   let selectedPointMarkCounter = viewModel.selectedPointMarkCounter(counters: counters) {
+								VStack {
+									Text(selectedPointMarkCounter.count.description)
+										.font(.system(size: 100))
+										.minimumScaleFactor(0.01)
+										.lineLimit(1)
+										.opacity(0.25)
+										.padding(2)
 								}
+								.frame(width: 60,
+									   height: 60)
+								.background {
+									RoundedRectangle(cornerRadius: 4)
+										.fill(Color(uiColor: .systemBackground))
+										.shadow(color: .black,
+												radius: 2)
+								}
+								.overlay(alignment: .topTrailing) {
+									Text(selectedPointMarkCounter.date.toRelative)
+										.font(.system(size: 4))
+										.padding(2)
+								}
+								.padding(2)
 							}
 						}
 					}
@@ -96,17 +92,13 @@ struct SettingsView: View {
 					.padding(.horizontal)
 					.font(.system(size: 10))
 					.foregroundStyle(.red)
-					.accessibilityIdentifier("Chart")
-					.onAppear {
-						Task {
-							withAnimation {
-								let date = viewModel.counterSelected.selectedDate
-								let dateMinusOne = Calendar.current.date(byAdding: DateComponents(day: -1),
-																		 to: date) ?? date
-								viewModel.chartScrollPosition = dateMinusOne
-							}
-						}
+					.task {
+						let date = viewModel.counterSelected.selectedDate
+						let dateMinusOne = Calendar.current.date(byAdding: DateComponents(day: -1),
+																 to: date) ?? date
+						viewModel.chartScrollPosition = dateMinusOne
 					}
+					.accessibilityIdentifier("Chart")
 				}
 
 				Spacer()
