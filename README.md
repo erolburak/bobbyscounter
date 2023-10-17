@@ -4,7 +4,7 @@
 BobbysCounter
 
 ## DESCRIPTION
-The BobbysCounter app is a simple app that is supposed to count a value up and down. Such a value can be created for each day. The entered values of the last days and weeks are visualized in a chart and displayed in a list. In addition, today's value can be edited in a widget. The latest SwiftUI components are used in this project.
+The BobbysCounter project is a simple app that is supposed to count a value up and down. Such a value can be created for each day. The entered values of the last days and weeks are visualized in a chart and displayed in a list. In addition, today's value can be edited in a widget. The latest SwiftUI components are used in this project.
 
 ## SETUP
 - Minimum iOS target: 17.0
