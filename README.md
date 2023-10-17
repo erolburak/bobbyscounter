@@ -8,7 +8,7 @@ The BobbysCounter app is a simple app that is supposed to count a value up and d
 
 ## SETUP
 - Minimum iOS target: 17.0
-- Build with: Xcode 15.0
+- Build with: Xcode
 
 ## ARCHITECTURE
 - Clean Architecture
