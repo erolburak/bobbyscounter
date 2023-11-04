@@ -1,10 +1,10 @@
-# BOBBYSNEWS
+# BOBBYSCOUNTER
 
 ## NAME
-BobbysNews
+BobbysCounter
 
 ## DESCRIPTION
-The **BobbysNews** app is my own project, which uses the [NewsAPI](https://newsapi.org) to retrieve headlines from across the web. These headlines are displayed in a list and also contain a detail page for more information.
+The **BobbysCounter** app is my own project, which can count a value up and down. Such a value can be created for each day. The values entered for the last few days and weeks are visualized in a chart and displayed in a list. In addition, today's value can be edited in a widget.
 
 ## SETUP
 - Build with: Xcode
@@ -16,11 +16,10 @@ The **BobbysNews** app is my own project, which uses the [NewsAPI](https://newsa
 
 ## APIS
 - SwiftUI
-- CoreData
-- UserDefaults
-- Combine
+- SwiftData
+- Charts
+- WidgetKit
 - CloudKit Database
-- [NewsAPI](https://newsapi.org)
 
 ## SCREENSHOTS
 Screenshots for this project are available on my [website](https://erolburak.me/en/portfolio).
