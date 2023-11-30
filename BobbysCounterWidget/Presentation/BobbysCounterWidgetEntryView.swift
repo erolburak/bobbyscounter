@@ -39,7 +39,7 @@ struct BobbysCounterWidgetEntryView: View {
 			.font(.system(size: 70))
 			.buttonStyle(.plain)
 		}
-		.edgesIgnoringSafeArea(.all)
+		.ignoresSafeArea(.all)
 		.overlay(alignment: .topTrailing) {
 			Text(entry.counter?.date.toRelative ?? "")
 				.font(.system(size: 8))

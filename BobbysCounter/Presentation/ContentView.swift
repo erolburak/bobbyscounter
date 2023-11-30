@@ -51,7 +51,7 @@ struct ContentView: View {
 			.frame(maxHeight: .infinity)
 			.font(.system(size: 140.0))
 		}
-		.edgesIgnoringSafeArea(.all)
+		.ignoresSafeArea(.all)
 		.overlay(alignment: .topTrailing) {
 			Text(viewModel.counterSelected.counter?.date.toRelative ?? "")
 				.font(.system(size: 8))
