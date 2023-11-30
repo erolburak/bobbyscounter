@@ -11,7 +11,6 @@
 		BF1C71602AA3672800BA059C /* FetchCounterUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF69167D2AA3493400ED7075 /* FetchCounterUseCase.swift */; };
 		BF1C71612AA3672B00BA059C /* IncreaseCounterCountUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6916852AA349BB00ED7075 /* IncreaseCounterCountUseCase.swift */; };
 		BF1C71622AA3672D00BA059C /* DecreaseCounterCountUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6916832AA3499D00ED7075 /* DecreaseCounterCountUseCase.swift */; };
-		BF2B85452B190B77006FAE91 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2B85442B190B77006FAE91 /* Package.swift */; };
 		BF2C45382A4B3EB900D48C36 /* BobbysCounterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2C45372A4B3EB900D48C36 /* BobbysCounterApp.swift */; };
 		BF2C453A2A4B3EB900D48C36 /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2C45392A4B3EB900D48C36 /* Counter.swift */; };
 		BF2C453C2A4B3EB900D48C36 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2C453B2A4B3EB900D48C36 /* ContentView.swift */; };
@@ -102,7 +101,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		BF2B85442B190B77006FAE91 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		BF2C45342A4B3EB900D48C36 /* BobbysCounter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BobbysCounter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF2C45372A4B3EB900D48C36 /* BobbysCounterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BobbysCounterApp.swift; sourceTree = "<group>"; };
 		BF2C45392A4B3EB900D48C36 /* Counter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counter.swift; sourceTree = "<group>"; };
@@ -201,7 +199,6 @@
 		BF2C452B2A4B3EB900D48C36 = {
 			isa = PBXGroup;
 			children = (
-				BF2B85442B190B77006FAE91 /* Package.swift */,
 				BF2C45362A4B3EB900D48C36 /* BobbysCounter */,
 				BF2C454B2A4B3EBA00D48C36 /* BobbysCounterTests */,
 				BF2C45552A4B3EBA00D48C36 /* BobbysCounterUITests */,
@@ -681,7 +678,6 @@
 				BF2C453A2A4B3EB900D48C36 /* Counter.swift in Sources */,
 				BF2C45382A4B3EB900D48C36 /* BobbysCounterApp.swift in Sources */,
 				BF6916842AA3499D00ED7075 /* DecreaseCounterCountUseCase.swift in Sources */,
-				BF2B85452B190B77006FAE91 /* Package.swift in Sources */,
 				BF2C453C2A4B3EB900D48C36 /* ContentView.swift in Sources */,
 				BFB86DA72A66ADC90092EAEC /* SettingsViewModel.swift in Sources */,
 				BF6916862AA349BB00ED7075 /* IncreaseCounterCountUseCase.swift in Sources */,
