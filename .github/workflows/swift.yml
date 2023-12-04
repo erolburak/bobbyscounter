@@ -16,17 +16,17 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
-    - name: Setup xcode
+    - name: Setup Xcode
       uses: maxim-lobanov/setup-xcode@v1
       with:
         xcode-version: latest
-    - name: Setup swift
+    - name: Setup Swift
       uses: swift-actions/setup-swift@v1
     - name: Test iPhone 15 Pro
       run: >-
-        xcodebuild test -workspace BobbysCounter.xcodeproj/project.xcworkspace
-        -scheme BobbysCounter -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=17.0'
+        xcodebuild test -project BobbysCounter.xcodeproj
+        -scheme BobbysCounter -destination 'platform=iOS Simulator,name=iPhone 15 Pro' | xcpretty -s
     - name: Test iPad Pro (12.9-inch) (6th generation)
       run: >-
-        xcodebuild test -workspace BobbysCounter.xcodeproj/project.xcworkspace
-        -scheme BobbysCounter -destination 'platform=iOS Simulator,name=iPad Pro (12.9-inch) (6th generation),OS=17.0'
+        xcodebuild test -project BobbysCounter.xcodeproj
+        -scheme BobbysCounter -destination 'platform=iOS Simulator,name=iPad Pro (12.9-inch) (6th generation)'| xcpretty -s
