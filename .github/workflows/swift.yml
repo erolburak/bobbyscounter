@@ -17,7 +17,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
     - name: Setup swift version
-    - uses: swift-actions/setup-swift@v1
+      uses: swift-actions/setup-swift@v1
 #     - name: Show swift version
 #       run: swift --version
     - name: Build
