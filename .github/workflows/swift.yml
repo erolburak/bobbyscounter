@@ -1,5 +1,4 @@
-# This workflow will build a Swift project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-swift
+# This workflow will build and test the BobbysCounter app.
 
 name: Swift
 
@@ -15,8 +14,19 @@ jobs:
     runs-on: macos-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Build
-      run: swift build -v
-    - name: Run tests
-      run: swift test -v
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Select Xcode 15.0.1
+      run: sudo xcode-select -switch /Applications/Xcode_15.0.1.app
+    - name: Build setup
+      run: >-
+        xcodebuild test -workspace BobbysCounter.xcodeproj/project.xcworkspace
+        -scheme BobbysCounter -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=17.0'
+    - name: Test iPhone 15 Pro
+      run: >-
+        xcodebuild test -workspace BobbysCounter.xcodeproj/project.xcworkspace
+        -scheme BobbysCounter -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=17.0'
+    - name: Test iPad Pro (12.9-inch) (6th generation)
+      run: >-
+        xcodebuild test -workspace BobbysCounter.xcodeproj/project.xcworkspace
+        -scheme BobbysCounter -destination 'platform=iOS Simulator,name=iPad Pro (12.9-inch) (6th generation),OS=17.0'
