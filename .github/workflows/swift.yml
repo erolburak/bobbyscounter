@@ -18,13 +18,17 @@ jobs:
       uses: actions/checkout@v4
     - name: Setup swift version
     - uses: swift-actions/setup-swift@v1
-    - name: Show swift version
-      run: swift --version
-    - name: Test iPhone 15 Pro
-      run: >-
-        xcodebuild test -workspace BobbysCounter.xcodeproj/project.xcworkspace
-        -scheme BobbysCounter -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=17.0'
-    - name: Test iPad Pro (12.9-inch) (6th generation)
-      run: >-
-        xcodebuild test -workspace BobbysCounter.xcodeproj/project.xcworkspace
-        -scheme BobbysCounter -destination 'platform=iOS Simulator,name=iPad Pro (12.9-inch) (6th generation),OS=17.0'
+#     - name: Show swift version
+#       run: swift --version
+    - name: Build
+      run: swift build
+    - name: Run tests
+      run: swift test
+#     - name: Test iPhone 15 Pro
+#       run: >-
+#         xcodebuild test -workspace BobbysCounter.xcodeproj/project.xcworkspace
+#         -scheme BobbysCounter -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=17.0'
+#     - name: Test iPad Pro (12.9-inch) (6th generation)
+#       run: >-
+#         xcodebuild test -workspace BobbysCounter.xcodeproj/project.xcworkspace
+#         -scheme BobbysCounter -destination 'platform=iOS Simulator,name=iPad Pro (12.9-inch) (6th generation),OS=17.0'
