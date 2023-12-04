@@ -19,7 +19,7 @@ jobs:
     - name: Setup xcode
       uses: maxim-lobanov/setup-xcode@v1
       with:
-        xcode-version: latest-stable
+        xcode-version: latest
     - name: Setup swift
       uses: swift-actions/setup-swift@v1
     - name: Test iPhone 15 Pro
