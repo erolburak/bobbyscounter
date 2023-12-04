@@ -16,6 +16,10 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
+    - name: Setup swift version
+    - uses: swift-actions/setup-swift@v1
+    - name: Show swift version
+      run: swift --version
     - name: Test iPhone 15 Pro
       run: >-
         xcodebuild test -workspace BobbysCounter.xcodeproj/project.xcworkspace
