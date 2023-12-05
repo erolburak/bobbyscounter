@@ -32,7 +32,6 @@
       }
     },
     {
-      "enabled" : false,
       "parallelizable" : true,
       "target" : {
         "containerPath" : "container:BobbysCounter.xcodeproj",
