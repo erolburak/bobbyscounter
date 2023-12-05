@@ -101,6 +101,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BF03C1C72B1F813400752391 /* BobbysCounter.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = BobbysCounter.xctestplan; sourceTree = "<group>"; };
 		BF2C45342A4B3EB900D48C36 /* BobbysCounter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BobbysCounter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF2C45372A4B3EB900D48C36 /* BobbysCounterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BobbysCounterApp.swift; sourceTree = "<group>"; };
 		BF2C45392A4B3EB900D48C36 /* Counter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counter.swift; sourceTree = "<group>"; };
@@ -114,7 +115,6 @@
 		BF5A26272A6E7E1600B47FD4 /* ContentViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewTests.swift; sourceTree = "<group>"; };
 		BF5A262A2A6E8D6100B47FD4 /* SettingsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewTests.swift; sourceTree = "<group>"; };
 		BF6048B12A6C231F00B4D119 /* ContentViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModelTests.swift; sourceTree = "<group>"; };
-		BF6048B62A6C292300B4D119 /* Tests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Tests.xctestplan; sourceTree = "<group>"; };
 		BF69167D2AA3493400ED7075 /* FetchCounterUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCounterUseCase.swift; sourceTree = "<group>"; };
 		BF69167F2AA3496400ED7075 /* InsertCounterUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertCounterUseCase.swift; sourceTree = "<group>"; };
 		BF6916812AA3497800ED7075 /* ResetCountersUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetCountersUseCase.swift; sourceTree = "<group>"; };
@@ -189,9 +189,9 @@
 			children = (
 				BF2C453D2A4B3EB900D48C36 /* Assets.xcassets */,
 				BF7C46762A6B04CC00CA47D1 /* BobbysCounter.entitlements */,
+				BF03C1C72B1F813400752391 /* BobbysCounter.xctestplan */,
 				BFF55EBF2A57315100EE0B3A /* Info.plist */,
 				BFB702AB2A605631001AADE9 /* Localizable.xcstrings */,
-				BF6048B62A6C292300B4D119 /* Tests.xctestplan */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
