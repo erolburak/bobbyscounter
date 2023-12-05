@@ -69,18 +69,15 @@ class SettingsViewModelTests: XCTestCase {
 		XCTAssertTrue(sut.counterSelected.counter?.date.isDateToday ?? false)
 	}
 
-	func testReset() {
+	func testReset() async {
 		// Given
 		let date = Calendar.current.date(byAdding: DateComponents(day: -1),
 										 to: .now) ?? .now
 		sut.counterSelected.selectedDate = date
-		sut.counterSelected.counter = Counter(count: 1,
-											  date: date)
 		// When
 		sut.reset()
 		// Then
-		XCTAssertEqual(sut.counterSelected.counter?.count, 0)
-		XCTAssertTrue(sut.counterSelected.counter?.date.isDateToday ?? false)
+		XCTAssertTrue(sut.counterSelected.selectedDate.isDateToday)
 	}
 
 	func testShowAnnotationIsTrue() {

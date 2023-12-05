@@ -7,11 +7,11 @@ BobbysCounter
 The **BobbysCounter** app is my own project, which can count a value up and down. Such a value can be created for each day. The values entered for the last few days and weeks are visualized in a chart and displayed in a list. In addition, today's value can be edited in a widget.
 
 ## SETUP
-- Build with: Xcode
+- IDE: Xcode
+- CI/CD: [GitHub Actions](https://docs.github.com/en/actions)
 
 ## ARCHITECTURE
 - Clean Architecture
-- SOLID
 - MVVM
 
 ## APIS
