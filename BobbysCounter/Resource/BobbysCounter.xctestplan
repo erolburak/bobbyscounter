@@ -1,7 +1,7 @@
 {
   "configurations" : [
     {
-      "id" : "3689EE4D-06BE-4D2E-8DC4-1DEBDB6EBFD4",
+      "id" : "35770D70-43BE-4615-BB79-42C54AAE0AD7",
       "name" : "Test Scheme Action",
       "options" : {
 
@@ -9,7 +9,8 @@
     }
   ],
   "defaultOptions" : {
-    "language" : "en",
+    "codeCoverage" : false,
+    "language" : "en-GB",
     "locationScenario" : {
       "identifier" : "London, England",
       "referenceType" : "built-in"
