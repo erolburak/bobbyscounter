@@ -5,4 +5,19 @@
 //  Created by Burak Erol on 13.12.23.
 //
 
-import Foundation
+@testable import BobbysCounter
+import XCTest
+
+class SharedModelContainerTests: XCTestCase {
+
+	// MARK: - Actions
+
+	func testSharedModelContainer() {
+		// Given
+		let sharedModelContainer: SharedModelContainer?
+		// When
+		sharedModelContainer = SharedModelContainer()
+		// Then
+		XCTAssertNotNil(sharedModelContainer)
+	}
+}

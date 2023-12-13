@@ -1,5 +1,5 @@
 //
-//  CounterSelectedTests.swift
+//  SelectedTests.swift
 //  BobbysCounterTests
 //
 //  Created by Burak Erol on 05.09.23.
@@ -8,16 +8,16 @@
 @testable import BobbysCounter
 import XCTest
 
-class CounterSelectedTests: XCTestCase {
+class SelectedTests: XCTestCase {
 
 	// MARK: - Actions
 
-	func testCounterSelected() {
+	func testSelected() {
 		// Given
-		let counterSelected: CounterSelected?
+		let selected: Selected?
 		// When
-		counterSelected = CounterSelected()
+		selected = Selected()
 		// Then
-		XCTAssertNotNil(counterSelected)
+		XCTAssertNotNil(selected)
 	}
 }

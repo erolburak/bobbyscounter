@@ -9,50 +9,33 @@ import WidgetKit
 
 struct BobbysCounterWidgetProvider: TimelineProvider {
 
-	// MARK: - Use Cases
-
-//	private let fetchCounterUseCase: PFetchCounterUseCase
-//	private let insertCounterUseCase: PInsertCounterUseCase
-
-	// MARK: - Life Cycle
-
-	init() { }
-//	init(fetchCounterUseCase: PFetchCounterUseCase,
-//		 insertCounterUseCase: PInsertCounterUseCase) {
-//		self.fetchCounterUseCase = fetchCounterUseCase
-//		self.insertCounterUseCase = insertCounterUseCase
-//	}
-
 	// MARK: - Actions
 
+	@MainActor
 	func getSnapshot(in context: Context,
 					 completion: @escaping (BobbysCounterWidgetEntry) -> Void) {
-		completion(BobbysCounterWidgetEntry(counter: setCounter()))
+		completion(BobbysCounterWidgetEntry(counter: fetchCounter()))
 	}
 
+	@MainActor
 	func getTimeline(in context: Context,
 					 completion: @escaping (Timeline<BobbysCounterWidgetEntry>) -> Void) {
-		completion(Timeline(entries: [BobbysCounterWidgetEntry(counter: setCounter())],
+		completion(Timeline(entries: [BobbysCounterWidgetEntry(counter: fetchCounter())],
 							policy: .atEnd))
 	}
 
+	@MainActor
 	func placeholder(in context: Context) -> BobbysCounterWidgetEntry {
-		BobbysCounterWidgetEntry(counter: setCounter())
+		BobbysCounterWidgetEntry(counter: fetchCounter())
 	}
 
-	private func setCounter() -> Counter {
-		guard let counter = fetchCounter() else {
-			return Counter(count: 0,
-						   date: .now)
-		}
-		return counter
-	}
-
+	@MainActor
 	private func fetchCounter() -> Counter? {
-//		guard let fetchedCounter = fetchCounterUseCase.fetch(selectedDate: .now) else {
-//			return insertCounterUseCase.insert(selectedDate: .now)
-//		}
-//		return fetchedCounter
-		return .init(count: 0, date: .now)
+		do {
+			return try Counter.fetch(SharedModelContainer.shared.modelContainer.mainContext,
+									 date: .now)
+		} catch {
+			return nil
+		}
 	}
 }

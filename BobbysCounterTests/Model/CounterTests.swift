@@ -21,4 +21,34 @@ class CounterTests: XCTestCase {
 		// Then
 		XCTAssertNotNil(counter)
 	}
+
+	func testDecrease() {
+		// Given
+		let counter = Counter(count: 1,
+							  date: .now)
+		// When
+		counter.decrease()
+		// Then
+		XCTAssertEqual(counter.count, 0)
+	}
+
+	func testDecreaseWithZero() {
+		// Given
+		let counter = Counter(count: 0,
+							  date: .now)
+		// When
+		counter.decrease()
+		// Then
+		XCTAssertEqual(counter.count, 0)
+	}
+
+	func testIncrease() {
+		// Given
+		let counter = Counter(count: 0,
+							  date: .now)
+		// When
+		counter.increase()
+		// Then
+		XCTAssertEqual(counter.count, 1)
+	}
 }

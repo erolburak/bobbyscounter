@@ -5,24 +5,29 @@
 //  Created by Burak Erol on 27.06.23.
 //
 
+import SwiftData
 import SwiftUI
-import WidgetKit
 
 struct ContentView: View {
 
 	// MARK: - Properties
 
-	@State var viewModel: ContentViewModel
+	@Bindable var alert: Alert
+	@Bindable var selected: Selected
 
 	// MARK: - Private Properties
 
-	@Environment(\.scenePhase) private var scenePhase
+	@Environment(\.modelContext) private var modelContext
+	@Query private var counters: [Counter]
+	@State private var sensoryFeedback: SensoryFeedback = .increase
+	@State private var sensoryFeedbackTrigger = false
+	@State private var showSettingsSheet = false
 
 	// MARK: - Layouts
 
 	var body: some View {
 		ZStack {
-			Text(viewModel.counterSelected.counter?.count.description ?? "0")
+			Text(selected.counter?.count.description ?? "0")
 				.font(.system(size: 1000))
 				.minimumScaleFactor(0.001)
 				.lineLimit(1)
@@ -32,16 +37,20 @@ struct ContentView: View {
 
 			HStack {
 				Button {
-					viewModel.decreaseCounterCount()
+					selected.counter?.decrease()
+					sensoryFeedback = .decrease
+					sensoryFeedbackTrigger = true
 				} label: {
 					Text("Minus")
 						.frame(maxWidth: .infinity)
 				}
-				.disabled(viewModel.counterSelected.counter?.count == 0)
+				.disabled(selected.counter?.count == 0)
 				.accessibilityIdentifier("MinusButton")
 
 				Button {
-					viewModel.increaseCounterCount()
+					selected.counter?.increase()
+					sensoryFeedback = .increase
+					sensoryFeedbackTrigger = true
 				} label: {
 					Text("Plus")
 						.frame(maxWidth: .infinity)
@@ -53,43 +62,36 @@ struct ContentView: View {
 		}
 		.ignoresSafeArea(.all)
 		.overlay(alignment: .topTrailing) {
-			Text(viewModel.counterSelected.counter?.date.toRelative ?? "")
+			Text(selected.counter?.date.toRelative ?? "")
 				.font(.system(size: 8))
 				.padding(.trailing)
 				.accessibilityIdentifier("DateText")
 		}
 		.overlay(alignment: .bottom) {
 			Button("Settings") {
-				viewModel.showSettingsSheet = true
+				showSettingsSheet = true
 			}
 			.padding(.bottom)
 			.accessibilityIdentifier("SettingsButton")
 		}
-		.sheet(isPresented: $viewModel.showSettingsSheet) {
-			SettingsView(viewModel: ViewModelDI.shared.settingsViewModel(counterSelected: viewModel.counterSelected))
-				.modelContainer(DataController.shared.modelContainer)
-		}
-		.onChange(of: scenePhase) {
-			switch scenePhase {
-			case .active:
-				DataController.shared.updateModelContainer()
-				viewModel.fetchCounter()
-			case .background:
-				WidgetCenter.shared.reloadAllTimelines()
-			default: break
-			}
+		.sheet(isPresented: $showSettingsSheet) {
+			SettingsView(alert: alert,
+						 selected: selected)
 		}
 		.fontWeight(.bold)
 		.fontDesign(.monospaced)
 		.tint(.accent)
-		.sensoryFeedback(viewModel.sensoryFeedback,
-						 trigger: viewModel.sensoryFeedbackTrigger) { _, newValue in
-			viewModel.sensoryFeedbackTrigger = false
+		.sensoryFeedback(sensoryFeedback,
+						 trigger: sensoryFeedbackTrigger) { _, newValue in
+			sensoryFeedbackTrigger = false
 			return newValue == true
 		}
 	}
 }
 
 #Preview {
-	ContentView(viewModel: ViewModelDI.shared.contentViewModel())
+	ContentView(alert: Alert(),
+				selected: Selected())
+		.modelContainer(for: Counter.self,
+						inMemory: true)
 }

@@ -161,35 +161,18 @@
         }
       }
     },
-    "ErrorDescription" : {
+    "ErrorDescriptionFetch" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fehler"
+            "value" : "Abfrage"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Error"
-          }
-        }
-      }
-    },
-    "ErrorDescriptionReset" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zurücksetzen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reset"
+            "value" : "Fetch"
           }
         }
       }
@@ -210,19 +193,19 @@
         }
       }
     },
-    "ErrorRecoverySuggestionReset" : {
+    "ErrorRecoverySuggestionFetch" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zurücksetzen fehlgeschlagen. Bitte versuche es erneut."
+            "value" : "Abfrage fehlgeschlagen. Bitte versuche es erneut."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Failed to reset. Please try again."
+            "value" : "Failed to fetch. Please try again."
           }
         }
       }

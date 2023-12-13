@@ -10,17 +10,15 @@ import WidgetKit
 
 struct BobbysCounterWidget: Widget {
 
-	// MARK: - Properties
+	// MARK: - Private Properties
 
-	let kind = "BobbysCounterWidget"
+	private let kind = "BobbysCounterWidget"
 
 	// MARK: - Layouts
 
 	var body: some WidgetConfiguration {
 		StaticConfiguration(kind: kind,
 							provider: BobbysCounterWidgetProvider()) { entry in
-//							provider: BobbysCounterWidgetProvider(fetchCounterUseCase: FetchCounterUseCase(),
-//																  insertCounterUseCase: InsertCounterUseCase())) { entry in
 			BobbysCounterWidgetEntryView(entry: entry)
 				.containerBackground(.widgetBackground,
 									 for: .widget)

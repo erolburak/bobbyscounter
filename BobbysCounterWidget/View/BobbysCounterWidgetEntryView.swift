@@ -29,7 +29,7 @@ struct BobbysCounterWidgetEntryView: View {
 					Text("Minus")
 						.frame(maxWidth: .infinity)
 				}
-				.disabled(counter?.count == 0)
+				.disabled(entry.counter?.count == 0)
 
 				Button(intent: IncreaseIntent()) {
 					Text("Plus")

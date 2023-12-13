@@ -23,4 +23,16 @@ final class Counter {
 		self.count = count
 		self.date = date
 	}
+
+	// MARK: - Actions
+
+	func decrease() {
+		if count > 0 {
+			count -= 1
+		}
+	}
+
+	func increase() {
+		count += 1
+	}
 }
