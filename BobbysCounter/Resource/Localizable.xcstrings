@@ -1,6 +1,38 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Average" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Durchschnitt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Average"
+          }
+        }
+      }
+    },
+    "AverageMessage%lld%@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Durchschnitt für die letzten %1$lld Zähler beträgt %2$@."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Average for the last %1$lld counters is %2$@."
+          }
+        }
+      }
+    },
     "Count" : {
       "localizations" : {
         "de" : {
@@ -97,6 +129,22 @@
         }
       }
     },
+    "EmptyAverage" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kein Durchschnitt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No average"
+          }
+        }
+      }
+    },
     "EmptyCharts" : {
       "localizations" : {
         "de" : {
@@ -109,22 +157,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No chart"
-          }
-        }
-      }
-    },
-    "EmptyChartsMessage" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zähler für mindestens 2 Tage müssen angelegt sein."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Counters for at least 2 days must be created."
           }
         }
       }
@@ -150,46 +182,29 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zähler werden hier angezeigt."
+            "value" : "Zähler für mindestens 1 Tag muss angelegt sein."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Counters are displayed here."
+            "value" : "Counters for at least 1 day must be created."
           }
         }
       }
     },
-    "ErrorDescription" : {
+    "ErrorDescriptionFetch" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fehler"
+            "value" : "Abfrage"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Error"
-          }
-        }
-      }
-    },
-    "ErrorDescriptionReset" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zurücksetzen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reset"
+            "value" : "Fetch"
           }
         }
       }
@@ -210,19 +225,19 @@
         }
       }
     },
-    "ErrorRecoverySuggestionReset" : {
+    "ErrorRecoverySuggestionFetch" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zurücksetzen fehlgeschlagen. Bitte versuche es erneut."
+            "value" : "Abfrage fehlgeschlagen. Bitte versuche es erneut."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Failed to reset. Please try again."
+            "value" : "Failed to fetch. Please try again."
           }
         }
       }
@@ -305,6 +320,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Saved data on all devices will be deleted and the app will be reset."
+          }
+        }
+      }
+    },
+    "SelectedAverage" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ausgewählter Durchschnitt:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selected average:"
           }
         }
       }
