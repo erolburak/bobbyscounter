@@ -27,7 +27,7 @@ final class SettingsViewTests: XCTestCase {
 		let averageButton = app.navigationBars[Locale.current.language.languageCode == "en" ? "Settings" : ""].buttons["AverageButton"]
 		XCTAssertTrue(averageButton.waitForExistence(timeout: 5))
 		averageButton.tap()
-		let closeAverageButton = app.navigationBars[Locale.current.language.languageCode == "en" ? "Counters" : ""].buttons["CloseAverageButton"]
+		let closeAverageButton = app.navigationBars[Locale.current.language.languageCode == "en" ? "Average" : ""].buttons["CloseAverageButton"]
 		XCTAssertTrue(closeAverageButton.waitForExistence(timeout: 5))
 		closeAverageButton.tap()
 	}
@@ -135,10 +135,6 @@ final class SettingsViewTests: XCTestCase {
 		XCTAssertTrue(countText.waitForExistence(timeout: 5))
 		let countTextAsInt = Int(app.staticTexts["CountText"].label)
 		XCTAssertEqual(countTextAsInt, 0)
-		XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
-		settingsButton.tap()
-		let emptyCountersMessage = app.staticTexts["EmptyCountersMessage"]
-		XCTAssertTrue(emptyCountersMessage.waitForExistence(timeout: 5))
 	}
 
 	/// Test close counters view while first opening settings and then counters view

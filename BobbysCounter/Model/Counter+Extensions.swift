@@ -14,8 +14,12 @@ extension Counter {
 
 	static let modelContainer: ModelContainer = {
 		do {
+			/// Disable cloud kit database if test scheme is running
+			let isTestScheme = ProcessInfo().environment["XCTestConfigurationFilePath"] != nil
+			let modelConfiguration = ModelConfiguration(isStoredInMemoryOnly: false,
+														cloudKitDatabase: isTestScheme ? .none : .automatic)
 			return try ModelContainer(for: Schema([Counter.self]),
-									  configurations: ModelConfiguration(isStoredInMemoryOnly: false))
+									  configurations: modelConfiguration)
 		} catch {
 			fatalError("Could not create model container: \(error)")
 		}
