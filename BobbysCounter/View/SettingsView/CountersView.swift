@@ -12,12 +12,13 @@ struct CountersView: View {
 
 	// MARK: - Properties
 
+	@Bindable var alert: Alert
 	@Bindable var selected: Selected
 	@Binding var showCountersSheet: Bool
+	var dismiss: () -> Void
 
 	// MARK: - Private Properties
 
-	@Environment(\.modelContext) private var modelContext
 	@Query(sort: \Counter.date,
 		   order: .reverse) private var counters: [Counter]
 	@State private var counterDelete: Counter?
@@ -25,46 +26,50 @@ struct CountersView: View {
 	@State private var sensoryFeedbackTrigger = false
 	@State private var showDeleteConfirmationDialog = false
 	@State private var showResetConfirmationDialog = false
+	private var counter: Counter? {
+		counters.first { $0.date == selected.date }
+	}
 	private var filteredCounters: [Counter] {
-		counters.filter { $0 != selected.counter }
+		counters.filter { $0.date != selected.date }
 	}
 
 	// MARK: - Layouts
 
 	var body: some View {
 		NavigationStack {
-			List {
-				if let counter = selected.counter {
-					Section {
-						ListItem(counter: counter)
-					} header: {
-						Text("SelectedCounter")
-					}
-				}
-
-				if !filteredCounters.isEmpty {
-					Section {
-						ForEach(filteredCounters) { counter in
-							ListItem(counter: counter)
+			Group {
+				if !counters.isEmpty {
+					List {
+						if let counter {
+							Section {
+								ListItem(counter: counter)
+							} header: {
+								Text("SelectedCounter")
+							}
 						}
-					} header: {
-						Text("Counters")
+
+						if !filteredCounters.isEmpty {
+							Section {
+								ForEach(filteredCounters) { counter in
+									ListItem(counter: counter)
+								}
+							} header: {
+								Text("Counters")
+							}
+						}
 					}
-				}
-			}
-			.listStyle(.insetGrouped)
-			.navigationTitle("Counters")
-			.navigationBarTitleDisplayMode(.inline)
-			.overlay {
-				if counters.isEmpty {
+					.listStyle(.insetGrouped)
+				} else {
 					ContentUnavailableView {
 						Label("EmptyCounters",
-							  systemImage: "list.bullet.rectangle.portrait.fill")
+							  systemImage: "list.bullet.circle.fill")
 					} description: {
 						Text("EmptyCountersMessage")
 					}
 				}
 			}
+			.navigationTitle("Counters")
+			.navigationBarTitleDisplayMode(.inline)
 			.toolbar {
 				ToolbarItem(placement: .destructiveAction) {
 					Button(role: .destructive) {
@@ -91,12 +96,32 @@ struct CountersView: View {
 				Button("Delete",
 					   role: .destructive) {
 					if let counterDelete {
-						counterDelete.delete(modelContext)
-						if counterDelete == selected.counter {
-							selected.date = .now
+						if counterDelete.date?.isDateToday == true {
+							counterDelete.reset()
+							self.counterDelete = nil
+							sensoryFeedback = .success
+							sensoryFeedbackTrigger = true
+						} else {
+							counterDelete.delete()
+							if counterDelete == counter {
+								do {
+									try Counter.fetch(date: .now)
+									selected.date = .now.toDateWithoutTime ?? .now
+									sensoryFeedback = .success
+									sensoryFeedbackTrigger = true
+									dismiss()
+								} catch {
+									alert.error = .fetch
+									alert.show = true
+									sensoryFeedback = .error
+									sensoryFeedbackTrigger = true
+								}
+							} else {
+								sensoryFeedback = .success
+								sensoryFeedbackTrigger = true
+							}
+							self.counterDelete = nil
 						}
-						sensoryFeedback = .success
-						sensoryFeedbackTrigger = true
 					}
 				}
 				.accessibilityIdentifier("DeleteConfirmationDialogButton")
@@ -107,13 +132,22 @@ struct CountersView: View {
 				Button("Reset",
 					   role: .destructive) {
 					counters.forEach { counter in
-						counter.delete(modelContext)
+						if counter.date?.isDateToday == true {
+							counter.reset()
+						} else {
+							counter.delete()
+						}
 					}
-					selected.date = .now
-					sensoryFeedback = .success
-					sensoryFeedbackTrigger = true
+					selected.average = 7
+					selected.date = .now.toDateWithoutTime ?? .now
+					dismiss()
 				}
 				.accessibilityIdentifier("ResetConfirmationDialogButton")
+			}
+			.sensoryFeedback(sensoryFeedback,
+							 trigger: sensoryFeedbackTrigger) { _, newValue in
+				sensoryFeedbackTrigger = false
+				return newValue == true
 			}
 		}
 	}
@@ -136,10 +170,17 @@ struct CountersView: View {
 
 	private func ListItem(counter: Counter) -> some View {
 		Button {
-			selected.date = counter.date
+			guard let date = counter.date else {
+				return
+			}
+			if counter == self.counter {
+				dismiss()
+			} else {
+				selected.date = date
+			}
 		} label: {
 			HStack(spacing: 20) {
-				Text(counter.date.toRelative)
+				Text(counter.date?.toRelative ?? "")
 
 				Spacer()
 
@@ -161,8 +202,10 @@ struct CountersView: View {
 }
 
 #Preview {
-	CountersView(selected: Selected(),
-				 showCountersSheet: .constant(true))
+	CountersView(alert: Alert(),
+				 selected: Selected(),
+				 showCountersSheet: .constant(true),
+				 dismiss: {})
 		.modelContainer(for: Counter.self,
 						inMemory: true)
 }

@@ -9,13 +9,11 @@ import XCTest
 
 final class ContentViewTests: XCTestCase {
 
-	// MARK: - Life Cycle
+	// MARK: - Actions
 
     override func setUpWithError() throws {
         continueAfterFailure = false
     }
-
-	// MARK: - Actions
 
 	/// Test decrease counter count value if `MinusButton` is enabled
 	/// Check `CountText` for updated value otherwise check if `CountText` is 0

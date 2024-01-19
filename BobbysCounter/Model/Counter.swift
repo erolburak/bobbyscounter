@@ -14,14 +14,14 @@ final class Counter {
 	// MARK: - Properties
 
 	var count = 0
-	var date = Date.now
+	var date: Date?
 
-	// MARK: - Life Cycle
+	// MARK: - Inits
 
 	init(count: Int,
 		 date: Date) {
 		self.count = count
-		self.date = date
+		self.date = date.toDateWithoutTime
 	}
 
 	// MARK: - Actions
@@ -34,5 +34,9 @@ final class Counter {
 
 	func increase() {
 		count += 1
+	}
+
+	func reset() {
+		count = 0
 	}
 }

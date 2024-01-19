@@ -12,6 +12,6 @@ class Selected {
 
 	// MARK: - Properties
 
-	var counter: Counter?
-	var date = Date.now
+	var average = 7
+	var date = Date.now.toDateWithoutTime ?? .now
 }

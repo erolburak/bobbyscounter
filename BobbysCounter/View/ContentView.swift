@@ -7,27 +7,32 @@
 
 import SwiftData
 import SwiftUI
+import WidgetKit
 
 struct ContentView: View {
 
 	// MARK: - Properties
 
 	@Bindable var alert: Alert
-	@Bindable var selected: Selected
 
 	// MARK: - Private Properties
 
-	@Environment(\.modelContext) private var modelContext
-	@Query private var counters: [Counter]
+	@Environment(\.scenePhase) private var scenePhase
+	@Query(sort: \Counter.date,
+		   order: .reverse) private var counters: [Counter]
+	@State private var selected = Selected()
 	@State private var sensoryFeedback: SensoryFeedback = .increase
 	@State private var sensoryFeedbackTrigger = false
 	@State private var showSettingsSheet = false
+	private var counter: Counter? {
+		counters.first { $0.date == selected.date }
+	}
 
 	// MARK: - Layouts
 
 	var body: some View {
 		ZStack {
-			Text(selected.counter?.count.description ?? "0")
+			Text(counter?.count.description ?? "0")
 				.font(.system(size: 1000))
 				.minimumScaleFactor(0.001)
 				.lineLimit(1)
@@ -37,18 +42,18 @@ struct ContentView: View {
 
 			HStack {
 				Button {
-					selected.counter?.decrease()
+					counter?.decrease()
 					sensoryFeedback = .decrease
 					sensoryFeedbackTrigger = true
 				} label: {
 					Text("Minus")
 						.frame(maxWidth: .infinity)
 				}
-				.disabled(selected.counter?.count == 0)
+				.disabled(counter?.count == 0)
 				.accessibilityIdentifier("MinusButton")
 
 				Button {
-					selected.counter?.increase()
+					counter?.increase()
 					sensoryFeedback = .increase
 					sensoryFeedbackTrigger = true
 				} label: {
@@ -62,7 +67,7 @@ struct ContentView: View {
 		}
 		.ignoresSafeArea(.all)
 		.overlay(alignment: .topTrailing) {
-			Text(selected.counter?.date.toRelative ?? "")
+			Text(counter?.date?.toRelative ?? "")
 				.font(.system(size: 8))
 				.padding(.trailing)
 				.accessibilityIdentifier("DateText")
@@ -81,6 +86,22 @@ struct ContentView: View {
 		.fontWeight(.bold)
 		.fontDesign(.monospaced)
 		.tint(.accent)
+		.onChange(of: scenePhase) {
+			switch scenePhase {
+			case .active:
+				do {
+					try Counter.fetch(date: selected.date)
+				} catch {
+					alert.error = .fetch
+					alert.show = true
+					sensoryFeedback = .error
+					sensoryFeedbackTrigger = true
+				}
+			case .background:
+				WidgetCenter.shared.reloadAllTimelines()
+			default: break
+			}
+		}
 		.sensoryFeedback(sensoryFeedback,
 						 trigger: sensoryFeedbackTrigger) { _, newValue in
 			sensoryFeedbackTrigger = false
@@ -90,8 +111,7 @@ struct ContentView: View {
 }
 
 #Preview {
-	ContentView(alert: Alert(),
-				selected: Selected())
+	ContentView(alert: Alert())
 		.modelContainer(for: Counter.self,
 						inMemory: true)
 }

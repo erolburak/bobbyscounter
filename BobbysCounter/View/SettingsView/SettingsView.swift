@@ -18,11 +18,11 @@ struct SettingsView: View {
 	// MARK: - Private Properties
 
 	@Environment(\.dismiss) private var dismiss
-	@Environment(\.modelContext) private var modelContext
 	@Query(sort: \Counter.date,
 		   order: .reverse) private var counters: [Counter]
 	@State private var sensoryFeedback: SensoryFeedback = .success
 	@State private var sensoryFeedbackTrigger = false
+	@State private var showAverageSheet = false
 	@State private var showCountersSheet = false
 
 	// MARK: - Layouts
@@ -38,32 +38,39 @@ struct SettingsView: View {
 				.padding()
 				.accessibilityIdentifier("DatePicker")
 
-				if counters.count > 1 {
+				if !counters.isEmpty {
 					ChartView(selected: selected)
+				} else {
+					ContentUnavailableView {
+						Label("EmptyCharts",
+							  systemImage: "chart.xyaxis.line")
+					} description: {
+						Text("EmptyCountersMessage")
+							.accessibilityIdentifier("EmptyCountersMessage")
+					}
 				}
 
 				Spacer()
 			}
 			.navigationTitle("Settings")
 			.navigationBarTitleDisplayMode(.inline)
-			.overlay {
-				if counters.count < 2 {
-					ContentUnavailableView {
-						Label("EmptyCharts",
-							  systemImage: "chart.xyaxis.line")
-					} description: {
-						Text("EmptyChartsMessage")
-							.accessibilityIdentifier("EmptyChartsMessage")
-					}
-				}
-			}
 			.toolbar {
+				ToolbarItem(placement: .topBarTrailing) {
+					Button {
+						showAverageSheet = true
+					} label: {
+						Label("Average",
+							  systemImage: "divide.circle.fill")
+					}
+					.accessibilityIdentifier("AverageButton")
+				}
+
 				ToolbarItem(placement: .primaryAction) {
 					Button {
 						showCountersSheet = true
 					} label: {
 						Label("Counters",
-							  systemImage: "list.bullet.rectangle.portrait.fill")
+							  systemImage: "list.bullet.circle.fill")
 					}
 					.accessibilityIdentifier("CountersButton")
 				}
@@ -79,25 +86,32 @@ struct SettingsView: View {
 
 				ToolbarItem(placement: .bottomBar) {
 					Button("Today") {
-						selected.date = .now
+						selected.date = .now.toDateWithoutTime ?? .now
 					}
 					.disabled(selected.date.isDateToday)
 					.accessibilityIdentifier("TodayButton")
 				}
 			}
+			.sheet(isPresented: $showAverageSheet) {
+				AverageView(selected: selected,
+							showAverageSheet: $showAverageSheet)
+			}
 			.sheet(isPresented: $showCountersSheet) {
-				CountersView(selected: selected,
-							 showCountersSheet: $showCountersSheet)
+				CountersView(alert: alert,
+							 selected: selected,
+							 showCountersSheet: $showCountersSheet,
+							 dismiss: {
+					sensoryFeedback = .selection
+					sensoryFeedbackTrigger = true
+					dismiss()
+				})
 			}
 			.onChange(of: selected.date) { _, newValue in
 				do {
-					if newValue <= .now {
-						selected.counter = try Counter.fetch(modelContext,
-															 date: newValue)
-						sensoryFeedback = .selection
-						sensoryFeedbackTrigger = true
-						dismiss()
-					}
+					try Counter.fetch(date: newValue)
+					sensoryFeedback = .selection
+					sensoryFeedbackTrigger = true
+					dismiss()
 				} catch {
 					alert.error = .fetch
 					alert.show = true
@@ -106,7 +120,7 @@ struct SettingsView: View {
 				}
 			}
 		}
-		.presentationDetents([.fraction(counters.count < 2 ? 0.6 : 0.4)])
+		.presentationDetents([.fraction(counters.isEmpty ? 0.6 : 0.4)])
 		.fontWeight(.bold)
 		.fontDesign(.monospaced)
 		.tint(.red)

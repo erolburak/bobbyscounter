@@ -6,7 +6,6 @@
 //
 
 import AppIntents
-import SwiftData
 
 struct IncreaseIntent: AppIntent {
 
@@ -18,8 +17,7 @@ struct IncreaseIntent: AppIntent {
 
 	@MainActor
 	func perform() throws -> some IntentResult {
-		try Counter.fetch(SharedModelContainer.shared.modelContainer.mainContext,
-						  date: .now).increase()
+		try Counter.fetch(date: .now).increase()
 		return .result()
 	}
 }

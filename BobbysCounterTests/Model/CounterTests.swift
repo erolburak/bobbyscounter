@@ -51,4 +51,14 @@ class CounterTests: XCTestCase {
 		// Then
 		XCTAssertEqual(counter.count, 1)
 	}
+
+	func testReset() {
+		// Given
+		let counter = Counter(count: 1,
+							  date: .now)
+		// When
+		counter.reset()
+		// Then
+		XCTAssertEqual(counter.count, 0)
+	}
 }

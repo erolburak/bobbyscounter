@@ -10,22 +10,38 @@ import SwiftData
 
 extension Counter {
 
+	// MARK: - Properties
+
+	static let modelContainer: ModelContainer = {
+		do {
+			return try ModelContainer(for: Schema([Counter.self]),
+									  configurations: ModelConfiguration(isStoredInMemoryOnly: false))
+		} catch {
+			fatalError("Could not create model container: \(error)")
+		}
+	}()
+
 	// MARK: - Actions
 
-	func delete(_ modelContext: ModelContext) {
-		modelContext.delete(self)
+	func delete() {
+		self.modelContext?.delete(self)
 	}
 
-	static func fetch(_ modelContext: ModelContext,
-					   date: Date) throws -> Counter {
-		let counters = try modelContext.fetch(FetchDescriptor<Counter>())
-		let counter = counters.first { Calendar.current.isDate($0.date,
-															   inSameDayAs: date) }
-		guard let counter else {
+	@discardableResult
+	static func fetch(date: Date) throws -> Counter {
+		let modelContext = ModelContext(modelContainer)
+		let counters = try modelContext.fetch(FetchDescriptor<Counter>(predicate: #Predicate { $0.date == date.toDateWithoutTime }))
+		/// Insert new counter if no counter with given date exists
+		guard let counter = counters.first else {
 			let newCounter = Counter(count: 0,
 									 date: date)
 			modelContext.insert(newCounter)
 			return newCounter
+		}
+		/// Delete duplicate counters while initializing new array without first item in counters array
+		let duplicateCounters = counters.dropFirst()
+		duplicateCounters.forEach { counter in
+			counter.delete()
 		}
 		return counter
 	}

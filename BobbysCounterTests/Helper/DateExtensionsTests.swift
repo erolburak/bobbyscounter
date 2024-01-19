@@ -31,6 +31,24 @@ class DateExtensionsTests: XCTestCase {
 		XCTAssertFalse(isDateToday)
 	}
 
+	func testToDateWithoutTime() {
+		// Given
+		var calendar = Calendar.current
+		calendar.timeZone = .current
+		let date = Date.now
+		// When
+		let dateWithoutTime = date.toDateWithoutTime
+		// Then
+		XCTAssertEqual(0, calendar.component(.hour,
+											 from: dateWithoutTime ?? .now))
+		XCTAssertEqual(0, calendar.component(.minute,
+											 from: dateWithoutTime ?? .now))
+		XCTAssertEqual(0, calendar.component(.second,
+											 from: dateWithoutTime ?? .now))
+		XCTAssertEqual(0, calendar.component(.nanosecond,
+											 from: dateWithoutTime ?? .now))
+	}
+
 	func testToRelativeIsToday() {
 		// Given
 		let date = Date.now

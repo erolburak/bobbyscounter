@@ -26,8 +26,10 @@ struct ChartView: View {
 
 	var body: some View {
 		Chart(counters) { counter in
+			let date = counter.date ?? .now
+
 			LineMark(x: .value("Date",
-							   counter.date,
+							   date,
 							   unit: .day),
 					 y: .value("Count",
 							   counter.count))
@@ -36,15 +38,15 @@ struct ChartView: View {
 								   dash: [2]))
 
 			PointMark(x: .value("Date",
-								counter.date,
+								date,
 								unit: .day),
 					  y: .value("Count",
 								counter.count))
 			.annotation(position: .topLeading,
 						spacing: 4,
-						overflowResolution: .init(x: .fit(to: .chart),
-												  y: .fit(to: .chart))) {
-				if showAnnotation(date: counter.date),
+						overflowResolution: AnnotationOverflowResolution(x: .fit(to: .chart),
+																		 y: .fit(to: .chart))) {
+				if showAnnotation(date: date),
 				   let selectedPointMarkCounter = selectedPointMarkCounter(counters: counters) {
 					VStack {
 						Text(selectedPointMarkCounter.count.description)
@@ -63,7 +65,7 @@ struct ChartView: View {
 									radius: 2)
 					}
 					.overlay(alignment: .topTrailing) {
-						Text(selectedPointMarkCounter.date.toRelative)
+						Text(selectedPointMarkCounter.date?.toRelative ?? "")
 							.font(.system(size: 4))
 							.padding(2)
 					}
@@ -84,9 +86,10 @@ struct ChartView: View {
 		.font(.system(size: 10))
 		.foregroundStyle(.red)
 		.task {
-			let date = selected.date
-			let dateMinusOne = Calendar.current.date(byAdding: DateComponents(day: -1),
-													 to: date) ?? date
+			guard let dateMinusOne = Calendar.current.date(byAdding: DateComponents(day: -1),
+														   to: selected.date) else {
+				return
+			}
 			chartScrollPosition = dateMinusOne
 		}
 		.accessibilityIdentifier("Chart")
@@ -109,8 +112,7 @@ struct ChartView: View {
 	}
 
 	private func selectedPointMarkCounter(counters: [Counter]) -> Counter? {
-		counters.first { Calendar.current.isDate($0.date,
-												 inSameDayAs: selectedPointMarkDate ?? .now) }
+		counters.first { $0.date == selectedPointMarkDate?.toDateWithoutTime }
 	}
 }
 
