@@ -1,5 +1,5 @@
 //
-//  DoubleExtensionsTests.swift
+//  DoubleExtensionTests.swift
 //  BobbysCounterTests
 //
 //  Created by Burak Erol on 16.01.24.
@@ -8,7 +8,7 @@
 @testable import BobbysCounter
 import XCTest
 
-class DoubleExtensionsTests: XCTestCase {
+class DoubleExtensionTests: XCTestCase {
 
 	// MARK: - Actions
 
