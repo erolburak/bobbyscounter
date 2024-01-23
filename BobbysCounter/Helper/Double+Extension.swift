@@ -1,5 +1,5 @@
 //
-//  Double+Extensions.swift
+//  Double+Extension.swift
 //  BobbysCounter
 //
 //  Created by Burak Erol on 16.01.24.
