@@ -122,7 +122,7 @@ struct SettingsView: View {
 		}
 		.presentationDetents([.fraction(counters.isEmpty ? 0.6 : 0.4)])
 		.fontWeight(.bold)
-		.fontDesign(.monospaced)
+		.monospaced()
 		.tint(.red)
 		.sensoryFeedback(sensoryFeedback,
 						 trigger: sensoryFeedbackTrigger) { _, newValue in

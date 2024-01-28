@@ -33,18 +33,15 @@ extension BobbysCounterWidget {
 	// MARK: - Properties
 
 	static var smallNumberEntry: BobbysCounterWidgetEntry {
-		BobbysCounterWidgetEntry(counter: Counter(count: 7,
-												  date: .now))
+		BobbysCounterWidgetEntry(count: 7)
 	}
 
 	static var largeNumberEntry: BobbysCounterWidgetEntry {
-		BobbysCounterWidgetEntry(counter: Counter(count: 7777,
-												  date: .now))
+		BobbysCounterWidgetEntry(count: 7777)
 	}
 
 	static var extraLargeNumberEntry: BobbysCounterWidgetEntry {
-		BobbysCounterWidgetEntry(counter: Counter(count: 7777777777777777777,
-												  date: .now))
+		BobbysCounterWidgetEntry(count: 7777777777777777777)
 	}
 }
 

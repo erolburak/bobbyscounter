@@ -9,32 +9,30 @@ import WidgetKit
 
 struct BobbysCounterWidgetProvider: TimelineProvider {
 
-	// MARK: - Actions
+	// MARK: - Private Properties
 
-	@MainActor
-	func getSnapshot(in context: Context,
-					 completion: @escaping (BobbysCounterWidgetEntry) -> Void) {
-		completion(BobbysCounterWidgetEntry(counter: fetchCounter()))
-	}
-
-	@MainActor
-	func getTimeline(in context: Context,
-					 completion: @escaping (Timeline<BobbysCounterWidgetEntry>) -> Void) {
-		completion(Timeline(entries: [BobbysCounterWidgetEntry(counter: fetchCounter())],
-							policy: .atEnd))
-	}
-
-	@MainActor
-	func placeholder(in context: Context) -> BobbysCounterWidgetEntry {
-		BobbysCounterWidgetEntry(counter: fetchCounter())
-	}
-
-	@MainActor
-	private func fetchCounter() -> Counter? {
+	private var count: Int? {
 		do {
-			return try Counter.fetch(date: .now)
+			return try Counter.fetch(date: .now).count
 		} catch {
 			return nil
 		}
+	}
+
+	// MARK: - Actions
+
+	func getSnapshot(in context: Context,
+					 completion: @escaping (BobbysCounterWidgetEntry) -> Void) {
+		completion(BobbysCounterWidgetEntry(count: count))
+	}
+
+	func getTimeline(in context: Context,
+					 completion: @escaping (Timeline<BobbysCounterWidgetEntry>) -> Void) {
+		completion(Timeline(entries: [BobbysCounterWidgetEntry(count: count)],
+							policy: .atEnd))
+	}
+
+	func placeholder(in context: Context) -> BobbysCounterWidgetEntry {
+		BobbysCounterWidgetEntry(count: count)
 	}
 }
