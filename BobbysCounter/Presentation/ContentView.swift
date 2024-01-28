@@ -27,6 +27,12 @@ struct ContentView: View {
 	private var counter: Counter? {
 		counters.first { $0.date == selected.date }
 	}
+	private var decreaseDisabled: Bool {
+		counter == nil || counter?.count == 0
+	}
+	private var increaseDisabled: Bool {
+		counter == nil
+	}
 
 	// MARK: - Layouts
 
@@ -38,28 +44,34 @@ struct ContentView: View {
 				.lineLimit(1)
 				.opacity(0.25)
 				.padding()
+				.contentTransition(.numericText())
 				.accessibilityIdentifier("CountText")
 
 			HStack {
 				Button {
-					counter?.decrease()
-					sensoryFeedback = .decrease
-					sensoryFeedbackTrigger = true
+					withAnimation {
+						counter?.decrease()
+						sensoryFeedback = .decrease
+						sensoryFeedbackTrigger = true
+					}
 				} label: {
 					Text("Minus")
 						.frame(maxWidth: .infinity)
 				}
-				.disabled(counter?.count == 0)
+				.disabled(decreaseDisabled)
 				.accessibilityIdentifier("MinusButton")
 
 				Button {
-					counter?.increase()
-					sensoryFeedback = .increase
-					sensoryFeedbackTrigger = true
+					withAnimation {
+						counter?.increase()
+						sensoryFeedback = .increase
+						sensoryFeedbackTrigger = true
+					}
 				} label: {
 					Text("Plus")
 						.frame(maxWidth: .infinity)
 				}
+				.disabled(increaseDisabled)
 				.accessibilityIdentifier("PlusButton")
 			}
 			.frame(maxHeight: .infinity)
@@ -84,7 +96,7 @@ struct ContentView: View {
 						 selected: selected)
 		}
 		.fontWeight(.bold)
-		.fontDesign(.monospaced)
+		.monospaced()
 		.tint(.accent)
 		.onChange(of: scenePhase) {
 			switch scenePhase {

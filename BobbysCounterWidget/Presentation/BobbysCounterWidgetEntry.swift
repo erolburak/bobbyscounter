@@ -11,6 +11,12 @@ struct BobbysCounterWidgetEntry: TimelineEntry {
 
 	// MARK: - Properties
 
-	let counter: Counter?
+	let count: Int?
 	let date = Date.now
+	var decreaseDisabled: Bool {
+		count == nil || count == 0
+	}
+	var increaseDisabled: Bool {
+		count == nil
+	}
 }

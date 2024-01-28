@@ -23,6 +23,10 @@
 		BF6D1DA12A6603CA00264753 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6D1DA02A6603CA00264753 /* Errors.swift */; };
 		BF926CCF2B291D2B002B2F06 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF926CCE2B291D2B002B2F06 /* ChartView.swift */; };
 		BF926CD22B291EB6002B2F06 /* CountersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF926CD12B291EB6002B2F06 /* CountersView.swift */; };
+		BF9A262E2B66D94600D29091 /* ErrorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9A262D2B66D94600D29091 /* ErrorsTests.swift */; };
+		BF9A26302B66DC3100D29091 /* AverageViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9A262F2B66DC3100D29091 /* AverageViewTests.swift */; };
+		BF9A26322B66DC4200D29091 /* ChartViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9A26312B66DC4200D29091 /* ChartViewTests.swift */; };
+		BF9A26342B66DC5800D29091 /* CountersViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9A26332B66DC5800D29091 /* CountersViewTests.swift */; };
 		BFA156F62A850D9200DFD37D /* Selected.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA156F52A850D9200DFD37D /* Selected.swift */; };
 		BFB45FDA2B56BE020076BD41 /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB45FD92B56BE020076BD41 /* Double+Extension.swift */; };
 		BFB45FDC2B56BF850076BD41 /* DoubleExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB45FDB2B56BF850076BD41 /* DoubleExtensionTests.swift */; };
@@ -104,6 +108,10 @@
 		BF7C46762A6B04CC00CA47D1 /* BobbysCounter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BobbysCounter.entitlements; sourceTree = "<group>"; };
 		BF926CCE2B291D2B002B2F06 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		BF926CD12B291EB6002B2F06 /* CountersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountersView.swift; sourceTree = "<group>"; };
+		BF9A262D2B66D94600D29091 /* ErrorsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorsTests.swift; sourceTree = "<group>"; };
+		BF9A262F2B66DC3100D29091 /* AverageViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AverageViewTests.swift; sourceTree = "<group>"; };
+		BF9A26312B66DC4200D29091 /* ChartViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewTests.swift; sourceTree = "<group>"; };
+		BF9A26332B66DC5800D29091 /* CountersViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountersViewTests.swift; sourceTree = "<group>"; };
 		BFA156F52A850D9200DFD37D /* Selected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selected.swift; sourceTree = "<group>"; };
 		BFB45FD92B56BE020076BD41 /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
 		BFB45FDB2B56BF850076BD41 /* DoubleExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtensionTests.swift; sourceTree = "<group>"; };
@@ -194,10 +202,10 @@
 		BF2C45362A4B3EB900D48C36 /* BobbysCounter */ = {
 			isa = PBXGroup;
 			children = (
-				BF926C912B28EEAF002B2F06 /* Helper */,
-				BF926C8F2B28EE98002B2F06 /* Model */,
+				BF9A262A2B66D7AD00D29091 /* App */,
+				BF926C8F2B28EE98002B2F06 /* Entity */,
+				BF926C902B28EEA2002B2F06 /* Presentation */,
 				BF071D232A6C09AB001F1258 /* Resource */,
-				BF926C902B28EEA2002B2F06 /* View */,
 			);
 			path = BobbysCounter;
 			sourceTree = "<group>";
@@ -205,8 +213,8 @@
 		BF2C454B2A4B3EBA00D48C36 /* BobbysCounterTests */ = {
 			isa = PBXGroup;
 			children = (
-				BF926CD32B29233A002B2F06 /* Helper */,
-				BF926CD42B292342002B2F06 /* Model */,
+				BF926CD42B292342002B2F06 /* Entity */,
+				BF9A262C2B66D8EC00D29091 /* Presentation */,
 			);
 			path = BobbysCounterTests;
 			sourceTree = "<group>";
@@ -214,75 +222,92 @@
 		BF2C45552A4B3EBA00D48C36 /* BobbysCounterUITests */ = {
 			isa = PBXGroup;
 			children = (
-				BF2C45562A4B3EBA00D48C36 /* BobbysCounterUITests.swift */,
-				BF2C45582A4B3EBA00D48C36 /* BobbysCounterUITestsLaunchTests.swift */,
-				BFDD667F2AA3864400BB49CE /* View */,
+				BF9A26352B66DD6C00D29091 /* App */,
+				BFDD667F2AA3864400BB49CE /* Presentation */,
 			);
 			path = BobbysCounterUITests;
 			sourceTree = "<group>";
 		};
-		BF926C8F2B28EE98002B2F06 /* Model */ = {
+		BF926C8F2B28EE98002B2F06 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
 				BF3D25C12B2A3CE700053A84 /* Alert.swift */,
 				BF2C45392A4B3EB900D48C36 /* Counter.swift */,
-				BF3D25BF2B2A2F3E00053A84 /* Counter+Extension.swift */,
+				BF6D1DA02A6603CA00264753 /* Errors.swift */,
 				BFA156F52A850D9200DFD37D /* Selected.swift */,
 			);
-			path = Model;
+			path = Entity;
 			sourceTree = "<group>";
 		};
-		BF926C902B28EEA2002B2F06 /* View */ = {
+		BF926C902B28EEA2002B2F06 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				BF2C45372A4B3EB900D48C36 /* BobbysCounterApp.swift */,
-				BF2C453B2A4B3EB900D48C36 /* ContentView.swift */,
-				BF926CD02B291D2F002B2F06 /* SettingsView */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		BF926C912B28EEAF002B2F06 /* Helper */ = {
-			isa = PBXGroup;
-			children = (
-				BFE12E832A65D1C9001960F6 /* Date+Extension.swift */,
-				BFB45FD92B56BE020076BD41 /* Double+Extension.swift */,
-				BF6D1DA02A6603CA00264753 /* Errors.swift */,
-			);
-			path = Helper;
-			sourceTree = "<group>";
-		};
-		BF926CD02B291D2F002B2F06 /* SettingsView */ = {
-			isa = PBXGroup;
-			children = (
+				BF9A262B2B66D7D200D29091 /* Extension */,
 				BFED13ED2B55ABD400044E02 /* AverageView.swift */,
 				BF926CCE2B291D2B002B2F06 /* ChartView.swift */,
+				BF2C453B2A4B3EB900D48C36 /* ContentView.swift */,
 				BF926CD12B291EB6002B2F06 /* CountersView.swift */,
 				BFB86DA42A66AD630092EAEC /* SettingsView.swift */,
 			);
-			path = SettingsView;
+			path = Presentation;
 			sourceTree = "<group>";
 		};
-		BF926CD32B29233A002B2F06 /* Helper */ = {
+		BF926CD32B29233A002B2F06 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
 				BFD1B8BF2AA62EFC000ED973 /* DateExtensionTests.swift */,
 				BFB45FDB2B56BF850076BD41 /* DoubleExtensionTests.swift */,
 			);
-			path = Helper;
+			path = Extension;
 			sourceTree = "<group>";
 		};
-		BF926CD42B292342002B2F06 /* Model */ = {
+		BF926CD42B292342002B2F06 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
 				BF3D25C32B2A3FDF00053A84 /* AlertTests.swift */,
 				BFDA4B592AA76D1600E9221F /* CounterTests.swift */,
+				BF9A262D2B66D94600D29091 /* ErrorsTests.swift */,
 				BFDA4B552AA76CC100E9221F /* SelectedTests.swift */,
 			);
-			path = Model;
+			path = Entity;
 			sourceTree = "<group>";
 		};
-		BFB86DAC2A66CC110092EAEC /* View */ = {
+		BF9A262A2B66D7AD00D29091 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				BF2C45372A4B3EB900D48C36 /* BobbysCounterApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		BF9A262B2B66D7D200D29091 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				BF3D25BF2B2A2F3E00053A84 /* Counter+Extension.swift */,
+				BFE12E832A65D1C9001960F6 /* Date+Extension.swift */,
+				BFB45FD92B56BE020076BD41 /* Double+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		BF9A262C2B66D8EC00D29091 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				BF926CD32B29233A002B2F06 /* Extension */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		BF9A26352B66DD6C00D29091 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				BF2C45562A4B3EBA00D48C36 /* BobbysCounterUITests.swift */,
+				BF2C45582A4B3EBA00D48C36 /* BobbysCounterUITestsLaunchTests.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		BFB86DAC2A66CC110092EAEC /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
 				BFF55EBB2A57314E00EE0B3A /* BobbysCounterWidget.swift */,
@@ -291,16 +316,19 @@
 				BFB86DAD2A66E0D90092EAEC /* BobbysCounterWidgetEntryView.swift */,
 				BFB86DB42A66E22A0092EAEC /* BobbysCounterWidgetProvider.swift */,
 			);
-			path = View;
+			path = Presentation;
 			sourceTree = "<group>";
 		};
-		BFDD667F2AA3864400BB49CE /* View */ = {
+		BFDD667F2AA3864400BB49CE /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				BF9A262F2B66DC3100D29091 /* AverageViewTests.swift */,
+				BF9A26312B66DC4200D29091 /* ChartViewTests.swift */,
 				BF5A26272A6E7E1600B47FD4 /* ContentViewTests.swift */,
+				BF9A26332B66DC5800D29091 /* CountersViewTests.swift */,
 				BF5A262A2A6E8D6100B47FD4 /* SettingsViewTests.swift */,
 			);
-			path = View;
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 		BFDF3C802A61A7D2001E4076 /* Intent */ = {
@@ -316,7 +344,7 @@
 			isa = PBXGroup;
 			children = (
 				BFDF3C802A61A7D2001E4076 /* Intent */,
-				BFB86DAC2A66CC110092EAEC /* View */,
+				BFB86DAC2A66CC110092EAEC /* Presentation */,
 			);
 			path = BobbysCounterWidget;
 			sourceTree = "<group>";
@@ -506,6 +534,7 @@
 			files = (
 				BFDA4B5A2AA76D1600E9221F /* CounterTests.swift in Sources */,
 				BFB45FDC2B56BF850076BD41 /* DoubleExtensionTests.swift in Sources */,
+				BF9A262E2B66D94600D29091 /* ErrorsTests.swift in Sources */,
 				BFD1B8C02AA62EFC000ED973 /* DateExtensionTests.swift in Sources */,
 				BF3D25C42B2A3FDF00053A84 /* AlertTests.swift in Sources */,
 				BFDA4B562AA76CC100E9221F /* SelectedTests.swift in Sources */,
@@ -519,7 +548,10 @@
 				BF5A26282A6E7E1600B47FD4 /* ContentViewTests.swift in Sources */,
 				BF5A262B2A6E8D6100B47FD4 /* SettingsViewTests.swift in Sources */,
 				BF2C45592A4B3EBA00D48C36 /* BobbysCounterUITestsLaunchTests.swift in Sources */,
+				BF9A26302B66DC3100D29091 /* AverageViewTests.swift in Sources */,
+				BF9A26342B66DC5800D29091 /* CountersViewTests.swift in Sources */,
 				BF2C45572A4B3EBA00D48C36 /* BobbysCounterUITests.swift in Sources */,
+				BF9A26322B66DC4200D29091 /* ChartViewTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
