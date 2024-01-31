@@ -118,7 +118,7 @@ struct CountersView: View {
 
 	private func DeleteButton(counter: Counter,
 							  isContextMenu: Bool) -> some View {
-		Button(role: .destructive) {
+		Button {
 			counterDelete = counter
 			showDeleteConfirmationDialog = true
 		} label: {
