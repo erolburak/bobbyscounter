@@ -31,7 +31,6 @@
       }
     },
     {
-      "enabled" : false,
       "target" : {
         "containerPath" : "container:BobbysCounter.xcodeproj",
         "identifier" : "BF2C45512A4B3EBA00D48C36",
