@@ -78,6 +78,24 @@ struct CountersView: View {
 						Label("Reset",
 							  systemImage: "trash.circle.fill")
 					}
+					.confirmationDialog("ResetConfirmationDialog",
+										isPresented: $showResetConfirmationDialog,
+										titleVisibility: .visible) {
+						Button("Reset",
+							   role: .destructive) {
+							counters.forEach { counter in
+								if counter.date?.isDateToday == true {
+									counter.reset()
+								} else {
+									counter.delete()
+								}
+							}
+							selected.average = 7
+							selected.date = .now.toDateWithoutTime ?? .now
+							dismiss()
+						}
+						.accessibilityIdentifier("ResetConfirmationDialogButton")
+					}
 					.accessibilityIdentifier("ResetButton")
 				}
 
@@ -89,60 +107,6 @@ struct CountersView: View {
 					}
 					.accessibilityIdentifier("CloseCountersButton")
 				}
-			}
-			.confirmationDialog("DeleteConfirmationDialog",
-								isPresented: $showDeleteConfirmationDialog,
-								titleVisibility: .visible) {
-				Button("Delete",
-					   role: .destructive) {
-					if let counterDelete {
-						if counterDelete.date?.isDateToday == true {
-							counterDelete.reset()
-							self.counterDelete = nil
-							sensoryFeedback = .success
-							sensoryFeedbackTrigger = true
-						} else {
-							counterDelete.delete()
-							if counterDelete == counter {
-								do {
-									try Counter.fetch(date: .now)
-									selected.date = .now.toDateWithoutTime ?? .now
-									sensoryFeedback = .success
-									sensoryFeedbackTrigger = true
-									dismiss()
-								} catch {
-									alert.error = .fetch
-									alert.show = true
-									sensoryFeedback = .error
-									sensoryFeedbackTrigger = true
-								}
-							} else {
-								sensoryFeedback = .success
-								sensoryFeedbackTrigger = true
-							}
-							self.counterDelete = nil
-						}
-					}
-				}
-				.accessibilityIdentifier("DeleteConfirmationDialogButton")
-			}
-			.confirmationDialog("ResetConfirmationDialog",
-								isPresented: $showResetConfirmationDialog,
-								titleVisibility: .visible) {
-				Button("Reset",
-					   role: .destructive) {
-					counters.forEach { counter in
-						if counter.date?.isDateToday == true {
-							counter.reset()
-						} else {
-							counter.delete()
-						}
-					}
-					selected.average = 7
-					selected.date = .now.toDateWithoutTime ?? .now
-					dismiss()
-				}
-				.accessibilityIdentifier("ResetConfirmationDialogButton")
 			}
 			.sensoryFeedback(sensoryFeedback,
 							 trigger: sensoryFeedbackTrigger) { _, newValue in
@@ -197,6 +161,42 @@ struct CountersView: View {
 					  allowsFullSwipe: true) {
 			DeleteButton(counter: counter,
 						 isContextMenu: false)
+		}
+		.confirmationDialog("DeleteConfirmationDialog",
+							isPresented: $showDeleteConfirmationDialog,
+							titleVisibility: .visible) {
+			Button("Delete",
+				   role: .destructive) {
+				if let counterDelete {
+					if counterDelete.date?.isDateToday == true {
+						counterDelete.reset()
+						self.counterDelete = nil
+						sensoryFeedback = .success
+						sensoryFeedbackTrigger = true
+					} else {
+						counterDelete.delete()
+						if counterDelete == counter {
+							do {
+								try Counter.fetch(date: .now)
+								selected.date = .now.toDateWithoutTime ?? .now
+								sensoryFeedback = .success
+								sensoryFeedbackTrigger = true
+								dismiss()
+							} catch {
+								alert.error = .fetch
+								alert.show = true
+								sensoryFeedback = .error
+								sensoryFeedbackTrigger = true
+							}
+						} else {
+							sensoryFeedback = .success
+							sensoryFeedbackTrigger = true
+						}
+						self.counterDelete = nil
+					}
+				}
+			}
+			.accessibilityIdentifier("DeleteConfirmationDialogButton")
 		}
 	}
 }
