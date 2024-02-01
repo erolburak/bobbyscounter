@@ -17,6 +17,7 @@ struct AverageView: View {
 
 	// MARK: - Private Properties
 
+	@Environment(Sensory.self) private var sensory
 	@Query(sort: \Counter.date,
 		   order: .reverse) private var counters: [Counter]
 	private let averages = [7, 30, 90]
@@ -82,6 +83,9 @@ struct AverageView: View {
 					.accessibilityIdentifier("CloseAverageButton")
 				}
 			}
+			.onChange(of: selected.average) {
+				sensory.trigger(.selection)
+			}
 		}
 		.presentationDetents([.fraction(counters.isEmpty ? 0.6 : 0.4)])
 	}
@@ -90,6 +94,7 @@ struct AverageView: View {
 #Preview {
 	AverageView(selected: Selected(),
 				showAverageSheet: .constant(true))
+		.environment(Sensory())
 		.modelContainer(for: Counter.self,
 						inMemory: true)
 }
