@@ -36,6 +36,8 @@
 		BFB86DAF2A66E0D90092EAEC /* BobbysCounterWidgetEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB86DAD2A66E0D90092EAEC /* BobbysCounterWidgetEntryView.swift */; };
 		BFB86DB22A66E1690092EAEC /* BobbysCounterWidgetEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB86DB02A66E1690092EAEC /* BobbysCounterWidgetEntry.swift */; };
 		BFB86DB62A66E22A0092EAEC /* BobbysCounterWidgetProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB86DB42A66E22A0092EAEC /* BobbysCounterWidgetProvider.swift */; };
+		BFBD1C8C2B6C06E9008B9265 /* Sensory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBD1C8B2B6C06E9008B9265 /* Sensory.swift */; };
+		BFBD1C8E2B6C13B2008B9265 /* SensoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBD1C8D2B6C13B2008B9265 /* SensoryTests.swift */; };
 		BFD1B8C02AA62EFC000ED973 /* DateExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD1B8BF2AA62EFC000ED973 /* DateExtensionTests.swift */; };
 		BFDA4B562AA76CC100E9221F /* SelectedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDA4B552AA76CC100E9221F /* SelectedTests.swift */; };
 		BFDA4B5A2AA76D1600E9221F /* CounterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDA4B592AA76D1600E9221F /* CounterTests.swift */; };
@@ -120,6 +122,8 @@
 		BFB86DAD2A66E0D90092EAEC /* BobbysCounterWidgetEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BobbysCounterWidgetEntryView.swift; sourceTree = "<group>"; };
 		BFB86DB02A66E1690092EAEC /* BobbysCounterWidgetEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BobbysCounterWidgetEntry.swift; sourceTree = "<group>"; };
 		BFB86DB42A66E22A0092EAEC /* BobbysCounterWidgetProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BobbysCounterWidgetProvider.swift; sourceTree = "<group>"; };
+		BFBD1C8B2B6C06E9008B9265 /* Sensory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensory.swift; sourceTree = "<group>"; };
+		BFBD1C8D2B6C13B2008B9265 /* SensoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensoryTests.swift; sourceTree = "<group>"; };
 		BFD1B8BF2AA62EFC000ED973 /* DateExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensionTests.swift; sourceTree = "<group>"; };
 		BFDA4B552AA76CC100E9221F /* SelectedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedTests.swift; sourceTree = "<group>"; };
 		BFDA4B592AA76D1600E9221F /* CounterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterTests.swift; sourceTree = "<group>"; };
@@ -235,6 +239,7 @@
 				BF2C45392A4B3EB900D48C36 /* Counter.swift */,
 				BF6D1DA02A6603CA00264753 /* Errors.swift */,
 				BFA156F52A850D9200DFD37D /* Selected.swift */,
+				BFBD1C8B2B6C06E9008B9265 /* Sensory.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -268,6 +273,7 @@
 				BFDA4B592AA76D1600E9221F /* CounterTests.swift */,
 				BF9A262D2B66D94600D29091 /* ErrorsTests.swift */,
 				BFDA4B552AA76CC100E9221F /* SelectedTests.swift */,
+				BFBD1C8D2B6C13B2008B9265 /* SensoryTests.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -524,6 +530,7 @@
 				BF3D25C02B2A2F3E00053A84 /* Counter+Extension.swift in Sources */,
 				BF2C45382A4B3EB900D48C36 /* BobbysCounterApp.swift in Sources */,
 				BF2C453C2A4B3EB900D48C36 /* ContentView.swift in Sources */,
+				BFBD1C8C2B6C06E9008B9265 /* Sensory.swift in Sources */,
 				BF926CCF2B291D2B002B2F06 /* ChartView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -537,6 +544,7 @@
 				BF9A262E2B66D94600D29091 /* ErrorsTests.swift in Sources */,
 				BFD1B8C02AA62EFC000ED973 /* DateExtensionTests.swift in Sources */,
 				BF3D25C42B2A3FDF00053A84 /* AlertTests.swift in Sources */,
+				BFBD1C8E2B6C13B2008B9265 /* SensoryTests.swift in Sources */,
 				BFDA4B562AA76CC100E9221F /* SelectedTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

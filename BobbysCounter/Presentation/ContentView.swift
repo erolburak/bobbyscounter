@@ -11,18 +11,14 @@ import WidgetKit
 
 struct ContentView: View {
 
-	// MARK: - Properties
-
-	@Bindable var alert: Alert
-
 	// MARK: - Private Properties
 
 	@Environment(\.scenePhase) private var scenePhase
+	@Environment(Alert.self) private var alert
+	@Environment(Sensory.self) private var sensory
 	@Query(sort: \Counter.date,
 		   order: .reverse) private var counters: [Counter]
 	@State private var selected = Selected()
-	@State private var sensoryFeedback: SensoryFeedback = .increase
-	@State private var sensoryFeedbackTrigger = false
 	@State private var showSettingsSheet = false
 	private var counter: Counter? {
 		counters.first { $0.date == selected.date }
@@ -51,8 +47,7 @@ struct ContentView: View {
 				Button {
 					withAnimation {
 						counter?.decrease()
-						sensoryFeedback = .decrease
-						sensoryFeedbackTrigger = true
+						sensory.trigger(.decrease)
 					}
 				} label: {
 					Text("Minus")
@@ -64,8 +59,7 @@ struct ContentView: View {
 				Button {
 					withAnimation {
 						counter?.increase()
-						sensoryFeedback = .increase
-						sensoryFeedbackTrigger = true
+						sensory.trigger(.increase)
 					}
 				} label: {
 					Text("Plus")
@@ -92,8 +86,7 @@ struct ContentView: View {
 			.accessibilityIdentifier("SettingsButton")
 		}
 		.sheet(isPresented: $showSettingsSheet) {
-			SettingsView(alert: alert,
-						 selected: selected)
+			SettingsView(selected: selected)
 		}
 		.fontWeight(.bold)
 		.monospaced()
@@ -106,24 +99,20 @@ struct ContentView: View {
 				} catch {
 					alert.error = .fetch
 					alert.show = true
-					sensoryFeedback = .error
-					sensoryFeedbackTrigger = true
+					sensory.trigger(.error)
 				}
 			case .background:
 				WidgetCenter.shared.reloadAllTimelines()
 			default: break
 			}
 		}
-		.sensoryFeedback(sensoryFeedback,
-						 trigger: sensoryFeedbackTrigger) { _, newValue in
-			sensoryFeedbackTrigger = false
-			return newValue == true
-		}
 	}
 }
 
 #Preview {
-	ContentView(alert: Alert())
+	ContentView()
+		.environment(Alert())
+		.environment(Sensory())
 		.modelContainer(for: Counter.self,
 						inMemory: true)
 }

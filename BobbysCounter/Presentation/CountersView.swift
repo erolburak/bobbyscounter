@@ -12,18 +12,17 @@ struct CountersView: View {
 
 	// MARK: - Properties
 
-	@Bindable var alert: Alert
 	@Bindable var selected: Selected
 	@Binding var showCountersSheet: Bool
 	var dismiss: () -> Void
 
 	// MARK: - Private Properties
 
+	@Environment(Alert.self) private var alert
+	@Environment(Sensory.self) private var sensory
 	@Query(sort: \Counter.date,
 		   order: .reverse) private var counters: [Counter]
 	@State private var counterDelete: Counter?
-	@State private var sensoryFeedback: SensoryFeedback = .success
-	@State private var sensoryFeedbackTrigger = false
 	@State private var showDeleteConfirmationDialog = false
 	@State private var showResetConfirmationDialog = false
 	private var counter: Counter? {
@@ -108,11 +107,6 @@ struct CountersView: View {
 					.accessibilityIdentifier("CloseCountersButton")
 				}
 			}
-			.sensoryFeedback(sensoryFeedback,
-							 trigger: sensoryFeedbackTrigger) { _, newValue in
-				sensoryFeedbackTrigger = false
-				return newValue == true
-			}
 		}
 	}
 
@@ -171,26 +165,22 @@ struct CountersView: View {
 					if counterDelete.date?.isDateToday == true {
 						counterDelete.reset()
 						self.counterDelete = nil
-						sensoryFeedback = .success
-						sensoryFeedbackTrigger = true
+						sensory.trigger(.success)
 					} else {
 						counterDelete.delete()
 						if counterDelete == counter {
 							do {
 								try Counter.fetch(date: .now)
 								selected.date = .now.toDateWithoutTime ?? .now
-								sensoryFeedback = .success
-								sensoryFeedbackTrigger = true
+								sensory.trigger(.success)
 								dismiss()
 							} catch {
 								alert.error = .fetch
 								alert.show = true
-								sensoryFeedback = .error
-								sensoryFeedbackTrigger = true
+								sensory.trigger(.error)
 							}
 						} else {
-							sensoryFeedback = .success
-							sensoryFeedbackTrigger = true
+							sensory.trigger(.success)
 						}
 						self.counterDelete = nil
 					}
@@ -202,10 +192,11 @@ struct CountersView: View {
 }
 
 #Preview {
-	CountersView(alert: Alert(),
-				 selected: Selected(),
+	CountersView(selected: Selected(),
 				 showCountersSheet: .constant(true),
 				 dismiss: {})
+		.environment(Alert())
+		.environment(Sensory())
 		.modelContainer(for: Counter.self,
 						inMemory: true)
 }

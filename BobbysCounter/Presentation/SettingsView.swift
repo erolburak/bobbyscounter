@@ -12,16 +12,15 @@ struct SettingsView: View {
 
 	// MARK: - Properties
 
-	@Bindable var alert: Alert
 	@Bindable var selected: Selected
 
 	// MARK: - Private Properties
 
 	@Environment(\.dismiss) private var dismiss
+	@Environment(Alert.self) private var alert
+	@Environment(Sensory.self) private var sensory
 	@Query(sort: \Counter.date,
 		   order: .reverse) private var counters: [Counter]
-	@State private var sensoryFeedback: SensoryFeedback = .success
-	@State private var sensoryFeedbackTrigger = false
 	@State private var showAverageSheet = false
 	@State private var showCountersSheet = false
 
@@ -97,26 +96,22 @@ struct SettingsView: View {
 							showAverageSheet: $showAverageSheet)
 			}
 			.sheet(isPresented: $showCountersSheet) {
-				CountersView(alert: alert,
-							 selected: selected,
+				CountersView(selected: selected,
 							 showCountersSheet: $showCountersSheet,
 							 dismiss: {
-					sensoryFeedback = .selection
-					sensoryFeedbackTrigger = true
+					sensory.trigger(.selection)
 					dismiss()
 				})
 			}
 			.onChange(of: selected.date) { _, newValue in
 				do {
 					try Counter.fetch(date: newValue)
-					sensoryFeedback = .selection
-					sensoryFeedbackTrigger = true
+					sensory.trigger(.selection)
 					dismiss()
 				} catch {
 					alert.error = .fetch
 					alert.show = true
-					sensoryFeedback = .error
-					sensoryFeedbackTrigger = true
+					sensory.trigger(.error)
 				}
 			}
 		}
@@ -124,11 +119,6 @@ struct SettingsView: View {
 		.fontWeight(.bold)
 		.monospaced()
 		.tint(.red)
-		.sensoryFeedback(sensoryFeedback,
-						 trigger: sensoryFeedbackTrigger) { _, newValue in
-			sensoryFeedbackTrigger = false
-			return newValue == true
-		}
 	}
 }
 
@@ -136,8 +126,9 @@ struct SettingsView: View {
 	Color
 		.clear
 		.sheet(isPresented: .constant(true)) {
-			SettingsView(alert: Alert(),
-						 selected: Selected())
+			SettingsView(selected: Selected())
+				.environment(Alert())
+				.environment(Sensory())
 				.modelContainer(for: Counter.self,
 								inMemory: true)
 	}
