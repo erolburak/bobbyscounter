@@ -99,19 +99,19 @@ struct SettingsView: View {
 				CountersView(selected: selected,
 							 showCountersSheet: $showCountersSheet,
 							 dismiss: {
-					sensory.trigger(.selection)
+					sensory.feedbackTrigger(feedback: .selection)
 					dismiss()
 				})
 			}
 			.onChange(of: selected.date) { _, newValue in
 				do {
 					try Counter.fetch(date: newValue)
-					sensory.trigger(.selection)
+					sensory.feedbackTrigger(feedback: .selection)
 					dismiss()
 				} catch {
 					alert.error = .fetch
 					alert.show = true
-					sensory.trigger(.error)
+					sensory.feedbackTrigger(feedback: .error)
 				}
 			}
 		}

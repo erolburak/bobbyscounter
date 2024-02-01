@@ -21,13 +21,13 @@ class SensoryTests: XCTestCase {
 		XCTAssertNotNil(sensory)
 	}
 
-	func testTrigger() {
+	func testFeedbackTrigger() {
 		// Given
 		let sensory = Sensory()
 		// When
-		sensory.trigger(.success)
+		sensory.feedbackTrigger(feedback: .success)
 		// Then
 		XCTAssertEqual(sensory.feedback, .success)
-		XCTAssertTrue(sensory.feedbackTrigger)
+		XCTAssertTrue(sensory.feedbackBool)
 	}
 }
