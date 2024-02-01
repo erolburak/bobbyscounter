@@ -47,7 +47,7 @@ struct ContentView: View {
 				Button {
 					withAnimation {
 						counter?.decrease()
-						sensory.trigger(.decrease)
+						sensory.feedbackTrigger(feedback: .decrease)
 					}
 				} label: {
 					Text("Minus")
@@ -59,7 +59,7 @@ struct ContentView: View {
 				Button {
 					withAnimation {
 						counter?.increase()
-						sensory.trigger(.increase)
+						sensory.feedbackTrigger(feedback: .increase)
 					}
 				} label: {
 					Text("Plus")
@@ -99,7 +99,7 @@ struct ContentView: View {
 				} catch {
 					alert.error = .fetch
 					alert.show = true
-					sensory.trigger(.error)
+					sensory.feedbackTrigger(feedback: .error)
 				}
 			case .background:
 				WidgetCenter.shared.reloadAllTimelines()

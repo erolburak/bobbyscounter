@@ -165,22 +165,22 @@ struct CountersView: View {
 					if counterDelete.date?.isDateToday == true {
 						counterDelete.reset()
 						self.counterDelete = nil
-						sensory.trigger(.success)
+						sensory.feedbackTrigger(feedback: .success)
 					} else {
 						counterDelete.delete()
 						if counterDelete == counter {
 							do {
 								try Counter.fetch(date: .now)
 								selected.date = .now.toDateWithoutTime ?? .now
-								sensory.trigger(.success)
+								sensory.feedbackTrigger(feedback: .success)
 								dismiss()
 							} catch {
 								alert.error = .fetch
 								alert.show = true
-								sensory.trigger(.error)
+								sensory.feedbackTrigger(feedback: .error)
 							}
 						} else {
-							sensory.trigger(.success)
+							sensory.feedbackTrigger(feedback: .success)
 						}
 						self.counterDelete = nil
 					}

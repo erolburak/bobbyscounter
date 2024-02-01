@@ -84,7 +84,7 @@ struct AverageView: View {
 				}
 			}
 			.onChange(of: selected.average) {
-				sensory.trigger(.selection)
+				sensory.feedbackTrigger(feedback: .selection)
 			}
 		}
 		.presentationDetents([.fraction(counters.isEmpty ? 0.6 : 0.4)])

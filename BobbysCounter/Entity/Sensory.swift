@@ -13,12 +13,12 @@ class Sensory {
 	// MARK: - Properties
 
 	var feedback: SensoryFeedback?
-	var feedbackTrigger = false
+	var feedbackBool = false
 
 	// MARK: - Properties
 
-	func trigger(_ feedback: SensoryFeedback) {
+	func feedbackTrigger(feedback: SensoryFeedback) {
 		self.feedback = feedback
-		feedbackTrigger.toggle()
+		feedbackBool.toggle()
 	}
 }
