@@ -29,7 +29,7 @@ struct BobbysCounterApp: App {
 						Text(message)
 					}
 				}
-				.sensoryFeedback(trigger: sensory.feedbackTrigger) { _, _ in
+				.sensoryFeedback(trigger: sensory.feedbackBool) { _, _ in
 					sensory.feedback
 				}
 		}
