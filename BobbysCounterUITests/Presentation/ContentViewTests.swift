@@ -17,6 +17,7 @@ final class ContentViewTests: XCTestCase {
 
 	/// Test decrease counter count value if `MinusButton` is enabled
 	/// Check `CountText` for updated value otherwise check if `CountText` is 0
+	@MainActor
 	func testDecreaseCountText() {
 		let app = XCUIApplication()
 		app.launch()
@@ -40,6 +41,7 @@ final class ContentViewTests: XCTestCase {
 
 	/// Test increase counter count value
 	/// Check `CountText` for updated value
+	@MainActor
 	func testIncreaseCountText() {
 		let app = XCUIApplication()
 		app.launch()
@@ -59,6 +61,7 @@ final class ContentViewTests: XCTestCase {
 	}
 
 	/// Test if `DateText` is set to today after launch
+	@MainActor
 	func testDateText() {
 		let app = XCUIApplication()
 		app.launch()
@@ -68,6 +71,7 @@ final class ContentViewTests: XCTestCase {
 	}
 
 	/// Test if `SettingsButton` exists and is enabled
+	@MainActor
 	func testSettingsButton() {
 		let app = XCUIApplication()
 		app.launch()

@@ -17,6 +17,7 @@ final class ChartViewTests: XCTestCase {
 
 	/// Test if `Chart` exists while first increasing counter count value for current day
 	/// Then increasing counter count value for first day of previous month and then opening settings view
+	@MainActor
 	func testChart() {
 		let app = XCUIApplication()
 		app.launch()

@@ -16,6 +16,7 @@ final class AverageViewTests: XCTestCase {
 	}
 
 	/// Test close average view while first opening settings and then average view
+	@MainActor
 	func testCloseAverageButton() {
 		let app = XCUIApplication()
 		app.launch()
@@ -31,6 +32,7 @@ final class AverageViewTests: XCTestCase {
 	}
 
 	/// Test set selected average to 30 while first opening settings view and then average view
+	@MainActor
 	func testSelectAverageButton() {
 		let app = XCUIApplication()
 		app.launch()

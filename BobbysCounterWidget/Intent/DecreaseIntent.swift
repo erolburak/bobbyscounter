@@ -11,7 +11,7 @@ struct DecreaseIntent: AppIntent {
 
 	// MARK: - Properties
 
-	static var title: LocalizedStringResource = "Decrease"
+	static let title: LocalizedStringResource = "Decrease"
 
 	// MARK: - Actions
 
