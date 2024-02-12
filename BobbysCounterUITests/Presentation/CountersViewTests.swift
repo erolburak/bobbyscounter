@@ -16,6 +16,7 @@ final class CountersViewTests: XCTestCase {
 	}
 
 	/// Test delete and confirm delete while first opening settings and then counters view
+	@MainActor
 	func testDeleteButton() {
 		let app = XCUIApplication()
 		app.launch()
@@ -36,6 +37,7 @@ final class CountersViewTests: XCTestCase {
 	}
 
 	/// Test final delete confirmation while first opening settings and then counters view
+	@MainActor
 	func testDeleteConfirmationButton() {
 		let app = XCUIApplication()
 		app.launch()
@@ -57,6 +59,7 @@ final class CountersViewTests: XCTestCase {
 	}
 
 	/// Test reset and confirm reset while first opening settings and then counters view
+	@MainActor
 	func testResetButton() {
 		let app = XCUIApplication()
 		app.launch()
@@ -74,6 +77,7 @@ final class CountersViewTests: XCTestCase {
 	}
 
 	/// Test final reset confirmation while first opening settings and then counters view
+	@MainActor
 	func testResetConfirmationButton() {
 		let app = XCUIApplication()
 		app.launch()
@@ -96,6 +100,7 @@ final class CountersViewTests: XCTestCase {
 	}
 
 	/// Test close counters view while first opening settings and then counters view
+	@MainActor
 	func testCloseCountersButton() {
 		let app = XCUIApplication()
 		app.launch()

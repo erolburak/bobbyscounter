@@ -16,6 +16,7 @@ final class SettingsViewTests: XCTestCase {
 	}
 
 	/// Test close settings view while first opening settings view
+	@MainActor
 	func testCloseSettingsButton() {
 		let app = XCUIApplication()
 		app.launch()
@@ -29,6 +30,7 @@ final class SettingsViewTests: XCTestCase {
 
 	/// Test set selected date to today while first opening settings view
 	/// Then select first day of previous month and then select today
+	@MainActor
 	func testTodayButton() {
 		let app = XCUIApplication()
 		app.launch()

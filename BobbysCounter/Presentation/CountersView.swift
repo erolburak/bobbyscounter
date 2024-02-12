@@ -14,7 +14,7 @@ struct CountersView: View {
 
 	@Bindable var selected: Selected
 	@Binding var showCountersSheet: Bool
-	var dismiss: () -> Void
+	let dismiss: () -> Void
 
 	// MARK: - Private Properties
 
