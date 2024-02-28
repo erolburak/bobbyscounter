@@ -10,11 +10,6 @@ import SwiftUI
 
 struct AverageView: View {
 
-	// MARK: - Properties
-
-	@Bindable var selected: Selected
-	@Binding var showAverageSheet: Bool
-
 	// MARK: - Private Properties
 
 	@Environment(Sensory.self) private var sensory
@@ -29,6 +24,11 @@ struct AverageView: View {
 		}
 		return (value / Double(counters.count)).toString
 	}
+
+	// MARK: - Properties
+
+	@Bindable var selected: Selected
+	@Binding var showAverageSheet: Bool
 
 	// MARK: - Layouts
 
@@ -94,6 +94,7 @@ struct AverageView: View {
 #Preview {
 	AverageView(selected: Selected(),
 				showAverageSheet: .constant(true))
-		.environment(Sensory())
-		.modelContainer(inMemory: true)
+	.environment(Sensory())
+	.modelContainer(for: [Counter.self],
+					inMemory: true)
 }

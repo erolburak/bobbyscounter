@@ -32,7 +32,7 @@ struct BobbysCounterApp: App {
 				.sensoryFeedback(trigger: sensory.feedbackBool) { _, _ in
 					sensory.feedback
 				}
-				.modelContainer()
+				.modelContainer(CounterActor.shared.modelContainer)
 		}
 	}
 }

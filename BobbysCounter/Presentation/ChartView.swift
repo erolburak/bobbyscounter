@@ -11,16 +11,16 @@ import SwiftUI
 
 struct ChartView: View {
 
-	// MARK: - Properties
-
-	@Bindable var selected: Selected
-
 	// MARK: - Private Properties
 
 	@Query(sort: \Counter.date,
 		   order: .reverse) private var counters: [Counter]
 	@State private var chartScrollPosition = Date.now
 	@State private var selectedPointMarkDate: Date?
+
+	// MARK: - Properties
+
+	@Bindable var selected: Selected
 
 	// MARK: - Layouts
 
@@ -118,5 +118,6 @@ struct ChartView: View {
 
 #Preview {
 	ChartView(selected: Selected())
-		.modelContainer(inMemory: true)
+		.modelContainer(for: [Counter.self],
+						inMemory: true)
 }
