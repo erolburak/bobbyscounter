@@ -13,6 +13,7 @@ struct ContentView: View {
 
 	// MARK: - Private Properties
 
+	@Environment(\.modelContext) private var modelContext
 	@Environment(\.scenePhase) private var scenePhase
 	@Environment(Alert.self) private var alert
 	@Environment(Sensory.self) private var sensory
@@ -20,70 +21,77 @@ struct ContentView: View {
 		   order: .reverse) private var counters: [Counter]
 	@State private var selected = Selected()
 	@State private var showSettingsSheet = false
-	private var counter: Counter? {
-		counters.first { $0.date == selected.date }
+	private var count: Int? {
+		selected.counter?.count
 	}
 	private var decreaseDisabled: Bool {
-		counter == nil || counter?.count == 0
+		count == nil || count == 0
 	}
-	private var increaseDisabled: Bool {
-		counter == nil
+	private var isCountNil: Bool {
+		count == nil
 	}
 
 	// MARK: - Layouts
 
 	var body: some View {
 		ZStack {
-			Text(counter?.count.description ?? "0")
-				.font(.system(size: 1000))
-				.minimumScaleFactor(0.001)
-				.lineLimit(1)
-				.opacity(0.25)
-				.padding()
-				.contentTransition(.numericText())
-				.accessibilityIdentifier("CountText")
+			if isCountNil {
+				Text("EmptyCount")
+			} else if let count {
+				Text(count.description)
+					.font(.system(size: 1000))
+					.minimumScaleFactor(0.001)
+					.lineLimit(1)
+					.opacity(0.25)
+					.padding()
+					.contentTransition(.numericText())
+					.accessibilityIdentifier("CountText")
 
-			HStack {
-				Button {
-					withAnimation {
-						counter?.decrease()
-						sensory.feedbackTrigger(feedback: .decrease)
+				HStack {
+					Button {
+						withAnimation {
+							selected.counter?.decrease()
+							sensory.feedbackTrigger(feedback: .decrease)
+						}
+					} label: {
+						Text("Minus")
+							.frame(maxWidth: .infinity)
 					}
-				} label: {
-					Text("Minus")
-						.frame(maxWidth: .infinity)
-				}
-				.disabled(decreaseDisabled)
-				.accessibilityIdentifier("MinusButton")
+					.disabled(decreaseDisabled)
+					.accessibilityIdentifier("MinusButton")
 
-				Button {
-					withAnimation {
-						counter?.increase()
-						sensory.feedbackTrigger(feedback: .increase)
+					Button {
+						withAnimation {
+							selected.counter?.increase()
+							sensory.feedbackTrigger(feedback: .increase)
+						}
+					} label: {
+						Text("Plus")
+							.frame(maxWidth: .infinity)
 					}
-				} label: {
-					Text("Plus")
-						.frame(maxWidth: .infinity)
+					.accessibilityIdentifier("PlusButton")
 				}
-				.disabled(increaseDisabled)
-				.accessibilityIdentifier("PlusButton")
+				.frame(maxHeight: .infinity)
+				.font(.system(size: 140.0))
 			}
-			.frame(maxHeight: .infinity)
-			.font(.system(size: 140.0))
 		}
 		.ignoresSafeArea(.all)
 		.overlay(alignment: .topTrailing) {
-			Text(counter?.date?.toRelative ?? "")
-				.font(.system(size: 8))
-				.padding(.trailing)
-				.accessibilityIdentifier("DateText")
+			if !isCountNil {
+				Text(selected.counter?.date?.toRelative ?? "")
+					.font(.system(size: 8))
+					.padding(.trailing)
+					.accessibilityIdentifier("DateText")
+			}
 		}
 		.overlay(alignment: .bottom) {
-			Button("Settings") {
-				showSettingsSheet = true
+			if !isCountNil {
+				Button("Settings") {
+					showSettingsSheet = true
+				}
+				.padding(.bottom)
+				.accessibilityIdentifier("SettingsButton")
 			}
-			.padding(.bottom)
-			.accessibilityIdentifier("SettingsButton")
 		}
 		.sheet(isPresented: $showSettingsSheet) {
 			SettingsView(selected: selected)
@@ -91,19 +99,25 @@ struct ContentView: View {
 		.fontWeight(.bold)
 		.monospaced()
 		.tint(.accent)
+		.onAppear {
+			CounterActor.createSharedInstance(modelContext: modelContext)
+		}
 		.onChange(of: scenePhase) {
 			switch scenePhase {
 			case .active:
-				do {
-					try Counter.fetch(date: selected.date)
-				} catch {
-					alert.error = .fetch
-					alert.show = true
-					sensory.feedbackTrigger(feedback: .error)
+				Task {
+					do {
+						selected.counter = try await CounterActor.shared.fetch(date: selected.date)
+					} catch {
+						alert.error = .fetch
+						alert.show = true
+						sensory.feedbackTrigger(feedback: .error)
+					}
 				}
 			case .background:
 				WidgetCenter.shared.reloadAllTimelines()
-			default: break
+			default:
+				break
 			}
 		}
 	}
@@ -113,6 +127,5 @@ struct ContentView: View {
 	ContentView()
 		.environment(Alert())
 		.environment(Sensory())
-		.modelContainer(for: Counter.self,
-						inMemory: true)
+		.modelContainer(inMemory: true)
 }

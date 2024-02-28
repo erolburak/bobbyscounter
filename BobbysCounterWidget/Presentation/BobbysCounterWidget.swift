@@ -22,26 +22,10 @@ struct BobbysCounterWidget: Widget {
 			BobbysCounterWidgetEntryView(entry: entry)
 				.containerBackground(.widgetBackground,
 									 for: .widget)
+				.modelContainer()
 		}
 		.configurationDisplayName("WidgetConfigurationDisplayName")
 		.description("WidgetDescription")
-	}
-}
-
-extension BobbysCounterWidget {
-
-	// MARK: - Properties
-
-	static var smallNumberEntry: BobbysCounterWidgetEntry {
-		BobbysCounterWidgetEntry(count: 7)
-	}
-
-	static var largeNumberEntry: BobbysCounterWidgetEntry {
-		BobbysCounterWidgetEntry(count: 7777)
-	}
-
-	static var extraLargeNumberEntry: BobbysCounterWidgetEntry {
-		BobbysCounterWidgetEntry(count: 7777777777777777777)
 	}
 }
 
@@ -49,34 +33,26 @@ extension BobbysCounterWidget {
 		 as: .systemSmall) {
 	BobbysCounterWidget()
 } timeline: {
-	BobbysCounterWidget.smallNumberEntry
-	BobbysCounterWidget.largeNumberEntry
-	BobbysCounterWidget.extraLargeNumberEntry
+	BobbysCounterWidgetEntry()
 }
 
 #Preview("System Medium",
 		 as: .systemMedium) {
 	BobbysCounterWidget()
 } timeline: {
-	BobbysCounterWidget.smallNumberEntry
-	BobbysCounterWidget.largeNumberEntry
-	BobbysCounterWidget.extraLargeNumberEntry
+	BobbysCounterWidgetEntry()
 }
 
 #Preview("System Large",
 		 as: .systemLarge) {
 	BobbysCounterWidget()
 } timeline: {
-	BobbysCounterWidget.smallNumberEntry
-	BobbysCounterWidget.largeNumberEntry
-	BobbysCounterWidget.extraLargeNumberEntry
+	BobbysCounterWidgetEntry()
 }
 
 #Preview("System Extra Large",
 		 as: .systemExtraLarge) {
 	BobbysCounterWidget()
 } timeline: {
-	BobbysCounterWidget.smallNumberEntry
-	BobbysCounterWidget.largeNumberEntry
-	BobbysCounterWidget.extraLargeNumberEntry
+	BobbysCounterWidgetEntry()
 }

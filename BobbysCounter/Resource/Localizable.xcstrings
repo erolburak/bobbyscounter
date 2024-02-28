@@ -161,6 +161,22 @@
         }
       }
     },
+    "EmptyCount" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kein Zähler"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No count"
+          }
+        }
+      }
+    },
     "EmptyCounters" : {
       "localizations" : {
         "de" : {
