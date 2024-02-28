@@ -5,49 +5,73 @@
 //  Created by Burak Erol on 18.07.23.
 //
 
+import SwiftData
 import SwiftUI
 
 struct BobbysCounterWidgetEntryView: View {
 
+	// MARK: - Private Properties
+
+	@Environment(\.modelContext) private var modelContext
+	@Query(sort: \Counter.date,
+		   order: .reverse) private var counters: [Counter]
+	private var count: Int? {
+		counters.first { $0.date == .now.toDateWithoutTime }?.count
+	}
+	private var decreaseDisabled: Bool {
+		count == nil || count == 0
+	}
+	private var isCountNil: Bool {
+		count == nil
+	}
+
 	// MARK: - Properties
 
-	var entry: BobbysCounterWidgetProvider.Entry
+	let entry: BobbysCounterWidgetProvider.Entry
 
 	// MARK: - Layouts
 
 	var body: some View {
 		ZStack {
-			Text(entry.count?.description ?? "0")
-				.font(.system(size: 100))
-				.minimumScaleFactor(0.01)
-				.lineLimit(1)
-				.opacity(0.25)
-				.padding()
-				.contentTransition(.numericText())
+			if isCountNil {
+				Text("EmptyCount")
+			} else if let count {
+				Text(count.description)
+					.font(.system(size: 100))
+					.minimumScaleFactor(0.01)
+					.lineLimit(1)
+					.opacity(0.25)
+					.padding()
+					.contentTransition(.numericText())
 
-			HStack {
-				Button(intent: DecreaseIntent()) {
-					Text("Minus")
-						.frame(maxWidth: .infinity)
-				}
-				.disabled(entry.decreaseDisabled)
+				HStack {
+					Button(intent: DecreaseIntent()) {
+						Text("Minus")
+							.frame(maxWidth: .infinity)
+					}
+					.disabled(decreaseDisabled)
 
-				Button(intent: IncreaseIntent()) {
-					Text("Plus")
-						.frame(maxWidth: .infinity)
+					Button(intent: IncreaseIntent()) {
+						Text("Plus")
+							.frame(maxWidth: .infinity)
+					}
 				}
-				.disabled(entry.increaseDisabled)
+				.font(.system(size: 70))
+				.buttonStyle(.plain)
 			}
-			.font(.system(size: 70))
-			.buttonStyle(.plain)
 		}
 		.ignoresSafeArea(.all)
 		.overlay(alignment: .topTrailing) {
-			Text(entry.date.toRelative)
-				.font(.system(size: 8))
+			if !isCountNil {
+				Text(entry.date.toRelative)
+					.font(.system(size: 8))
+			}
 		}
 		.fontWeight(.bold)
 		.monospaced()
 		.tint(.accent)
+		.onAppear {
+			CounterActor.createSharedInstance(modelContext: modelContext)
+		}
 	}
 }

@@ -99,19 +99,20 @@ struct SettingsView: View {
 				CountersView(selected: selected,
 							 showCountersSheet: $showCountersSheet,
 							 dismiss: {
-					sensory.feedbackTrigger(feedback: .selection)
 					dismiss()
 				})
 			}
 			.onChange(of: selected.date) { _, newValue in
-				do {
-					try Counter.fetch(date: newValue)
-					sensory.feedbackTrigger(feedback: .selection)
-					dismiss()
-				} catch {
-					alert.error = .fetch
-					alert.show = true
-					sensory.feedbackTrigger(feedback: .error)
+				Task {
+					do {
+						selected.counter = try await CounterActor.shared.fetch(date: newValue)
+						sensory.feedbackTrigger(feedback: .selection)
+						dismiss()
+					} catch {
+						alert.error = .fetch
+						alert.show = true
+						sensory.feedbackTrigger(feedback: .error)
+					}
 				}
 			}
 		}
@@ -129,7 +130,6 @@ struct SettingsView: View {
 			SettingsView(selected: Selected())
 				.environment(Alert())
 				.environment(Sensory())
-				.modelContainer(for: Counter.self,
-								inMemory: true)
+				.modelContainer(inMemory: true)
 	}
 }

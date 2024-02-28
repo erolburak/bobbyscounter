@@ -25,9 +25,6 @@ struct CountersView: View {
 	@State private var counterDelete: Counter?
 	@State private var showDeleteConfirmationDialog = false
 	@State private var showResetConfirmationDialog = false
-	private var counter: Counter? {
-		counters.first { $0.date == selected.date }
-	}
 	private var filteredCounters: [Counter] {
 		counters.filter { $0.date != selected.date }
 	}
@@ -39,7 +36,7 @@ struct CountersView: View {
 			Group {
 				if !counters.isEmpty {
 					List {
-						if let counter {
+						if let counter = selected.counter {
 							Section {
 								ListItem(counter: counter)
 							} header: {
@@ -82,16 +79,20 @@ struct CountersView: View {
 										titleVisibility: .visible) {
 						Button("Reset",
 							   role: .destructive) {
-							counters.forEach { counter in
-								if counter.date?.isDateToday == true {
-									counter.reset()
-								} else {
-									counter.delete()
+							Task {
+								await CounterActor.shared.delete(counters: counters)
+								do {
+									selected.average = 7
+									selected.counter = try await CounterActor.shared.fetch(date: .now)
+									selected.date = .now.toDateWithoutTime ?? .now
+									sensory.feedbackTrigger(feedback: .success)
+									dismiss()
+								} catch {
+									alert.error = .fetch
+									alert.show = true
+									sensory.feedbackTrigger(feedback: .error)
 								}
 							}
-							selected.average = 7
-							selected.date = .now.toDateWithoutTime ?? .now
-							dismiss()
 						}
 						.accessibilityIdentifier("ResetConfirmationDialogButton")
 					}
@@ -131,7 +132,8 @@ struct CountersView: View {
 			guard let date = counter.date else {
 				return
 			}
-			if counter == self.counter {
+			if counter == selected.counter {
+				sensory.feedbackTrigger(feedback: .selection)
 				dismiss()
 			} else {
 				selected.date = date
@@ -161,28 +163,24 @@ struct CountersView: View {
 							titleVisibility: .visible) {
 			Button("Delete",
 				   role: .destructive) {
-				if let counterDelete {
-					if counterDelete.date?.isDateToday == true {
-						counterDelete.reset()
-						self.counterDelete = nil
-						sensory.feedbackTrigger(feedback: .success)
-					} else {
-						counterDelete.delete()
-						if counterDelete == counter {
-							do {
-								try Counter.fetch(date: .now)
-								selected.date = .now.toDateWithoutTime ?? .now
-								sensory.feedbackTrigger(feedback: .success)
-								dismiss()
-							} catch {
-								alert.error = .fetch
-								alert.show = true
-								sensory.feedbackTrigger(feedback: .error)
-							}
-						} else {
+				Task {
+					guard let counterDelete else {
+						return
+					}
+					await CounterActor.shared.delete(counters: [counterDelete])
+					if counterDelete == selected.counter {
+						do {
+							selected.counter = try await CounterActor.shared.fetch(date: .now)
+							selected.date = .now.toDateWithoutTime ?? .now
 							sensory.feedbackTrigger(feedback: .success)
+							dismiss()
+						} catch {
+							alert.error = .fetch
+							alert.show = true
+							sensory.feedbackTrigger(feedback: .error)
 						}
-						self.counterDelete = nil
+					} else {
+						sensory.feedbackTrigger(feedback: .success)
 					}
 				}
 			}
@@ -197,6 +195,5 @@ struct CountersView: View {
 				 dismiss: {})
 		.environment(Alert())
 		.environment(Sensory())
-		.modelContainer(for: Counter.self,
-						inMemory: true)
+		.modelContainer(inMemory: true)
 }

@@ -95,6 +95,5 @@ struct AverageView: View {
 	AverageView(selected: Selected(),
 				showAverageSheet: .constant(true))
 		.environment(Sensory())
-		.modelContainer(for: Counter.self,
-						inMemory: true)
+		.modelContainer(inMemory: true)
 }

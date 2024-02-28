@@ -118,6 +118,5 @@ struct ChartView: View {
 
 #Preview {
 	ChartView(selected: Selected())
-		.modelContainer(for: Counter.self,
-						inMemory: true)
+		.modelContainer(inMemory: true)
 }

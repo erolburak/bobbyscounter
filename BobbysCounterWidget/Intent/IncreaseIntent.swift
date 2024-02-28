@@ -16,8 +16,8 @@ struct IncreaseIntent: AppIntent {
 	// MARK: - Actions
 
 	@MainActor
-	func perform() throws -> some IntentResult {
-		try Counter.fetch(date: .now).increase()
+	func perform() async throws -> some IntentResult {
+		try await CounterActor.shared.fetch(date: .now).increase()
 		return .result()
 	}
 }

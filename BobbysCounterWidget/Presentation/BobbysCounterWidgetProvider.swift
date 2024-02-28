@@ -9,30 +9,20 @@ import WidgetKit
 
 struct BobbysCounterWidgetProvider: TimelineProvider {
 
-	// MARK: - Private Properties
-
-	private var count: Int? {
-		do {
-			return try Counter.fetch(date: .now).count
-		} catch {
-			return nil
-		}
-	}
-
 	// MARK: - Actions
 
 	func getSnapshot(in context: Context,
 					 completion: @escaping (BobbysCounterWidgetEntry) -> Void) {
-		completion(BobbysCounterWidgetEntry(count: count))
+		completion(BobbysCounterWidgetEntry())
 	}
 
 	func getTimeline(in context: Context,
 					 completion: @escaping (Timeline<BobbysCounterWidgetEntry>) -> Void) {
-		completion(Timeline(entries: [BobbysCounterWidgetEntry(count: count)],
+		completion(Timeline(entries: [BobbysCounterWidgetEntry()],
 							policy: .atEnd))
 	}
 
 	func placeholder(in context: Context) -> BobbysCounterWidgetEntry {
-		BobbysCounterWidgetEntry(count: count)
+		BobbysCounterWidgetEntry()
 	}
 }

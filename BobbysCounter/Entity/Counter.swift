@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-final class Counter {
+final class Counter: Sendable {
 
 	// MARK: - Properties
 
@@ -34,9 +34,5 @@ final class Counter {
 
 	func increase() {
 		count += 1
-	}
-
-	func reset() {
-		count = 0
 	}
 }
