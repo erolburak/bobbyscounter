@@ -13,13 +13,21 @@ actor CounterActor {
 
 	// MARK: - Properties
 
-	nonisolated(unsafe) static var shared: CounterActor!
+	static let shared = {
+		do {
+			/// Disable cloud kit database if test scheme is running
+			let isTestScheme = ProcessInfo().environment["XCTestConfigurationFilePath"] != nil
+			let modelConfiguration = ModelConfiguration(isStoredInMemoryOnly: false,
+														cloudKitDatabase: isTestScheme ? .none : .automatic)
+			let modelContainer = try ModelContainer(for: Schema([Counter.self]),
+													configurations: modelConfiguration)
+			return CounterActor(modelContainer: modelContainer)
+		} catch {
+			fatalError("Could not create model container: \(error)")
+		}
+	}()
 
 	// MARK: - Actions
-
-	static func createSharedInstance(modelContext: ModelContext) {
-		shared = CounterActor(modelContainer: modelContext.container)
-	}
 
 	func delete(counters: [Counter]) {
 		counters.forEach { counter in

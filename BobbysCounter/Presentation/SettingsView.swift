@@ -10,10 +10,6 @@ import SwiftUI
 
 struct SettingsView: View {
 
-	// MARK: - Properties
-
-	@Bindable var selected: Selected
-
 	// MARK: - Private Properties
 
 	@Environment(\.dismiss) private var dismiss
@@ -23,6 +19,10 @@ struct SettingsView: View {
 		   order: .reverse) private var counters: [Counter]
 	@State private var showAverageSheet = false
 	@State private var showCountersSheet = false
+
+	// MARK: - Properties
+
+	@Bindable var selected: Selected
 
 	// MARK: - Layouts
 
@@ -130,6 +130,7 @@ struct SettingsView: View {
 			SettingsView(selected: Selected())
 				.environment(Alert())
 				.environment(Sensory())
-				.modelContainer(inMemory: true)
+				.modelContainer(for: [Counter.self],
+								inMemory: true)
 	}
 }

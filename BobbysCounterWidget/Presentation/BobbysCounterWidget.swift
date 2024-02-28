@@ -22,7 +22,7 @@ struct BobbysCounterWidget: Widget {
 			BobbysCounterWidgetEntryView(entry: entry)
 				.containerBackground(.widgetBackground,
 									 for: .widget)
-				.modelContainer()
+				.modelContainer(CounterActor.shared.modelContainer)
 		}
 		.configurationDisplayName("WidgetConfigurationDisplayName")
 		.description("WidgetDescription")

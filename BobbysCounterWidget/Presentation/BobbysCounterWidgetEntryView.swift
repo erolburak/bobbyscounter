@@ -70,8 +70,5 @@ struct BobbysCounterWidgetEntryView: View {
 		.fontWeight(.bold)
 		.monospaced()
 		.tint(.accent)
-		.onAppear {
-			CounterActor.createSharedInstance(modelContext: modelContext)
-		}
 	}
 }

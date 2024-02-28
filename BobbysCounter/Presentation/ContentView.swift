@@ -99,9 +99,6 @@ struct ContentView: View {
 		.fontWeight(.bold)
 		.monospaced()
 		.tint(.accent)
-		.onAppear {
-			CounterActor.createSharedInstance(modelContext: modelContext)
-		}
 		.onChange(of: scenePhase) {
 			switch scenePhase {
 			case .active:
@@ -127,5 +124,6 @@ struct ContentView: View {
 	ContentView()
 		.environment(Alert())
 		.environment(Sensory())
-		.modelContainer(inMemory: true)
+		.modelContainer(for: [Counter.self],
+						inMemory: true)
 }

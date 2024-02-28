@@ -10,24 +10,22 @@ import SwiftUI
 
 struct CountersView: View {
 
-	// MARK: - Properties
-
-	@Bindable var selected: Selected
-	@Binding var showCountersSheet: Bool
-	let dismiss: () -> Void
-
 	// MARK: - Private Properties
 
 	@Environment(Alert.self) private var alert
 	@Environment(Sensory.self) private var sensory
 	@Query(sort: \Counter.date,
 		   order: .reverse) private var counters: [Counter]
-	@State private var counterDelete: Counter?
-	@State private var showDeleteConfirmationDialog = false
 	@State private var showResetConfirmationDialog = false
 	private var filteredCounters: [Counter] {
 		counters.filter { $0.date != selected.date }
 	}
+
+	// MARK: - Properties
+
+	@Bindable var selected: Selected
+	@Binding var showCountersSheet: Bool
+	let dismiss: () -> Void
 
 	// MARK: - Layouts
 
@@ -38,7 +36,9 @@ struct CountersView: View {
 					List {
 						if let counter = selected.counter {
 							Section {
-								ListItem(counter: counter)
+								ListItem(selected: selected,
+										 counter: counter,
+										 dismiss: dismiss)
 							} header: {
 								Text("SelectedCounter")
 							}
@@ -47,7 +47,9 @@ struct CountersView: View {
 						if !filteredCounters.isEmpty {
 							Section {
 								ForEach(filteredCounters) { counter in
-									ListItem(counter: counter)
+									ListItem(selected: selected,
+											 counter: counter,
+											 dismiss: dismiss)
 								}
 							} header: {
 								Text("Counters")
@@ -110,24 +112,36 @@ struct CountersView: View {
 			}
 		}
 	}
+}
 
-	private func DeleteButton(counter: Counter,
-							  isContextMenu: Bool) -> some View {
-		Button {
-			counterDelete = counter
-			showDeleteConfirmationDialog = true
-		} label: {
-			if isContextMenu {
-				Label("Delete",
-					  systemImage: "trash.circle.fill")
-			} else {
-				Image(systemName: "trash")
-			}
-		}
-		.accessibilityIdentifier("DeleteButton")
-	}
+#Preview {
+	CountersView(selected: Selected(),
+				 showCountersSheet: .constant(true),
+				 dismiss: {})
+	.environment(Alert())
+	.environment(Sensory())
+	.modelContainer(for: [Counter.self],
+					inMemory: true)
+}
 
-	private func ListItem(counter: Counter) -> some View {
+private struct ListItem: View {
+
+	// MARK: - Private Properties
+
+	@Environment(Alert.self) private var alert
+	@Environment(Sensory.self) private var sensory
+	@State private var counterDelete: Counter?
+	@State private var showDeleteConfirmationDialog = false
+
+	// MARK: - Properties
+
+	@Bindable var selected: Selected
+	let counter: Counter
+	let dismiss: () -> Void
+
+	// MARK: - Layouts
+
+	var body: some View {
 		Button {
 			guard let date = counter.date else {
 				return
@@ -163,10 +177,10 @@ struct CountersView: View {
 							titleVisibility: .visible) {
 			Button("Delete",
 				   role: .destructive) {
+				guard let counterDelete else {
+					return
+				}
 				Task {
-					guard let counterDelete else {
-						return
-					}
 					await CounterActor.shared.delete(counters: [counterDelete])
 					if counterDelete == selected.counter {
 						do {
@@ -187,13 +201,31 @@ struct CountersView: View {
 			.accessibilityIdentifier("DeleteConfirmationDialogButton")
 		}
 	}
+
+	private func DeleteButton(counter: Counter,
+							  isContextMenu: Bool) -> some View {
+		Button {
+			counterDelete = counter
+			showDeleteConfirmationDialog = true
+		} label: {
+			if isContextMenu {
+				Label("Delete",
+					  systemImage: "trash.circle.fill")
+			} else {
+				Image(systemName: "trash")
+			}
+		}
+		.accessibilityIdentifier("DeleteButton")
+	}
 }
 
 #Preview {
-	CountersView(selected: Selected(),
-				 showCountersSheet: .constant(true),
-				 dismiss: {})
-		.environment(Alert())
-		.environment(Sensory())
-		.modelContainer(inMemory: true)
+	ListItem(selected: Selected(),
+			 counter: Counter(count: 0,
+							  date: .now),
+			 dismiss: {})
+	.environment(Alert())
+	.environment(Sensory())
+	.modelContainer(for: [Counter.self],
+					inMemory: true)
 }
