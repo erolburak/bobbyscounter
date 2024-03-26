@@ -40,13 +40,9 @@ struct SettingsView: View {
 				if !counters.isEmpty {
 					ChartView(selected: selected)
 				} else {
-					ContentUnavailableView {
-						Label("EmptyCharts",
-							  systemImage: "chart.xyaxis.line")
-					} description: {
-						Text("EmptyCountersMessage")
-							.accessibilityIdentifier("EmptyCountersMessage")
-					}
+					ContentUnavailableView("EmptyCharts",
+										   systemImage: "chart.xyaxis.line",
+										   description: Text("EmptyCountersMessage"))
 				}
 
 				Spacer()
@@ -55,30 +51,25 @@ struct SettingsView: View {
 			.navigationBarTitleDisplayMode(.inline)
 			.toolbar {
 				ToolbarItem(placement: .topBarTrailing) {
-					Button {
+					Button("Average",
+						   systemImage: "divide.circle.fill") {
 						showAverageSheet = true
-					} label: {
-						Label("Average",
-							  systemImage: "divide.circle.fill")
 					}
 					.accessibilityIdentifier("AverageButton")
 				}
 
 				ToolbarItem(placement: .primaryAction) {
-					Button {
+					Button("Counters",
+						   systemImage: "list.bullet.circle.fill") {
 						showCountersSheet = true
-					} label: {
-						Label("Counters",
-							  systemImage: "list.bullet.circle.fill")
 					}
 					.accessibilityIdentifier("CountersButton")
 				}
 
 				ToolbarItem(placement: .cancellationAction) {
-					Button {
+					Button("Close",
+						   systemImage: "xmark.circle.fill") {
 						dismiss()
-					} label: {
-						Image(systemName: "xmark.circle.fill")
 					}
 					.accessibilityIdentifier("CloseSettingsButton")
 				}
