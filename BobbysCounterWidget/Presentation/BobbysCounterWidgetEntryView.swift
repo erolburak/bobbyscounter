@@ -45,16 +45,14 @@ struct BobbysCounterWidgetEntryView: View {
 					.contentTransition(.numericText())
 
 				HStack {
-					Button(intent: DecreaseIntent()) {
-						Text("Minus")
-							.frame(maxWidth: .infinity)
-					}
+					Button("Minus",
+						   intent: DecreaseIntent())
+					.frame(maxWidth: .infinity)
 					.disabled(decreaseDisabled)
 
-					Button(intent: IncreaseIntent()) {
-						Text("Plus")
-							.frame(maxWidth: .infinity)
-					}
+					Button("Plus",
+						   intent: IncreaseIntent())
+					.frame(maxWidth: .infinity)
 				}
 				.font(.system(size: 70))
 				.buttonStyle(.plain)

@@ -61,12 +61,9 @@ struct AverageView: View {
 						.padding(.horizontal)
 						.accessibilityIdentifier("AverageMessage")
 				} else {
-					ContentUnavailableView {
-						Label("EmptyAverage",
-							  systemImage: "divide.circle.fill")
-					} description: {
-						Text("EmptyCountersMessage")
-					}
+					ContentUnavailableView("EmptyAverage",
+										   systemImage: "divide.circle.fill",
+										   description: Text("EmptyCountersMessage"))
 				}
 
 				Spacer()
@@ -75,10 +72,9 @@ struct AverageView: View {
 			.navigationBarTitleDisplayMode(.inline)
 			.toolbar {
 				ToolbarItem(placement: .cancellationAction) {
-					Button {
+					Button("Close",
+						   systemImage: "xmark.circle.fill") {
 						showAverageSheet = false
-					} label: {
-						Image(systemName: "xmark.circle.fill")
 					}
 					.accessibilityIdentifier("CloseAverageButton")
 				}

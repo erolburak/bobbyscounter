@@ -58,12 +58,9 @@ struct CountersView: View {
 					}
 					.listStyle(.insetGrouped)
 				} else {
-					ContentUnavailableView {
-						Label("EmptyCounters",
-							  systemImage: "list.bullet.circle.fill")
-					} description: {
-						Text("EmptyCountersMessage")
-					}
+					ContentUnavailableView("EmptyCounters",
+										   systemImage: "list.bullet.circle.fill",
+										   description: Text("EmptyCountersMessage"))
 				}
 			}
 			.navigationTitle("Counters")
@@ -102,10 +99,9 @@ struct CountersView: View {
 				}
 
 				ToolbarItem(placement: .cancellationAction) {
-					Button {
+					Button("Close",
+						   systemImage: "xmark.circle.fill") {
 						showCountersSheet = false
-					} label: {
-						Image(systemName: "xmark.circle.fill")
 					}
 					.accessibilityIdentifier("CloseCountersButton")
 				}
@@ -204,16 +200,10 @@ private struct ListItem: View {
 
 	private func DeleteButton(counter: Counter,
 							  isContextMenu: Bool) -> some View {
-		Button {
+		Button("Delete",
+			   systemImage: isContextMenu ? "trash.circle.fill" : "trash") {
 			counterDelete = counter
 			showDeleteConfirmationDialog = true
-		} label: {
-			if isContextMenu {
-				Label("Delete",
-					  systemImage: "trash.circle.fill")
-			} else {
-				Image(systemName: "trash")
-			}
 		}
 		.accessibilityIdentifier("DeleteButton")
 	}

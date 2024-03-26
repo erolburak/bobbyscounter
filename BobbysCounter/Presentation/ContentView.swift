@@ -48,27 +48,25 @@ struct ContentView: View {
 					.accessibilityIdentifier("CountText")
 
 				HStack {
-					Button {
+					Button("Minus") {
 						withAnimation {
 							selected.counter?.decrease()
 							sensory.feedbackTrigger(feedback: .decrease)
 						}
-					} label: {
-						Text("Minus")
-							.frame(maxWidth: .infinity)
 					}
+					.frame(maxWidth: .infinity)
+					.buttonRepeatBehavior(.enabled)
 					.disabled(decreaseDisabled)
 					.accessibilityIdentifier("MinusButton")
 
-					Button {
+					Button("Plus") {
 						withAnimation {
 							selected.counter?.increase()
 							sensory.feedbackTrigger(feedback: .increase)
 						}
-					} label: {
-						Text("Plus")
-							.frame(maxWidth: .infinity)
 					}
+					.frame(maxWidth: .infinity)
+					.buttonRepeatBehavior(.enabled)
 					.accessibilityIdentifier("PlusButton")
 				}
 				.frame(maxHeight: .infinity)
