@@ -123,6 +123,7 @@
 		BFB86DB42A66E22A0092EAEC /* BobbysCounterWidgetProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BobbysCounterWidgetProvider.swift; sourceTree = "<group>"; };
 		BFBD1C8B2B6C06E9008B9265 /* Sensory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensory.swift; sourceTree = "<group>"; };
 		BFBD1C8D2B6C13B2008B9265 /* SensoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensoryTests.swift; sourceTree = "<group>"; };
+		BFC3369E2BF563D70008FC76 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		BFC6D33E2B8F910800097608 /* CounterActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterActor.swift; sourceTree = "<group>"; };
 		BFD1B8BF2AA62EFC000ED973 /* DateExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensionTests.swift; sourceTree = "<group>"; };
 		BFDA4B552AA76CC100E9221F /* SelectedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedTests.swift; sourceTree = "<group>"; };
@@ -177,6 +178,7 @@
 				BF03C1C72B1F813400752391 /* BobbysCounter.xctestplan */,
 				BFF55EBF2A57315100EE0B3A /* Info.plist */,
 				BFB702AB2A605631001AADE9 /* Localizable.xcstrings */,
+				BFC3369E2BF563D70008FC76 /* PrivacyInfo.xcprivacy */,
 			);
 			path = Resource;
 			sourceTree = "<group>";

@@ -9,14 +9,19 @@ import Foundation
 
 extension Double {
 
+	// MARK: - Private Properties
+
+	private static let numberFormatter = {
+		let numberFormatter = NumberFormatter()
+		numberFormatter.minimumFractionDigits = 0
+		numberFormatter.maximumFractionDigits = 2
+		return numberFormatter
+	}()
+
 	// MARK: - Properties
 
 	/// Formats double to string without trailing zeros and maximum 2 fraction digits
 	var toString: String {
-		let formatter = NumberFormatter()
-		let number = NSNumber(value: self)
-		formatter.minimumFractionDigits = 0
-		formatter.maximumFractionDigits = 2
-		return String(formatter.string(from: number) ?? "")
+		String(Double.numberFormatter.string(from: NSNumber(value: self)) ?? "")
 	}
 }
