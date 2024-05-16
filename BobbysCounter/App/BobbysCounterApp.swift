@@ -34,7 +34,6 @@ struct BobbysCounterApp: App {
 				}
 				.task {
 					if ProcessInfo().environment["XCTestConfigurationFilePath"] == nil {
-						try? Tips.resetDatastore()
 						try? Tips.configure([.displayFrequency(.immediate),
 											 .datastoreLocation(.groupContainer(identifier: "com.burakerol.BobbysCounter"))])
 					}
