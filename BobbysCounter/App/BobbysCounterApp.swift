@@ -5,7 +5,7 @@
 //  Created by Burak Erol on 27.06.23.
 //
 
-import SwiftUI
+import TipKit
 
 @main
 struct BobbysCounterApp: App {
@@ -31,6 +31,13 @@ struct BobbysCounterApp: App {
 				}
 				.sensoryFeedback(trigger: sensory.feedbackBool) { _, _ in
 					sensory.feedback
+				}
+				.task {
+					if ProcessInfo().environment["XCTestConfigurationFilePath"] == nil {
+						try? Tips.resetDatastore()
+						try? Tips.configure([.displayFrequency(.immediate),
+											 .datastoreLocation(.groupContainer(identifier: "com.burakerol.BobbysCounter"))])
+					}
 				}
 				.modelContainer(CounterActor.shared.modelContainer)
 		}

@@ -18,6 +18,7 @@ The **BobbysCounter** app is my own project, which can increase and deacrease a 
 - SwiftData
 - Charts
 - WidgetKit
+- TipKit
 - CloudKit Database
 
 ## SCREENSHOTS
