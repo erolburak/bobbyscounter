@@ -33,10 +33,12 @@ struct BobbysCounterApp: App {
 					sensory.feedback
 				}
 				.task {
-					if ProcessInfo().environment["XCTestConfigurationFilePath"] == nil {
-						try? Tips.configure([.displayFrequency(.immediate),
-											 .datastoreLocation(.groupContainer(identifier: "com.burakerol.BobbysCounter"))])
-					}
+#if DEBUG
+					return
+#else
+					try? Tips.configure([.displayFrequency(.immediate),
+										 .datastoreLocation(.groupContainer(identifier: "com.burakerol.BobbysCounter"))])
+#endif
 				}
 				.modelContainer(CounterActor.shared.modelContainer)
 		}

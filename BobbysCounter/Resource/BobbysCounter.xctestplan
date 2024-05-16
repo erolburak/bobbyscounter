@@ -9,7 +9,6 @@
     }
   ],
   "defaultOptions" : {
-    "codeCoverage" : false,
     "language" : "en-GB",
     "locationScenario" : {
       "identifier" : "London, England",

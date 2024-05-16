@@ -15,10 +15,14 @@ actor CounterActor {
 
 	static let shared = {
 		do {
-			/// Disable cloud kit database if test scheme is running
-			let isTestScheme = ProcessInfo().environment["XCTestConfigurationFilePath"] != nil
+			var cloudKitDatabase: ModelConfiguration.CloudKitDatabase
+#if DEBUG
+			cloudKitDatabase = .none
+#else
+			cloudKitDatabase = .automatic
+#endif
 			let modelConfiguration = ModelConfiguration(isStoredInMemoryOnly: false,
-														cloudKitDatabase: isTestScheme ? .none : .automatic)
+														cloudKitDatabase: cloudKitDatabase)
 			let modelContainer = try ModelContainer(for: Schema([Counter.self]),
 													configurations: modelConfiguration)
 			return CounterActor(modelContainer: modelContainer)
