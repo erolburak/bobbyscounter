@@ -19,6 +19,8 @@
 		BF5A262B2A6E8D6100B47FD4 /* SettingsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5A262A2A6E8D6100B47FD4 /* SettingsViewTests.swift */; };
 		BF69168A2AA3500600ED7075 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE12E832A65D1C9001960F6 /* Date+Extension.swift */; };
 		BF6D1DA12A6603CA00264753 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6D1DA02A6603CA00264753 /* Errors.swift */; };
+		BF79EFF72BF643BE0084F027 /* SettingsTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF79EFF62BF643BE0084F027 /* SettingsTip.swift */; };
+		BF79EFF92BF665230084F027 /* SettingsTipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF79EFF82BF665230084F027 /* SettingsTipTests.swift */; };
 		BF926CCF2B291D2B002B2F06 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF926CCE2B291D2B002B2F06 /* ChartView.swift */; };
 		BF926CD22B291EB6002B2F06 /* CountersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF926CD12B291EB6002B2F06 /* CountersView.swift */; };
 		BF9A262E2B66D94600D29091 /* ErrorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9A262D2B66D94600D29091 /* ErrorsTests.swift */; };
@@ -106,6 +108,8 @@
 		BF5A26272A6E7E1600B47FD4 /* ContentViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewTests.swift; sourceTree = "<group>"; };
 		BF5A262A2A6E8D6100B47FD4 /* SettingsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewTests.swift; sourceTree = "<group>"; };
 		BF6D1DA02A6603CA00264753 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		BF79EFF62BF643BE0084F027 /* SettingsTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTip.swift; sourceTree = "<group>"; };
+		BF79EFF82BF665230084F027 /* SettingsTipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTipTests.swift; sourceTree = "<group>"; };
 		BF7C46762A6B04CC00CA47D1 /* BobbysCounter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BobbysCounter.entitlements; sourceTree = "<group>"; };
 		BF926CCE2B291D2B002B2F06 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		BF926CD12B291EB6002B2F06 /* CountersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountersView.swift; sourceTree = "<group>"; };
@@ -243,6 +247,7 @@
 				BF6D1DA02A6603CA00264753 /* Errors.swift */,
 				BFA156F52A850D9200DFD37D /* Selected.swift */,
 				BFBD1C8B2B6C06E9008B9265 /* Sensory.swift */,
+				BF79EFF62BF643BE0084F027 /* SettingsTip.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -277,6 +282,7 @@
 				BF9A262D2B66D94600D29091 /* ErrorsTests.swift */,
 				BFDA4B552AA76CC100E9221F /* SelectedTests.swift */,
 				BFBD1C8D2B6C13B2008B9265 /* SensoryTests.swift */,
+				BF79EFF82BF665230084F027 /* SettingsTipTests.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -531,6 +537,7 @@
 				BFED13EE2B55ABD400044E02 /* AverageView.swift in Sources */,
 				BF2C453A2A4B3EB900D48C36 /* Counter.swift in Sources */,
 				BF2C45382A4B3EB900D48C36 /* BobbysCounterApp.swift in Sources */,
+				BF79EFF72BF643BE0084F027 /* SettingsTip.swift in Sources */,
 				BF2C453C2A4B3EB900D48C36 /* ContentView.swift in Sources */,
 				BFBD1C8C2B6C06E9008B9265 /* Sensory.swift in Sources */,
 				BF926CCF2B291D2B002B2F06 /* ChartView.swift in Sources */,
@@ -543,6 +550,7 @@
 			files = (
 				BFDA4B5A2AA76D1600E9221F /* CounterTests.swift in Sources */,
 				BFB45FDC2B56BF850076BD41 /* DoubleExtensionTests.swift in Sources */,
+				BF79EFF92BF665230084F027 /* SettingsTipTests.swift in Sources */,
 				BF9A262E2B66D94600D29091 /* ErrorsTests.swift in Sources */,
 				BFD1B8C02AA62EFC000ED973 /* DateExtensionTests.swift in Sources */,
 				BF3D25C42B2A3FDF00053A84 /* AlertTests.swift in Sources */,

@@ -420,6 +420,22 @@
         }
       }
     },
+    "SettingsTipMessage" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zähler werden hier in einem Diagramm visualisiert. Darüber hinaus können der Durchschnitt der letzten Einträge und eine Übersicht aller Zähler abgerufen und bearbeitet werden."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Counters are visualized here in a chart. In addition, the average of the last entries and an overview of all counters can be called up and edited."
+          }
+        }
+      }
+    },
     "Today" : {
       "localizations" : {
         "de" : {

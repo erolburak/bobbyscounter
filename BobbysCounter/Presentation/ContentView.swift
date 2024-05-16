@@ -30,6 +30,7 @@ struct ContentView: View {
 	private var isCountNil: Bool {
 		count == nil
 	}
+	private let settingsTip = SettingsTip()
 
 	// MARK: - Layouts
 
@@ -86,8 +87,11 @@ struct ContentView: View {
 			if !isCountNil {
 				Button("Settings") {
 					showSettingsSheet = true
+					settingsTip.invalidate(reason: .actionPerformed)
 				}
 				.padding(.bottom)
+				.popoverTip(settingsTip,
+							arrowEdge: .top)
 				.accessibilityIdentifier("SettingsButton")
 			}
 		}
