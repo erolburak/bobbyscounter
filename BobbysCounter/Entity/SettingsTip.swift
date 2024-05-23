@@ -11,7 +11,14 @@ struct SettingsTip: Tip {
 
 	// MARK: - Properties
 
+	@Parameter
+	static var show: Bool = false
 	var image: Image? = Image(systemName: "gearshape.circle.fill")
 	var message: Text? = Text("SettingsTipMessage")
+	var rules: [Rule] {
+		[#Rule(Self.$show) {
+			$0 == true
+		}]
+	}
 	var title = Text("Settings")
 }

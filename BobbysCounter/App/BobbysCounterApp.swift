@@ -33,12 +33,8 @@ struct BobbysCounterApp: App {
 					sensory.feedback
 				}
 				.task {
-#if DEBUG
-					return
-#else
 					try? Tips.configure([.displayFrequency(.immediate),
 										 .datastoreLocation(.groupContainer(identifier: "com.burakerol.BobbysCounter"))])
-#endif
 				}
 				.modelContainer(CounterActor.shared.modelContainer)
 		}

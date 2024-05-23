@@ -15,11 +15,15 @@ final class SettingsViewTests: XCTestCase {
 		continueAfterFailure = false
 	}
 
-	/// Test close settings view while first opening settings view
+	/// Test close settings view steps:
+	/// 1) Close settings tip
+	/// 2) Open settings view
+	/// 3) Close settings view
 	@MainActor
 	func testCloseSettingsButton() {
 		let app = XCUIApplication()
 		app.launch()
+		app.closeSettingsTip()
 		let settingsButton = app.buttons["SettingsButton"]
 		XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
 		settingsButton.tap()
@@ -28,19 +32,24 @@ final class SettingsViewTests: XCTestCase {
 		closeSettingsButton.tap()
 	}
 
-	/// Test set selected date to today while first opening settings view
-	/// Then select first day of previous month and then select today
+	/// Test set selected date to today steps:
+	/// 1) Close settings tip
+	/// 2) Open settings view
+	/// 3) Select first day of previous month
+	/// 4) Select today
+	/// 5) Check `DateText` for updated value
 	@MainActor
 	func testTodayButton() {
 		let app = XCUIApplication()
 		app.launch()
+		app.closeSettingsTip()
 		let settingsButton = app.buttons["SettingsButton"]
 		XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
 		settingsButton.tap()
 		let datePicker = app.datePickers["DatePicker"]
 		XCTAssertTrue(datePicker.waitForExistence(timeout: 5))
 		datePicker.tap()
-		let previousMonthButton = app.buttons[Locale.current.language.languageCode == "en" ? "Previous Month" : ""]
+		let previousMonthButton = app.buttons["Previous Month"]
 		XCTAssertTrue(previousMonthButton.waitForExistence(timeout: 5))
 		previousMonthButton.tap()
 		let firstDayOfMonthButton = app.datePickers.collectionViews.staticTexts["1"]
@@ -50,11 +59,9 @@ final class SettingsViewTests: XCTestCase {
 		settingsButton.tap()
 		let todayButton = app.buttons["TodayButton"]
 		XCTAssertTrue(todayButton.waitForExistence(timeout: 5))
-		if todayButton.isEnabled {
-			todayButton.tap()
-			let dateText = app.staticTexts["DateText"]
-			XCTAssertTrue(dateText.waitForExistence(timeout: 5))
-			XCTAssertEqual(dateText.label, Locale.current.language.languageCode == "en" ? "Today" : "")
-		}
+		todayButton.tap()
+		let dateText = app.staticTexts["DateText"]
+		XCTAssertTrue(dateText.waitForExistence(timeout: 5))
+		XCTAssertEqual(dateText.label, "Today")
 	}
 }

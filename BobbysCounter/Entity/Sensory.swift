@@ -15,7 +15,7 @@ class Sensory {
 	var feedback: SensoryFeedback?
 	var feedbackBool = false
 
-	// MARK: - Properties
+	// MARK: - Actions
 
 	func feedbackTrigger(feedback: SensoryFeedback) {
 		self.feedback = feedback
