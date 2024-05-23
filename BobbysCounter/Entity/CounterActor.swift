@@ -15,8 +15,14 @@ actor CounterActor {
 
 	static let shared = {
 		do {
+			var cloudKitDatabase: ModelConfiguration.CloudKitDatabase
+#if DEBUG
+			cloudKitDatabase = .none
+#else
+			cloudKitDatabase = .automatic
+#endif
 			let modelConfiguration = ModelConfiguration(isStoredInMemoryOnly: false,
-														cloudKitDatabase: .automatic)
+														cloudKitDatabase: cloudKitDatabase)
 			let modelContainer = try ModelContainer(for: Schema([Counter.self]),
 													configurations: modelConfiguration)
 			return CounterActor(modelContainer: modelContainer)
