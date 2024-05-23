@@ -15,12 +15,15 @@ final class ContentViewTests: XCTestCase {
         continueAfterFailure = false
     }
 
-	/// Test decrease counter count value if `MinusButton` is enabled
-	/// Check `CountText` for updated value otherwise check if `CountText` is 0
+	/// Test decrease counter count value if `MinusButton` is enabled steps:
+	/// 1) Close settings tip
+	/// 2) Decrease counter count value
+	/// 2) Check `CountText` for updated value otherwise check if `CountText` is 0
 	@MainActor
 	func testDecreaseCountText() {
 		let app = XCUIApplication()
 		app.launch()
+		app.closeSettingsTip()
 		let currentCountTest = app.staticTexts["CountText"]
 		XCTAssertTrue(currentCountTest.waitForExistence(timeout: 5))
 		let currentCountTextAsInt = Int(currentCountTest.label)
@@ -39,12 +42,15 @@ final class ContentViewTests: XCTestCase {
 		}
 	}
 
-	/// Test increase counter count value
-	/// Check `CountText` for updated value
+	/// Test increase counter count value steps:
+	/// 1) Close settings tip
+	/// 2) Increase counter count value
+	/// 2) Check `CountText` for updated value
 	@MainActor
 	func testIncreaseCountText() {
 		let app = XCUIApplication()
 		app.launch()
+		app.closeSettingsTip()
 		let currentCountTest = app.staticTexts["CountText"]
 		XCTAssertTrue(currentCountTest.waitForExistence(timeout: 5))
 		let currentCountTextAsInt = Int(currentCountTest.label)
@@ -67,7 +73,7 @@ final class ContentViewTests: XCTestCase {
 		app.launch()
 		let dateText = app.staticTexts["DateText"]
 		XCTAssertTrue(dateText.waitForExistence(timeout: 5))
-		XCTAssertEqual(dateText.label, Locale.current.language.languageCode == "en" ? "Today" : "")
+		XCTAssertEqual(dateText.label, "Today")
 	}
 
 	/// Test if `SettingsButton` exists and is enabled

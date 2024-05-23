@@ -21,6 +21,7 @@ struct ContentView: View {
 		   order: .reverse) private var counters: [Counter]
 	@State private var selected = Selected()
 	@State private var showSettingsSheet = false
+	private let settingsTip = SettingsTip()
 	private var count: Int? {
 		selected.counter?.count
 	}
@@ -30,7 +31,6 @@ struct ContentView: View {
 	private var isCountNil: Bool {
 		count == nil
 	}
-	private let settingsTip = SettingsTip()
 
 	// MARK: - Layouts
 
@@ -92,6 +92,12 @@ struct ContentView: View {
 				.padding(.bottom)
 				.popoverTip(settingsTip,
 							arrowEdge: .top)
+				.onAppear {
+					Task {
+						try await Task.sleep(for: .seconds(1))
+						SettingsTip.show = true
+					}
+				}
 				.accessibilityIdentifier("SettingsButton")
 			}
 		}

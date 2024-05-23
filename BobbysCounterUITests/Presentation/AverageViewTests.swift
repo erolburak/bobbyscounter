@@ -15,31 +15,42 @@ final class AverageViewTests: XCTestCase {
 		continueAfterFailure = false
 	}
 
-	/// Test close average view while first opening settings and then average view
+	/// Test close average view steps:
+	/// 1) Close settings tip
+	/// 2) Open settings view
+	/// 3) Open average view
+	/// 4) Close average view
 	@MainActor
 	func testCloseAverageButton() {
 		let app = XCUIApplication()
 		app.launch()
+		app.closeSettingsTip()
 		let settingsButton = app.buttons["SettingsButton"]
 		XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
 		settingsButton.tap()
-		let averageButton = app.navigationBars[Locale.current.language.languageCode == "en" ? "Settings" : ""].buttons["AverageButton"]
+		let averageButton = app.navigationBars["Settings"].buttons["AverageButton"]
 		XCTAssertTrue(averageButton.waitForExistence(timeout: 5))
 		averageButton.tap()
-		let closeAverageButton = app.navigationBars[Locale.current.language.languageCode == "en" ? "Average" : ""].buttons["CloseAverageButton"]
+		let closeAverageButton = app.navigationBars["Average"].buttons["CloseAverageButton"]
 		XCTAssertTrue(closeAverageButton.waitForExistence(timeout: 5))
 		closeAverageButton.tap()
 	}
 
-	/// Test set selected average to 30 while first opening settings view and then average view
+	/// Test set selected average to 30 steps:
+	/// 1) Close settings tip
+	/// 2) Open settings view
+	/// 3) Open average view
+	/// 4) Set selected average to 30
+	/// 5) Check `AverageMessage` for updated value
 	@MainActor
 	func testSelectAverageButton() {
 		let app = XCUIApplication()
 		app.launch()
+		app.closeSettingsTip()
 		let settingsButton = app.buttons["SettingsButton"]
 		XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
 		settingsButton.tap()
-		let averageButton = app.navigationBars[Locale.current.language.languageCode == "en" ? "Settings" : ""].buttons["AverageButton"]
+		let averageButton = app.navigationBars["Settings"].buttons["AverageButton"]
 		XCTAssertTrue(averageButton.waitForExistence(timeout: 5))
 		averageButton.tap()
 		let averagePicker = app.buttons["AveragePicker"]
@@ -48,8 +59,6 @@ final class AverageViewTests: XCTestCase {
 		let thirtyButton = app.buttons["30"]
 		XCTAssertTrue(thirtyButton.waitForExistence(timeout: 5))
 		thirtyButton.tap()
-		let todayButton = app.buttons["TodayButton"]
-		XCTAssertTrue(todayButton.waitForExistence(timeout: 5))
 		let averageMessage = app.staticTexts["AverageMessage"]
 		XCTAssertTrue(averageMessage.waitForExistence(timeout: 5))
 		XCTAssertTrue(averageMessage.label.contains("30"))

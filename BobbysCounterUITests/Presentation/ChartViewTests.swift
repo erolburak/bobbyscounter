@@ -15,12 +15,17 @@ final class ChartViewTests: XCTestCase {
 		continueAfterFailure = false
 	}
 
-	/// Test if `Chart` exists while first increasing counter count value for current day
-	/// Then increasing counter count value for first day of previous month and then opening settings view
+	/// Test if `Chart` exists steps:
+	/// 1) Close settings tip
+	/// 2) Increase counter count value for current day
+	/// 3) Increase counter count value for first day of previous month
+	/// 4) Open settings view
+	/// 5) Check if `Chart` exists
 	@MainActor
 	func testChart() {
 		let app = XCUIApplication()
 		app.launch()
+		app.closeSettingsTip()
 		let plusButton = app.buttons["PlusButton"]
 		XCTAssertTrue(plusButton.waitForExistence(timeout: 5))
 		plusButton.tap()
@@ -30,7 +35,7 @@ final class ChartViewTests: XCTestCase {
 		let datePicker = app.datePickers["DatePicker"]
 		XCTAssertTrue(datePicker.waitForExistence(timeout: 5))
 		datePicker.tap()
-		let previousMonthButton = app.buttons[Locale.current.language.languageCode == "en" ? "Previous Month" : ""]
+		let previousMonthButton = app.buttons["Previous Month"]
 		XCTAssertTrue(previousMonthButton.waitForExistence(timeout: 5))
 		previousMonthButton.tap()
 		let firstDayOfMonthButton = app.datePickers.collectionViews.staticTexts["1"]
