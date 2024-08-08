@@ -28,10 +28,10 @@ final class AverageViewTests: XCTestCase {
 		let settingsButton = app.buttons["SettingsButton"]
 		XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
 		settingsButton.tap()
-		let averageButton = app.navigationBars["Settings"].buttons["AverageButton"]
+		let averageButton = app.buttons["AverageButton"]
 		XCTAssertTrue(averageButton.waitForExistence(timeout: 5))
 		averageButton.tap()
-		let closeAverageButton = app.navigationBars["Average"].buttons["CloseAverageButton"]
+		let closeAverageButton = app.buttons["CloseAverageButton"]
 		XCTAssertTrue(closeAverageButton.waitForExistence(timeout: 5))
 		closeAverageButton.tap()
 	}
@@ -50,7 +50,7 @@ final class AverageViewTests: XCTestCase {
 		let settingsButton = app.buttons["SettingsButton"]
 		XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
 		settingsButton.tap()
-		let averageButton = app.navigationBars["Settings"].buttons["AverageButton"]
+		let averageButton = app.buttons["AverageButton"]
 		XCTAssertTrue(averageButton.waitForExistence(timeout: 5))
 		averageButton.tap()
 		let averagePicker = app.buttons["AveragePicker"]

@@ -13,7 +13,6 @@ struct ContentView: View {
 
 	// MARK: - Private Properties
 
-	@Environment(\.modelContext) private var modelContext
 	@Environment(\.scenePhase) private var scenePhase
 	@Environment(Alert.self) private var alert
 	@Environment(Sensory.self) private var sensory
@@ -51,8 +50,14 @@ struct ContentView: View {
 				HStack {
 					Button("Minus") {
 						withAnimation {
-							selected.counter?.decrease()
-							sensory.feedbackTrigger(feedback: .decrease)
+							do {
+								try selected.counter?.decrease()
+								sensory.feedbackTrigger(feedback: .decrease)
+							} catch {
+								alert.error = .decrease
+								alert.show = true
+								sensory.feedbackTrigger(feedback: .error)
+							}
 						}
 					}
 					.frame(maxWidth: .infinity)
@@ -62,8 +67,14 @@ struct ContentView: View {
 
 					Button("Plus") {
 						withAnimation {
-							selected.counter?.increase()
-							sensory.feedbackTrigger(feedback: .increase)
+							do {
+								try selected.counter?.increase()
+								sensory.feedbackTrigger(feedback: .increase)
+							} catch {
+								alert.error = .increase
+								alert.show = true
+								sensory.feedbackTrigger(feedback: .error)
+							}
 						}
 					}
 					.frame(maxWidth: .infinity)
@@ -112,7 +123,9 @@ struct ContentView: View {
 			case .active:
 				Task {
 					do {
-						selected.counter = try await CounterActor.shared.fetch(date: selected.date)
+						let persistentIdentifier = try await CounterActor.shared.fetch(date: selected.date)
+						let modelContext = ModelContext(CounterActor.shared.modelContainer)
+						selected.counter = modelContext.model(for: persistentIdentifier) as? Counter
 					} catch {
 						alert.error = .fetch
 						alert.show = true

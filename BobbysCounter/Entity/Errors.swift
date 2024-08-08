@@ -12,6 +12,7 @@ enum Errors: LocalizedError {
 	// MARK: - Properties
 
 	case error(String), fetch
+	case decrease, increase
 
 	var errorDescription: String? {
 		switch self {
@@ -19,6 +20,10 @@ enum Errors: LocalizedError {
 			return error.description
 		case .fetch:
 			return String(localized: "ErrorDescriptionFetch")
+		case .decrease:
+			return String(localized: "ErrorDescriptionDecrease")
+		case .increase:
+			return String(localized: "ErrorDescriptionIncrease")
 		}
 	}
 
@@ -28,6 +33,10 @@ enum Errors: LocalizedError {
 			return String(localized: "ErrorRecoverySuggestionError")
 		case .fetch:
 			return String(localized: "ErrorRecoverySuggestionFetch")
+		case .decrease:
+			return String(localized: "ErrorRecoverySuggestionDecrease")
+		case .increase:
+			return String(localized: "ErrorRecoverySuggestionIncrease")
 		}
 	}
 }

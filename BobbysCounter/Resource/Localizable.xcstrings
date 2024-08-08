@@ -225,6 +225,23 @@
         }
       }
     },
+    "ErrorDescriptionDecrease" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verringern"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Decrease"
+          }
+        }
+      }
+    },
     "ErrorDescriptionFetch" : {
       "localizations" : {
         "de" : {
@@ -237,6 +254,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fetch"
+          }
+        }
+      }
+    },
+    "ErrorDescriptionIncrease" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erhöhen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Increase"
+          }
+        }
+      }
+    },
+    "ErrorRecoverySuggestionDecrease" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verringern fehlgeschlagen. Bitte versuche es erneut."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed to decrease. Please try again."
           }
         }
       }
@@ -270,6 +321,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Failed to fetch. Please try again."
+          }
+        }
+      }
+    },
+    "ErrorRecoverySuggestionIncrease" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erhöhen fehlgeschlagen. Bitte versuche es erneut."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed to increase. Please try again."
           }
         }
       }

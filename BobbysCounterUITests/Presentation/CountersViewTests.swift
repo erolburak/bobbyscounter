@@ -29,16 +29,16 @@ final class CountersViewTests: XCTestCase {
 		let settingsButton = app.buttons["SettingsButton"]
 		XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
 		settingsButton.tap()
-		let countersButton = app.navigationBars["Settings"].buttons["CountersButton"]
+		let countersButton = app.buttons["CountersButton"]
 		XCTAssertTrue(countersButton.waitForExistence(timeout: 5))
 		countersButton.tap()
 		let todayText = app.collectionViews.staticTexts["Today"]
 		XCTAssertTrue(todayText.waitForExistence(timeout: 5))
 		todayText.swipeLeft()
-		let deleteButton = app.collectionViews.buttons["DeleteButton"]
+		let deleteButton = app.buttons["DeleteButton"]
 		XCTAssertTrue(deleteButton.waitForExistence(timeout: 5))
 		deleteButton.tap()
-		let deleteConfirmationDialogButton = app.scrollViews.otherElements.buttons["DeleteConfirmationDialogButton"]
+		let deleteConfirmationDialogButton = app.buttons["DeleteConfirmationDialogButton"]
 		XCTAssertTrue(deleteConfirmationDialogButton.waitForExistence(timeout: 5))
 	}
 
@@ -56,16 +56,16 @@ final class CountersViewTests: XCTestCase {
 		let settingsButton = app.buttons["SettingsButton"]
 		XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
 		settingsButton.tap()
-		let countersButton = app.navigationBars["Settings"].buttons["CountersButton"]
+		let countersButton = app.buttons["CountersButton"]
 		XCTAssertTrue(countersButton.waitForExistence(timeout: 5))
 		countersButton.tap()
 		let todayText = app.collectionViews.staticTexts["Today"]
 		XCTAssertTrue(todayText.waitForExistence(timeout: 5))
 		todayText.swipeLeft()
-		let deleteButton = app.collectionViews.buttons["DeleteButton"]
+		let deleteButton = app.buttons["DeleteButton"]
 		XCTAssertTrue(deleteButton.waitForExistence(timeout: 5))
 		deleteButton.tap()
-		let deleteConfirmationDialogButton = app.scrollViews.otherElements.buttons["DeleteConfirmationDialogButton"]
+		let deleteConfirmationDialogButton = app.buttons["DeleteConfirmationDialogButton"]
 		XCTAssertTrue(deleteConfirmationDialogButton.waitForExistence(timeout: 5))
 		deleteConfirmationDialogButton.tap()
 	}
@@ -84,13 +84,13 @@ final class CountersViewTests: XCTestCase {
 		let settingsButton = app.buttons["SettingsButton"]
 		XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
 		settingsButton.tap()
-		let countersButton = app.navigationBars["Settings"].buttons["CountersButton"]
+		let countersButton = app.buttons["CountersButton"]
 		XCTAssertTrue(countersButton.waitForExistence(timeout: 5))
 		countersButton.tap()
-		let resetButton = app.navigationBars["Counters"].buttons["ResetButton"]
+		let resetButton = app.buttons["ResetButton"]
 		XCTAssertTrue(resetButton.waitForExistence(timeout: 5))
 		resetButton.tap()
-		let resetConfirmationDialogButton = app.scrollViews.otherElements.buttons["ResetConfirmationDialogButton"]
+		let resetConfirmationDialogButton = app.buttons["ResetConfirmationDialogButton"]
 		XCTAssertTrue(resetConfirmationDialogButton.waitForExistence(timeout: 5))
 	}
 
@@ -109,13 +109,13 @@ final class CountersViewTests: XCTestCase {
 		let settingsButton = app.buttons["SettingsButton"]
 		XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
 		settingsButton.tap()
-		let countersButton = app.navigationBars["Settings"].buttons["CountersButton"]
+		let countersButton = app.buttons["CountersButton"]
 		XCTAssertTrue(countersButton.waitForExistence(timeout: 5))
 		countersButton.tap()
-		let resetButton = app.navigationBars["Counters"].buttons["ResetButton"]
+		let resetButton = app.buttons["ResetButton"]
 		XCTAssertTrue(resetButton.waitForExistence(timeout: 5))
 		resetButton.tap()
-		let resetConfirmationDialogButton = app.scrollViews.otherElements.buttons["ResetConfirmationDialogButton"]
+		let resetConfirmationDialogButton = app.buttons["ResetConfirmationDialogButton"]
 		XCTAssertTrue(resetConfirmationDialogButton.waitForExistence(timeout: 5))
 		resetConfirmationDialogButton.tap()
 		let countText = app.staticTexts["CountText"]
@@ -137,10 +137,10 @@ final class CountersViewTests: XCTestCase {
 		let settingsButton = app.buttons["SettingsButton"]
 		XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
 		settingsButton.tap()
-		let countersButton = app.navigationBars["Settings"].buttons["CountersButton"]
+		let countersButton = app.buttons["CountersButton"]
 		XCTAssertTrue(countersButton.waitForExistence(timeout: 5))
 		countersButton.tap()
-		let closeCountersButton = app.navigationBars["Counters"].buttons["CloseCountersButton"]
+		let closeCountersButton = app.buttons["CloseCountersButton"]
 		XCTAssertTrue(closeCountersButton.waitForExistence(timeout: 5))
 		closeCountersButton.tap()
 	}

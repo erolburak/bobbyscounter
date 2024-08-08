@@ -96,7 +96,9 @@ struct SettingsView: View {
 			.onChange(of: selected.date) { _, newValue in
 				Task {
 					do {
-						selected.counter = try await CounterActor.shared.fetch(date: newValue)
+						let persistentIdentifier = try await CounterActor.shared.fetch(date: newValue)
+						let modelContext = ModelContext(CounterActor.shared.modelContainer)
+						selected.counter = modelContext.model(for: persistentIdentifier) as? Counter
 						sensory.feedbackTrigger(feedback: .selection)
 						dismiss()
 					} catch {
