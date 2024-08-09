@@ -20,6 +20,8 @@ The **BobbysCounter** app is my own project, which can increase and deacrease a 
 - WidgetKit
 - TipKit
 - CloudKit Database
+- SwiftTesting
+- XCTest
 
 ## SCREENSHOTS
 Screenshots for this project are available on my [website](https://erolburak.me/en/portfolio).
