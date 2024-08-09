@@ -6,18 +6,20 @@
 //
 
 @testable import BobbysCounter
-import XCTest
+import Testing
 
-class AlertTests: XCTestCase {
+struct AlertTests {
 
 	// MARK: - Actions
 
+	@Test("Check initializing Alert!")
 	func testAlert() {
 		// Given
 		let alert: Alert?
 		// When
 		alert = Alert()
 		// Then
-		XCTAssertNotNil(alert)
+		#expect(alert != nil,
+				"Initializing Alert failed!")
 	}
 }

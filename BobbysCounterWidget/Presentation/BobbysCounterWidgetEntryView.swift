@@ -12,7 +12,6 @@ struct BobbysCounterWidgetEntryView: View {
 
 	// MARK: - Private Properties
 
-	@Environment(\.modelContext) private var modelContext
 	@Query(sort: \Counter.date,
 		   order: .reverse) private var counters: [Counter]
 	private var count: Int? {

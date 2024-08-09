@@ -6,28 +6,33 @@
 //
 
 @testable import BobbysCounter
-import XCTest
+import Testing
 
-class SensoryTests: XCTestCase {
+struct SensoryTests {
 
 	// MARK: - Actions
 
+	@Test("Check initializing Sensory!")
 	func testSensory() {
 		// Given
 		let sensory: Sensory?
 		// When
 		sensory = Sensory()
 		// Then
-		XCTAssertNotNil(sensory)
+		#expect(sensory != nil,
+				"Initializing Sensory failed!")
 	}
 
+	@Test("Check feedback trigger with success!")
 	func testFeedbackTrigger() {
 		// Given
 		let sensory = Sensory()
 		// When
 		sensory.feedbackTrigger(feedback: .success)
 		// Then
-		XCTAssertEqual(sensory.feedback, .success)
-		XCTAssertTrue(sensory.feedbackBool)
+		#expect(sensory.feedback == .success,
+				"Feedback trigger with success failed!")
+		#expect(sensory.feedbackBool,
+				"Feedback trigger failed!")
 	}
 }

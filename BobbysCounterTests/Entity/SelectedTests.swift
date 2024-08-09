@@ -6,18 +6,20 @@
 //
 
 @testable import BobbysCounter
-import XCTest
+import Testing
 
-class SelectedTests: XCTestCase {
+struct SelectedTests {
 
 	// MARK: - Actions
 
+	@Test("Check initializing Selected!")
 	func testSelected() {
 		// Given
 		let selected: Selected?
 		// When
 		selected = Selected()
 		// Then
-		XCTAssertNotNil(selected)
+		#expect(selected != nil,
+				"Initializing Selected failed!")
 	}
 }

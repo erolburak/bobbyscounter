@@ -6,18 +6,20 @@
 //
 
 @testable import BobbysCounter
-import XCTest
+import Testing
 
-class SettingsTipTests: XCTestCase {
+struct SettingsTipTests {
 
 	// MARK: - Actions
 
+	@Test("Check initializing SettingsTip!")
 	func testSettingsTip() {
 		// Given
 		let settingsTip: SettingsTip?
 		// When
 		settingsTip = SettingsTip()
 		// Then
-		XCTAssertNotNil(settingsTip)
+		#expect(settingsTip != nil,
+				"Initializing SettingsTip failed!")
 	}
 }
