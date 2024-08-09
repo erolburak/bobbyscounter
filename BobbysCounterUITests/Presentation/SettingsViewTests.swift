@@ -52,7 +52,7 @@ final class SettingsViewTests: XCTestCase {
 		let previousMonthButton = app.buttons["Previous Month"]
 		XCTAssertTrue(previousMonthButton.waitForExistence(timeout: 5))
 		previousMonthButton.tap()
-		let firstDayOfMonthButton = app.datePickers.collectionViews.staticTexts["1"]
+		let firstDayOfMonthButton = app.staticTexts["1"]
 		XCTAssertTrue(previousMonthButton.waitForExistence(timeout: 5))
 		firstDayOfMonthButton.tap()
 		XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))

@@ -79,10 +79,12 @@ struct CountersView: View {
 						Button("Reset",
 							   role: .destructive) {
 							Task {
-								await CounterActor.shared.delete(counters: counters)
+								try await CounterActor.shared.delete(persistentIdentifiers: counters.map { $0.persistentModelID })
 								do {
 									selected.average = 7
-									selected.counter = try await CounterActor.shared.fetch(date: .now)
+									let persistentIdentifier = try await CounterActor.shared.fetch(date: .now)
+									let modelContext = ModelContext(CounterActor.shared.modelContainer)
+									selected.counter = modelContext.model(for: persistentIdentifier) as? Counter
 									selected.date = .now.toDateWithoutTime ?? .now
 									sensory.feedbackTrigger(feedback: .success)
 									dismiss()
@@ -177,10 +179,12 @@ private struct ListItem: View {
 					return
 				}
 				Task {
-					await CounterActor.shared.delete(counters: [counterDelete])
+					try await CounterActor.shared.delete(persistentIdentifiers: [counterDelete.persistentModelID])
 					if counterDelete == selected.counter {
 						do {
-							selected.counter = try await CounterActor.shared.fetch(date: .now)
+							let persistentIdentifier = try await CounterActor.shared.fetch(date: .now)
+							let modelContext = ModelContext(CounterActor.shared.modelContainer)
+							selected.counter = modelContext.model(for: persistentIdentifier) as? Counter
 							selected.date = .now.toDateWithoutTime ?? .now
 							sensory.feedbackTrigger(feedback: .success)
 							dismiss()

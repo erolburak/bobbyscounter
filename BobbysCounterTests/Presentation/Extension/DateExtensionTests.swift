@@ -6,31 +6,37 @@
 //
 
 @testable import BobbysCounter
-import XCTest
+import Foundation
+import Testing
 
-class DateExtensionTests: XCTestCase {
+struct DateExtensionTests {
 
 	// MARK: - Actions
 
+	@Test("Check is date today formatter with now!")
 	func testIsDateTodayIsTrue() {
 		// Given
 		let date = Date.now
 		// When
 		let isDateToday = date.isDateToday
 		// Then
-		XCTAssertTrue(isDateToday)
+		#expect(isDateToday,
+				"Date to is date today formatter with now failed!")
 	}
 
+	@Test("Check is date today formatter with tomorrow!")
 	func testIsDateTodayIsFalse() {
 		// Given
 		let date = Calendar.current.date(byAdding: DateComponents(day: +1),
-										 to: .now)
+										 to: .now) ?? .now
 		// When
-		let isDateToday = date?.isDateToday ?? true
+		let isDateToday = date.isDateToday
 		// Then
-		XCTAssertFalse(isDateToday)
+		#expect(isDateToday == false,
+				"Date to is date today formatter with tomorrow failed!")
 	}
 
+	@Test("Check date to date without time formatter with today!")
 	func testToDateWithoutTime() {
 		// Given
 		var calendar = Calendar.current
@@ -39,16 +45,21 @@ class DateExtensionTests: XCTestCase {
 		// When
 		let dateWithoutTime = date.toDateWithoutTime
 		// Then
-		XCTAssertEqual(0, calendar.component(.hour,
-											 from: dateWithoutTime ?? .now))
-		XCTAssertEqual(0, calendar.component(.minute,
-											 from: dateWithoutTime ?? .now))
-		XCTAssertEqual(0, calendar.component(.second,
-											 from: dateWithoutTime ?? .now))
-		XCTAssertEqual(0, calendar.component(.nanosecond,
-											 from: dateWithoutTime ?? .now))
+		#expect(calendar.component(.hour,
+								   from: dateWithoutTime ?? .now) == 0,
+				"Date to date without time formatter with hour failed!")
+		#expect(calendar.component(.minute,
+								   from: dateWithoutTime ?? .now) == 0,
+				"Date to date without time formatter with minute failed!")
+		#expect(calendar.component(.second,
+								   from: dateWithoutTime ?? .now) == 0,
+				"Date to date without time formatter with second failed!")
+		#expect(calendar.component(.nanosecond,
+								   from: dateWithoutTime ?? .now) == 0,
+				"Date to date without time formatter with nanosecond failed!")
 	}
 
+	@Test("Check date to relative formatter with today!")
 	func testToRelativeIsToday() {
 		// Given
 		let date = Date.now
@@ -56,17 +67,20 @@ class DateExtensionTests: XCTestCase {
 		// When
 		let relativeDate = date.toRelative
 		// Then
-		XCTAssertEqual(relativeDate, relative)
+		#expect(relativeDate == relative,
+				"Date to relative formatter with today failed!")
 	}
 
+	@Test("Check date to relative formatter with yesterday!")
 	func testToRelativeIsYesterday() {
 		// Given
 		let date = Calendar.current.date(byAdding: DateComponents(day: -1),
-										 to: .now)
+										 to: .now) ?? .now
 		let relative = "Yesterday"
 		// When
-		let relativeDate = date?.toRelative ?? relative
+		let relativeDate = date.toRelative
 		// Then
-		XCTAssertEqual(relativeDate, relative)
+		#expect(relativeDate == relative,
+				"Date to relative formatter with yesterday failed!")
 	}
 }

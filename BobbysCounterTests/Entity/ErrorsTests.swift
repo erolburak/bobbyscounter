@@ -6,12 +6,13 @@
 //
 
 @testable import BobbysCounter
-import XCTest
+import Testing
 
-class ErrorsTests: XCTestCase {
+struct ErrorsTests {
 
 	// MARK: - Actions
 
+	@Test("Check initializing Errors!")
 	func testErrors() {
 		for error in Errors.errors {
 			// Given
@@ -19,7 +20,8 @@ class ErrorsTests: XCTestCase {
 			// When
 			newError = error
 			// Then
-			XCTAssertNotNil(newError)
+			#expect(newError != nil,
+					"Initializing Errors failed!")
 		}
 	}
 }
@@ -29,5 +31,7 @@ private extension Errors {
 	// MARK: - Properties
 
 	static let errors: [Errors] = [.error(""),
-								   .fetch]
+								   .fetch,
+								   .decrease,
+								   .increase]
 }
