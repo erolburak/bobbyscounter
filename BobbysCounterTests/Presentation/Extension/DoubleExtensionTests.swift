@@ -5,7 +5,6 @@
 //  Created by Burak Erol on 16.01.24.
 //
 
-@testable import BobbysCounter
 import Testing
 
 struct DoubleExtensionTests {

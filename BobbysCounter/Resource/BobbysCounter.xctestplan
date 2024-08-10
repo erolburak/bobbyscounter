@@ -23,6 +23,7 @@
   },
   "testTargets" : [
     {
+      "parallelizable" : false,
       "target" : {
         "containerPath" : "container:BobbysCounter.xcodeproj",
         "identifier" : "BF2C45472A4B3EBA00D48C36",

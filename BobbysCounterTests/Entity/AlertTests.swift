@@ -5,7 +5,6 @@
 //  Created by Burak Erol on 13.12.23.
 //
 
-@testable import BobbysCounter
 import Testing
 
 struct AlertTests {
