@@ -5,7 +5,6 @@
 //  Created by Burak Erol on 05.09.23.
 //
 
-@testable import BobbysCounter
 import Testing
 
 struct SelectedTests {

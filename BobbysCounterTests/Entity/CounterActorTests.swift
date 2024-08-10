@@ -5,7 +5,6 @@
 //  Created by Burak Erol on 08.08.24.
 //
 
-@testable import BobbysCounter
 import Foundation
 import SwiftData
 import Testing

@@ -5,7 +5,6 @@
 //  Created by Burak Erol on 16.05.24.
 //
 
-@testable import BobbysCounter
 import Testing
 
 struct SettingsTipTests {

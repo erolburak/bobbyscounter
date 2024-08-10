@@ -5,7 +5,6 @@
 //  Created by Burak Erol on 28.01.24.
 //
 
-@testable import BobbysCounter
 import Testing
 
 struct ErrorsTests {
@@ -21,7 +20,7 @@ struct ErrorsTests {
 			newError = error
 			// Then
 			#expect(newError != nil,
-					"Initializing Errors failed!")
+					"Initializing Error failed!")
 		}
 	}
 }
