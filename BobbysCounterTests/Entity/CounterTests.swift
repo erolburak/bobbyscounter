@@ -5,13 +5,14 @@
 //  Created by Burak Erol on 05.09.23.
 //
 
+import Foundation
 import Testing
 
 struct CounterTests {
 
 	// MARK: - Actions
 	
-	@Test("Check initializing Counter!")
+	@Test("Check Counter initializing!")
 	func testCounter() {
 		// Given
 		let counter: Counter?
@@ -20,7 +21,7 @@ struct CounterTests {
 						  date: .now)
 		// Then
 		#expect(counter != nil,
-				"Initializing Counter failed!")
+				"Counter initializing failed!")
 	}
 
 	@Test("Check Counter decrease!")
@@ -57,5 +58,18 @@ struct CounterTests {
 		// Then
 		#expect(counter.count == 1,
 				"Counter increase failed!")
+	}
+
+	@Test("Check Counter fetch!")
+	@MainActor
+	func testFetch() async throws {
+		// Given
+		let date = Calendar.current.date(byAdding: DateComponents(day: -2),
+										 to: .now) ?? .now
+		// When
+		let counter = try await Counter.fetch(date: date)
+		// Then
+		#expect(counter != nil,
+				"Counter fetch failed!")
 	}
 }

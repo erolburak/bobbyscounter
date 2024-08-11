@@ -7,6 +7,7 @@
 
 import XCTest
 
+@MainActor
 final class AverageViewTests: XCTestCase {
 
 	// MARK: - Actions
@@ -20,7 +21,6 @@ final class AverageViewTests: XCTestCase {
 	/// 2) Open settings view
 	/// 3) Open average view
 	/// 4) Close average view
-	@MainActor
 	func testCloseAverageButton() {
 		let app = XCUIApplication()
 		app.launch()
@@ -42,7 +42,6 @@ final class AverageViewTests: XCTestCase {
 	/// 3) Open average view
 	/// 4) Set selected average to 30
 	/// 5) Check `AverageMessage` for updated value
-	@MainActor
 	func testSelectAverageButton() {
 		let app = XCUIApplication()
 		app.launch()

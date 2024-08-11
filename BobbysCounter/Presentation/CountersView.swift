@@ -79,19 +79,17 @@ struct CountersView: View {
 						Button("Reset",
 							   role: .destructive) {
 							Task {
-								try await CounterActor.shared.delete(persistentIdentifiers: counters.map { $0.persistentModelID })
+								try await CounterActor.shared.delete(ids: counters.map { $0.persistentModelID })
 								do {
 									selected.average = 7
-									let persistentIdentifier = try await CounterActor.shared.fetch(date: .now)
-									let modelContext = ModelContext(CounterActor.shared.modelContainer)
-									selected.counter = modelContext.model(for: persistentIdentifier) as? Counter
+									selected.counter = try await Counter.fetch(date: .now)
 									selected.date = .now.toDateWithoutTime ?? .now
-									sensory.feedbackTrigger(feedback: .success)
+									sensory.feedback(feedback: .success)
 									dismiss()
 								} catch {
 									alert.error = .fetch
 									alert.show = true
-									sensory.feedbackTrigger(feedback: .error)
+									sensory.feedback(feedback: .error)
 								}
 							}
 						}
@@ -145,7 +143,7 @@ private struct ListItem: View {
 				return
 			}
 			if counter == selected.counter {
-				sensory.feedbackTrigger(feedback: .selection)
+				sensory.feedback(feedback: .selection)
 				dismiss()
 			} else {
 				selected.date = date
@@ -179,22 +177,20 @@ private struct ListItem: View {
 					return
 				}
 				Task {
-					try await CounterActor.shared.delete(persistentIdentifiers: [counterDelete.persistentModelID])
+					try await CounterActor.shared.delete(ids: [counterDelete.persistentModelID])
 					if counterDelete == selected.counter {
 						do {
-							let persistentIdentifier = try await CounterActor.shared.fetch(date: .now)
-							let modelContext = ModelContext(CounterActor.shared.modelContainer)
-							selected.counter = modelContext.model(for: persistentIdentifier) as? Counter
+							selected.counter = try await Counter.fetch(date: .now)
 							selected.date = .now.toDateWithoutTime ?? .now
-							sensory.feedbackTrigger(feedback: .success)
+							sensory.feedback(feedback: .success)
 							dismiss()
 						} catch {
 							alert.error = .fetch
 							alert.show = true
-							sensory.feedbackTrigger(feedback: .error)
+							sensory.feedback(feedback: .error)
 						}
 					} else {
-						sensory.feedbackTrigger(feedback: .success)
+						sensory.feedback(feedback: .success)
 					}
 				}
 			}

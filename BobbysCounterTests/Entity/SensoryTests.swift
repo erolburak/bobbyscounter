@@ -11,7 +11,7 @@ struct SensoryTests {
 
 	// MARK: - Actions
 
-	@Test("Check initializing Sensory!")
+	@Test("Check Sensory initializing!")
 	func testSensory() {
 		// Given
 		let sensory: Sensory?
@@ -19,19 +19,32 @@ struct SensoryTests {
 		sensory = Sensory()
 		// Then
 		#expect(sensory != nil,
-				"Initializing Sensory failed!")
+				"Sensory initializing failed!")
 	}
 
-	@Test("Check feedback trigger with success!")
-	func testFeedbackTrigger() {
+	@Test("Check Sensory feedback with error!")
+	func testFeedbackWithError() {
 		// Given
 		let sensory = Sensory()
 		// When
-		sensory.feedbackTrigger(feedback: .success)
+		sensory.feedback(feedback: .error)
+		// Then
+		#expect(sensory.feedback == .error,
+				"Sensory feedback with error failed!")
+		#expect(sensory.feedbackBool,
+				"Sensory feedbackBool failed!")
+	}
+
+	@Test("Check Sensory feedback with success!")
+	func testFeedbackWithSuccess() {
+		// Given
+		let sensory = Sensory()
+		// When
+		sensory.feedback(feedback: .success)
 		// Then
 		#expect(sensory.feedback == .success,
-				"Feedback trigger with success failed!")
+				"Sensory feedback with success failed!")
 		#expect(sensory.feedbackBool,
-				"Feedback trigger failed!")
+				"Sensory feedbackBool failed!")
 	}
 }

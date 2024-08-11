@@ -11,7 +11,7 @@ struct AlertTests {
 
 	// MARK: - Actions
 
-	@Test("Check initializing Alert!")
+	@Test("Check Alert initializing!")
 	func testAlert() {
 		// Given
 		let alert: Alert?
@@ -19,6 +19,6 @@ struct AlertTests {
 		alert = Alert()
 		// Then
 		#expect(alert != nil,
-				"Initializing Alert failed!")
+				"Alert initializing  failed!")
 	}
 }

@@ -11,7 +11,7 @@ struct SettingsTipTests {
 
 	// MARK: - Actions
 
-	@Test("Check initializing SettingsTip!")
+	@Test("Check SettingsTip initializing!")
 	func testSettingsTip() {
 		// Given
 		let settingsTip: SettingsTip?
@@ -19,6 +19,6 @@ struct SettingsTipTests {
 		settingsTip = SettingsTip()
 		// Then
 		#expect(settingsTip != nil,
-				"Initializing SettingsTip failed!")
+				"SettingsTip initializing failed!")
 	}
 }

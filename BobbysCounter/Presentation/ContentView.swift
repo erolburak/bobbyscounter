@@ -52,11 +52,11 @@ struct ContentView: View {
 						withAnimation {
 							do {
 								try selected.counter?.decrease()
-								sensory.feedbackTrigger(feedback: .decrease)
+								sensory.feedback(feedback: .decrease)
 							} catch {
 								alert.error = .decrease
 								alert.show = true
-								sensory.feedbackTrigger(feedback: .error)
+								sensory.feedback(feedback: .error)
 							}
 						}
 					}
@@ -69,11 +69,11 @@ struct ContentView: View {
 						withAnimation {
 							do {
 								try selected.counter?.increase()
-								sensory.feedbackTrigger(feedback: .increase)
+								sensory.feedback(feedback: .increase)
 							} catch {
 								alert.error = .increase
 								alert.show = true
-								sensory.feedbackTrigger(feedback: .error)
+								sensory.feedback(feedback: .error)
 							}
 						}
 					}
@@ -123,13 +123,11 @@ struct ContentView: View {
 			case .active:
 				Task {
 					do {
-						let persistentIdentifier = try await CounterActor.shared.fetch(date: selected.date)
-						let modelContext = ModelContext(CounterActor.shared.modelContainer)
-						selected.counter = modelContext.model(for: persistentIdentifier) as? Counter
+						selected.counter = try await Counter.fetch(date: selected.date)
 					} catch {
 						alert.error = .fetch
 						alert.show = true
-						sensory.feedbackTrigger(feedback: .error)
+						sensory.feedback(feedback: .error)
 					}
 				}
 			case .background:

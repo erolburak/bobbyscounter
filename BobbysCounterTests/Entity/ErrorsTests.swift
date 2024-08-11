@@ -11,7 +11,7 @@ struct ErrorsTests {
 
 	// MARK: - Actions
 
-	@Test("Check initializing Errors!")
+	@Test("Check Errors initializing!")
 	func testErrors() {
 		for error in Errors.errors {
 			// Given
@@ -20,7 +20,7 @@ struct ErrorsTests {
 			newError = error
 			// Then
 			#expect(newError != nil,
-					"Initializing Error failed!")
+					"Error initializing failed!")
 		}
 	}
 }
