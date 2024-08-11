@@ -11,7 +11,7 @@ struct DoubleExtensionTests {
 
 	// MARK: - Actions
 
-	@Test("Check double to string formatter with 0.0!")
+	@Test("Check DoubleExtension toString!")
 	func testToString() {
 		// Given
 		let double = 0.0
@@ -19,17 +19,17 @@ struct DoubleExtensionTests {
 		let string = double.toString
 		// Then
 		#expect(string == "0",
-				"Double to string formatter with 0.0 failed!")
+				"DoubleExtension toString failed!")
 	}
 
-	@Test("Check double to string formatter with 0.006!")
-	func testToStringWithThreeDigitsRounded() {
+	@Test("Check DoubleExtension toString with three digits!")
+	func testToStringWithThreeDigits() {
 		// Given
 		let double = 0.006
 		// When
 		let string = double.toString
 		// Then
 		#expect(string == "0.01",
-				"Double to string formatter with 0.006 failed!")
+				"DoubleExtension toString with three digits failed!")
 	}
 }

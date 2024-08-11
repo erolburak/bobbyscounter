@@ -7,6 +7,7 @@
 
 import XCTest
 
+@MainActor
 final class CountersViewTests: XCTestCase {
 
 	// MARK: - Actions
@@ -21,7 +22,6 @@ final class CountersViewTests: XCTestCase {
 	/// 3) Open counters view
 	/// 4) Delete todays counter
 	/// 5) Check if `DeleteConfirmationDialogButton` exists
-	@MainActor
 	func testDeleteButton() {
 		let app = XCUIApplication()
 		app.launch()
@@ -48,7 +48,6 @@ final class CountersViewTests: XCTestCase {
 	/// 3) Open counters view
 	/// 4) Delete todays counter
 	/// 5) Confirm deleting todays counter
-	@MainActor
 	func testDeleteConfirmationButton() {
 		let app = XCUIApplication()
 		app.launch()
@@ -76,7 +75,6 @@ final class CountersViewTests: XCTestCase {
 	/// 3) Open counters view
 	/// 4) Press reset
 	/// 5) Check if `ResetConfirmationDialogButton` exists
-	@MainActor
 	func testResetButton() {
 		let app = XCUIApplication()
 		app.launch()
@@ -101,7 +99,6 @@ final class CountersViewTests: XCTestCase {
 	/// 4) Press reset
 	/// 5) Confirm reset
 	/// 6) Check `CountText` for updated value
-	@MainActor
 	func testResetConfirmationButton() {
 		let app = XCUIApplication()
 		app.launch()
@@ -129,7 +126,6 @@ final class CountersViewTests: XCTestCase {
 	/// 2) Open settings view
 	/// 3) Open counters view
 	/// 4) Close counters view
-	@MainActor
 	func testCloseCountersButton() {
 		let app = XCUIApplication()
 		app.launch()

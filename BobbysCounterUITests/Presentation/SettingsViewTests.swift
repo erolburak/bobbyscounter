@@ -7,6 +7,7 @@
 
 import XCTest
 
+@MainActor
 final class SettingsViewTests: XCTestCase {
 
 	// MARK: - Actions
@@ -19,7 +20,6 @@ final class SettingsViewTests: XCTestCase {
 	/// 1) Close settings tip
 	/// 2) Open settings view
 	/// 3) Close settings view
-	@MainActor
 	func testCloseSettingsButton() {
 		let app = XCUIApplication()
 		app.launch()
@@ -38,7 +38,6 @@ final class SettingsViewTests: XCTestCase {
 	/// 3) Select first day of previous month
 	/// 4) Select today
 	/// 5) Check `DateText` for updated value
-	@MainActor
 	func testTodayButton() {
 		let app = XCUIApplication()
 		app.launch()

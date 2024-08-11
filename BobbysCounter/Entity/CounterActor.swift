@@ -33,14 +33,14 @@ actor CounterActor {
 
 	// MARK: - Actions
 
-	func delete(persistentIdentifiers: [PersistentIdentifier]) throws {
-		try persistentIdentifiers.forEach { persistentIdentifier in
-			modelContext.delete(modelContext.model(for: persistentIdentifier))
+	func delete(ids: [PersistentIdentifier]) throws {
+		try ids.forEach { id in
+			modelContext.delete(modelContext.model(for: id))
 			try modelContext.save()
 		}
 	}
 
-	func fetch(date: Date) throws -> Counter.ID {
+	func fetchID(date: Date) throws -> Counter.ID {
 		let counters = try modelContext.fetch(FetchDescriptor<Counter>(predicate: #Predicate { $0.date == date.toDateWithoutTime }))
 		/// Insert new counter if no counter with given date exists
 		guard let counter = counters.first else {
@@ -52,7 +52,7 @@ actor CounterActor {
 		}
 		/// Delete duplicate counters while initializing new array without first item in counters array
 		let duplicateCounters = counters.dropFirst()
-		try delete(persistentIdentifiers: Array(duplicateCounters.map { $0.persistentModelID }))
+		try delete(ids: Array(duplicateCounters.map { $0.persistentModelID }))
 		return counter.persistentModelID
 	}
 }

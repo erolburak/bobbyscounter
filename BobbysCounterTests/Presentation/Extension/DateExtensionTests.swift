@@ -12,19 +12,19 @@ struct DateExtensionTests {
 
 	// MARK: - Actions
 
-	@Test("Check is date today formatter with now!")
-	func testIsDateTodayIsTrue() {
+	@Test("Check DateExtension isDateToday with now!")
+	func testIsDateTodayWithNow() {
 		// Given
 		let date = Date.now
 		// When
 		let isDateToday = date.isDateToday
 		// Then
 		#expect(isDateToday,
-				"Date to is date today formatter with now failed!")
+				"DateExtension isDateToday with now failed!")
 	}
 
-	@Test("Check is date today formatter with tomorrow!")
-	func testIsDateTodayIsFalse() {
+	@Test("Check DateExtension isDateToday with tomorrow!")
+	func testIsDateTodayWithTomorrow() {
 		// Given
 		let date = Calendar.current.date(byAdding: DateComponents(day: +1),
 										 to: .now) ?? .now
@@ -32,10 +32,10 @@ struct DateExtensionTests {
 		let isDateToday = date.isDateToday
 		// Then
 		#expect(isDateToday == false,
-				"Date to is date today formatter with tomorrow failed!")
+				"DateExtension isDateToday with tomorrow failed!")
 	}
 
-	@Test("Check date to date without time formatter with today!")
+	@Test("Check DateExtension toDateWithoutTime!")
 	func testToDateWithoutTime() {
 		// Given
 		var calendar = Calendar.current
@@ -46,20 +46,20 @@ struct DateExtensionTests {
 		// Then
 		#expect(calendar.component(.hour,
 								   from: dateWithoutTime ?? .now) == 0,
-				"Date to date without time formatter with hour failed!")
+				"DateExtension toDateWithoutTime hour failed!")
 		#expect(calendar.component(.minute,
 								   from: dateWithoutTime ?? .now) == 0,
-				"Date to date without time formatter with minute failed!")
+				"DateExtension toDateWithoutTime minute failed!")
 		#expect(calendar.component(.second,
 								   from: dateWithoutTime ?? .now) == 0,
-				"Date to date without time formatter with second failed!")
+				"DateExtension toDateWithoutTime second failed!")
 		#expect(calendar.component(.nanosecond,
 								   from: dateWithoutTime ?? .now) == 0,
-				"Date to date without time formatter with nanosecond failed!")
+				"DateExtension toDateWithoutTime nanosecond failed!")
 	}
 
-	@Test("Check date to relative formatter with today!")
-	func testToRelativeIsToday() {
+	@Test("Check DateExtension toRelative with now!")
+	func testToRelativeWithNow() {
 		// Given
 		let date = Date.now
 		let relative = "Today"
@@ -67,11 +67,11 @@ struct DateExtensionTests {
 		let relativeDate = date.toRelative
 		// Then
 		#expect(relativeDate == relative,
-				"Date to relative formatter with today failed!")
+				"DateExtension toRelative with now failed!")
 	}
 
-	@Test("Check date to relative formatter with yesterday!")
-	func testToRelativeIsYesterday() {
+	@Test("Check DateExtension toRelative with yesterday!")
+	func testToRelativeWithYesterday() {
 		// Given
 		let date = Calendar.current.date(byAdding: DateComponents(day: -1),
 										 to: .now) ?? .now
@@ -80,6 +80,6 @@ struct DateExtensionTests {
 		let relativeDate = date.toRelative
 		// Then
 		#expect(relativeDate == relative,
-				"Date to relative formatter with yesterday failed!")
+				"DateExtension toRelative with yesterday failed!")
 	}
 }

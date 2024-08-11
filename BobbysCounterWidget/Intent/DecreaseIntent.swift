@@ -6,7 +6,6 @@
 //
 
 import AppIntents
-import SwiftData
 
 struct DecreaseIntent: AppIntent {
 
@@ -16,12 +15,9 @@ struct DecreaseIntent: AppIntent {
 
 	// MARK: - Actions
 
+	@MainActor
 	func perform() async throws -> some IntentResult {
-		let persistentIdentifier = try await CounterActor.shared.fetch(date: .now)
-		let modelContext = ModelContext(CounterActor.shared.modelContainer)
-		let counter = modelContext.model(for: persistentIdentifier) as? Counter
-		try counter?.decrease()
-		try modelContext.save()
+		try await Counter.fetch(date: .now)?.decrease()
 		return .result()
 	}
 }

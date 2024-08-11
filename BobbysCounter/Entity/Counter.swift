@@ -29,10 +29,19 @@ final class Counter {
 	func decrease() throws {
 		if count > 0 {
 			count -= 1
+			try modelContext?.save()
 		}
 	}
 
 	func increase() throws {
 		count += 1
+		try modelContext?.save()
+	}
+
+	@MainActor
+	static func fetch(date: Date) async throws -> Counter? {
+		let id = try await CounterActor.shared.fetchID(date: date)
+		let modelContext = ModelContext(CounterActor.shared.modelContainer)
+		return modelContext.model(for: id) as? Counter
 	}
 }

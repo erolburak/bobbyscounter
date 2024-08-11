@@ -11,7 +11,7 @@ struct SelectedTests {
 
 	// MARK: - Actions
 
-	@Test("Check initializing Selected!")
+	@Test("Check Selected initializing!")
 	func testSelected() {
 		// Given
 		let selected: Selected?
@@ -19,6 +19,6 @@ struct SelectedTests {
 		selected = Selected()
 		// Then
 		#expect(selected != nil,
-				"Initializing Selected failed!")
+				"Selected initializing failed!")
 	}
 }

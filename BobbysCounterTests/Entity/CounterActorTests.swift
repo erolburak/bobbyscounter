@@ -16,33 +16,27 @@ struct CounterActorTests {
 	@Test("Check CounterActor delete!")
 	func testDelete() async throws {
 		// Given
-		let counter = Counter(count: 0,
-							  date: .now)
-		let modelContext = ModelContext(CounterActor.shared.modelContainer)
-		modelContext.insert(counter)
-		try modelContext.save()
+		let date = Calendar.current.date(byAdding: DateComponents(day: -2),
+										 to: .now) ?? .now
+		let id = try await CounterActor.shared.fetchID(date: date)
 		// When
-		try await CounterActor.shared.delete(persistentIdentifiers: [counter.persistentModelID])
+		try await CounterActor.shared.delete(ids: [id])
 		// Then
-		let persistentIdentifier = try await CounterActor.shared.fetch(date: .now)
-		#expect(persistentIdentifier != counter.persistentModelID,
+		let modelContext = ModelContext(CounterActor.shared.modelContainer)
+		let counter = try modelContext.fetch(FetchDescriptor<Counter>(predicate: #Predicate { $0.persistentModelID == id })).first
+		#expect(counter == nil,
 				"CounterActor delete failed!")
 	}
 
-	@Test("Check CounterActor fetch!")
-	func testFetch() async throws {
+	@Test("Check CounterActor fetchID!")
+	func testFetchID() async throws {
 		// Given
 		let date = Calendar.current.date(byAdding: DateComponents(day: -2),
 										 to: .now) ?? .now
-		let counter = Counter(count: 0,
-							  date: date)
-		let modelContext = ModelContext(CounterActor.shared.modelContainer)
-		modelContext.insert(counter)
-		try modelContext.save()
 		// When
-		let persistentIdentifier = try await CounterActor.shared.fetch(date: date)
+		let id = try await CounterActor.shared.fetchID(date: date)
 		// Then
-		#expect(persistentIdentifier != nil,
-				"CounterActor fetch failed!")
+		#expect(id != nil,
+				"CounterActor fetchID failed!")
 	}
 }

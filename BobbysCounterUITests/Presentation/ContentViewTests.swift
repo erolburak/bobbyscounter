@@ -7,6 +7,7 @@
 
 import XCTest
 
+@MainActor
 final class ContentViewTests: XCTestCase {
 
 	// MARK: - Actions
@@ -19,7 +20,6 @@ final class ContentViewTests: XCTestCase {
 	/// 1) Close settings tip
 	/// 2) Decrease counter count value
 	/// 2) Check `CountText` for updated value otherwise check if `CountText` is 0
-	@MainActor
 	func testDecreaseCountText() {
 		let app = XCUIApplication()
 		app.launch()
@@ -46,7 +46,6 @@ final class ContentViewTests: XCTestCase {
 	/// 1) Close settings tip
 	/// 2) Increase counter count value
 	/// 2) Check `CountText` for updated value
-	@MainActor
 	func testIncreaseCountText() {
 		let app = XCUIApplication()
 		app.launch()
@@ -67,7 +66,6 @@ final class ContentViewTests: XCTestCase {
 	}
 
 	/// Test if `DateText` is set to today after launch
-	@MainActor
 	func testDateText() {
 		let app = XCUIApplication()
 		app.launch()
@@ -77,7 +75,6 @@ final class ContentViewTests: XCTestCase {
 	}
 
 	/// Test if `SettingsButton` exists and is enabled
-	@MainActor
 	func testSettingsButton() {
 		let app = XCUIApplication()
 		app.launch()

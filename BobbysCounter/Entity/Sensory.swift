@@ -17,7 +17,7 @@ class Sensory {
 
 	// MARK: - Actions
 
-	func feedbackTrigger(feedback: SensoryFeedback) {
+	func feedback(feedback: SensoryFeedback) {
 		self.feedback = feedback
 		feedbackBool.toggle()
 	}

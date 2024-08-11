@@ -7,6 +7,7 @@
 
 import XCTest
 
+@MainActor
 final class ChartViewTests: XCTestCase {
 
 	// MARK: - Actions
@@ -21,7 +22,6 @@ final class ChartViewTests: XCTestCase {
 	/// 3) Increase counter count value for first day of previous month
 	/// 4) Open settings view
 	/// 5) Check if `Chart` exists
-	@MainActor
 	func testChart() {
 		let app = XCUIApplication()
 		app.launch()
