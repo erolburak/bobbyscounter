@@ -66,6 +66,6 @@ struct BobbysCounterWidgetEntryView: View {
 		}
 		.fontWeight(.bold)
 		.monospaced()
-		.tint(.accent)
+		.widgetAccentable()
 	}
 }
