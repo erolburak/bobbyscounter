@@ -31,7 +31,7 @@ struct DateExtensionTests {
 		// When
 		let isDateToday = date.isDateToday
 		// Then
-		#expect(isDateToday == false,
+		#expect(!isDateToday,
 				"DateExtension isDateToday with tomorrow failed!")
 	}
 

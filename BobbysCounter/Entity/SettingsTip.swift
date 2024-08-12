@@ -17,7 +17,7 @@ struct SettingsTip: Tip {
 	var message: Text? = Text("SettingsTipMessage")
 	var rules: [Rule] {
 		[#Rule(Self.$show) {
-			$0 == true
+			$0
 		}]
 	}
 	var title = Text("Settings")
