@@ -110,7 +110,7 @@ struct CountersView: View {
 	}
 }
 
-#Preview {
+#Preview("CountersView") {
 	CountersView(selected: Selected(),
 				 showCountersSheet: .constant(true),
 				 dismiss: {})
@@ -209,7 +209,7 @@ private struct ListItem: View {
 	}
 }
 
-#Preview {
+#Preview("ListItem") {
 	ListItem(selected: Selected(),
 			 counter: Counter(count: 0,
 							  date: .now),
