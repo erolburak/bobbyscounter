@@ -45,17 +45,14 @@ struct DateExtensionTests {
 		let dateWithoutTime = date.toDateWithoutTime
 		// Then
 		#expect(calendar.component(.hour,
+								   from: dateWithoutTime ?? .now) == 0 &&
+				calendar.component(.minute,
+								   from: dateWithoutTime ?? .now) == 0 &&
+				calendar.component(.second,
+								   from: dateWithoutTime ?? .now) == 0 &&
+				calendar.component(.nanosecond,
 								   from: dateWithoutTime ?? .now) == 0,
-				"DateExtension toDateWithoutTime hour failed!")
-		#expect(calendar.component(.minute,
-								   from: dateWithoutTime ?? .now) == 0,
-				"DateExtension toDateWithoutTime minute failed!")
-		#expect(calendar.component(.second,
-								   from: dateWithoutTime ?? .now) == 0,
-				"DateExtension toDateWithoutTime second failed!")
-		#expect(calendar.component(.nanosecond,
-								   from: dateWithoutTime ?? .now) == 0,
-				"DateExtension toDateWithoutTime nanosecond failed!")
+				"DateExtension toDateWithoutTime failed!")
 	}
 
 	@Test("Check DateExtension toRelative with now!")
