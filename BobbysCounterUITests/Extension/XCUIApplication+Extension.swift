@@ -13,7 +13,7 @@ extension XCUIApplication {
 
 	/// Detects if settings tip is visible and closes it
 	func closeSettingsTip() {
-		let closeSettingsTipButton = self.popovers.buttons["Close"]
+		let closeSettingsTipButton = popovers.buttons["Close"]
 		if closeSettingsTipButton.waitForExistence(timeout: 5) {
 			closeSettingsTipButton.tap()
 		}

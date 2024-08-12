@@ -29,10 +29,9 @@ struct SensoryTests {
 		// When
 		sensory.feedback(feedback: .error)
 		// Then
-		#expect(sensory.feedback == .error,
+		#expect(sensory.feedback == .error &&
+				sensory.feedbackBool,
 				"Sensory feedback with error failed!")
-		#expect(sensory.feedbackBool,
-				"Sensory feedbackBool failed!")
 	}
 
 	@Test("Check Sensory feedback with success!")
@@ -42,9 +41,8 @@ struct SensoryTests {
 		// When
 		sensory.feedback(feedback: .success)
 		// Then
-		#expect(sensory.feedback == .success,
+		#expect(sensory.feedback == .success &&
+				sensory.feedbackBool,
 				"Sensory feedback with success failed!")
-		#expect(sensory.feedbackBool,
-				"Sensory feedbackBool failed!")
 	}
 }
