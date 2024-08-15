@@ -123,5 +123,5 @@ struct SettingsView: View {
 				.environment(Sensory())
 				.modelContainer(for: [Counter.self],
 								inMemory: true)
-	}
+		}
 }
