@@ -8,14 +8,13 @@
 import XCTest
 
 extension XCUIApplication {
+    // MARK: - Methods
 
-	// MARK: - Actions
-
-	/// Detects if settings tip is visible and closes it
-	func closeSettingsTip() {
-		let closeSettingsTipButton = popovers.buttons["Close"]
-		if closeSettingsTipButton.waitForExistence(timeout: 5) {
-			closeSettingsTipButton.tap()
-		}
-	}
+    /// Detects if settings tip is visible and closes it
+    func closeSettingsTip() {
+        let closeSettingsTipButton = popovers.buttons["Close"]
+        if closeSettingsTipButton.waitForExistence(timeout: 5) {
+            closeSettingsTipButton.tap()
+        }
+    }
 }

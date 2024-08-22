@@ -8,20 +8,19 @@
 import Foundation
 
 extension Double {
+    // MARK: - Private Properties
 
-	// MARK: - Private Properties
+    private static let numberFormatter = {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.minimumFractionDigits = 0
+        numberFormatter.maximumFractionDigits = 2
+        return numberFormatter
+    }()
 
-	private static let numberFormatter = {
-		let numberFormatter = NumberFormatter()
-		numberFormatter.minimumFractionDigits = 0
-		numberFormatter.maximumFractionDigits = 2
-		return numberFormatter
-	}()
+    // MARK: - Properties
 
-	// MARK: - Properties
-
-	/// Formats double to string without trailing zeros and maximum 2 fraction digits
-	var toString: String {
-		String(Double.numberFormatter.string(from: NSNumber(value: self)) ?? "")
-	}
+    /// Formats double to string without trailing zeros and maximum 2 fraction digits
+    var toString: String {
+        String(Double.numberFormatter.string(from: NSNumber(value: self)) ?? "")
+    }
 }

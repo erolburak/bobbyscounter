@@ -9,50 +9,54 @@ import SwiftUI
 import WidgetKit
 
 struct BobbysCounterWidget: Widget {
+    // MARK: - Private Properties
 
-	// MARK: - Private Properties
+    private let kind = "BobbysCounterWidget"
 
-	private let kind = "BobbysCounterWidget"
+    // MARK: - Layouts
 
-	// MARK: - Layouts
-
-	var body: some WidgetConfiguration {
-		StaticConfiguration(kind: kind,
-							provider: BobbysCounterWidgetProvider()) { entry in
-			BobbysCounterWidgetEntryView(entry: entry)
-				.containerBackground(.widgetBackground,
-									 for: .widget)
-				.modelContainer(CounterActor.shared.modelContainer)
-		}
-		.configurationDisplayName("WidgetConfigurationDisplayName")
-		.description("WidgetDescription")
-	}
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: kind,
+                            provider: BobbysCounterWidgetProvider())
+        { entry in
+            BobbysCounterWidgetEntryView(entry: entry)
+                .containerBackground(.widgetBackground,
+                                     for: .widget)
+                .modelContainer(CounterActor.shared.modelContainer)
+        }
+        .configurationDisplayName("WidgetConfigurationDisplayName")
+        .description("WidgetDescription")
+    }
 }
 
 #Preview("System Small",
-		 as: .systemSmall) {
-	BobbysCounterWidget()
+         as: .systemSmall)
+{
+    BobbysCounterWidget()
 } timeline: {
-	BobbysCounterWidgetEntry()
+    BobbysCounterWidgetEntry()
 }
 
 #Preview("System Medium",
-		 as: .systemMedium) {
-	BobbysCounterWidget()
+         as: .systemMedium)
+{
+    BobbysCounterWidget()
 } timeline: {
-	BobbysCounterWidgetEntry()
+    BobbysCounterWidgetEntry()
 }
 
 #Preview("System Large",
-		 as: .systemLarge) {
-	BobbysCounterWidget()
+         as: .systemLarge)
+{
+    BobbysCounterWidget()
 } timeline: {
-	BobbysCounterWidgetEntry()
+    BobbysCounterWidgetEntry()
 }
 
 #Preview("System Extra Large",
-		 as: .systemExtraLarge) {
-	BobbysCounterWidget()
+         as: .systemExtraLarge)
+{
+    BobbysCounterWidget()
 } timeline: {
-	BobbysCounterWidgetEntry()
+    BobbysCounterWidgetEntry()
 }

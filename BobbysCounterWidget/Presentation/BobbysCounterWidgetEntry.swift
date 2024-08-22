@@ -8,8 +8,7 @@
 import WidgetKit
 
 struct BobbysCounterWidgetEntry: TimelineEntry {
+    // MARK: - Properties
 
-	// MARK: - Properties
-
-	let date = Date.now
+    let date = Date.now
 }

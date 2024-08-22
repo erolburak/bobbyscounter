@@ -8,17 +8,16 @@
 import Testing
 
 struct AlertTests {
+    // MARK: - Methods
 
-	// MARK: - Actions
-
-	@Test("Check Alert initializing!")
-	func testAlert() {
-		// Given
-		let alert: Alert?
-		// When
-		alert = Alert()
-		// Then
-		#expect(alert != nil,
-				"Alert initializing  failed!")
-	}
+    @Test("Check Alert initializing!")
+    func testAlert() {
+        // Given
+        let alert: Alert?
+        // When
+        alert = Alert()
+        // Then
+        #expect(alert != nil,
+                "Alert initializing  failed!")
+    }
 }

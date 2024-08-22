@@ -9,9 +9,8 @@ import Foundation
 
 @Observable
 class Alert {
+    // MARK: - Properties
 
-	// MARK: - Properties
-
-	var error: Errors?
-	var show = false
+    var error: Errors?
+    var show = false
 }
