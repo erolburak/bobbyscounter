@@ -80,7 +80,7 @@ struct CountersView: View {
                                role: .destructive)
                         {
                             Task {
-                                try await CounterActor.shared.delete(ids: counters.map { $0.persistentModelID })
+                                try await CounterActor.shared.delete(ids: counters.map(\.persistentModelID))
                                 do {
                                     selected.average = 7
                                     selected.counter = try await Counter.fetch(date: .now)

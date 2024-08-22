@@ -15,11 +15,11 @@ actor CounterActor {
     static let shared = {
         do {
             var cloudKitDatabase: ModelConfiguration.CloudKitDatabase
-#if DEBUG
-            cloudKitDatabase = .none
-#else
-            cloudKitDatabase = .automatic
-#endif
+            #if DEBUG
+                cloudKitDatabase = .none
+            #else
+                cloudKitDatabase = .automatic
+            #endif
             let modelConfiguration = ModelConfiguration(isStoredInMemoryOnly: false,
                                                         cloudKitDatabase: cloudKitDatabase)
             let modelContainer = try ModelContainer(for: Schema([Counter.self]),
@@ -51,7 +51,7 @@ actor CounterActor {
         }
         /// Delete duplicate counters while initializing new array without first item in counters array
         let duplicateCounters = counters.dropFirst()
-        try delete(ids: Array(duplicateCounters.map { $0.persistentModelID }))
+        try delete(ids: Array(duplicateCounters.map(\.persistentModelID)))
         return counter.persistentModelID
     }
 }
