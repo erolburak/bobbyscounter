@@ -9,8 +9,7 @@ import SwiftUI
 
 @main
 struct BobbysCounterWidgetBundle: WidgetBundle {
-
-	// MARK: - Layouts
+    // MARK: - Layouts
 
     var body: some Widget {
         BobbysCounterWidget()

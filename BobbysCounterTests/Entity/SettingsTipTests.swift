@@ -8,17 +8,16 @@
 import Testing
 
 struct SettingsTipTests {
+    // MARK: - Methods
 
-	// MARK: - Actions
-
-	@Test("Check SettingsTip initializing!")
-	func testSettingsTip() {
-		// Given
-		let settingsTip: SettingsTip?
-		// When
-		settingsTip = SettingsTip()
-		// Then
-		#expect(settingsTip != nil,
-				"SettingsTip initializing failed!")
-	}
+    @Test("Check SettingsTip initializing!")
+    func testSettingsTip() {
+        // Given
+        let settingsTip: SettingsTip?
+        // When
+        settingsTip = SettingsTip()
+        // Then
+        #expect(settingsTip != nil,
+                "SettingsTip initializing failed!")
+    }
 }

@@ -8,17 +8,16 @@
 import Testing
 
 struct SelectedTests {
+    // MARK: - Methods
 
-	// MARK: - Actions
-
-	@Test("Check Selected initializing!")
-	func testSelected() {
-		// Given
-		let selected: Selected?
-		// When
-		selected = Selected()
-		// Then
-		#expect(selected != nil,
-				"Selected initializing failed!")
-	}
+    @Test("Check Selected initializing!")
+    func testSelected() {
+        // Given
+        let selected: Selected?
+        // When
+        selected = Selected()
+        // Then
+        #expect(selected != nil,
+                "Selected initializing failed!")
+    }
 }
