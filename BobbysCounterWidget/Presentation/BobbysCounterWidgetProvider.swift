@@ -10,20 +10,20 @@ import WidgetKit
 struct BobbysCounterWidgetProvider: TimelineProvider {
     // MARK: - Methods
 
-    func getSnapshot(in context: Context,
+    func getSnapshot(in _: Context,
                      completion: @escaping (BobbysCounterWidgetEntry) -> Void)
     {
         completion(BobbysCounterWidgetEntry())
     }
 
-    func getTimeline(in context: Context,
+    func getTimeline(in _: Context,
                      completion: @escaping (Timeline<BobbysCounterWidgetEntry>) -> Void)
     {
         completion(Timeline(entries: [BobbysCounterWidgetEntry()],
                             policy: .atEnd))
     }
 
-    func placeholder(in context: Context) -> BobbysCounterWidgetEntry {
+    func placeholder(in _: Context) -> BobbysCounterWidgetEntry {
         BobbysCounterWidgetEntry()
     }
 }

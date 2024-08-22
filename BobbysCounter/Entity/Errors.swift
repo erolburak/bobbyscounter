@@ -15,27 +15,27 @@ enum Errors: LocalizedError {
 
     var errorDescription: String? {
         switch self {
-        case .error(let error):
-            return error.description
+        case let .error(error):
+            error.description
         case .fetch:
-            return String(localized: "ErrorDescriptionFetch")
+            String(localized: "ErrorDescriptionFetch")
         case .decrease:
-            return String(localized: "ErrorDescriptionDecrease")
+            String(localized: "ErrorDescriptionDecrease")
         case .increase:
-            return String(localized: "ErrorDescriptionIncrease")
+            String(localized: "ErrorDescriptionIncrease")
         }
     }
 
     var recoverySuggestion: String? {
         switch self {
         case .error:
-            return String(localized: "ErrorRecoverySuggestionError")
+            String(localized: "ErrorRecoverySuggestionError")
         case .fetch:
-            return String(localized: "ErrorRecoverySuggestionFetch")
+            String(localized: "ErrorRecoverySuggestionFetch")
         case .decrease:
-            return String(localized: "ErrorRecoverySuggestionDecrease")
+            String(localized: "ErrorRecoverySuggestionDecrease")
         case .increase:
-            return String(localized: "ErrorRecoverySuggestionIncrease")
+            String(localized: "ErrorRecoverySuggestionIncrease")
         }
     }
 }
