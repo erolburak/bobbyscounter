@@ -8,16 +8,15 @@
 import AppIntents
 
 struct DecreaseIntent: AppIntent {
+    // MARK: - Properties
 
-	// MARK: - Properties
+    static let title: LocalizedStringResource = "Decrease"
 
-	static let title: LocalizedStringResource = "Decrease"
+    // MARK: - Methods
 
-	// MARK: - Actions
-
-	@MainActor
-	func perform() async throws -> some IntentResult {
-		try await Counter.fetch(date: .now)?.decrease()
-		return .result()
-	}
+    @MainActor
+    func perform() async throws -> some IntentResult {
+        try await Counter.fetch(date: .now)?.decrease()
+        return .result()
+    }
 }

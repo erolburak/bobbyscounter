@@ -9,63 +9,64 @@ import SwiftData
 import SwiftUI
 
 struct BobbysCounterWidgetEntryView: View {
+    // MARK: - Private Properties
 
-	// MARK: - Private Properties
+    @Query(sort: \Counter.date,
+           order: .reverse) private var counters: [Counter]
+    private var count: Int? {
+        counters.first { $0.date == .now.toDateWithoutTime }?.count
+    }
 
-	@Query(sort: \Counter.date,
-		   order: .reverse) private var counters: [Counter]
-	private var count: Int? {
-		counters.first { $0.date == .now.toDateWithoutTime }?.count
-	}
-	private var decreaseDisabled: Bool {
-		count == nil || count == 0
-	}
-	private var isCountNil: Bool {
-		count == nil
-	}
+    private var decreaseDisabled: Bool {
+        count == nil || count == 0
+    }
 
-	// MARK: - Properties
+    private var isCountNil: Bool {
+        count == nil
+    }
 
-	let entry: BobbysCounterWidgetProvider.Entry
+    // MARK: - Properties
 
-	// MARK: - Layouts
+    let entry: BobbysCounterWidgetProvider.Entry
 
-	var body: some View {
-		ZStack {
-			if isCountNil {
-				Text("EmptyCount")
-			} else if let count {
-				Text(count.description)
-					.font(.system(size: 100))
-					.minimumScaleFactor(0.01)
-					.lineLimit(1)
-					.opacity(0.25)
-					.padding()
-					.contentTransition(.numericText())
+    // MARK: - Layouts
 
-				HStack {
-					Button("Minus",
-						   intent: DecreaseIntent())
-					.frame(maxWidth: .infinity)
-					.disabled(decreaseDisabled)
+    var body: some View {
+        ZStack {
+            if isCountNil {
+                Text("EmptyCount")
+            } else if let count {
+                Text(count.description)
+                    .font(.system(size: 100))
+                    .minimumScaleFactor(0.01)
+                    .lineLimit(1)
+                    .opacity(0.25)
+                    .padding()
+                    .contentTransition(.numericText())
 
-					Button("Plus",
-						   intent: IncreaseIntent())
-					.frame(maxWidth: .infinity)
-				}
-				.font(.system(size: 70))
-				.buttonStyle(.plain)
-			}
-		}
-		.ignoresSafeArea(.all)
-		.overlay(alignment: .topTrailing) {
-			if !isCountNil {
-				Text(entry.date.toRelative)
-					.font(.system(size: 8))
-			}
-		}
-		.fontWeight(.bold)
-		.monospaced()
-		.widgetAccentable()
-	}
+                HStack {
+                    Button("Minus",
+                           intent: DecreaseIntent())
+                        .frame(maxWidth: .infinity)
+                        .disabled(decreaseDisabled)
+
+                    Button("Plus",
+                           intent: IncreaseIntent())
+                        .frame(maxWidth: .infinity)
+                }
+                .font(.system(size: 70))
+                .buttonStyle(.plain)
+            }
+        }
+        .ignoresSafeArea(.all)
+        .overlay(alignment: .topTrailing) {
+            if !isCountNil {
+                Text(entry.date.toRelative)
+                    .font(.system(size: 8))
+            }
+        }
+        .fontWeight(.bold)
+        .monospaced()
+        .widgetAccentable()
+    }
 }

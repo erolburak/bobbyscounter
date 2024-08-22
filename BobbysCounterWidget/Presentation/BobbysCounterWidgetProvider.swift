@@ -8,21 +8,22 @@
 import WidgetKit
 
 struct BobbysCounterWidgetProvider: TimelineProvider {
+    // MARK: - Methods
 
-	// MARK: - Actions
+    func getSnapshot(in context: Context,
+                     completion: @escaping (BobbysCounterWidgetEntry) -> Void)
+    {
+        completion(BobbysCounterWidgetEntry())
+    }
 
-	func getSnapshot(in context: Context,
-					 completion: @escaping (BobbysCounterWidgetEntry) -> Void) {
-		completion(BobbysCounterWidgetEntry())
-	}
+    func getTimeline(in context: Context,
+                     completion: @escaping (Timeline<BobbysCounterWidgetEntry>) -> Void)
+    {
+        completion(Timeline(entries: [BobbysCounterWidgetEntry()],
+                            policy: .atEnd))
+    }
 
-	func getTimeline(in context: Context,
-					 completion: @escaping (Timeline<BobbysCounterWidgetEntry>) -> Void) {
-		completion(Timeline(entries: [BobbysCounterWidgetEntry()],
-							policy: .atEnd))
-	}
-
-	func placeholder(in context: Context) -> BobbysCounterWidgetEntry {
-		BobbysCounterWidgetEntry()
-	}
+    func placeholder(in context: Context) -> BobbysCounterWidgetEntry {
+        BobbysCounterWidgetEntry()
+    }
 }

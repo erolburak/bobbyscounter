@@ -9,10 +9,9 @@ import Foundation
 
 @Observable
 class Selected {
+    // MARK: - Properties
 
-	// MARK: - Properties
-
-	var average = 7
-	var counter: Counter?
-	var date = Date.now.toDateWithoutTime ?? .now
+    var average = 7
+    var counter: Counter?
+    var date = Date.now.toDateWithoutTime ?? .now
 }

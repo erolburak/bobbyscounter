@@ -9,16 +9,15 @@ import SwiftUI
 
 @Observable
 class Sensory {
+    // MARK: - Properties
 
-	// MARK: - Properties
+    var feedback: SensoryFeedback?
+    var feedbackBool = false
 
-	var feedback: SensoryFeedback?
-	var feedbackBool = false
+    // MARK: - Methods
 
-	// MARK: - Actions
-
-	func feedback(feedback: SensoryFeedback) {
-		self.feedback = feedback
-		feedbackBool.toggle()
-	}
+    func feedback(feedback: SensoryFeedback) {
+        self.feedback = feedback
+        feedbackBool.toggle()
+    }
 }
