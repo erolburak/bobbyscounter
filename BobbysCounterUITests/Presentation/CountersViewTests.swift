@@ -16,15 +16,12 @@ final class CountersViewTests: XCTestCase {
     }
 
     /// Test delete and confirm delete steps:
-    /// 1) Close settings tip
-    /// 2) Open settings view
-    /// 3) Open counters view
-    /// 4) Delete todays counter
-    /// 5) Check if `DeleteConfirmationDialogButton` exists
+    /// 1) Open settings view
+    /// 2) Open counters view
+    /// 3) Delete todays counter
+    /// 4) Check if `DeleteConfirmationDialogButton` exists
     func testDeleteButton() {
-        let app = XCUIApplication()
-        app.launch()
-        app.closeSettingsTip()
+        let app = XCUIApplication().appLaunch()
         let settingsButton = app.buttons["SettingsButton"]
         XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
         settingsButton.tap()
@@ -42,15 +39,12 @@ final class CountersViewTests: XCTestCase {
     }
 
     /// Test final delete confirmation steps:
-    /// 1) Close settings tip
-    /// 2) Open settings view
-    /// 3) Open counters view
-    /// 4) Delete todays counter
-    /// 5) Confirm deleting todays counter
+    /// 1) Open settings view
+    /// 2) Open counters view
+    /// 3) Delete todays counter
+    /// 4) Confirm deleting todays counter
     func testDeleteConfirmationButton() {
-        let app = XCUIApplication()
-        app.launch()
-        app.closeSettingsTip()
+        let app = XCUIApplication().appLaunch()
         let settingsButton = app.buttons["SettingsButton"]
         XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
         settingsButton.tap()
@@ -69,15 +63,12 @@ final class CountersViewTests: XCTestCase {
     }
 
     /// Test reset and confirm reset steps:
-    /// 1) Close settings tip
-    /// 2) Open settings view
-    /// 3) Open counters view
-    /// 4) Press reset
-    /// 5) Check if `ResetConfirmationDialogButton` exists
+    /// 1) Open settings view
+    /// 2) Open counters view
+    /// 3) Press reset
+    /// 4) Check if `ResetConfirmationDialogButton` exists
     func testResetButton() {
-        let app = XCUIApplication()
-        app.launch()
-        app.closeSettingsTip()
+        let app = XCUIApplication().appLaunch()
         let settingsButton = app.buttons["SettingsButton"]
         XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
         settingsButton.tap()
@@ -92,16 +83,13 @@ final class CountersViewTests: XCTestCase {
     }
 
     /// Test final reset confirmation steps:
-    /// 1) Close settings tip
-    /// 2) Open settings view
-    /// 3) Open counters view
-    /// 4) Press reset
-    /// 5) Confirm reset
-    /// 6) Check `CountText` for updated value
+    /// 1) Open settings view
+    /// 2) Open counters view
+    /// 3) Press reset
+    /// 4) Confirm reset
+    /// 5) Check `CountText` for updated value
     func testResetConfirmationButton() {
-        let app = XCUIApplication()
-        app.launch()
-        app.closeSettingsTip()
+        let app = XCUIApplication().appLaunch()
         let settingsButton = app.buttons["SettingsButton"]
         XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
         settingsButton.tap()
@@ -121,14 +109,11 @@ final class CountersViewTests: XCTestCase {
     }
 
     /// Test close counters view steps:
-    /// 1) Close settings tip
-    /// 2) Open settings view
-    /// 3) Open counters view
-    /// 4) Close counters view
+    /// 1) Open settings view
+    /// 2) Open counters view
+    /// 3) Close counters view
     func testCloseCountersButton() {
-        let app = XCUIApplication()
-        app.launch()
-        app.closeSettingsTip()
+        let app = XCUIApplication().appLaunch()
         let settingsButton = app.buttons["SettingsButton"]
         XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
         settingsButton.tap()

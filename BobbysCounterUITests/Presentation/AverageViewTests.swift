@@ -16,14 +16,11 @@ final class AverageViewTests: XCTestCase {
     }
 
     /// Test close average view steps:
-    /// 1) Close settings tip
-    /// 2) Open settings view
-    /// 3) Open average view
-    /// 4) Close average view
+    /// 1) Open settings view
+    /// 2) Open average view
+    /// 3) Close average view
     func testCloseAverageButton() {
-        let app = XCUIApplication()
-        app.launch()
-        app.closeSettingsTip()
+        let app = XCUIApplication().appLaunch()
         let settingsButton = app.buttons["SettingsButton"]
         XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
         settingsButton.tap()
@@ -36,15 +33,12 @@ final class AverageViewTests: XCTestCase {
     }
 
     /// Test set selected average to 30 steps:
-    /// 1) Close settings tip
-    /// 2) Open settings view
-    /// 3) Open average view
-    /// 4) Set selected average to 30
-    /// 5) Check `AverageMessage` for updated value
+    /// 1) Open settings view
+    /// 2) Open average view
+    /// 3) Set selected average to 30
+    /// 4) Check `AverageMessage` for updated value
     func testSelectAverageButton() {
-        let app = XCUIApplication()
-        app.launch()
-        app.closeSettingsTip()
+        let app = XCUIApplication().appLaunch()
         let settingsButton = app.buttons["SettingsButton"]
         XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
         settingsButton.tap()

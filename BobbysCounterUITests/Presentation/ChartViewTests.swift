@@ -16,15 +16,12 @@ final class ChartViewTests: XCTestCase {
     }
 
     /// Test if `Chart` exists steps:
-    /// 1) Close settings tip
-    /// 2) Increase counter count value for current day
-    /// 3) Increase counter count value for first day of previous month
-    /// 4) Open settings view
-    /// 5) Check if `Chart` exists
+    /// 1) Increase counter count value for current day
+    /// 2) Increase counter count value for first day of previous month
+    /// 3) Open settings view
+    /// 4) Check if `Chart` exists
     func testChart() {
-        let app = XCUIApplication()
-        app.launch()
-        app.closeSettingsTip()
+        let app = XCUIApplication().appLaunch()
         let plusButton = app.buttons["PlusButton"]
         XCTAssertTrue(plusButton.waitForExistence(timeout: 5))
         plusButton.tap()
