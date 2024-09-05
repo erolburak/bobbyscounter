@@ -60,6 +60,8 @@ struct CountersView: View {
                     ContentUnavailableView("EmptyCounters",
                                            systemImage: "list.bullet.circle.fill",
                                            description: Text("EmptyCountersMessage"))
+                        .symbolEffect(.bounce,
+                                      options: .nonRepeating)
                 }
             }
             .navigationTitle("Counters")
