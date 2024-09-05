@@ -14,6 +14,7 @@ struct AverageView: View {
     @Environment(Sensory.self) private var sensory
     @Query(sort: \Counter.date,
            order: .reverse) private var counters: [Counter]
+    @State private var averageMessage: String?
     private let averages = [7, 30, 90]
     private var average: String {
         /// Calculate average for last X items of counters depending on selected average value
@@ -34,7 +35,9 @@ struct AverageView: View {
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
-                if !counters.isEmpty {
+                if !counters.isEmpty,
+                   let averageMessage
+                {
                     HStack {
                         Text("SelectedAverage")
 
@@ -54,15 +57,18 @@ struct AverageView: View {
 
                     Spacer()
 
-                    Text("AverageMessage\(selected.average)\(average)")
+                    Text(averageMessage)
                         .font(.caption)
                         .fontWeight(.regular)
                         .padding(.horizontal)
+                        .contentTransition(.numericText())
                         .accessibilityIdentifier("AverageMessage")
                 } else {
                     ContentUnavailableView("EmptyAverage",
                                            systemImage: "divide.circle.fill",
                                            description: Text("EmptyCountersMessage"))
+                        .symbolEffect(.bounce,
+                                      options: .nonRepeating)
                 }
 
                 Spacer()
@@ -79,11 +85,23 @@ struct AverageView: View {
                     .accessibilityIdentifier("CloseAverageButton")
                 }
             }
+            .onAppear {
+                updateAverageMessage()
+            }
             .onChange(of: selected.average) {
+                updateAverageMessage()
                 sensory.feedback(feedback: .selection)
             }
         }
         .presentationDetents([.fraction(counters.isEmpty ? 0.6 : 0.4)])
+    }
+
+    // MARK: - Methods
+
+    private func updateAverageMessage() {
+        withAnimation {
+            averageMessage = String(localized: "AverageMessage\(selected.average)\(average)")
+        }
     }
 }
 

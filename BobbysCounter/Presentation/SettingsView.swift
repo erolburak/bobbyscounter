@@ -42,6 +42,8 @@ struct SettingsView: View {
                     ContentUnavailableView("EmptyCharts",
                                            systemImage: "chart.xyaxis.line",
                                            description: Text("EmptyCountersMessage"))
+                        .symbolEffect(.bounce,
+                                      options: .nonRepeating)
                 }
 
                 Spacer()
@@ -78,7 +80,9 @@ struct SettingsView: View {
 
                 ToolbarItem(placement: .bottomBar) {
                     Button("Today") {
-                        selected.date = .now.toDateWithoutTime ?? .now
+                        withAnimation {
+                            selected.date = .now.toDateWithoutTime ?? .now
+                        }
                     }
                     .disabled(selected.date.isDateToday)
                     .accessibilityIdentifier("TodayButton")
