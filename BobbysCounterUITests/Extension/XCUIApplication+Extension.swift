@@ -10,11 +10,17 @@ import XCTest
 extension XCUIApplication {
     // MARK: - Methods
 
-    /// Detects if settings tip is visible and closes it
-    func closeSettingsTip() {
+    /// Launch app steps:
+    /// 1) Set launch arguments to -uitesting
+    /// 2) Close settings tip
+    func appLaunch() -> XCUIApplication {
+        let app = XCUIApplication()
+        app.launchArguments = ["–uitesting"]
+        app.launch()
         let closeSettingsTipButton = popovers.buttons["Close"]
         if closeSettingsTipButton.waitForExistence(timeout: 5) {
             closeSettingsTipButton.tap()
         }
+        return app
     }
 }

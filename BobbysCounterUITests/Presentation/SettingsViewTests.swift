@@ -16,13 +16,10 @@ final class SettingsViewTests: XCTestCase {
     }
 
     /// Test close settings view steps:
-    /// 1) Close settings tip
-    /// 2) Open settings view
-    /// 3) Close settings view
+    /// 1) Open settings view
+    /// 2) Close settings view
     func testCloseSettingsButton() {
-        let app = XCUIApplication()
-        app.launch()
-        app.closeSettingsTip()
+        let app = XCUIApplication().appLaunch()
         let settingsButton = app.buttons["SettingsButton"]
         XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
         settingsButton.tap()
@@ -32,15 +29,12 @@ final class SettingsViewTests: XCTestCase {
     }
 
     /// Test set selected date to today steps:
-    /// 1) Close settings tip
-    /// 2) Open settings view
-    /// 3) Select first day of previous month
-    /// 4) Select today
-    /// 5) Check `DateText` for updated value
+    /// 1) Open settings view
+    /// 2) Select first day of previous month
+    /// 3) Select today
+    /// 4) Check `DateText` for updated value
     func testTodayButton() {
-        let app = XCUIApplication()
-        app.launch()
-        app.closeSettingsTip()
+        let app = XCUIApplication().appLaunch()
         let settingsButton = app.buttons["SettingsButton"]
         XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
         settingsButton.tap()
