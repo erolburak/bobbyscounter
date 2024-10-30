@@ -59,6 +59,7 @@
 		BFDF3C862A61ACF3001E4076 /* IncreaseIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDF3C832A61A84D001E4076 /* IncreaseIntent.swift */; };
 		BFE12E802A65857C001960F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF2C453D2A4B3EB900D48C36 /* Assets.xcassets */; };
 		BFE12E842A65D1C9001960F6 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE12E832A65D1C9001960F6 /* Date+Extension.swift */; };
+		BFE4E4792CD2D858006F63DD /* BobbysCounterShortcutsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE4E46B2CD2AE38006F63DD /* BobbysCounterShortcutsProvider.swift */; };
 		BFED13EE2B55ABD400044E02 /* AverageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFED13ED2B55ABD400044E02 /* AverageView.swift */; };
 		BFF55EBA2A57314E00EE0B3A /* BobbysCounterWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF55EB92A57314E00EE0B3A /* BobbysCounterWidgetBundle.swift */; };
 		BFF55EBC2A57314E00EE0B3A /* BobbysCounterWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF55EBB2A57314E00EE0B3A /* BobbysCounterWidget.swift */; };
@@ -148,6 +149,7 @@
 		BFDF3C812A61A7FA001E4076 /* DecreaseIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecreaseIntent.swift; sourceTree = "<group>"; };
 		BFDF3C832A61A84D001E4076 /* IncreaseIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncreaseIntent.swift; sourceTree = "<group>"; };
 		BFE12E832A65D1C9001960F6 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		BFE4E46B2CD2AE38006F63DD /* BobbysCounterShortcutsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BobbysCounterShortcutsProvider.swift; sourceTree = "<group>"; };
 		BFED13ED2B55ABD400044E02 /* AverageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AverageView.swift; sourceTree = "<group>"; };
 		BFF55EB42A57314E00EE0B3A /* BobbysCounterWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BobbysCounterWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFF55EB92A57314E00EE0B3A /* BobbysCounterWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BobbysCounterWidgetBundle.swift; sourceTree = "<group>"; };
@@ -347,11 +349,11 @@
 		BFB86DAC2A66CC110092EAEC /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				BFE4E47C2CD2E548006F63DD /* Provider */,
 				BFF55EBB2A57314E00EE0B3A /* BobbysCounterWidget.swift */,
 				BFF55EB92A57314E00EE0B3A /* BobbysCounterWidgetBundle.swift */,
 				BFB86DB02A66E1690092EAEC /* BobbysCounterWidgetEntry.swift */,
 				BFB86DAD2A66E0D90092EAEC /* BobbysCounterWidgetEntryView.swift */,
-				BFB86DB42A66E22A0092EAEC /* BobbysCounterWidgetProvider.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -375,6 +377,15 @@
 				BFDF3C832A61A84D001E4076 /* IncreaseIntent.swift */,
 			);
 			path = Intent;
+			sourceTree = "<group>";
+		};
+		BFE4E47C2CD2E548006F63DD /* Provider */ = {
+			isa = PBXGroup;
+			children = (
+				BFE4E46B2CD2AE38006F63DD /* BobbysCounterShortcutsProvider.swift */,
+				BFB86DB42A66E22A0092EAEC /* BobbysCounterWidgetProvider.swift */,
+			);
+			path = Provider;
 			sourceTree = "<group>";
 		};
 		BFF55EB82A57314E00EE0B3A /* BobbysCounterWidget */ = {
@@ -622,6 +633,7 @@
 				BFDF3C862A61ACF3001E4076 /* IncreaseIntent.swift in Sources */,
 				BF69168A2AA3500600ED7075 /* Date+Extension.swift in Sources */,
 				BFB86DB62A66E22A0092EAEC /* BobbysCounterWidgetProvider.swift in Sources */,
+				BFE4E4792CD2D858006F63DD /* BobbysCounterShortcutsProvider.swift in Sources */,
 				BFDCAEE12AA240C3004B0316 /* Counter.swift in Sources */,
 				BFDF3C852A61ACEF001E4076 /* DecreaseIntent.swift in Sources */,
 			);
