@@ -6,17 +6,20 @@
 //
 
 import AppIntents
+import WidgetKit
 
 struct DecreaseIntent: AppIntent {
     // MARK: - Properties
 
-    static let title: LocalizedStringResource = "Decrease"
+    static let description: IntentDescription = "DecreaseDescription"
+    static let title: LocalizedStringResource = "DecreaseTitle"
 
     // MARK: - Methods
 
     @MainActor
-    func perform() async throws -> some IntentResult {
+    func perform() async throws -> some IntentResult & ProvidesDialog {
         try await Counter.fetch(date: .now)?.decrease()
-        return .result()
+        WidgetCenter.shared.reloadAllTimelines()
+        return .result(dialog: "DecreaseDialog")
     }
 }

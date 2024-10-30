@@ -97,18 +97,50 @@
         }
       }
     },
-    "Decrease" : {
+    "DecreaseDescription" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Verringern"
+            "value" : "Dieser Kurzbefehl verringert den heutigen Zähler um 1"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Decrease"
+            "value" : "This shortcut will decrease today's counter by 1"
+          }
+        }
+      }
+    },
+    "DecreaseDialog" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Okay, verringere den heutigen Zähler."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Okay, decreasing today's counter."
+          }
+        }
+      }
+    },
+    "DecreaseTitle" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verringere Zähler"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Decrease counter"
           }
         }
       }
@@ -342,18 +374,50 @@
         }
       }
     },
-    "Increase" : {
+    "IncreaseDescription" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Erhöhen"
+            "value" : "Dieser Kurzbefehl erhöht den heutigen Zähler um 1"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Increase"
+            "value" : "This shortcut will increase today's counter by 1"
+          }
+        }
+      }
+    },
+    "IncreaseDialog" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Okay, erhöhe den heutigen Zähler."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Okay, increasing today's counter."
+          }
+        }
+      }
+    },
+    "IncreaseTitle" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erhöhe Zähler"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Increase counter"
           }
         }
       }
