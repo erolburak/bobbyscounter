@@ -1,5 +1,5 @@
 //
-//  StateContent.swift
+//  States.swift
 //  BobbysCounter
 //
 //  Created by Burak Erol on 04.11.24.
