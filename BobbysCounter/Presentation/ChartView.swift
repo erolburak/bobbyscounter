@@ -114,7 +114,7 @@ struct ChartView: View {
     }
 
     private func selectedPointMarkCounter(counters: [Counter]) -> Counter? {
-        counters.first { $0.date == selectedPointMarkDate?.toDateWithoutTime }
+        counters.lazy.first { $0.date == selectedPointMarkDate?.toDateWithoutTime }
     }
 }
 

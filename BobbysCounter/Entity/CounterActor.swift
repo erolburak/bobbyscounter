@@ -42,7 +42,7 @@ actor CounterActor {
     func fetchID(date: Date) throws -> Counter.ID {
         let counters = try modelContext.fetch(FetchDescriptor<Counter>(predicate: #Predicate { $0.date == date.toDateWithoutTime }))
         /// Insert new counter if no counter with given date exists
-        guard let counter = counters.first else {
+        guard let counter = counters.lazy.first else {
             let newCounter = Counter(count: 0,
                                      date: date)
             modelContext.insert(newCounter)
@@ -50,8 +50,8 @@ actor CounterActor {
             return newCounter.persistentModelID
         }
         /// Delete duplicate counters while initializing new array without first item in counters array
-        let duplicateCounters = counters.dropFirst()
-        try delete(ids: Array(duplicateCounters.map(\.persistentModelID)))
+        let duplicateCounters = counters.lazy.dropFirst()
+        try delete(ids: Array(duplicateCounters.lazy.map(\.persistentModelID)))
         return counter.persistentModelID
     }
 }
