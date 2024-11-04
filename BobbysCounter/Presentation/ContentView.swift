@@ -10,6 +10,15 @@ import SwiftUI
 import WidgetKit
 
 struct ContentView: View {
+    // MARK: - Private Type Definitions
+
+    private enum StateContent {
+        /// General States
+        case isLoading, loaded
+        /// Empty States
+        case empty
+    }
+
     // MARK: - Private Properties
 
     @Environment(\.scenePhase) private var scenePhase
@@ -19,26 +28,19 @@ struct ContentView: View {
            order: .reverse) private var counters: [Counter]
     @State private var selected = Selected()
     @State private var showSettingsSheet = false
+    @State private var stateContent: StateContent = .isLoading
     private let settingsTip = SettingsTip()
-    private var count: Int? {
-        selected.counter?.count
-    }
-
-    private var decreaseDisabled: Bool {
-        count == nil || count == 0
-    }
-
-    private var isCountNil: Bool {
-        count == nil
-    }
 
     // MARK: - Layouts
 
     var body: some View {
         ZStack {
-            if isCountNil {
-                Text("EmptyCount")
-            } else if let count {
+            switch stateContent {
+            case .isLoading:
+                ProgressView()
+            case .loaded:
+                let count = selected.counter?.count ?? 0
+
                 Text(count.description)
                     .font(.system(size: 1000))
                     .minimumScaleFactor(0.001)
@@ -62,8 +64,7 @@ struct ContentView: View {
                         }
                     }
                     .frame(maxWidth: .infinity)
-                    .buttonRepeatBehavior(.enabled)
-                    .disabled(decreaseDisabled)
+                    .disabled(count <= 0)
                     .accessibilityIdentifier("MinusButton")
 
                     Button("Plus") {
@@ -79,16 +80,18 @@ struct ContentView: View {
                         }
                     }
                     .frame(maxWidth: .infinity)
-                    .buttonRepeatBehavior(.enabled)
                     .accessibilityIdentifier("PlusButton")
                 }
                 .frame(maxHeight: .infinity)
+                .buttonRepeatBehavior(.enabled)
                 .font(.system(size: 140.0))
+            case .empty:
+                Text("EmptyCount")
             }
         }
         .ignoresSafeArea(.all)
         .overlay(alignment: .topTrailing) {
-            if !isCountNil {
+            if case .loaded = stateContent {
                 Text(selected.counter?.date?.toRelative ?? "")
                     .font(.system(size: 8))
                     .padding(.trailing)
@@ -96,7 +99,7 @@ struct ContentView: View {
             }
         }
         .overlay(alignment: .bottom) {
-            if !isCountNil {
+            if case .loaded = stateContent {
                 Button("Settings") {
                     showSettingsSheet = true
                     settingsTip.invalidate(reason: .actionPerformed)
@@ -119,6 +122,9 @@ struct ContentView: View {
         .fontWeight(.bold)
         .monospaced()
         .tint(.accent)
+        .onChange(of: selected.counter?.count) { _, newValue in
+            stateContent = newValue == nil ? .empty : .loaded
+        }
         .onChange(of: scenePhase) {
             switch scenePhase {
             case .active:
