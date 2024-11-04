@@ -17,7 +17,7 @@ struct CountersView: View {
            order: .reverse) private var counters: [Counter]
     @State private var showResetConfirmationDialog = false
     private var filteredCounters: [Counter] {
-        counters.filter { $0.date != selected.date }
+        counters.lazy.filter { $0.date != selected.date }
     }
 
     // MARK: - Properties
@@ -82,7 +82,7 @@ struct CountersView: View {
                                role: .destructive)
                         {
                             Task {
-                                try await CounterActor.shared.delete(ids: counters.map(\.persistentModelID))
+                                try await CounterActor.shared.delete(ids: counters.lazy.map(\.persistentModelID))
                                 do {
                                     selected.average = 7
                                     selected.counter = try await Counter.fetch(date: .now)

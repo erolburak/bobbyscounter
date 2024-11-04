@@ -14,15 +14,15 @@ struct BobbysCounterWidgetEntryView: View {
     @Query(sort: \Counter.date,
            order: .reverse) private var counters: [Counter]
     private var count: Int? {
-        counters.first { $0.date == .now.toDateWithoutTime }?.count
+        counters.lazy.first { $0.date == .now.toDateWithoutTime }?.count
     }
 
-    private var decreaseDisabled: Bool {
-        count == nil || count == 0
+    private var redactedReason: RedactionReasons {
+        state == nil ? .placeholder : []
     }
 
-    private var isCountNil: Bool {
-        count == nil
+    private var state: States? {
+        count == nil ? .empty : .loaded
     }
 
     // MARK: - Properties
@@ -33,9 +33,12 @@ struct BobbysCounterWidgetEntryView: View {
 
     var body: some View {
         ZStack {
-            if isCountNil {
+            switch state {
+            case .empty:
                 Text("EmptyCount")
-            } else if let count {
+            default:
+                let count = count ?? 0
+
                 Text(count.description)
                     .font(.system(size: 100))
                     .minimumScaleFactor(0.01)
@@ -48,7 +51,7 @@ struct BobbysCounterWidgetEntryView: View {
                     Button("Minus",
                            intent: DecreaseIntent())
                         .frame(maxWidth: .infinity)
-                        .disabled(decreaseDisabled)
+                        .disabled(count <= 0)
 
                     Button("Plus",
                            intent: IncreaseIntent())
@@ -60,13 +63,15 @@ struct BobbysCounterWidgetEntryView: View {
         }
         .ignoresSafeArea(.all)
         .overlay(alignment: .topTrailing) {
-            if !isCountNil {
+            if state != .empty {
                 Text(entry.date.toRelative)
                     .font(.system(size: 8))
             }
         }
+        .disabled(redactedReason == .placeholder)
         .fontWeight(.bold)
         .monospaced()
+        .redacted(reason: redactedReason)
         .widgetAccentable()
     }
 }

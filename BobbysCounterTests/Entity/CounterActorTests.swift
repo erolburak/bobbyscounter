@@ -22,7 +22,7 @@ struct CounterActorTests {
         try await CounterActor.shared.delete(ids: [id])
         // Then
         let modelContext = ModelContext(CounterActor.shared.modelContainer)
-        let counter = try modelContext.fetch(FetchDescriptor<Counter>(predicate: #Predicate { $0.persistentModelID == id })).first
+        let counter = try modelContext.fetch(FetchDescriptor<Counter>(predicate: #Predicate { $0.persistentModelID == id })).lazy.first
         #expect(counter == nil,
                 "CounterActor delete failed!")
     }

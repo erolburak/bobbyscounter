@@ -60,6 +60,10 @@
 		BFE12E802A65857C001960F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF2C453D2A4B3EB900D48C36 /* Assets.xcassets */; };
 		BFE12E842A65D1C9001960F6 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE12E832A65D1C9001960F6 /* Date+Extension.swift */; };
 		BFE4E4792CD2D858006F63DD /* BobbysCounterShortcutsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE4E46B2CD2AE38006F63DD /* BobbysCounterShortcutsProvider.swift */; };
+		BFE87D642CD928DB0052FEE0 /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE87D632CD928DB0052FEE0 /* States.swift */; };
+		BFE87D652CD92A190052FEE0 /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE87D632CD928DB0052FEE0 /* States.swift */; };
+		BFE87D662CD943E90052FEE0 /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE87D632CD928DB0052FEE0 /* States.swift */; };
+		BFE87D682CD943FE0052FEE0 /* StatesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE87D672CD943FE0052FEE0 /* StatesTests.swift */; };
 		BFED13EE2B55ABD400044E02 /* AverageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFED13ED2B55ABD400044E02 /* AverageView.swift */; };
 		BFF55EBA2A57314E00EE0B3A /* BobbysCounterWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF55EB92A57314E00EE0B3A /* BobbysCounterWidgetBundle.swift */; };
 		BFF55EBC2A57314E00EE0B3A /* BobbysCounterWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF55EBB2A57314E00EE0B3A /* BobbysCounterWidget.swift */; };
@@ -150,6 +154,8 @@
 		BFDF3C832A61A84D001E4076 /* IncreaseIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncreaseIntent.swift; sourceTree = "<group>"; };
 		BFE12E832A65D1C9001960F6 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		BFE4E46B2CD2AE38006F63DD /* BobbysCounterShortcutsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BobbysCounterShortcutsProvider.swift; sourceTree = "<group>"; };
+		BFE87D632CD928DB0052FEE0 /* States.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
+		BFE87D672CD943FE0052FEE0 /* StatesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatesTests.swift; sourceTree = "<group>"; };
 		BFED13ED2B55ABD400044E02 /* AverageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AverageView.swift; sourceTree = "<group>"; };
 		BFF55EB42A57314E00EE0B3A /* BobbysCounterWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BobbysCounterWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFF55EB92A57314E00EE0B3A /* BobbysCounterWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BobbysCounterWidgetBundle.swift; sourceTree = "<group>"; };
@@ -272,6 +278,7 @@
 				BFA156F52A850D9200DFD37D /* Selected.swift */,
 				BFBD1C8B2B6C06E9008B9265 /* Sensory.swift */,
 				BF79EFF62BF643BE0084F027 /* SettingsTip.swift */,
+				BFE87D632CD928DB0052FEE0 /* States.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -308,6 +315,7 @@
 				BFDA4B552AA76CC100E9221F /* SelectedTests.swift */,
 				BFBD1C8D2B6C13B2008B9265 /* SensoryTests.swift */,
 				BF79EFF82BF665230084F027 /* SettingsTipTests.swift */,
+				BFE87D672CD943FE0052FEE0 /* StatesTests.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -572,6 +580,7 @@
 				BF6D1DA12A6603CA00264753 /* Errors.swift in Sources */,
 				BFE12E842A65D1C9001960F6 /* Date+Extension.swift in Sources */,
 				BFED13EE2B55ABD400044E02 /* AverageView.swift in Sources */,
+				BFE87D652CD92A190052FEE0 /* States.swift in Sources */,
 				BF2C453A2A4B3EB900D48C36 /* Counter.swift in Sources */,
 				BF2C45382A4B3EB900D48C36 /* BobbysCounterApp.swift in Sources */,
 				BF79EFF72BF643BE0084F027 /* SettingsTip.swift in Sources */,
@@ -588,12 +597,14 @@
 				BFDA4B5A2AA76D1600E9221F /* CounterTests.swift in Sources */,
 				BFBFA5E22C6558D90080D6B8 /* CounterActorTests.swift in Sources */,
 				BF5E5C8B2C67E894001AD24E /* Double+Extension.swift in Sources */,
+				BFE87D682CD943FE0052FEE0 /* StatesTests.swift in Sources */,
 				BF5E5C842C67E82E001AD24E /* CounterActor.swift in Sources */,
 				BFB45FDC2B56BF850076BD41 /* DoubleExtensionTests.swift in Sources */,
 				BF79EFF92BF665230084F027 /* SettingsTipTests.swift in Sources */,
 				BF9A262E2B66D94600D29091 /* ErrorsTests.swift in Sources */,
 				BFD1B8C02AA62EFC000ED973 /* DateExtensionTests.swift in Sources */,
 				BF5E5C862C67E860001AD24E /* Errors.swift in Sources */,
+				BFE87D662CD943E90052FEE0 /* States.swift in Sources */,
 				BF3D25C42B2A3FDF00053A84 /* AlertTests.swift in Sources */,
 				BF5E5C8A2C67E88F001AD24E /* Date+Extension.swift in Sources */,
 				BF5E5C852C67E83E001AD24E /* Counter.swift in Sources */,
@@ -634,6 +645,7 @@
 				BF69168A2AA3500600ED7075 /* Date+Extension.swift in Sources */,
 				BFB86DB62A66E22A0092EAEC /* BobbysCounterWidgetProvider.swift in Sources */,
 				BFE4E4792CD2D858006F63DD /* BobbysCounterShortcutsProvider.swift in Sources */,
+				BFE87D642CD928DB0052FEE0 /* States.swift in Sources */,
 				BFDCAEE12AA240C3004B0316 /* Counter.swift in Sources */,
 				BFDF3C852A61ACEF001E4076 /* DecreaseIntent.swift in Sources */,
 			);

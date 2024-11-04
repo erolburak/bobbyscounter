@@ -10,15 +10,6 @@ import SwiftUI
 import WidgetKit
 
 struct ContentView: View {
-    // MARK: - Private Type Definitions
-
-    private enum StateContent {
-        /// General States
-        case isLoading, loaded
-        /// Empty States
-        case empty
-    }
-
     // MARK: - Private Properties
 
     @Environment(\.scenePhase) private var scenePhase
@@ -28,17 +19,20 @@ struct ContentView: View {
            order: .reverse) private var counters: [Counter]
     @State private var selected = Selected()
     @State private var showSettingsSheet = false
-    @State private var stateContent: StateContent = .isLoading
+    @State private var state: States = .isLoading
     private let settingsTip = SettingsTip()
+    private var redactedReason: RedactionReasons {
+        state == .isLoading ? .placeholder : []
+    }
 
     // MARK: - Layouts
 
     var body: some View {
         ZStack {
-            switch stateContent {
-            case .isLoading:
-                ProgressView()
-            case .loaded:
+            switch state {
+            case .empty:
+                Text("EmptyCount")
+            default:
                 let count = selected.counter?.count ?? 0
 
                 Text(count.description)
@@ -85,13 +79,11 @@ struct ContentView: View {
                 .frame(maxHeight: .infinity)
                 .buttonRepeatBehavior(.enabled)
                 .font(.system(size: 140.0))
-            case .empty:
-                Text("EmptyCount")
             }
         }
         .ignoresSafeArea(.all)
         .overlay(alignment: .topTrailing) {
-            if case .loaded = stateContent {
+            if state != .empty {
                 Text(selected.counter?.date?.toRelative ?? "")
                     .font(.system(size: 8))
                     .padding(.trailing)
@@ -99,7 +91,7 @@ struct ContentView: View {
             }
         }
         .overlay(alignment: .bottom) {
-            if case .loaded = stateContent {
+            if state != .empty {
                 Button("Settings") {
                     showSettingsSheet = true
                     settingsTip.invalidate(reason: .actionPerformed)
@@ -119,11 +111,13 @@ struct ContentView: View {
         .sheet(isPresented: $showSettingsSheet) {
             SettingsView(selected: selected)
         }
+        .disabled(redactedReason == .placeholder)
         .fontWeight(.bold)
         .monospaced()
+        .redacted(reason: redactedReason)
         .tint(.accent)
         .onChange(of: selected.counter?.count) { _, newValue in
-            stateContent = newValue == nil ? .empty : .loaded
+            state = newValue == nil ? .empty : .loaded
         }
         .onChange(of: scenePhase) {
             switch scenePhase {
