@@ -9,6 +9,7 @@ import Foundation
 import SwiftData
 import Testing
 
+@Suite("CounterActor tests")
 struct CounterActorTests {
     // MARK: - Methods
 

@@ -7,6 +7,7 @@
 
 import Testing
 
+@Suite("Sensory tests")
 struct SensoryTests {
     // MARK: - Methods
 

@@ -8,6 +8,7 @@
 import Foundation
 import Testing
 
+@Suite("Counter tests")
 struct CounterTests {
     // MARK: - Methods
 

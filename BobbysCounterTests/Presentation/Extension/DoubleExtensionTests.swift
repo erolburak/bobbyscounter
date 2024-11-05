@@ -7,6 +7,7 @@
 
 import Testing
 
+@Suite("DoubleExtension tests")
 struct DoubleExtensionTests {
     // MARK: - Methods
 

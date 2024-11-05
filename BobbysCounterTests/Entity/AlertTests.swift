@@ -7,6 +7,7 @@
 
 import Testing
 
+@Suite("Alert Tests")
 struct AlertTests {
     // MARK: - Methods
 
