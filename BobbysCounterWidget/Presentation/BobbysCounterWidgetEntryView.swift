@@ -61,6 +61,7 @@ struct BobbysCounterWidgetEntryView: View {
                 .buttonStyle(.plain)
             }
         }
+        .frame(maxHeight: .infinity)
         .ignoresSafeArea(.all)
         .overlay(alignment: .topTrailing) {
             if state != .empty {
