@@ -21,7 +21,10 @@ final class CountersViewTests: XCTestCase {
         app.openSettingsView(with: app)
         openCountersView(with: app)
         closeCountersView(with: app)
+        openCountersView(with: app)
         deleteCounter(with: app)
+        app.openSettingsView(with: app)
+        openCountersView(with: app)
         resetApp(with: app)
     }
 
@@ -35,8 +38,6 @@ final class CountersViewTests: XCTestCase {
 
     @MainActor
     private func deleteCounter(with app: XCUIApplication) {
-        /// Open counters view
-        openCountersView(with: app)
         /// Swipe to delete todays counter
         let todayText = app.collectionViews.staticTexts["Today"]
         XCTAssertTrue(todayText.waitForExistence(timeout: 5))
@@ -61,9 +62,6 @@ final class CountersViewTests: XCTestCase {
 
     @MainActor
     private func resetApp(with app: XCUIApplication) {
-        /// Open counters view
-        app.openSettingsView(with: app)
-        openCountersView(with: app)
         /// Open reset confirmation dialog
         let resetButton = app.buttons["ResetButton"]
         XCTAssertTrue(resetButton.waitForExistence(timeout: 5))

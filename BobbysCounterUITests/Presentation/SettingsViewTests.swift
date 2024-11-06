@@ -19,9 +19,10 @@ final class SettingsViewTests: XCTestCase {
         /// Launch app
         let app = XCUIApplication().appLaunch()
         app.openSettingsView(with: app)
-        checkTodayButton(with: app)
-        pressChartPointMark(with: app)
         closeSettingsView(with: app)
+        app.openSettingsView(with: app)
+        pressChartPointMark(with: app)
+        checkTodayButton(with: app)
     }
 
     @MainActor
@@ -58,7 +59,7 @@ final class SettingsViewTests: XCTestCase {
     @MainActor
     private func pressChartPointMark(with app: XCUIApplication) {
         /// Press chart point mark
-        let pointMark = app.scrollViews["Chart"].children(matching: .other).element.children(matching: .other).element(boundBy: 1)
+        let pointMark = app.scrollViews["Chart"].children(matching: .other).element.children(matching: .other).element(boundBy: .zero)
         XCTAssertTrue(pointMark.waitForExistence(timeout: 5))
         pointMark.press(forDuration: 2)
     }
