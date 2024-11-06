@@ -15,9 +15,9 @@ jobs:
     runs-on: macos-latest
     strategy:
       matrix:
-        destination: [
-          'platform=iOS Simulator,name=iPhone 16 Pro,OS=latest',
-          'platform=iOS Simulator,name=iPad Pro 13-inch (M4),OS=latest'
+        name: [
+          'iPhone 16 Pro',
+          'iPad Pro 13-inch (M4)'
         ]
     steps:
       - name: Checkout
@@ -28,5 +28,5 @@ jobs:
           xcode-version: latest
       - name: Run SwiftFormat
         run: swiftformat --lint . --reporter github-actions-log --swiftversion 6.0
-      - name: Run tests (iPhone 16 Pro & iPad Pro 13-inch (M4))
-        run: set -o pipefail && xcodebuild clean test -project BobbysCounter.xcodeproj -scheme BobbysCounter -destination "${{ matrix.destination }}" | xcbeautify --renderer github-actions
+      - name: Run tests
+        run: set -o pipefail && xcodebuild clean test -project BobbysCounter.xcodeproj -scheme BobbysCounter -destination `platform=iOS Simulator,name=${{ matrix.destination }},OS=latest` | xcbeautify --renderer github-actions
