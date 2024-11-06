@@ -37,7 +37,7 @@ struct BobbysCounterWidgetEntryView: View {
             case .empty:
                 Text("EmptyCount")
             default:
-                let count = count ?? 0
+                let count = count ?? .zero
 
                 Text(count.description)
                     .font(.system(size: 100))
@@ -51,7 +51,7 @@ struct BobbysCounterWidgetEntryView: View {
                     Button("Minus",
                            intent: DecreaseIntent())
                         .frame(maxWidth: .infinity)
-                        .disabled(count <= 0)
+                        .disabled(count <= .zero)
 
                     Button("Plus",
                            intent: IncreaseIntent())

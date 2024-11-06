@@ -219,7 +219,7 @@ private struct ListItem: View {
 
 #Preview("ListItem") {
     ListItem(selected: Selected(),
-             counter: Counter(count: 0,
+             counter: Counter(count: .zero,
                               date: .now),
              dismiss: {})
         .environment(Alert())

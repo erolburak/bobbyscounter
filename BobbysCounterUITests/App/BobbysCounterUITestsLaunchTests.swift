@@ -7,7 +7,6 @@
 
 import XCTest
 
-@MainActor
 final class BobbysCounterUITestsLaunchTests: XCTestCase {
     // MARK: - Methods
 
@@ -19,6 +18,7 @@ final class BobbysCounterUITestsLaunchTests: XCTestCase {
         continueAfterFailure = false
     }
 
+    @MainActor
     func testLaunch() throws {
         let app = XCUIApplication()
         app.launch()

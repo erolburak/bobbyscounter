@@ -35,7 +35,6 @@
 		BF926CD22B291EB6002B2F06 /* CountersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF926CD12B291EB6002B2F06 /* CountersView.swift */; };
 		BF9A262E2B66D94600D29091 /* ErrorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9A262D2B66D94600D29091 /* ErrorsTests.swift */; };
 		BF9A26302B66DC3100D29091 /* AverageViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9A262F2B66DC3100D29091 /* AverageViewTests.swift */; };
-		BF9A26322B66DC4200D29091 /* ChartViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9A26312B66DC4200D29091 /* ChartViewTests.swift */; };
 		BF9A26342B66DC5800D29091 /* CountersViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9A26332B66DC5800D29091 /* CountersViewTests.swift */; };
 		BFA156F62A850D9200DFD37D /* Selected.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA156F52A850D9200DFD37D /* Selected.swift */; };
 		BFB45FDA2B56BE020076BD41 /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB45FD92B56BE020076BD41 /* Double+Extension.swift */; };
@@ -132,7 +131,6 @@
 		BF926CD12B291EB6002B2F06 /* CountersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountersView.swift; sourceTree = "<group>"; };
 		BF9A262D2B66D94600D29091 /* ErrorsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorsTests.swift; sourceTree = "<group>"; };
 		BF9A262F2B66DC3100D29091 /* AverageViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AverageViewTests.swift; sourceTree = "<group>"; };
-		BF9A26312B66DC4200D29091 /* ChartViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewTests.swift; sourceTree = "<group>"; };
 		BF9A26332B66DC5800D29091 /* CountersViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountersViewTests.swift; sourceTree = "<group>"; };
 		BFA156F52A850D9200DFD37D /* Selected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selected.swift; sourceTree = "<group>"; };
 		BFB45FD92B56BE020076BD41 /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
@@ -370,7 +368,6 @@
 			isa = PBXGroup;
 			children = (
 				BF9A262F2B66DC3100D29091 /* AverageViewTests.swift */,
-				BF9A26312B66DC4200D29091 /* ChartViewTests.swift */,
 				BF5A26272A6E7E1600B47FD4 /* ContentViewTests.swift */,
 				BF9A26332B66DC5800D29091 /* CountersViewTests.swift */,
 				BF5A262A2A6E8D6100B47FD4 /* SettingsViewTests.swift */,
@@ -627,7 +624,6 @@
 				BF9A26302B66DC3100D29091 /* AverageViewTests.swift in Sources */,
 				BF9A26342B66DC5800D29091 /* CountersViewTests.swift in Sources */,
 				BF2C45572A4B3EBA00D48C36 /* BobbysCounterUITests.swift in Sources */,
-				BF9A26322B66DC4200D29091 /* ChartViewTests.swift in Sources */,
 				BF823DC82BFFBF3C0064E382 /* XCUIApplication+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
