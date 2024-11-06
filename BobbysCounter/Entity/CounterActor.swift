@@ -45,7 +45,7 @@ actor CounterActor {
         let counters = try modelContext.fetch(FetchDescriptor<Counter>(predicate: #Predicate { $0.date == date.toDateWithoutTime }))
         /// Insert new counter if no counter with given date exists
         guard let counter = counters.lazy.first else {
-            let newCounter = Counter(count: 0,
+            let newCounter = Counter(count: .zero,
                                      date: date)
             modelContext.insert(newCounter)
             try modelContext.save()

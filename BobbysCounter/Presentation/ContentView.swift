@@ -33,7 +33,7 @@ struct ContentView: View {
             case .empty:
                 Text("EmptyCount")
             default:
-                let count = selected.counter?.count ?? 0
+                let count = selected.counter?.count ?? .zero
 
                 Text(count.description)
                     .font(.system(size: 1000))
@@ -58,7 +58,7 @@ struct ContentView: View {
                         }
                     }
                     .frame(maxWidth: .infinity)
-                    .disabled(count <= 0)
+                    .disabled(count <= .zero)
                     .accessibilityIdentifier("MinusButton")
 
                     Button("Plus") {

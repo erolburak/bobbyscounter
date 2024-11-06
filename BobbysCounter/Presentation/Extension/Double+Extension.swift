@@ -12,7 +12,7 @@ extension Double {
 
     private static let numberFormatter = {
         let numberFormatter = NumberFormatter()
-        numberFormatter.minimumFractionDigits = 0
+        numberFormatter.minimumFractionDigits = .zero
         numberFormatter.maximumFractionDigits = 2
         return numberFormatter
     }()

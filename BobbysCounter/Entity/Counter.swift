@@ -27,7 +27,7 @@ final class Counter {
     // MARK: - Methods
 
     func decrease() throws {
-        if count > 0 {
+        if count > .zero {
             count -= 1
             try modelContext?.save()
         }
