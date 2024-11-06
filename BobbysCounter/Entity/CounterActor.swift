@@ -14,13 +14,15 @@ actor CounterActor {
 
     static let shared = {
         do {
-            var cloudKitDatabase: ModelConfiguration.CloudKitDatabase
+            var isStoredInMemoryOnly = false
+            var cloudKitDatabase: ModelConfiguration.CloudKitDatabase = .automatic
             #if DEBUG
-                cloudKitDatabase = .none
-            #else
-                cloudKitDatabase = .automatic
+                if CommandLine.arguments.contains("-testing") {
+                    isStoredInMemoryOnly = true
+                    cloudKitDatabase = .none
+                }
             #endif
-            let modelConfiguration = ModelConfiguration(isStoredInMemoryOnly: false,
+            let modelConfiguration = ModelConfiguration(isStoredInMemoryOnly: isStoredInMemoryOnly,
                                                         cloudKitDatabase: cloudKitDatabase)
             let modelContainer = try ModelContainer(for: Schema([Counter.self]),
                                                     configurations: modelConfiguration)
