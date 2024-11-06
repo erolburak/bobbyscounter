@@ -29,4 +29,4 @@ jobs:
       - name: Run SwiftFormat
         run: swiftformat --lint . --reporter github-actions-log --swiftversion 6.0
       - name: Run tests (iPhone 16 Pro & iPad Pro 13-inch (M4))
-        run: set -o pipefail && xcodebuild test -project BobbysCounter.xcodeproj -scheme BobbysCounter -destination ${{ matrix.destination }} | xcbeautify --renderer github-actions
+        run: set -o pipefail && xcodebuild clean test -project BobbysCounter.xcodeproj -scheme BobbysCounter -destination "${{ matrix.destination }}" | xcbeautify --renderer github-actions
