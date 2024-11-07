@@ -28,7 +28,7 @@
   },
   "testTargets" : [
     {
-      "parallelizable" : false,
+      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:BobbysCounter.xcodeproj",
         "identifier" : "BF2C45472A4B3EBA00D48C36",
@@ -36,6 +36,7 @@
       }
     },
     {
+      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:BobbysCounter.xcodeproj",
         "identifier" : "BF2C45512A4B3EBA00D48C36",
