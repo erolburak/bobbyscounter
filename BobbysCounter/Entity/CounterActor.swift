@@ -35,10 +35,10 @@ actor CounterActor {
     // MARK: - Methods
 
     func delete(ids: [PersistentIdentifier]) throws {
-        try ids.forEach { id in
+        ids.forEach { id in
             modelContext.delete(modelContext.model(for: id))
-            try modelContext.save()
         }
+        try modelContext.save()
     }
 
     func fetchID(date: Date) throws -> Counter.ID {
