@@ -35,7 +35,7 @@ actor CounterActor {
     // MARK: - Methods
 
     func delete(ids: [PersistentIdentifier]) throws {
-        ids.forEach { id in
+        for id in ids {
             modelContext.delete(modelContext.model(for: id))
         }
         try modelContext.save()
