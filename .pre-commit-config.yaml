@@ -6,7 +6,7 @@
 repos:
   - repo: local
     hooks:
-    - id: swiftformat
+    - id: .swiftformat
       name: SwiftFormat
       entry: swiftformat
       language: system
