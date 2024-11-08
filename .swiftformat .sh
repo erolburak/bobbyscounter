@@ -1,1 +1,1 @@
---swiftversion 6.0
+--swiftversion 7.0
