@@ -8,6 +8,6 @@ repos:
     hooks:
     - id: swiftformat
       name: SwiftFormat
-      entry: swiftformat
+      entry: swiftformat --swiftversion 6.0
       language: system
       types: [swift]
