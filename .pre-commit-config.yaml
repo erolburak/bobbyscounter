@@ -6,7 +6,7 @@
 repos:
   - repo: local
     hooks:
-    - id: lockwood-swiftformat
+    - id: lockwood-swiftformatt
       name: SwiftFormat
       entry: swiftformat
       language: system
