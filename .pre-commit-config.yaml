@@ -1,0 +1,15 @@
+# This pre-commit-config will set up pre-commit hooks.
+# Install Homebrew
+# Run 'brew install pre-commit'
+# Run 'pre-commit install --hook-type commit-msg --hook-type pre-commit --hook-type pre-push'
+
+repos:
+  - repo: local
+    hooks:
+    - id: swiftformat
+      name: SwiftFormat
+      description: "Run SwiftFormat before commit"
+      language: system
+      entry: swiftformat --swiftversion 6.0
+      stages:
+      - pre-commit
