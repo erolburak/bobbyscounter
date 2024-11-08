@@ -6,10 +6,8 @@
 repos:
   - repo: local
     hooks:
-    - id: swiftformat
+    - id: lockwood-swiftformat
       name: SwiftFormat
-      description: "Run SwiftFormat before commit"
+      entry: swiftformat
       language: system
-      entry: swiftformat --swiftversion 6.0
-      stages:
-      - pre-commit
+      types: [swift]
