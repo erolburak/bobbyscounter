@@ -38,8 +38,8 @@ struct BobbysCounterWidgetEntryView: View {
                 ContentUnavailableView {
                     Label("EmptyCounter",
                           systemImage: "plus.circle.fill")
-                    .font(.system(size: 8))
-                    .imageScale(.small)
+                        .font(.system(size: 8))
+                        .imageScale(.small)
                 } description: {
                     Text("EmptyCounterMessage")
                         .font(.system(size: 6))
