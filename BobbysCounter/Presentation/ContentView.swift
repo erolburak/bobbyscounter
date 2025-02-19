@@ -52,6 +52,7 @@ struct ContentView: View {
                     .textCase(.uppercase)
                     .font(.system(.subheadline,
                                   weight: .black))
+                    .foregroundStyle(.red)
                     .accessibilityIdentifier("InsertButton")
                 }
                 .symbolEffect(.bounce,
@@ -107,12 +108,10 @@ struct ContentView: View {
         }
         .ignoresSafeArea(.all)
         .overlay(alignment: .topTrailing) {
-            if state != .empty {
-                Text(selected.counter?.date?.toRelative ?? "")
-                    .font(.system(size: 8))
-                    .padding(.trailing)
-                    .accessibilityIdentifier("DateText")
-            }
+            Text(selected.date.toRelative)
+                .font(.system(size: 8))
+                .padding(.trailing)
+                .accessibilityIdentifier("DateText")
         }
         .overlay(alignment: .bottom) {
             Button("Settings") {
@@ -137,7 +136,6 @@ struct ContentView: View {
         .fontWeight(.bold)
         .monospaced()
         .redacted(reason: redactedReason)
-        .tint(.accent)
         .onChange(of: selected.counter) { _, newValue in
             withAnimation {
                 state = newValue == nil ? .empty : .loaded

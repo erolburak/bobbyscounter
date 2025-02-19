@@ -160,7 +160,7 @@ private struct ListItem: View {
                 Text(counter.count.description)
                     .lineLimit(1)
             }
-            .tint(.accent)
+            .foregroundStyle(.accent)
         }
         .contextMenu {
             DeleteButton(counter: counter,
@@ -208,7 +208,8 @@ private struct ListItem: View {
                               isContextMenu: Bool) -> some View
     {
         Button("Delete",
-               systemImage: isContextMenu ? "trash.circle.fill" : "trash")
+               systemImage: isContextMenu ? "trash.circle.fill" : "trash",
+               role: .destructive)
         {
             counterDelete = counter
             showDeleteConfirmationDialog = true
