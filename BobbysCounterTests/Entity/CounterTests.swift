@@ -64,12 +64,25 @@ struct CounterTests {
     @MainActor
     func testFetch() async throws {
         // Given
-        let date = Calendar.current.date(byAdding: DateComponents(day: -2),
+        let date = Calendar.current.date(byAdding: DateComponents(day: +1),
                                          to: .now) ?? .now
         // When
         let counter = try await Counter.fetch(date: date)
         // Then
-        #expect(counter != nil,
+        #expect(counter == nil,
                 "Counter fetch failed!")
+    }
+
+    @Test("Check Counter insert!")
+    @MainActor
+    func testInsert() async throws {
+        // Given
+        let date = Calendar.current.date(byAdding: DateComponents(day: -2),
+                                         to: .now) ?? .now
+        // When
+        let id = try await Counter.insert(date: date)
+        // Then
+        #expect(id != nil,
+                "Counter insert failed!")
     }
 }

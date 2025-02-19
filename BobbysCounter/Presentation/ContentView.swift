@@ -31,7 +31,31 @@ struct ContentView: View {
         ZStack {
             switch state {
             case .empty:
-                Text("EmptyCount")
+                ContentUnavailableView {
+                    Label("EmptyCounter",
+                          systemImage: "plus.circle.fill")
+                } description: {
+                    Text("EmptyCounterMessage")
+                } actions: {
+                    Button("Insert") {
+                        Task {
+                            do {
+                                selected.counter = try await Counter.insert(date: selected.date)
+                                sensory.feedback(feedback: .success)
+                            } catch {
+                                alert.error = .insert
+                                alert.show = true
+                                sensory.feedback(feedback: .error)
+                            }
+                        }
+                    }
+                    .textCase(.uppercase)
+                    .font(.system(.subheadline,
+                                  weight: .black))
+                    .accessibilityIdentifier("InsertButton")
+                }
+                .symbolEffect(.bounce,
+                              options: .nonRepeating)
             default:
                 let count = selected.counter?.count ?? .zero
 
@@ -91,22 +115,20 @@ struct ContentView: View {
             }
         }
         .overlay(alignment: .bottom) {
-            if state != .empty {
-                Button("Settings") {
-                    showSettingsSheet = true
-                    settingsTip.invalidate(reason: .actionPerformed)
-                }
-                .padding(.bottom)
-                .popoverTip(settingsTip,
-                            arrowEdge: .top)
-                .onAppear {
-                    Task {
-                        try await Task.sleep(for: .seconds(1))
-                        SettingsTip.show = true
-                    }
-                }
-                .accessibilityIdentifier("SettingsButton")
+            Button("Settings") {
+                showSettingsSheet = true
+                settingsTip.invalidate(reason: .actionPerformed)
             }
+            .padding(.bottom)
+            .popoverTip(settingsTip,
+                        arrowEdge: .top)
+            .onAppear {
+                Task {
+                    try await Task.sleep(for: .seconds(1))
+                    SettingsTip.show = true
+                }
+            }
+            .accessibilityIdentifier("SettingsButton")
         }
         .sheet(isPresented: $showSettingsSheet) {
             SettingsView(selected: selected)
@@ -116,15 +138,20 @@ struct ContentView: View {
         .monospaced()
         .redacted(reason: redactedReason)
         .tint(.accent)
-        .onChange(of: selected.counter?.count) { _, newValue in
-            state = newValue == nil ? .empty : .loaded
+        .onChange(of: selected.counter) { _, newValue in
+            withAnimation {
+                state = newValue == nil ? .empty : .loaded
+            }
         }
         .onChange(of: scenePhase) {
             switch scenePhase {
             case .active:
                 Task {
                     do {
-                        selected.counter = try await Counter.fetch(date: selected.date)
+                        guard let counter = try await Counter.fetch(date: selected.date) else {
+                            return state = .empty
+                        }
+                        selected.counter = counter
                     } catch {
                         alert.error = .fetch
                         alert.show = true

@@ -70,8 +70,8 @@ final class CountersViewTests: XCTestCase {
         let resetConfirmationDialogButton = app.buttons["ResetConfirmationDialogButton"]
         XCTAssertTrue(resetConfirmationDialogButton.waitForExistence(timeout: 5))
         resetConfirmationDialogButton.tap()
-        /// Compare counts
-        let count = app.getCount(with: app)
-        XCTAssertEqual(count, .zero)
+        /// Check if `InsertButton` exists
+        let insertButton = app.buttons["InsertButton"]
+        XCTAssertTrue(insertButton.waitForExistence(timeout: 5))
     }
 }

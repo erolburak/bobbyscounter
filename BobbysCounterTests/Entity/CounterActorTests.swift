@@ -14,16 +14,17 @@ struct CounterActorTests {
     // MARK: - Methods
 
     @Test("Check CounterActor delete!")
+    @MainActor
     func testDelete() async throws {
         // Given
         let date = Calendar.current.date(byAdding: DateComponents(day: -2),
                                          to: .now) ?? .now
-        let id = try await CounterActor.shared.fetchID(date: date)
+        let id = try await Counter.insert(date: date)?.persistentModelID
         // When
         try await CounterActor.shared.delete(ids: [id])
         // Then
         let modelContext = ModelContext(CounterActor.shared.modelContainer)
-        let counter = try modelContext.fetch(FetchDescriptor<Counter>(predicate: #Predicate { $0.persistentModelID == id })).lazy.first
+        let counter = try modelContext.fetch(FetchDescriptor<Counter>(predicate: #Predicate { $0.persistentModelID == id! })).lazy.first
         #expect(counter == nil,
                 "CounterActor delete failed!")
     }
@@ -31,12 +32,24 @@ struct CounterActorTests {
     @Test("Check CounterActor fetchID!")
     func testFetchID() async throws {
         // Given
-        let date = Calendar.current.date(byAdding: DateComponents(day: -2),
+        let date = Calendar.current.date(byAdding: DateComponents(day: +1),
                                          to: .now) ?? .now
         // When
         let id = try await CounterActor.shared.fetchID(date: date)
         // Then
-        #expect(id != nil,
+        #expect(id == nil,
                 "CounterActor fetchID failed!")
+    }
+
+    @Test("Check CounterActor insert!")
+    func testInsert() async throws {
+        // Given
+        let date = Calendar.current.date(byAdding: DateComponents(day: -2),
+                                         to: .now) ?? .now
+        // When
+        let id = try await CounterActor.shared.insert(date: date)
+        // Then
+        #expect(id != nil,
+                "CounterActor insert failed!")
     }
 }

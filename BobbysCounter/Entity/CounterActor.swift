@@ -34,14 +34,21 @@ actor CounterActor {
 
     // MARK: - Methods
 
-    func delete(ids: [PersistentIdentifier]) throws {
+    func delete(ids: [PersistentIdentifier?]) throws {
         for id in ids {
+            guard let id else {
+                return
+            }
             modelContext.delete(modelContext.model(for: id))
         }
         try modelContext.save()
     }
 
-    func fetchID(date: Date) throws -> Counter.ID {
+    func fetchID(date: Date) throws -> Counter.ID? {
+        try modelContext.fetch(FetchDescriptor<Counter>(predicate: #Predicate { $0.date == date.toDateWithoutTime })).lazy.first?.persistentModelID
+    }
+
+    func insert(date: Date) throws -> Counter.ID {
         let counters = try modelContext.fetch(FetchDescriptor<Counter>(predicate: #Predicate { $0.date == date.toDateWithoutTime }))
         /// Insert new counter if no counter with given date exists
         guard let counter = counters.lazy.first else {

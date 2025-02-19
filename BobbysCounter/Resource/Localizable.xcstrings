@@ -209,7 +209,7 @@
         }
       }
     },
-    "EmptyCount" : {
+    "EmptyCounter" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -220,7 +220,23 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No count"
+            "value" : "No counter"
+          }
+        }
+      }
+    },
+    "EmptyCounterMessage" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zum Verringern oder Erhöhen einen Zähler einfügen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Insert a counter to decrease or increase."
           }
         }
       }
@@ -246,13 +262,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zähler für mindestens 1 Tag muss angelegt sein."
+            "value" : "Zähler für mindestens 1 Tag muss hinzugefügt werden."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Counters for at least 1 day must be created."
+            "value" : "Counters for at least 1 day must be inserted."
           }
         }
       }
@@ -303,6 +319,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Increase"
+          }
+        }
+      }
+    },
+    "ErrorDescriptionInsert" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hinzufügen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Insert"
           }
         }
       }
@@ -374,6 +406,22 @@
         }
       }
     },
+    "ErrorRecoverySuggestionInsert" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hinzufügen fehlgeschlagen. Bitte versuche es erneut."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed to insert. Please try again."
+          }
+        }
+      }
+    },
     "IncreaseDescription" : {
       "localizations" : {
         "de" : {
@@ -418,6 +466,70 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Increase counter"
+          }
+        }
+      }
+    },
+    "Insert" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hinzufügen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Insert"
+          }
+        }
+      }
+    },
+    "InsertDescription" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieser Kurzbefehl fügt den heutigen Zähler hinzu"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This shortcut will insert today's counter"
+          }
+        }
+      }
+    },
+    "InsertDialog" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Okay, füge den heutigen Zähler hinzu."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Okay, inserting today's counter."
+          }
+        }
+      }
+    },
+    "InsertTitle" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hinzufügen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Insert counter"
           }
         }
       }
