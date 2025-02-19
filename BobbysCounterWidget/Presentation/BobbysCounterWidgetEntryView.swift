@@ -49,7 +49,9 @@ struct BobbysCounterWidgetEntryView: View {
                         .textCase(.uppercase)
                         .font(.system(.subheadline,
                                       weight: .black))
+                        .foregroundStyle(.red)
                 }
+                .frame(maxWidth: .infinity)
             default:
                 let count = count ?? .zero
 
@@ -77,10 +79,8 @@ struct BobbysCounterWidgetEntryView: View {
         .frame(maxHeight: .infinity)
         .ignoresSafeArea(.all)
         .overlay(alignment: .topTrailing) {
-            if state != .empty {
-                Text(entry.date.toRelative)
-                    .font(.system(size: 8))
-            }
+            Text(entry.date.toRelative)
+                .font(.system(size: 8))
         }
         .disabled(redactedReason == .placeholder)
         .buttonStyle(.plain)
