@@ -30,6 +30,7 @@ private extension Errors {
 
     static let errors: [Errors] = [.error(""),
                                    .fetch,
+                                   .insert,
                                    .decrease,
                                    .increase]
 }

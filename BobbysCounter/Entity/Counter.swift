@@ -40,7 +40,17 @@ final class Counter {
 
     @MainActor
     static func fetch(date: Date) async throws -> Counter? {
-        let id = try await CounterActor.shared.fetchID(date: date)
+        guard let id = try await CounterActor.shared.fetchID(date: date) else {
+            return nil
+        }
+        let modelContext = ModelContext(CounterActor.shared.modelContainer)
+        return modelContext.model(for: id) as? Counter
+    }
+
+    @MainActor
+    @discardableResult
+    static func insert(date: Date) async throws -> Counter? {
+        let id = try await CounterActor.shared.insert(date: date)
         let modelContext = ModelContext(CounterActor.shared.modelContainer)
         return modelContext.model(for: id) as? Counter
     }

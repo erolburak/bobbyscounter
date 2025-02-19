@@ -35,7 +35,21 @@ struct BobbysCounterWidgetEntryView: View {
         ZStack {
             switch state {
             case .empty:
-                Text("EmptyCount")
+                ContentUnavailableView {
+                    Label("EmptyCounter",
+                          systemImage: "plus.circle.fill")
+                    .font(.system(size: 8))
+                    .imageScale(.small)
+                } description: {
+                    Text("EmptyCounterMessage")
+                        .font(.system(size: 6))
+                } actions: {
+                    Button("Insert",
+                           intent: InsertIntent())
+                        .textCase(.uppercase)
+                        .font(.system(.subheadline,
+                                      weight: .black))
+                }
             default:
                 let count = count ?? .zero
 
@@ -58,7 +72,6 @@ struct BobbysCounterWidgetEntryView: View {
                         .frame(maxWidth: .infinity)
                 }
                 .font(.system(size: 70))
-                .buttonStyle(.plain)
             }
         }
         .frame(maxHeight: .infinity)
@@ -70,6 +83,7 @@ struct BobbysCounterWidgetEntryView: View {
             }
         }
         .disabled(redactedReason == .placeholder)
+        .buttonStyle(.plain)
         .fontWeight(.bold)
         .monospaced()
         .redacted(reason: redactedReason)

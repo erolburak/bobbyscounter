@@ -22,5 +22,11 @@ struct BobbysCounterShortcutsProvider: AppShortcutsProvider {
                               "\(.applicationName) erhöhen"],
                     shortTitle: "IncreaseTitle",
                     systemImageName: "plus")
+
+        AppShortcut(intent: InsertIntent(),
+                    phrases: ["\(.applicationName) insert",
+                              "\(.applicationName) hinzufügen"],
+                    shortTitle: "InsertTitle",
+                    systemImageName: "plus.circle.fill")
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 enum Errors: LocalizedError {
     // MARK: - Properties
 
-    case error(String), fetch
+    case error(String), fetch, insert
     case decrease, increase
 
     var errorDescription: String? {
@@ -19,6 +19,8 @@ enum Errors: LocalizedError {
             error.description
         case .fetch:
             String(localized: "ErrorDescriptionFetch")
+        case .insert:
+            String(localized: "ErrorDescriptionInsert")
         case .decrease:
             String(localized: "ErrorDescriptionDecrease")
         case .increase:
@@ -32,6 +34,8 @@ enum Errors: LocalizedError {
             String(localized: "ErrorRecoverySuggestionError")
         case .fetch:
             String(localized: "ErrorRecoverySuggestionFetch")
+        case .insert:
+            String(localized: "ErrorRecoverySuggestionInsert")
         case .decrease:
             String(localized: "ErrorRecoverySuggestionDecrease")
         case .increase:
