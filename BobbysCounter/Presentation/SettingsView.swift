@@ -53,7 +53,7 @@ struct SettingsView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Average",
-                           systemImage: "divide.circle.fill")
+                           systemImage: "divide")
                     {
                         showAverageSheet = true
                     }
@@ -62,7 +62,7 @@ struct SettingsView: View {
 
                 ToolbarItem(placement: .primaryAction) {
                     Button("Counters",
-                           systemImage: "list.bullet.circle.fill")
+                           systemImage: "list.bullet")
                     {
                         showCountersSheet = true
                     }
@@ -71,7 +71,7 @@ struct SettingsView: View {
 
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Close",
-                           systemImage: "xmark.circle.fill")
+                           systemImage: "xmark")
                     {
                         dismiss()
                     }

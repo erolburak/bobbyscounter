@@ -37,7 +37,7 @@ struct BobbysCounterWidgetEntryView: View {
             case .empty:
                 ContentUnavailableView {
                     Label("EmptyCounter",
-                          systemImage: "plus.circle.fill")
+                          systemImage: "plus")
                         .font(.system(size: 8))
                         .imageScale(.small)
                 } description: {
@@ -76,6 +76,8 @@ struct BobbysCounterWidgetEntryView: View {
                 .font(.system(size: 70))
             }
         }
+        .environment(\.symbolVariants,
+                     .circle.fill)
         .frame(maxHeight: .infinity)
         .ignoresSafeArea(.all)
         .overlay(alignment: .topTrailing) {

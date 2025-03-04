@@ -33,7 +33,7 @@ struct ContentView: View {
             case .empty:
                 ContentUnavailableView {
                     Label("EmptyCounter",
-                          systemImage: "plus.circle.fill")
+                          systemImage: "plus")
                 } description: {
                     Text("EmptyCounterMessage")
                 } actions: {
