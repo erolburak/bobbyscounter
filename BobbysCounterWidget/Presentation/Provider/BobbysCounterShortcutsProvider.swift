@@ -10,6 +10,8 @@ import AppIntents
 struct BobbysCounterShortcutsProvider: AppShortcutsProvider {
     // MARK: - Properties
 
+    static let shortcutTileColor: ShortcutTileColor = .grayBlue
+
     static var appShortcuts: [AppShortcut] {
         AppShortcut(intent: DecreaseIntent(),
                     phrases: ["\(.applicationName) decrease",

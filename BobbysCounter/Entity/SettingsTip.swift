@@ -12,7 +12,7 @@ struct SettingsTip: Tip {
 
     @Parameter
     static var show: Bool = false
-    var image: Image? = Image(systemName: "gearshape.circle.fill")
+    var image: Image? = Image(systemName: "gearshape")
     var message: Text? = Text("SettingsTipMessage")
     var rules: [Rule] {
         [#Rule(Self.$show) {

@@ -46,10 +46,11 @@ struct CounterActorTests {
         // Given
         let date = Calendar.current.date(byAdding: DateComponents(day: -2),
                                          to: .now) ?? .now
-        // When
-        let id = try await CounterActor.shared.insert(date: date)
         // Then
-        #expect(id != nil,
-                "CounterActor insert failed!")
+        await #expect(throws: Never.self,
+                      "CounterActor insert failed!")
+        {
+            try await CounterActor.shared.insert(date: date)
+        }
     }
 }

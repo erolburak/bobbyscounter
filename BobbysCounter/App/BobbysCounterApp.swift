@@ -29,6 +29,8 @@ struct BobbysCounterApp: App {
                     Text(message)
                 }
             }
+            .environment(\.symbolVariants,
+                         .circle.fill)
             .sensoryFeedback(trigger: sensory.feedbackBool) { _, _ in
                 sensory.feedback
             }

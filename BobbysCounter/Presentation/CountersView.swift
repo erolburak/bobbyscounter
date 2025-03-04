@@ -58,7 +58,7 @@ struct CountersView: View {
                     .listStyle(.insetGrouped)
                 } else {
                     ContentUnavailableView("EmptyCounters",
-                                           systemImage: "list.bullet.circle.fill",
+                                           systemImage: "list.bullet",
                                            description: Text("EmptyCountersMessage"))
                         .symbolEffect(.bounce,
                                       options: .nonRepeating)
@@ -72,7 +72,7 @@ struct CountersView: View {
                         showResetConfirmationDialog = true
                     } label: {
                         Label("Reset",
-                              systemImage: "trash.circle.fill")
+                              systemImage: "trash")
                     }
                     .confirmationDialog("ResetConfirmationDialog",
                                         isPresented: $showResetConfirmationDialog,
@@ -103,7 +103,7 @@ struct CountersView: View {
 
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Close",
-                           systemImage: "xmark.circle.fill")
+                           systemImage: "xmark")
                     {
                         showCountersSheet = false
                     }
@@ -208,12 +208,13 @@ private struct ListItem: View {
                               isContextMenu: Bool) -> some View
     {
         Button("Delete",
-               systemImage: isContextMenu ? "trash.circle.fill" : "trash",
-               role: .destructive)
+               systemImage: isContextMenu ? "trash.circle" : "trash")
         {
             counterDelete = counter
             showDeleteConfirmationDialog = true
         }
+        .environment(\.symbolVariants,
+                     .fill)
         .accessibilityIdentifier("DeleteButton")
     }
 }

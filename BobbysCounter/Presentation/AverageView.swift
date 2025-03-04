@@ -65,7 +65,7 @@ struct AverageView: View {
                         .accessibilityIdentifier("AverageMessage")
                 } else {
                     ContentUnavailableView("EmptyAverage",
-                                           systemImage: "divide.circle.fill",
+                                           systemImage: "divide",
                                            description: Text("EmptyCountersMessage"))
                         .symbolEffect(.bounce,
                                       options: .nonRepeating)
@@ -78,7 +78,7 @@ struct AverageView: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Close",
-                           systemImage: "xmark.circle.fill")
+                           systemImage: "xmark")
                     {
                         showAverageSheet = false
                     }
