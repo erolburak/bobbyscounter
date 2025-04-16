@@ -13,5 +13,8 @@ struct BobbysCounterWidgetBundle: WidgetBundle {
 
     var body: some Widget {
         BobbysCounterWidget()
+        BobbysCounterDecreaseControlWidget()
+        BobbysCounterIncreaseControlWidget()
+        BobbysCounterInsertControlWidget()
     }
 }
