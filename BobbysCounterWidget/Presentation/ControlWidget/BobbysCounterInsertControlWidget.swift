@@ -12,7 +12,6 @@ struct BobbysCounterInsertControlWidget: ControlWidget {
     // MARK: - Private Properties
 
     private let kind = "BobbysCounterInsertControlWidget"
-    private let displayName = "test"
 
     // MARK: - Layouts
 
