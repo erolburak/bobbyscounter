@@ -26,7 +26,9 @@ The **BobbysCounter** app is my own project, which can increase and deacrease a 
 - XCTest
 
 ## SCREENSHOTS
-Screenshots for this project are available on my [website](https://erolburak.me/en/portfolio).
+<img width="240" alt="bobbyscounter1" src="https://github.com/user-attachments/assets/37ac4340-083d-444c-a4c3-c6750b4e899c">
+<img width="240" alt="bobbyscounter2" src="https://github.com/user-attachments/assets/45db25e8-1a31-46e1-9858-0899a86288a8">
+<img width="240" alt="bobbyscounter3" src="https://github.com/user-attachments/assets/38383a72-18c0-4583-9e80-a82f675d49e1">
 
 ## HAVE FUN :)
 <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdDI3emQxaHl0bm5uZmNsaXRtNzNjcDRvN2s3OXV4NmFxMnR3d2didyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Ws6T5PN7wHv3cY8xy8/giphy.gif"/>
