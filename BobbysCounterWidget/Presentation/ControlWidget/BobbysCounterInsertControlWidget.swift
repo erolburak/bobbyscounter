@@ -20,7 +20,7 @@ struct BobbysCounterInsertControlWidget: ControlWidget {
             ControlWidgetButton(action: InsertIntent()) {
                 Label(
                     "InsertTitle",
-                    systemImage: "plus.circle.fill"
+                    systemImage: "plus.circle.fill",
                 )
             }
         }

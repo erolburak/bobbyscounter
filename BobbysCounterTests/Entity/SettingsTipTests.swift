@@ -12,7 +12,7 @@ struct SettingsTipTests {
     // MARK: - Methods
 
     @Test("Check SettingsTip initializing!")
-    func testSettingsTip() {
+    func settingsTip() {
         // Given
         let settingsTip: SettingsTip?
         // When

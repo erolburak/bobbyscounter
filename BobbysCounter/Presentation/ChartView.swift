@@ -45,34 +45,34 @@ struct ChartView: View {
                             spacing: 4,
                             overflowResolution: AnnotationOverflowResolution(x: .fit(to: .chart),
                                                                              y: .fit(to: .chart)))
-            {
-                if showAnnotation(date: date),
-                   let selectedPointMarkCounter = selectedPointMarkCounter(counters: counters)
                 {
-                    VStack {
-                        Text(selectedPointMarkCounter.count.description)
-                            .font(.system(size: 100))
-                            .minimumScaleFactor(0.01)
-                            .lineLimit(1)
-                            .opacity(0.25)
-                            .padding(2)
+                    if showAnnotation(date: date),
+                       let selectedPointMarkCounter = selectedPointMarkCounter(counters: counters)
+                    {
+                        VStack {
+                            Text(selectedPointMarkCounter.count.description)
+                                .font(.system(size: 100))
+                                .minimumScaleFactor(0.01)
+                                .lineLimit(1)
+                                .opacity(0.25)
+                                .padding(2)
+                        }
+                        .frame(width: 60,
+                               height: 60)
+                        .background {
+                            RoundedRectangle(cornerRadius: 4)
+                                .fill(Color(uiColor: .systemBackground))
+                                .shadow(color: .black,
+                                        radius: 2)
+                        }
+                        .overlay(alignment: .topTrailing) {
+                            Text(selectedPointMarkCounter.date?.toRelative ?? "")
+                                .font(.system(size: 4))
+                                .padding(2)
+                        }
+                        .padding(2)
                     }
-                    .frame(width: 60,
-                           height: 60)
-                    .background {
-                        RoundedRectangle(cornerRadius: 4)
-                            .fill(Color(uiColor: .systemBackground))
-                            .shadow(color: .black,
-                                    radius: 2)
-                    }
-                    .overlay(alignment: .topTrailing) {
-                        Text(selectedPointMarkCounter.date?.toRelative ?? "")
-                            .font(.system(size: 4))
-                            .padding(2)
-                    }
-                    .padding(2)
                 }
-            }
         }
         .chartScrollableAxes(.horizontal)
         .chartScrollPosition(x: $chartScrollPosition)

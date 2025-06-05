@@ -12,7 +12,7 @@ struct DoubleExtensionTests {
     // MARK: - Methods
 
     @Test("Check DoubleExtension toString!")
-    func testToString() {
+    func toString() {
         // Given
         let double = 0.0
         // When
@@ -23,7 +23,7 @@ struct DoubleExtensionTests {
     }
 
     @Test("Check DoubleExtension toString with three digits!")
-    func testToStringWithThreeDigits() {
+    func toStringWithThreeDigits() {
         // Given
         let double = 0.006
         // When

@@ -20,7 +20,7 @@ struct BobbysCounterDecreaseControlWidget: ControlWidget {
             ControlWidgetButton(action: DecreaseIntent()) {
                 Label(
                     "DecreaseTitle",
-                    systemImage: "minus"
+                    systemImage: "minus",
                 )
             }
         }

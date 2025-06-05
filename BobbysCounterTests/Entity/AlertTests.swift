@@ -12,7 +12,7 @@ struct AlertTests {
     // MARK: - Methods
 
     @Test("Check Alert initializing!")
-    func testAlert() {
+    func alert() {
         // Given
         let alert: Alert?
         // When

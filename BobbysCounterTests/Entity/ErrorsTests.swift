@@ -12,7 +12,7 @@ struct ErrorsTests {
     // MARK: - Methods
 
     @Test("Check Errors initializing!")
-    func testErrors() {
+    func errors() {
         for error in Errors.errors {
             // Given
             var newError: Error?
