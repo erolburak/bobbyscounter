@@ -12,7 +12,7 @@ struct SelectedTests {
     // MARK: - Methods
 
     @Test("Check Selected initializing!")
-    func testSelected() {
+    func selected() {
         // Given
         let selected: Selected?
         // When

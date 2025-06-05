@@ -15,7 +15,7 @@ struct CounterActorTests {
 
     @Test("Check CounterActor delete!")
     @MainActor
-    func testDelete() async throws {
+    func delete() async throws {
         // Given
         let date = Calendar.current.date(byAdding: DateComponents(day: -2),
                                          to: .now) ?? .now
@@ -30,7 +30,7 @@ struct CounterActorTests {
     }
 
     @Test("Check CounterActor fetchID!")
-    func testFetchID() async throws {
+    func fetchID() async throws {
         // Given
         let date = Calendar.current.date(byAdding: DateComponents(day: +1),
                                          to: .now) ?? .now
@@ -42,7 +42,7 @@ struct CounterActorTests {
     }
 
     @Test("Check CounterActor insert!")
-    func testInsert() async throws {
+    func insert() async throws {
         // Given
         let date = Calendar.current.date(byAdding: DateComponents(day: -2),
                                          to: .now) ?? .now

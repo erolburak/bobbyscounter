@@ -12,7 +12,7 @@ struct SensoryTests {
     // MARK: - Methods
 
     @Test("Check Sensory initializing!")
-    func testSensory() {
+    func sensory() {
         // Given
         let sensory: Sensory?
         // When
@@ -23,7 +23,7 @@ struct SensoryTests {
     }
 
     @Test("Check Sensory feedback with error!")
-    func testFeedbackWithError() {
+    func feedbackWithError() {
         // Given
         let sensory = Sensory()
         // When
@@ -35,7 +35,7 @@ struct SensoryTests {
     }
 
     @Test("Check Sensory feedback with success!")
-    func testFeedbackWithSuccess() {
+    func feedbackWithSuccess() {
         // Given
         let sensory = Sensory()
         // When

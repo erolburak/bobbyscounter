@@ -13,7 +13,7 @@ struct CounterTests {
     // MARK: - Methods
 
     @Test("Check Counter initializing!")
-    func testCounter() {
+    func counter() {
         // Given
         let counter: Counter?
         // When
@@ -25,7 +25,7 @@ struct CounterTests {
     }
 
     @Test("Check Counter decrease!")
-    func testDecrease() throws {
+    func decrease() throws {
         // Given
         let counter = Counter(count: 1,
                               date: .now)
@@ -37,7 +37,7 @@ struct CounterTests {
     }
 
     @Test("Check Counter decrease with zero!")
-    func testDecreaseWithZero() throws {
+    func decreaseWithZero() throws {
         // Given
         let counter = Counter(count: .zero,
                               date: .now)
@@ -49,7 +49,7 @@ struct CounterTests {
     }
 
     @Test("Check Counter increase!")
-    func testIncrease() throws {
+    func increase() throws {
         // Given
         let counter = Counter(count: .zero,
                               date: .now)
@@ -62,7 +62,7 @@ struct CounterTests {
 
     @Test("Check Counter fetch!")
     @MainActor
-    func testFetch() async throws {
+    func fetch() async throws {
         // Given
         let date = Calendar.current.date(byAdding: DateComponents(day: +1),
                                          to: .now) ?? .now
@@ -75,7 +75,7 @@ struct CounterTests {
 
     @Test("Check Counter insert!")
     @MainActor
-    func testInsert() async throws {
+    func insert() async throws {
         // Given
         let date = Calendar.current.date(byAdding: DateComponents(day: -2),
                                          to: .now) ?? .now

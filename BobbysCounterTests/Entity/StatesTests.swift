@@ -12,7 +12,7 @@ struct StatesTests {
     // MARK: - Methods
 
     @Test("Check States initializing!")
-    func testStates() {
+    func states() {
         // Given
         let states: States?
         // When

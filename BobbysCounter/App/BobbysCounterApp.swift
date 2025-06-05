@@ -23,22 +23,22 @@ struct BobbysCounterApp: App {
                 .environment(sensory)
                 .alert(isPresented: $alert.show,
                        error: alert.error)
-            { _ in
-            } message: { error in
-                if let message = error.recoverySuggestion {
-                    Text(message)
+                { _ in
+                } message: { error in
+                    if let message = error.recoverySuggestion {
+                        Text(message)
+                    }
                 }
-            }
-            .environment(\.symbolVariants,
-                         .circle.fill)
-            .sensoryFeedback(trigger: sensory.feedbackBool) { _, _ in
-                sensory.feedback
-            }
-            .task {
-                try? Tips.configure([.displayFrequency(.immediate),
-                                     .datastoreLocation(.groupContainer(identifier: "com.burakerol.BobbysCounter"))])
-            }
-            .modelContainer(CounterActor.shared.modelContainer)
+                .environment(\.symbolVariants,
+                             .circle.fill)
+                .sensoryFeedback(trigger: sensory.feedbackBool) { _, _ in
+                    sensory.feedback
+                }
+                .task {
+                    try? Tips.configure([.displayFrequency(.immediate),
+                                         .datastoreLocation(.groupContainer(identifier: "com.burakerol.BobbysCounter"))])
+                }
+                .modelContainer(CounterActor.shared.modelContainer)
         }
     }
 }
