@@ -45,9 +45,9 @@ struct CountersView: View {
 
                         if !filteredCounters.isEmpty {
                             Section {
-                                ForEach(filteredCounters) { counter in
+                                ForEach(filteredCounters) {
                                     ListItem(selected: selected,
-                                             counter: counter,
+                                             counter: $0,
                                              dismiss: dismiss)
                                 }
                             } header: {
