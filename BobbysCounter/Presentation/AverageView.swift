@@ -44,14 +44,12 @@ struct AverageView: View {
                         Spacer()
 
                         Picker(selection: $selected.average) {
-                            ForEach(averages, id: \.self) { average in
-                                Text(average.description)
+                            ForEach(averages, id: \.self) {
+                                Text($0.description)
                             }
-                        } label: {
-                            EmptyView()
-                        }
-                        .pickerStyle(.menu)
-                        .accessibilityIdentifier("AveragePicker")
+                        } label: {}
+                            .pickerStyle(.menu)
+                            .accessibilityIdentifier("AveragePicker")
                     }
                     .padding()
 

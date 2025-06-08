@@ -24,8 +24,8 @@ struct BobbysCounterApp: App {
                 .alert(isPresented: $alert.show,
                        error: alert.error)
                 { _ in
-                } message: { error in
-                    if let message = error.recoverySuggestion {
+                } message: {
+                    if let message = $0.recoverySuggestion {
                         Text(message)
                     }
                 }

@@ -24,14 +24,14 @@ struct ChartView: View {
     // MARK: - Layouts
 
     var body: some View {
-        Chart(counters) { counter in
-            let date = counter.date ?? .now
+        Chart(counters) {
+            let date = $0.date ?? .now
 
             LineMark(x: .value("Date",
                                date,
                                unit: .day),
                      y: .value("Count",
-                               counter.count))
+                               $0.count))
                 .interpolationMethod(.monotone)
                 .lineStyle(StrokeStyle(lineWidth: 1,
                                        dash: [2]))
@@ -40,7 +40,7 @@ struct ChartView: View {
                                 date,
                                 unit: .day),
                       y: .value("Count",
-                                counter.count))
+                                $0.count))
                 .annotation(position: .topLeading,
                             spacing: 4,
                             overflowResolution: AnnotationOverflowResolution(x: .fit(to: .chart),

@@ -18,8 +18,8 @@ struct BobbysCounterWidget: Widget {
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind,
                             provider: BobbysCounterWidgetProvider())
-        { entry in
-            BobbysCounterWidgetEntryView(entry: entry)
+        {
+            BobbysCounterWidgetEntryView(entry: $0)
                 .containerBackground(.widgetBackground,
                                      for: .widget)
                 .modelContainer(CounterActor.shared.modelContainer)

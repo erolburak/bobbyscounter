@@ -28,7 +28,7 @@ struct ErrorsTests {
 private extension Errors {
     // MARK: - Properties
 
-    static let errors: [Errors] = [.error(""),
+    static let errors: [Errors] = [.error("Test"),
                                    .fetch,
                                    .insert,
                                    .decrease,
