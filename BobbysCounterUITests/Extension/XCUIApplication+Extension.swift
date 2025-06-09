@@ -16,11 +16,6 @@ extension XCUIApplication {
         app.launchArguments = ["-testing"]
         /// Launch app
         app.launch()
-        /// Close settings tip if needed
-        let closeSettingsTipButton = popovers.buttons["Close"]
-        if closeSettingsTipButton.waitForExistence(timeout: 1) {
-            closeSettingsTipButton.tap()
-        }
         /// Insert new counter if needed
         let insertButton = app.buttons["InsertButton"]
         if insertButton.waitForExistence(timeout: 1) {

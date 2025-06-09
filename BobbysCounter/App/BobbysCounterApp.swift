@@ -35,8 +35,16 @@ struct BobbysCounterApp: App {
                     sensory.feedback
                 }
                 .task {
-                    try? Tips.configure([.displayFrequency(.immediate),
-                                         .datastoreLocation(.groupContainer(identifier: "com.burakerol.BobbysCounter"))])
+                    guard let tipsConfigurationOptions: [Tips.ConfigurationOption] = try? [.displayFrequency(.immediate),
+                                                                                           .datastoreLocation(.groupContainer(identifier: "com.burakerol.BobbysCounter"))]
+                    else {
+                        return
+                    }
+                    #if DEBUG
+                        CommandLine.arguments.contains("-testing") ? Tips.hideAllTipsForTesting() : try? Tips.configure(tipsConfigurationOptions)
+                    #else
+                        try? Tips.configure(tipsConfiguration)
+                    #endif
                 }
                 .modelContainer(CounterActor.shared.modelContainer)
         }
