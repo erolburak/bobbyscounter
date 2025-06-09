@@ -66,6 +66,8 @@ struct CountersView: View {
             }
             .navigationTitle("Counters")
             .navigationBarTitleDisplayMode(.inline)
+            .scrollBounceBehavior(.basedOnSize,
+                                  axes: .vertical)
             .toolbar {
                 ToolbarItem(placement: .destructiveAction) {
                     Button(role: .destructive) {
