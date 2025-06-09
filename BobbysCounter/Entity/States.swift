@@ -6,6 +6,8 @@
 //
 
 enum States {
+    // MARK: - Properties
+
     /// General States
     case isLoading, loaded
     /// Empty States
