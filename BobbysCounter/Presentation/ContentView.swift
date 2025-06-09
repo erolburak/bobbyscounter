@@ -52,7 +52,6 @@ struct ContentView: View {
                     .textCase(.uppercase)
                     .font(.system(.subheadline,
                                   weight: .black))
-                    .foregroundStyle(.red)
                     .accessibilityIdentifier("InsertButton")
                 }
                 .symbolEffect(.bounce,

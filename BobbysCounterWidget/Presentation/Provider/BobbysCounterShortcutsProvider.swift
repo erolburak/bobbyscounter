@@ -29,6 +29,6 @@ struct BobbysCounterShortcutsProvider: AppShortcutsProvider {
                     phrases: ["\(.applicationName) insert",
                               "\(.applicationName) hinzufügen"],
                     shortTitle: "InsertTitle",
-                    systemImageName: "plus.circle.fill")
+                    systemImageName: "plus")
     }
 }

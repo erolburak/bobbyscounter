@@ -49,7 +49,6 @@ struct BobbysCounterWidgetEntryView: View {
                         .textCase(.uppercase)
                         .font(.system(.subheadline,
                                       weight: .black))
-                        .foregroundStyle(.red)
                 }
                 .frame(maxWidth: .infinity)
             default:
@@ -76,8 +75,6 @@ struct BobbysCounterWidgetEntryView: View {
                 .font(.system(size: 70))
             }
         }
-        .environment(\.symbolVariants,
-                     .circle.fill)
         .frame(maxHeight: .infinity)
         .ignoresSafeArea(.all)
         .overlay(alignment: .topTrailing) {

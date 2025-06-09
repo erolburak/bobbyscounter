@@ -162,17 +162,14 @@ private struct ListItem: View {
                 Text(counter.count.description)
                     .lineLimit(1)
             }
-            .foregroundStyle(.accent)
         }
         .contextMenu {
-            DeleteButton(counter: counter,
-                         isContextMenu: true)
+            DeleteButton(counter: counter)
         }
         .swipeActions(edge: .trailing,
                       allowsFullSwipe: true)
         {
-            DeleteButton(counter: counter,
-                         isContextMenu: false)
+            DeleteButton(counter: counter)
         }
         .confirmationDialog("DeleteConfirmationDialog",
                             isPresented: $showDeleteConfirmationDialog,
@@ -206,17 +203,13 @@ private struct ListItem: View {
         }
     }
 
-    private func DeleteButton(counter: Counter,
-                              isContextMenu: Bool) -> some View
-    {
+    private func DeleteButton(counter: Counter) -> some View {
         Button("Delete",
-               systemImage: isContextMenu ? "trash.circle" : "trash")
+               systemImage: "trash")
         {
             counterDelete = counter
             showDeleteConfirmationDialog = true
         }
-        .environment(\.symbolVariants,
-                     .fill)
         .accessibilityIdentifier("DeleteButton")
     }
 }

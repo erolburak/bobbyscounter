@@ -116,7 +116,6 @@ struct SettingsView: View {
         .presentationDetents([.fraction(counters.isEmpty ? 0.6 : 0.4)])
         .fontWeight(.bold)
         .monospaced()
-        .tint(.red)
     }
 }
 
