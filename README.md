@@ -26,9 +26,9 @@ The **BobbysCounter** app is my own project, which can increase and deacrease a 
 - XCTest
 
 ## SCREENSHOTS
-<img width="240" src="https://github.com/user-attachments/assets/5703bd95-49c2-4078-8187-2dccb7b65630#gh-light-mode-only">
-<img width="240" src="https://github.com/user-attachments/assets/231ed1bb-bc05-4e06-aa61-8bc74fe32c02#gh-dark-mode-only">
-<img width="240" src="https://github.com/user-attachments/assets/c76c11de-1f7f-42c9-ae85-81d7c4d319f1#gh-light-mode-only">
-<img width="240" src="https://github.com/user-attachments/assets/49cecfc3-5e50-4552-8074-c354bb228d63#gh-dark-mode-only">
-<img width="240" src="https://github.com/user-attachments/assets/de82b65b-2e1b-427c-bd8d-3bfa02ec612e#gh-light-mode-only">
-<img width="240" src="https://github.com/user-attachments/assets/61a2c8af-ebfb-4af7-86f9-309e0f50945b#gh-dark-mode-only">
+<img width="240" src="https://github.com/user-attachments/assets/7206f8ba-f413-4e4e-9883-9f79f800e912#gh-light-mode-only">
+<img width="240" src="https://github.com/user-attachments/assets/1b09ad4f-a33e-496b-b152-b9fcef70c495#gh-dark-mode-only">
+<img width="240" src="https://github.com/user-attachments/assets/5fb06ccf-4062-4448-912b-f87f42ed6338#gh-light-mode-only">
+<img width="240" src="https://github.com/user-attachments/assets/e3708ae8-ddeb-42d0-83d5-c27392fb552a#gh-dark-mode-only">
+<img width="240" src="https://github.com/user-attachments/assets/cb3955d9-003d-4abe-a531-c6c8fac54501#gh-light-mode-only">
+<img width="240" src="https://github.com/user-attachments/assets/e908f86d-d6ef-4d16-b80d-f98bd723a46c#gh-dark-mode-only">
