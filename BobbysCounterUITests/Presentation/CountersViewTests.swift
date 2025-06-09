@@ -32,7 +32,7 @@ final class CountersViewTests: XCTestCase {
     private func closeCountersView(with app: XCUIApplication) {
         /// Close counters view
         let closeCountersButton = app.buttons["CloseCountersButton"]
-        XCTAssertTrue(closeCountersButton.waitForExistence(timeout: 5))
+        XCTAssertTrue(closeCountersButton.waitForExistence(timeout: 1))
         closeCountersButton.tap()
     }
 
@@ -40,15 +40,15 @@ final class CountersViewTests: XCTestCase {
     private func deleteCounter(with app: XCUIApplication) {
         /// Swipe to delete todays counter
         let todayText = app.collectionViews.staticTexts["Today"]
-        XCTAssertTrue(todayText.waitForExistence(timeout: 5))
+        XCTAssertTrue(todayText.waitForExistence(timeout: 1))
         todayText.swipeLeft()
         /// Delete counter
         let deleteButton = app.buttons["DeleteButton"]
-        XCTAssertTrue(deleteButton.waitForExistence(timeout: 5))
+        XCTAssertTrue(deleteButton.waitForExistence(timeout: 1))
         deleteButton.tap()
         /// Confirm delete
         let deleteConfirmationDialogButton = app.buttons["DeleteConfirmationDialogButton"]
-        XCTAssertTrue(deleteConfirmationDialogButton.waitForExistence(timeout: 5))
+        XCTAssertTrue(deleteConfirmationDialogButton.waitForExistence(timeout: 1))
         deleteConfirmationDialogButton.tap()
     }
 
@@ -56,7 +56,7 @@ final class CountersViewTests: XCTestCase {
     private func openCountersView(with app: XCUIApplication) {
         /// Open counters view
         let countersButton = app.buttons["CountersButton"]
-        XCTAssertTrue(countersButton.waitForExistence(timeout: 5))
+        XCTAssertTrue(countersButton.waitForExistence(timeout: 1))
         countersButton.tap()
     }
 
@@ -64,14 +64,14 @@ final class CountersViewTests: XCTestCase {
     private func resetApp(with app: XCUIApplication) {
         /// Open reset confirmation dialog
         let resetButton = app.buttons["ResetButton"]
-        XCTAssertTrue(resetButton.waitForExistence(timeout: 5))
+        XCTAssertTrue(resetButton.waitForExistence(timeout: 1))
         resetButton.tap()
         /// Confirm reset
         let resetConfirmationDialogButton = app.buttons["ResetConfirmationDialogButton"]
-        XCTAssertTrue(resetConfirmationDialogButton.waitForExistence(timeout: 5))
+        XCTAssertTrue(resetConfirmationDialogButton.waitForExistence(timeout: 1))
         resetConfirmationDialogButton.tap()
         /// Check if `InsertButton` exists
         let insertButton = app.buttons["InsertButton"]
-        XCTAssertTrue(insertButton.waitForExistence(timeout: 5))
+        XCTAssertTrue(insertButton.waitForExistence(timeout: 1))
     }
 }

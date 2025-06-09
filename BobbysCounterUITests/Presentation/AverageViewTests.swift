@@ -28,7 +28,7 @@ final class AverageViewTests: XCTestCase {
     private func closeAverageView(with app: XCUIApplication) {
         /// Close average view
         let closeAverageButton = app.buttons["CloseAverageButton"]
-        XCTAssertTrue(closeAverageButton.waitForExistence(timeout: 5))
+        XCTAssertTrue(closeAverageButton.waitForExistence(timeout: 1))
         closeAverageButton.tap()
     }
 
@@ -36,15 +36,15 @@ final class AverageViewTests: XCTestCase {
     private func changeAverage(with app: XCUIApplication) {
         /// Open average picker
         let averagePicker = app.buttons["AveragePicker"]
-        XCTAssertTrue(averagePicker.waitForExistence(timeout: 5))
+        XCTAssertTrue(averagePicker.waitForExistence(timeout: 1))
         averagePicker.tap()
         /// Change average to `30`
         let thirtyButton = app.buttons["30"]
-        XCTAssertTrue(thirtyButton.waitForExistence(timeout: 5))
+        XCTAssertTrue(thirtyButton.waitForExistence(timeout: 1))
         thirtyButton.tap()
         /// Check if `AverageMessage` contains `30`
         let averageMessage = app.staticTexts["AverageMessage"]
-        XCTAssertTrue(averageMessage.waitForExistence(timeout: 5))
+        XCTAssertTrue(averageMessage.waitForExistence(timeout: 1))
         XCTAssertTrue(averageMessage.label.contains("30"))
     }
 
@@ -52,7 +52,7 @@ final class AverageViewTests: XCTestCase {
     private func openAverageView(with app: XCUIApplication) {
         /// Open average view
         let averageButton = app.buttons["AverageButton"]
-        XCTAssertTrue(averageButton.waitForExistence(timeout: 5))
+        XCTAssertTrue(averageButton.waitForExistence(timeout: 1))
         averageButton.tap()
     }
 }

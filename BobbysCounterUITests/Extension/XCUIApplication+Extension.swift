@@ -18,12 +18,12 @@ extension XCUIApplication {
         app.launch()
         /// Close settings tip if needed
         let closeSettingsTipButton = popovers.buttons["Close"]
-        if closeSettingsTipButton.waitForExistence(timeout: 5) {
+        if closeSettingsTipButton.waitForExistence(timeout: 1) {
             closeSettingsTipButton.tap()
         }
         /// Insert new counter if needed
         let insertButton = app.buttons["InsertButton"]
-        if insertButton.waitForExistence(timeout: 5) {
+        if insertButton.waitForExistence(timeout: 1) {
             insertButton.tap()
         }
         return app
@@ -32,21 +32,21 @@ extension XCUIApplication {
     func checkDateText(with app: XCUIApplication) {
         /// Check if `DateText` is set to `Today`
         let dateText = app.staticTexts["DateText"]
-        XCTAssertTrue(dateText.waitForExistence(timeout: 5))
+        XCTAssertTrue(dateText.waitForExistence(timeout: 1))
         XCTAssertEqual(dateText.label, "Today")
     }
 
     func getCount(with app: XCUIApplication) -> Int {
         /// Get count
         let countText = app.staticTexts["CountText"]
-        XCTAssertTrue(countText.waitForExistence(timeout: 5))
+        XCTAssertTrue(countText.waitForExistence(timeout: 1))
         return Int(countText.label) ?? 0
     }
 
     func openSettingsView(with app: XCUIApplication) {
         /// Open settings view
         let settingsButton = app.buttons["SettingsButton"]
-        XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
+        XCTAssertTrue(settingsButton.waitForExistence(timeout: 1))
         settingsButton.tap()
     }
 }
