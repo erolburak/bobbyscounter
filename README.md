@@ -30,5 +30,5 @@ The **BobbysCounter** app is my own project, which can increase and deacrease a 
 <img width="240" src="https://github.com/user-attachments/assets/1b09ad4f-a33e-496b-b152-b9fcef70c495#gh-dark-mode-only">
 <img width="240" src="https://github.com/user-attachments/assets/5fb06ccf-4062-4448-912b-f87f42ed6338#gh-light-mode-only">
 <img width="240" src="https://github.com/user-attachments/assets/e3708ae8-ddeb-42d0-83d5-c27392fb552a#gh-dark-mode-only">
-<img width="240" src="https://github.com/user-attachments/assets/cb3955d9-003d-4abe-a531-c6c8fac54501#gh-light-mode-only">
-<img width="240" src="https://github.com/user-attachments/assets/e908f86d-d6ef-4d16-b80d-f98bd723a46c#gh-dark-mode-only">
+<img width="240" src="https://github.com/user-attachments/assets/a073200d-3b00-4313-8156-9c1ffced2536#gh-light-mode-only">
+<img width="240" src="https://github.com/user-attachments/assets/d6188451-2fb7-47a8-8d29-1f5bb9612077#gh-dark-mode-only">
