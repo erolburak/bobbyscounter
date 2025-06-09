@@ -119,13 +119,9 @@ struct ContentView: View {
                 settingsTip.invalidate(reason: .actionPerformed)
             }
             .padding(.bottom)
-            .popoverTip(settingsTip,
-                        arrowEdge: .top)
+            .popoverTip(settingsTip)
             .onAppear {
-                Task {
-                    try await Task.sleep(for: .seconds(1))
-                    SettingsTip.show = true
-                }
+                SettingsTip.show = true
             }
             .accessibilityIdentifier("SettingsButton")
         }
