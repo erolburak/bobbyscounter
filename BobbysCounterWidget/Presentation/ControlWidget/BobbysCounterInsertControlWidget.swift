@@ -18,10 +18,8 @@ struct BobbysCounterInsertControlWidget: ControlWidget {
     var body: some ControlWidgetConfiguration {
         StaticControlConfiguration(kind: kind) {
             ControlWidgetButton(action: InsertIntent()) {
-                Label(
-                    "InsertTitle",
-                    systemImage: "plus.circle.fill"
-                )
+                Label("InsertTitle",
+                      systemImage: "plus")
             }
         }
         .displayName("InsertTitle")

@@ -52,11 +52,11 @@ struct ContentView: View {
                     .textCase(.uppercase)
                     .font(.system(.subheadline,
                                   weight: .black))
-                    .foregroundStyle(.red)
                     .accessibilityIdentifier("InsertButton")
                 }
                 .symbolEffect(.bounce,
                               options: .nonRepeating)
+                .symbolVariant(.fill)
             default:
                 let count = selected.counter?.count ?? .zero
 

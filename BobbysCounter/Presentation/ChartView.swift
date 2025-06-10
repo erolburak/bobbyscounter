@@ -85,7 +85,6 @@ struct ChartView: View {
                    vertical: true)
         .padding(.horizontal)
         .font(.system(size: 10))
-        .foregroundStyle(.red)
         .task {
             guard let dateMinusOne = Calendar.current.date(byAdding: DateComponents(day: -1),
                                                            to: selected.date)

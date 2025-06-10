@@ -47,7 +47,7 @@ final class CountersViewTests: XCTestCase {
         XCTAssertTrue(deleteButton.waitForExistence(timeout: 1))
         deleteButton.tap()
         /// Confirm delete
-        let deleteConfirmationDialogButton = app.buttons["DeleteConfirmationDialogButton"]
+        let deleteConfirmationDialogButton = app.buttons["DeleteConfirmationDialogButton"].firstMatch
         XCTAssertTrue(deleteConfirmationDialogButton.waitForExistence(timeout: 1))
         deleteConfirmationDialogButton.tap()
     }
@@ -67,7 +67,7 @@ final class CountersViewTests: XCTestCase {
         XCTAssertTrue(resetButton.waitForExistence(timeout: 1))
         resetButton.tap()
         /// Confirm reset
-        let resetConfirmationDialogButton = app.buttons["ResetConfirmationDialogButton"]
+        let resetConfirmationDialogButton = app.buttons["ResetConfirmationDialogButton"].firstMatch
         XCTAssertTrue(resetConfirmationDialogButton.waitForExistence(timeout: 1))
         resetConfirmationDialogButton.tap()
         /// Check if `InsertButton` exists
