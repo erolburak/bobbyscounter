@@ -51,6 +51,7 @@ struct BobbysCounterWidgetEntryView: View {
                                       weight: .black))
                 }
                 .frame(maxWidth: .infinity)
+                .symbolVariant(.fill)
             default:
                 let count = count ?? .zero
 

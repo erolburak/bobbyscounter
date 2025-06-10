@@ -56,6 +56,7 @@ struct ContentView: View {
                 }
                 .symbolEffect(.bounce,
                               options: .nonRepeating)
+                .symbolVariant(.fill)
             default:
                 let count = selected.counter?.count ?? .zero
 

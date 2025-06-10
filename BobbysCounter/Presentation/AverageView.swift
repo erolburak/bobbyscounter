@@ -67,6 +67,7 @@ struct AverageView: View {
                                            description: Text("EmptyCountersMessage"))
                         .symbolEffect(.bounce,
                                       options: .nonRepeating)
+                        .symbolVariant(.fill)
                 }
 
                 Spacer()
