@@ -57,26 +57,26 @@ struct CountersView: View {
                     }
                     .listStyle(.insetGrouped)
                 } else {
-                    ContentUnavailableView("EmptyCounters",
-                                           systemImage: "list.bullet",
-                                           description: Text("EmptyCountersMessage"))
-                        .symbolEffect(.bounce,
-                                      options: .nonRepeating)
-                        .symbolVariant(.fill)
+                    ContentUnavailableView {
+                        Label("EmptyCounters",
+                              systemImage: "list.bullet")
+                    } description: {
+                        Text("EmptyCountersMessage")
+                    }
+                    .symbolEffect(.bounce,
+                                  options: .nonRepeating)
+                    .symbolVariant(.fill)
                 }
             }
             .navigationTitle("Counters")
             .navigationBarTitleDisplayMode(.inline)
-            .scrollBounceBehavior(.basedOnSize,
-                                  axes: .vertical)
             .toolbar {
                 ToolbarItem(placement: .destructiveAction) {
                     Button(role: .destructive) {
                         showResetConfirmationDialog = true
-                    } label: {
-                        Label("Reset",
-                              systemImage: "trash")
+                        sensory.feedback(feedback: .press(.button))
                     }
+                    .tint(.red)
                     .confirmationDialog("ResetConfirmationDialog",
                                         isPresented: $showResetConfirmationDialog,
                                         titleVisibility: .visible)
@@ -105,22 +105,20 @@ struct CountersView: View {
                 }
 
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Close",
-                           systemImage: "xmark")
-                    {
+                    Button(role: .cancel) {
                         showCountersSheet = false
                     }
                     .accessibilityIdentifier("CloseCountersButton")
                 }
             }
         }
+        .presentationDetents([.medium, .large])
     }
 }
 
 #Preview("CountersView") {
     CountersView(selected: Selected(),
-                 showCountersSheet: .constant(true),
-                 dismiss: {})
+                 showCountersSheet: .constant(true)) {}
         .environment(Alert())
         .environment(Sensory())
         .modelContainer(for: [Counter.self],
@@ -148,8 +146,8 @@ private struct ListItem: View {
             guard let date = counter.date else {
                 return
             }
+            sensory.feedback(feedback: .selection)
             if counter == selected.counter {
-                sensory.feedback(feedback: .selection)
                 dismiss()
             } else {
                 selected.date = date
@@ -161,6 +159,8 @@ private struct ListItem: View {
                 Spacer()
 
                 Text(counter.count.description)
+                    .monospaced()
+                    .fontWeight(.black)
                     .lineLimit(1)
             }
         }
@@ -176,9 +176,7 @@ private struct ListItem: View {
                             isPresented: $showDeleteConfirmationDialog,
                             titleVisibility: .visible)
         {
-            Button("Delete",
-                   role: .destructive)
-            {
+            Button(role: .destructive) {
                 guard let counterDelete else {
                     return
                 }
@@ -202,6 +200,7 @@ private struct ListItem: View {
             }
             .accessibilityIdentifier("DeleteConfirmationDialogButton")
         }
+        .accessibilityIdentifier("ListItem")
     }
 
     private func DeleteButton(counter: Counter) -> some View {
@@ -210,7 +209,9 @@ private struct ListItem: View {
         {
             counterDelete = counter
             showDeleteConfirmationDialog = true
+            sensory.feedback(feedback: .press(.button))
         }
+        .tint(.red)
         .accessibilityIdentifier("DeleteButton")
     }
 }
@@ -218,8 +219,7 @@ private struct ListItem: View {
 #Preview("ListItem") {
     ListItem(selected: Selected(),
              counter: Counter(count: .zero,
-                              date: .now),
-             dismiss: {})
+                              date: .now)) {}
         .environment(Alert())
         .environment(Sensory())
         .modelContainer(for: [Counter.self],

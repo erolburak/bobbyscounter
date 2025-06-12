@@ -11,37 +11,32 @@ extension XCUIApplication {
     // MARK: - Methods
 
     func appLaunch() -> XCUIApplication {
-        let app = XCUIApplication()
-        /// Set launch arguments to `-testing`
-        app.launchArguments = ["-testing"]
+        /// Set launch arguments to `-Testing`
+        launchArguments = ["-Testing"]
         /// Launch app
-        app.launch()
+        launch()
+        /// Set device orientation to `portrait`
+        XCUIDevice.shared.orientation = .portrait
         /// Insert new counter if needed
-        let insertButton = app.buttons["InsertButton"]
-        if insertButton.waitForExistence(timeout: 1) {
+        let insertButton = buttons["InsertButton"]
+        if insertButton.exists {
             insertButton.tap()
         }
-        return app
+        return self
     }
 
     func checkDateText(with app: XCUIApplication) {
         /// Check if `DateText` is set to `Today`
-        let dateText = app.staticTexts["DateText"]
-        XCTAssertTrue(dateText.waitForExistence(timeout: 1))
-        XCTAssertEqual(dateText.label, "Today")
+        XCTAssertEqual(app.staticTexts["DateText"].label, "Today")
     }
 
     func getCount(with app: XCUIApplication) -> Int {
         /// Get count
-        let countText = app.staticTexts["CountText"]
-        XCTAssertTrue(countText.waitForExistence(timeout: 1))
-        return Int(countText.label) ?? 0
+        Int(app.staticTexts["CountText"].label) ?? 0
     }
 
-    func openSettingsView(with app: XCUIApplication) {
-        /// Open settings view
-        let settingsButton = app.buttons["SettingsButton"]
-        XCTAssertTrue(settingsButton.waitForExistence(timeout: 1))
-        settingsButton.tap()
+    func showSettingsView(with app: XCUIApplication) {
+        /// Show settings view
+        app.buttons["SettingsButton"].tap()
     }
 }

@@ -33,22 +33,6 @@
         }
       }
     },
-    "Close" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Schließen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Close"
-          }
-        }
-      }
-    },
     "Count" : {
       "localizations" : {
         "de" : {
@@ -540,13 +524,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "-"
+            "value" : "Minus"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "-"
+            "value" : "Minus"
           }
         }
       }
@@ -557,13 +541,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "+"
+            "value" : "Plus"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "+"
+            "value" : "Plus"
           }
         }
       }

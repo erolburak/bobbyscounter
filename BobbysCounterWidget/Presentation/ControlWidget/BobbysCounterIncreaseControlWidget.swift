@@ -18,10 +18,8 @@ struct BobbysCounterIncreaseControlWidget: ControlWidget {
     var body: some ControlWidgetConfiguration {
         StaticControlConfiguration(kind: kind) {
             ControlWidgetButton(action: IncreaseIntent()) {
-                Label(
-                    "IncreaseTitle",
-                    systemImage: "plus"
-                )
+                Label("IncreaseTitle",
+                      systemImage: "plus")
             }
         }
         .displayName("IncreaseTitle")

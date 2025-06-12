@@ -38,69 +38,58 @@ struct AverageView: View {
                 if !counters.isEmpty,
                    let averageMessage
                 {
-                    HStack {
+                    Picker(selection: $selected.average) {
+                        ForEach(averages, id: \.self) {
+                            Text($0.description)
+                        }
+                    } label: {
                         Text("SelectedAverage")
-
-                        Spacer()
-
-                        Picker(selection: $selected.average) {
-                            ForEach(averages, id: \.self) {
-                                Text($0.description)
-                            }
-                        } label: {}
-                            .pickerStyle(.menu)
-                            .accessibilityIdentifier("AveragePicker")
                     }
-                    .padding()
-
-                    Spacer()
+                    .pickerStyle(.segmented)
+                    .accessibilityIdentifier("AveragePicker")
 
                     Text(averageMessage)
-                        .font(.caption)
-                        .fontWeight(.regular)
-                        .padding(.horizontal)
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                        .padding(.vertical)
                         .contentTransition(.numericText())
                         .accessibilityIdentifier("AverageMessage")
                 } else {
-                    ContentUnavailableView("EmptyAverage",
-                                           systemImage: "divide",
-                                           description: Text("EmptyCountersMessage"))
-                        .symbolEffect(.bounce,
-                                      options: .nonRepeating)
-                        .symbolVariant(.fill)
+                    ContentUnavailableView {
+                        Label("EmptyAverage",
+                              systemImage: "divide")
+                    } description: {
+                        Text("EmptyCountersMessage")
+                    }
+                    .symbolEffect(.bounce,
+                                  options: .nonRepeating)
+                    .symbolVariant(.fill)
                 }
 
                 Spacer()
             }
+            .padding(.horizontal)
             .navigationTitle("Average")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Close",
-                           systemImage: "xmark")
-                    {
+                    Button(role: .close) {
                         showAverageSheet = false
+                        sensory.feedback(feedback: .press(.button))
                     }
                     .accessibilityIdentifier("CloseAverageButton")
                 }
             }
-            .onAppear {
-                updateAverageMessage()
-            }
-            .onChange(of: selected.average) {
-                updateAverageMessage()
+            .onChange(of: selected.average,
+                      initial: true)
+            {
+                withAnimation {
+                    averageMessage = String(localized: "AverageMessage\(selected.average)\(average)")
+                }
                 sensory.feedback(feedback: .selection)
             }
         }
-        .presentationDetents([.fraction(counters.isEmpty ? 0.6 : 0.4)])
-    }
-
-    // MARK: - Methods
-
-    private func updateAverageMessage() {
-        withAnimation {
-            averageMessage = String(localized: "AverageMessage\(selected.average)\(average)")
-        }
+        .presentationDetents([.fraction(counters.isEmpty ? 0.5 : 0.25)])
     }
 }
 
