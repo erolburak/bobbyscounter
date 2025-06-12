@@ -32,60 +32,67 @@ struct BobbysCounterWidgetEntryView: View {
     // MARK: - Layouts
 
     var body: some View {
-        ZStack {
+        Group {
             switch state {
             case .empty:
                 ContentUnavailableView {
                     Label("EmptyCounter",
                           systemImage: "plus")
-                        .font(.system(size: 8))
                         .imageScale(.small)
+                        .font(.caption)
                 } description: {
                     Text("EmptyCounterMessage")
-                        .font(.system(size: 6))
+                        .font(.caption2)
+                        .fixedSize(horizontal: false, vertical: true)
                 } actions: {
                     Button("Insert",
                            intent: InsertIntent())
+                        .font(.footnote)
+                        .fontWeight(.bold)
                         .textCase(.uppercase)
-                        .font(.system(.subheadline,
-                                      weight: .black))
                 }
-                .frame(maxWidth: .infinity)
                 .symbolVariant(.fill)
             default:
                 let count = count ?? .zero
 
                 Text(count.description)
-                    .font(.system(size: 100))
-                    .minimumScaleFactor(0.01)
+                    .frame(maxWidth: .infinity)
+                    .monospaced()
+                    .font(.system(size: 1000))
+                    .fontWeight(.black)
+                    .minimumScaleFactor(0.001)
                     .lineLimit(1)
                     .opacity(0.25)
-                    .padding()
                     .contentTransition(.numericText())
+                    .overlay {
+                        HStack {
+                            Button("Minus",
+                                   systemImage: "minus",
+                                   intent: DecreaseIntent())
+                                .disabled(count <= .zero)
 
-                HStack {
-                    Button("Minus",
-                           intent: DecreaseIntent())
-                        .frame(maxWidth: .infinity)
-                        .disabled(count <= .zero)
+                            Spacer()
 
-                    Button("Plus",
-                           intent: IncreaseIntent())
-                        .frame(maxWidth: .infinity)
-                }
-                .font(.system(size: 70))
+                            Button("Plus",
+                                   systemImage: "plus",
+                                   intent: IncreaseIntent())
+                        }
+                        .font(.system(size: 60))
+                        .fontWeight(.bold)
+                        .labelStyle(.iconOnly)
+                    }
             }
         }
-        .frame(maxHeight: .infinity)
-        .ignoresSafeArea(.all)
-        .overlay(alignment: .topTrailing) {
+        .frame(maxWidth: .infinity,
+               maxHeight: .infinity)
+        .ignoresSafeArea()
+        .overlay(alignment: .topLeading) {
             Text(entry.date.toRelative)
-                .font(.system(size: 8))
+                .font(.caption)
+                .fontWeight(.semibold)
         }
-        .disabled(redactedReason == .placeholder)
         .buttonStyle(.plain)
-        .fontWeight(.bold)
-        .monospaced()
+        .disabled(redactedReason == .placeholder)
         .redacted(reason: redactedReason)
         .widgetAccentable()
     }

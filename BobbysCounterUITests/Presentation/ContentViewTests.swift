@@ -19,17 +19,8 @@ final class ContentViewTests: XCTestCase {
         /// Launch app
         let app = XCUIApplication().appLaunch()
         app.checkDateText(with: app)
-        checkSettingsButton(with: app)
         increaseCount(with: app)
         decreaseCount(with: app)
-    }
-
-    @MainActor
-    private func checkSettingsButton(with app: XCUIApplication) {
-        /// Check if `SettingsButton` is enabled
-        let settingsButton = app.buttons["SettingsButton"]
-        XCTAssertTrue(settingsButton.waitForExistence(timeout: 1))
-        XCTAssertTrue(settingsButton.isEnabled)
     }
 
     @MainActor
@@ -37,12 +28,9 @@ final class ContentViewTests: XCTestCase {
         /// Get count
         let count = app.getCount(with: app)
         /// Decrease count
-        let minusButton = app.buttons["MinusButton"]
-        XCTAssertTrue(minusButton.waitForExistence(timeout: 1))
-        minusButton.tap()
+        app.buttons["MinusButton"].tap()
         /// Compare counts
-        let newCount = app.getCount(with: app)
-        XCTAssertEqual(count - 1, newCount)
+        XCTAssertEqual(count - 1, app.getCount(with: app))
     }
 
     @MainActor
@@ -50,11 +38,8 @@ final class ContentViewTests: XCTestCase {
         /// Get count
         let count = app.getCount(with: app)
         /// Increase count
-        let plusButton = app.buttons["PlusButton"]
-        XCTAssertTrue(plusButton.waitForExistence(timeout: 1))
-        plusButton.tap()
+        app.buttons["PlusButton"].tap()
         /// Compare counts
-        let newCount = app.getCount(with: app)
-        XCTAssertEqual(count + 1, newCount)
+        XCTAssertEqual(count + 1, app.getCount(with: app))
     }
 }

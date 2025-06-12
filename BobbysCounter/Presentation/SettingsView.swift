@@ -39,12 +39,15 @@ struct SettingsView: View {
                 if !counters.isEmpty {
                     ChartView(selected: selected)
                 } else {
-                    ContentUnavailableView("EmptyCharts",
-                                           systemImage: "chart.xyaxis.line",
-                                           description: Text("EmptyCountersMessage"))
-                        .symbolEffect(.bounce,
-                                      options: .nonRepeating)
-                        .symbolVariant(.fill)
+                    ContentUnavailableView {
+                        Label("EmptyCharts",
+                              systemImage: "chart.xyaxis.line")
+                    } description: {
+                        Text("EmptyCountersMessage")
+                    }
+                    .symbolEffect(.bounce,
+                                  options: .nonRepeating)
+                    .symbolVariant(.fill)
                 }
 
                 Spacer()
@@ -57,6 +60,7 @@ struct SettingsView: View {
                            systemImage: "divide")
                     {
                         showAverageSheet = true
+                        sensory.feedback(feedback: .press(.button))
                     }
                     .accessibilityIdentifier("AverageButton")
                 }
@@ -66,14 +70,14 @@ struct SettingsView: View {
                            systemImage: "list.bullet")
                     {
                         showCountersSheet = true
+                        sensory.feedback(feedback: .press(.button))
                     }
                     .accessibilityIdentifier("CountersButton")
                 }
 
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Close",
-                           systemImage: "xmark")
-                    {
+                    Button(role: .close) {
+                        sensory.feedback(feedback: .press(.button))
                         dismiss()
                     }
                     .accessibilityIdentifier("CloseSettingsButton")
@@ -83,6 +87,7 @@ struct SettingsView: View {
                     Button("Today") {
                         withAnimation {
                             selected.date = .now.toDateWithoutTime ?? .now
+                            sensory.feedback(feedback: .selection)
                         }
                     }
                     .disabled(selected.date.isDateToday)
@@ -95,10 +100,10 @@ struct SettingsView: View {
             }
             .sheet(isPresented: $showCountersSheet) {
                 CountersView(selected: selected,
-                             showCountersSheet: $showCountersSheet,
-                             dismiss: {
-                                 dismiss()
-                             })
+                             showCountersSheet: $showCountersSheet)
+                {
+                    dismiss()
+                }
             }
             .onChange(of: selected.date) { _, newValue in
                 Task {
@@ -114,9 +119,7 @@ struct SettingsView: View {
                 }
             }
         }
-        .presentationDetents([.fraction(counters.isEmpty ? 0.6 : 0.4)])
-        .fontWeight(.bold)
-        .monospaced()
+        .presentationDetents([.fraction(counters.isEmpty ? 0.5 : 0.4)])
     }
 }
 

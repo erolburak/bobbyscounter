@@ -17,7 +17,7 @@ actor CounterActor {
             var isStoredInMemoryOnly = false
             var cloudKitDatabase: ModelConfiguration.CloudKitDatabase = .automatic
             #if DEBUG
-                if CommandLine.arguments.contains("-testing") {
+                if CommandLine.arguments.contains("-Testing") {
                     isStoredInMemoryOnly = true
                     cloudKitDatabase = .none
                 }

@@ -12,6 +12,7 @@ import SwiftUI
 struct ChartView: View {
     // MARK: - Private Properties
 
+    @Environment(Sensory.self) private var sensory
     @Query(sort: \Counter.date,
            order: .reverse) private var counters: [Counter]
     @State private var chartScrollPosition = Date.now
@@ -42,35 +43,20 @@ struct ChartView: View {
                       y: .value("Count",
                                 $0.count))
                 .annotation(position: .topLeading,
-                            spacing: 4,
+                            spacing: 24,
                             overflowResolution: AnnotationOverflowResolution(x: .fit(to: .chart),
                                                                              y: .fit(to: .chart)))
                 {
                     if showAnnotation(date: date),
                        let selectedPointMarkCounter = selectedPointMarkCounter(counters: counters)
                     {
-                        VStack {
-                            Text(selectedPointMarkCounter.count.description)
-                                .font(.system(size: 100))
-                                .minimumScaleFactor(0.01)
-                                .lineLimit(1)
-                                .opacity(0.25)
-                                .padding(2)
-                        }
-                        .frame(width: 60,
-                               height: 60)
-                        .background {
-                            RoundedRectangle(cornerRadius: 4)
-                                .fill(Color(uiColor: .systemBackground))
-                                .shadow(color: .black,
-                                        radius: 2)
-                        }
-                        .overlay(alignment: .topTrailing) {
-                            Text(selectedPointMarkCounter.date?.toRelative ?? "")
-                                .font(.system(size: 4))
-                                .padding(2)
-                        }
-                        .padding(2)
+                        Text(selectedPointMarkCounter.count.description)
+                            .monospaced()
+                            .font(.title)
+                            .fontWeight(.black)
+                            .onAppear {
+                                sensory.feedback(feedback: .press(.button))
+                            }
                     }
                 }
         }
@@ -119,6 +105,7 @@ struct ChartView: View {
 
 #Preview {
     ChartView(selected: Selected())
+        .environment(Sensory())
         .modelContainer(for: [Counter.self],
                         inMemory: true)
 }

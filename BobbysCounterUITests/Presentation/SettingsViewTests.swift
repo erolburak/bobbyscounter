@@ -18,32 +18,24 @@ final class SettingsViewTests: XCTestCase {
     func testSettingsView() {
         /// Launch app
         let app = XCUIApplication().appLaunch()
-        app.openSettingsView(with: app)
+        app.showSettingsView(with: app)
         closeSettingsView(with: app)
-        app.openSettingsView(with: app)
+        app.showSettingsView(with: app)
         pressChartPointMark(with: app)
         checkTodayButton(with: app)
     }
 
     @MainActor
     private func checkTodayButton(with app: XCUIApplication) {
-        /// Open date picker
-        let datePicker = app.datePickers["DatePicker"]
-        XCTAssertTrue(datePicker.waitForExistence(timeout: 1))
-        datePicker.tap()
+        /// Show date picker
+        app.datePickers["DatePicker"].tap()
         /// Select first day of previous month
-        let previousMonthButton = app.buttons["Previous Month"]
-        XCTAssertTrue(previousMonthButton.waitForExistence(timeout: 1))
-        previousMonthButton.tap()
-        let firstDayOfMonthButton = app.staticTexts["1"]
-        XCTAssertTrue(previousMonthButton.waitForExistence(timeout: 1))
-        firstDayOfMonthButton.tap()
-        /// Open settings view
-        app.openSettingsView(with: app)
+        app.buttons["Previous Month"].tap()
+        app.staticTexts["1"].tap()
+        /// Show settings view
+        app.showSettingsView(with: app)
         /// Change selected date to `Today`
-        let todayButton = app.buttons["TodayButton"]
-        XCTAssertTrue(todayButton.waitForExistence(timeout: 1))
-        todayButton.tap()
+        app.buttons["TodayButton"].tap()
         /// Check if `DateText` is `Today`
         app.checkDateText(with: app)
     }
@@ -51,16 +43,12 @@ final class SettingsViewTests: XCTestCase {
     @MainActor
     private func closeSettingsView(with app: XCUIApplication) {
         /// Close settings view
-        let closeSettingsButton = app.buttons["CloseSettingsButton"]
-        XCTAssertTrue(closeSettingsButton.waitForExistence(timeout: 1))
-        closeSettingsButton.tap()
+        app.buttons["CloseSettingsButton"].tap()
     }
 
     @MainActor
     private func pressChartPointMark(with app: XCUIApplication) {
         /// Press chart point mark
-        let pointMark = app.scrollViews["Chart"].children(matching: .other).element.children(matching: .other).element(boundBy: .zero)
-        XCTAssertTrue(pointMark.waitForExistence(timeout: 1))
-        pointMark.press(forDuration: 2)
+        app.scrollViews["Chart"].children(matching: .other).element.children(matching: .other).element(boundBy: .zero).press(forDuration: 1)
     }
 }

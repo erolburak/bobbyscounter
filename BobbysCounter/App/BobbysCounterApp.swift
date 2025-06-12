@@ -39,9 +39,9 @@ struct BobbysCounterApp: App {
                         return
                     }
                     #if DEBUG
-                        CommandLine.arguments.contains("-testing") ? Tips.hideAllTipsForTesting() : try? Tips.configure(tipsConfigurationOptions)
+                        CommandLine.arguments.contains("-Testing") ? Tips.hideAllTipsForTesting() : try? Tips.configure(tipsConfigurationOptions)
                     #else
-                        try? Tips.configure(tipsConfiguration)
+                        try? Tips.configure(tipsConfigurationOptions)
                     #endif
                 }
                 .modelContainer(CounterActor.shared.modelContainer)

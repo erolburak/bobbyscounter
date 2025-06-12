@@ -28,109 +28,128 @@ struct ContentView: View {
     // MARK: - Layouts
 
     var body: some View {
-        ZStack {
-            switch state {
-            case .empty:
-                ContentUnavailableView {
-                    Label("EmptyCounter",
-                          systemImage: "plus")
-                } description: {
-                    Text("EmptyCounterMessage")
-                } actions: {
-                    Button("Insert") {
-                        Task {
-                            do {
-                                selected.counter = try await Counter.insert(date: selected.date)
-                                sensory.feedback(feedback: .success)
-                            } catch {
-                                alert.error = .insert
-                                alert.show = true
-                                sensory.feedback(feedback: .error)
+        NavigationStack {
+            Group {
+                switch state {
+                case .empty:
+                    ContentUnavailableView {
+                        Label("EmptyCounter",
+                              systemImage: "plus")
+                    } description: {
+                        Text("EmptyCounterMessage")
+                    } actions: {
+                        Button("Insert") {
+                            Task {
+                                do {
+                                    selected.counter = try await Counter.insert(date: selected.date)
+                                    sensory.feedback(feedback: .success)
+                                } catch {
+                                    alert.error = .insert
+                                    alert.show = true
+                                    sensory.feedback(feedback: .error)
+                                }
                             }
                         }
+                        .buttonStyle(.glass)
+                        .font(.subheadline)
+                        .fontWeight(.bold)
+                        .textCase(.uppercase)
+                        .accessibilityIdentifier("InsertButton")
                     }
-                    .textCase(.uppercase)
-                    .font(.system(.subheadline,
-                                  weight: .black))
-                    .accessibilityIdentifier("InsertButton")
+                    .symbolEffect(.bounce,
+                                  options: .nonRepeating)
+                    .symbolVariant(.fill)
+                default:
+                    let count = selected.counter?.count ?? .zero
+
+                    Text(count.description)
+                        .frame(maxWidth: .infinity,
+                               maxHeight: .infinity)
+                        .monospaced()
+                        .font(.system(size: 1000))
+                        .fontWeight(.black)
+                        .minimumScaleFactor(0.001)
+                        .lineLimit(1)
+                        .opacity(0.25)
+                        .contentTransition(.numericText())
+                        .overlay {
+                            HStack {
+                                Button {
+                                    withAnimation {
+                                        do {
+                                            try selected.counter?.decrease()
+                                            sensory.feedback(feedback: .decrease)
+                                        } catch {
+                                            alert.error = .decrease
+                                            alert.show = true
+                                            sensory.feedback(feedback: .error)
+                                        }
+                                    }
+                                } label: {
+                                    Label("Minus",
+                                          systemImage: "minus")
+                                        .frame(minHeight: 80)
+                                }
+                                .disabled(count <= .zero)
+                                .accessibilityIdentifier("MinusButton")
+
+                                Spacer()
+
+                                Button {
+                                    withAnimation {
+                                        do {
+                                            try selected.counter?.increase()
+                                            sensory.feedback(feedback: .increase)
+                                        } catch {
+                                            alert.error = .increase
+                                            alert.show = true
+                                            sensory.feedback(feedback: .error)
+                                        }
+                                    }
+                                } label: {
+                                    Label("Plus",
+                                          systemImage: "plus")
+                                        .frame(minHeight: 80)
+                                }
+                                .accessibilityIdentifier("PlusButton")
+                            }
+                            .buttonStyle(.glass)
+                            .buttonRepeatBehavior(.enabled)
+                            .font(.system(size: 80))
+                            .fontWeight(.bold)
+                            .labelStyle(.iconOnly)
+                            .padding()
+                        }
+                        .accessibilityIdentifier("CountText")
                 }
-                .symbolEffect(.bounce,
-                              options: .nonRepeating)
-                .symbolVariant(.fill)
-            default:
-                let count = selected.counter?.count ?? .zero
-
-                Text(count.description)
-                    .font(.system(size: 1000))
-                    .minimumScaleFactor(0.001)
-                    .lineLimit(1)
-                    .opacity(0.25)
-                    .padding()
-                    .contentTransition(.numericText())
-                    .accessibilityIdentifier("CountText")
-
-                HStack {
-                    Button("Minus") {
-                        withAnimation {
-                            do {
-                                try selected.counter?.decrease()
-                                sensory.feedback(feedback: .decrease)
-                            } catch {
-                                alert.error = .decrease
-                                alert.show = true
-                                sensory.feedback(feedback: .error)
-                            }
-                        }
-                    }
-                    .frame(maxWidth: .infinity)
-                    .disabled(count <= .zero)
-                    .accessibilityIdentifier("MinusButton")
-
-                    Button("Plus") {
-                        withAnimation {
-                            do {
-                                try selected.counter?.increase()
-                                sensory.feedback(feedback: .increase)
-                            } catch {
-                                alert.error = .increase
-                                alert.show = true
-                                sensory.feedback(feedback: .error)
-                            }
-                        }
-                    }
-                    .frame(maxWidth: .infinity)
-                    .accessibilityIdentifier("PlusButton")
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .title) {
+                    Text(selected.date.toRelative)
+                        .font(.caption)
+                        .fontWeight(.semibold)
+                        .accessibilityIdentifier("DateText")
                 }
-                .frame(maxHeight: .infinity)
-                .buttonRepeatBehavior(.enabled)
-                .font(.system(size: 140.0))
+
+                ToolbarItem(placement: .bottomBar) {
+                    Button("Settings") {
+                        showSettingsSheet = true
+                        settingsTip.invalidate(reason: .actionPerformed)
+                        sensory.feedback(feedback: .press(.button))
+                    }
+                    .popoverTip(settingsTip)
+                    .onAppear {
+                        SettingsTip.show = true
+                    }
+                    .accessibilityIdentifier("SettingsButton")
+                }
             }
-        }
-        .ignoresSafeArea(.all)
-        .overlay(alignment: .topTrailing) {
-            Text(selected.date.toRelative)
-                .font(.system(size: 8))
-                .padding(.trailing)
-                .accessibilityIdentifier("DateText")
-        }
-        .overlay(alignment: .bottom) {
-            Button("Settings") {
-                showSettingsSheet = true
-                settingsTip.invalidate(reason: .actionPerformed)
-            }
-            .padding(.bottom)
-            .popoverTip(settingsTip)
-            .onAppear {
-                SettingsTip.show = true
-            }
-            .accessibilityIdentifier("SettingsButton")
         }
         .sheet(isPresented: $showSettingsSheet) {
             SettingsView(selected: selected)
         }
         .disabled(redactedReason == .placeholder)
-        .fontWeight(.bold)
-        .monospaced()
         .redacted(reason: redactedReason)
         .onChange(of: selected.counter) { _, newValue in
             withAnimation {
