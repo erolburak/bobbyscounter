@@ -328,6 +328,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		BF5C95EB2E04761600026D92 /* Run Pre-Commit */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
