@@ -16,12 +16,15 @@ struct BobbysCounterWidget: Widget {
     // MARK: - Layouts
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind,
-                            provider: BobbysCounterWidgetProvider())
-        {
+        StaticConfiguration(
+            kind: kind,
+            provider: BobbysCounterWidgetProvider()
+        ) {
             BobbysCounterWidgetEntryView(entry: $0)
-                .containerBackground(.widgetBackground,
-                                     for: .widget)
+                .containerBackground(
+                    .widgetBackground,
+                    for: .widget
+                )
                 .modelContainer(CounterActor.shared.modelContainer)
         }
         .configurationDisplayName("WidgetConfigurationDisplayName")
@@ -29,33 +32,37 @@ struct BobbysCounterWidget: Widget {
     }
 }
 
-#Preview("System Small",
-         as: .systemSmall)
-{
+#Preview(
+    "System Small",
+    as: .systemSmall
+) {
     BobbysCounterWidget()
 } timeline: {
     BobbysCounterWidgetEntry()
 }
 
-#Preview("System Medium",
-         as: .systemMedium)
-{
+#Preview(
+    "System Medium",
+    as: .systemMedium
+) {
     BobbysCounterWidget()
 } timeline: {
     BobbysCounterWidgetEntry()
 }
 
-#Preview("System Large",
-         as: .systemLarge)
-{
+#Preview(
+    "System Large",
+    as: .systemLarge
+) {
     BobbysCounterWidget()
 } timeline: {
     BobbysCounterWidgetEntry()
 }
 
-#Preview("System Extra Large",
-         as: .systemExtraLarge)
-{
+#Preview(
+    "System Extra Large",
+    as: .systemExtraLarge
+) {
     BobbysCounterWidget()
 } timeline: {
     BobbysCounterWidgetEntry()

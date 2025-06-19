@@ -18,8 +18,10 @@ struct SensoryTests {
         // When
         sensory = Sensory()
         // Then
-        #expect(sensory != nil,
-                "Sensory initializing failed!")
+        #expect(
+            sensory != nil,
+            "Sensory initializing failed!"
+        )
     }
 
     @Test("Check Sensory feedback with error!")
@@ -29,9 +31,10 @@ struct SensoryTests {
         // When
         sensory.feedback(feedback: .error)
         // Then
-        #expect(sensory.feedback == .error &&
-            sensory.feedbackBool,
-            "Sensory feedback with error failed!")
+        #expect(
+            sensory.feedback == .error && sensory.feedbackBool,
+            "Sensory feedback with error failed!"
+        )
     }
 
     @Test("Check Sensory feedback with success!")
@@ -41,8 +44,9 @@ struct SensoryTests {
         // When
         sensory.feedback(feedback: .success)
         // Then
-        #expect(sensory.feedback == .success &&
-            sensory.feedbackBool,
-            "Sensory feedback with success failed!")
+        #expect(
+            sensory.feedback == .success && sensory.feedbackBool,
+            "Sensory feedback with success failed!"
+        )
     }
 }

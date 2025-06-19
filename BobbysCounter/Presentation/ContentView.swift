@@ -15,8 +15,10 @@ struct ContentView: View {
     @Environment(\.scenePhase) private var scenePhase
     @Environment(Alert.self) private var alert
     @Environment(Sensory.self) private var sensory
-    @Query(sort: \Counter.date,
-           order: .reverse) private var counters: [Counter]
+    @Query(
+        sort: \Counter.date,
+        order: .reverse
+    ) private var counters: [Counter]
     @State private var selected = Selected()
     @State private var showSettingsSheet = false
     @State private var state: States = .isLoading
@@ -33,8 +35,10 @@ struct ContentView: View {
                 switch state {
                 case .empty:
                     ContentUnavailableView {
-                        Label("EmptyCounter",
-                              systemImage: "plus")
+                        Label(
+                            "EmptyCounter",
+                            systemImage: "plus"
+                        )
                     } description: {
                         Text("EmptyCounterMessage")
                     } actions: {
@@ -56,15 +60,19 @@ struct ContentView: View {
                         .textCase(.uppercase)
                         .accessibilityIdentifier("InsertButton")
                     }
-                    .symbolEffect(.bounce,
-                                  options: .nonRepeating)
+                    .symbolEffect(
+                        .bounce,
+                        options: .nonRepeating
+                    )
                     .symbolVariant(.fill)
                 default:
                     let count = selected.counter?.count ?? .zero
 
                     Text(count.description)
-                        .frame(maxWidth: .infinity,
-                               maxHeight: .infinity)
+                        .frame(
+                            maxWidth: .infinity,
+                            maxHeight: .infinity
+                        )
                         .monospaced()
                         .font(.system(size: 1000))
                         .fontWeight(.black)
@@ -86,9 +94,11 @@ struct ContentView: View {
                                         }
                                     }
                                 } label: {
-                                    Label("Minus",
-                                          systemImage: "minus")
-                                        .frame(minHeight: 80)
+                                    Label(
+                                        "Minus",
+                                        systemImage: "minus"
+                                    )
+                                    .frame(minHeight: 80)
                                 }
                                 .disabled(count <= .zero)
                                 .accessibilityIdentifier("MinusButton")
@@ -107,9 +117,11 @@ struct ContentView: View {
                                         }
                                     }
                                 } label: {
-                                    Label("Plus",
-                                          systemImage: "plus")
-                                        .frame(minHeight: 80)
+                                    Label(
+                                        "Plus",
+                                        systemImage: "plus"
+                                    )
+                                    .frame(minHeight: 80)
                                 }
                                 .accessibilityIdentifier("PlusButton")
                             }
@@ -162,7 +174,8 @@ struct ContentView: View {
                 Task {
                     do {
                         guard let counter = try await Counter.fetch(date: selected.date) else {
-                            return state = .empty
+                            state = .empty
+                            return
                         }
                         selected.counter = counter
                     } catch {
@@ -184,6 +197,8 @@ struct ContentView: View {
     ContentView()
         .environment(Alert())
         .environment(Sensory())
-        .modelContainer(for: [Counter.self],
-                        inMemory: true)
+        .modelContainer(
+            for: [Counter.self],
+            inMemory: true
+        )
 }

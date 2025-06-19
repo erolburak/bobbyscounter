@@ -14,8 +14,10 @@ struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(Alert.self) private var alert
     @Environment(Sensory.self) private var sensory
-    @Query(sort: \Counter.date,
-           order: .reverse) private var counters: [Counter]
+    @Query(
+        sort: \Counter.date,
+        order: .reverse
+    ) private var counters: [Counter]
     @State private var showAverageSheet = false
     @State private var showCountersSheet = false
 
@@ -28,25 +30,31 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                DatePicker("SelectedDate",
-                           selection: $selected.date,
-                           in: ...Date.now,
-                           displayedComponents: [.date])
-                    .datePickerStyle(.compact)
-                    .padding()
-                    .accessibilityIdentifier("DatePicker")
+                DatePicker(
+                    "SelectedDate",
+                    selection: $selected.date,
+                    in: ...Date.now,
+                    displayedComponents: [.date]
+                )
+                .datePickerStyle(.compact)
+                .padding()
+                .accessibilityIdentifier("DatePicker")
 
                 if !counters.isEmpty {
                     ChartView(selected: selected)
                 } else {
                     ContentUnavailableView {
-                        Label("EmptyCharts",
-                              systemImage: "chart.xyaxis.line")
+                        Label(
+                            "EmptyCharts",
+                            systemImage: "chart.xyaxis.line"
+                        )
                     } description: {
                         Text("EmptyCountersMessage")
                     }
-                    .symbolEffect(.bounce,
-                                  options: .nonRepeating)
+                    .symbolEffect(
+                        .bounce,
+                        options: .nonRepeating
+                    )
                     .symbolVariant(.fill)
                 }
 
@@ -56,9 +64,10 @@ struct SettingsView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Average",
-                           systemImage: "divide")
-                    {
+                    Button(
+                        "Average",
+                        systemImage: "divide"
+                    ) {
                         showAverageSheet = true
                         sensory.feedback(feedback: .press(.button))
                     }
@@ -66,9 +75,10 @@ struct SettingsView: View {
                 }
 
                 ToolbarItem(placement: .primaryAction) {
-                    Button("Counters",
-                           systemImage: "list.bullet")
-                    {
+                    Button(
+                        "Counters",
+                        systemImage: "list.bullet"
+                    ) {
                         showCountersSheet = true
                         sensory.feedback(feedback: .press(.button))
                     }
@@ -95,13 +105,16 @@ struct SettingsView: View {
                 }
             }
             .sheet(isPresented: $showAverageSheet) {
-                AverageView(selected: selected,
-                            showAverageSheet: $showAverageSheet)
+                AverageView(
+                    selected: selected,
+                    showAverageSheet: $showAverageSheet
+                )
             }
             .sheet(isPresented: $showCountersSheet) {
-                CountersView(selected: selected,
-                             showCountersSheet: $showCountersSheet)
-                {
+                CountersView(
+                    selected: selected,
+                    showCountersSheet: $showCountersSheet
+                ) {
                     dismiss()
                 }
             }
@@ -130,7 +143,9 @@ struct SettingsView: View {
             SettingsView(selected: Selected())
                 .environment(Alert())
                 .environment(Sensory())
-                .modelContainer(for: [Counter.self],
-                                inMemory: true)
+                .modelContainer(
+                    for: [Counter.self],
+                    inMemory: true
+                )
         }
 }

@@ -18,7 +18,9 @@ struct SelectedTests {
         // When
         selected = Selected()
         // Then
-        #expect(selected != nil,
-                "Selected initializing failed!")
+        #expect(
+            selected != nil,
+            "Selected initializing failed!"
+        )
     }
 }

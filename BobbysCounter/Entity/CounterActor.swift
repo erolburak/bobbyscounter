@@ -22,10 +22,14 @@ actor CounterActor {
                     cloudKitDatabase = .none
                 }
             #endif
-            let modelConfiguration = ModelConfiguration(isStoredInMemoryOnly: isStoredInMemoryOnly,
-                                                        cloudKitDatabase: cloudKitDatabase)
-            let modelContainer = try ModelContainer(for: Schema([Counter.self]),
-                                                    configurations: modelConfiguration)
+            let modelConfiguration = ModelConfiguration(
+                isStoredInMemoryOnly: isStoredInMemoryOnly,
+                cloudKitDatabase: cloudKitDatabase
+            )
+            let modelContainer = try ModelContainer(
+                for: Schema([Counter.self]),
+                configurations: modelConfiguration
+            )
             return CounterActor(modelContainer: modelContainer)
         } catch {
             fatalError("Could not create model container: \(error)")
@@ -45,15 +49,20 @@ actor CounterActor {
     }
 
     func fetchID(date: Date) throws -> Counter.ID? {
-        try modelContext.fetch(FetchDescriptor<Counter>(predicate: #Predicate { $0.date == date.toDateWithoutTime })).lazy.first?.persistentModelID
+        try modelContext.fetch(
+            FetchDescriptor<Counter>(predicate: #Predicate { $0.date == date.toDateWithoutTime })
+        ).lazy.first?.persistentModelID
     }
 
     func insert(date: Date) throws -> Counter.ID {
-        let counters = try modelContext.fetch(FetchDescriptor<Counter>(predicate: #Predicate { $0.date == date.toDateWithoutTime }))
+        let counters = try modelContext.fetch(
+            FetchDescriptor<Counter>(predicate: #Predicate { $0.date == date.toDateWithoutTime }))
         /// Insert new counter if no counter with given date exists
         guard let counter = counters.lazy.first else {
-            let newCounter = Counter(count: .zero,
-                                     date: date)
+            let newCounter = Counter(
+                count: .zero,
+                date: date
+            )
             modelContext.insert(newCounter)
             try modelContext.save()
             return newCounter.persistentModelID

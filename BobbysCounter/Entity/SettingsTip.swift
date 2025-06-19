@@ -15,9 +15,11 @@ struct SettingsTip: Tip {
     var image: Image? = Image(systemName: "gearshape")
     var message: Text? = Text("SettingsTipMessage")
     var rules: [Rule] {
-        [#Rule(Self.$show) {
-            $0
-        }]
+        [
+            #Rule(Self.$show) {
+                $0
+            }
+        ]
     }
 
     var title = Text("Settings")

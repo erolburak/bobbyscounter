@@ -13,8 +13,10 @@ struct ChartView: View {
     // MARK: - Private Properties
 
     @Environment(Sensory.self) private var sensory
-    @Query(sort: \Counter.date,
-           order: .reverse) private var counters: [Counter]
+    @Query(
+        sort: \Counter.date,
+        order: .reverse
+    ) private var counters: [Counter]
     @State private var chartScrollPosition = Date.now
     @State private var selectedPointMarkDate: Date?
 
@@ -28,37 +30,54 @@ struct ChartView: View {
         Chart(counters) {
             let date = $0.date ?? .now
 
-            LineMark(x: .value("Date",
-                               date,
-                               unit: .day),
-                     y: .value("Count",
-                               $0.count))
-                .interpolationMethod(.monotone)
-                .lineStyle(StrokeStyle(lineWidth: 1,
-                                       dash: [2]))
+            LineMark(
+                x: .value(
+                    "Date",
+                    date,
+                    unit: .day
+                ),
+                y: .value(
+                    "Count",
+                    $0.count
+                )
+            )
+            .interpolationMethod(.monotone)
+            .lineStyle(
+                StrokeStyle(
+                    lineWidth: 1,
+                    dash: [2]))
 
-            PointMark(x: .value("Date",
-                                date,
-                                unit: .day),
-                      y: .value("Count",
-                                $0.count))
-                .annotation(position: .topLeading,
-                            spacing: 24,
-                            overflowResolution: AnnotationOverflowResolution(x: .fit(to: .chart),
-                                                                             y: .fit(to: .chart)))
+            PointMark(
+                x: .value(
+                    "Date",
+                    date,
+                    unit: .day
+                ),
+                y: .value(
+                    "Count",
+                    $0.count
+                )
+            )
+            .annotation(
+                position: .topLeading,
+                spacing: 24,
+                overflowResolution: AnnotationOverflowResolution(
+                    x: .fit(to: .chart),
+                    y: .fit(to: .chart)
+                )
+            ) {
+                if showAnnotation(date: date),
+                    let selectedPointMarkCounter = selectedPointMarkCounter(counters: counters)
                 {
-                    if showAnnotation(date: date),
-                       let selectedPointMarkCounter = selectedPointMarkCounter(counters: counters)
-                    {
-                        Text(selectedPointMarkCounter.count.description)
-                            .monospaced()
-                            .font(.title)
-                            .fontWeight(.black)
-                            .onAppear {
-                                sensory.feedback(feedback: .press(.button))
-                            }
-                    }
+                    Text(selectedPointMarkCounter.count.description)
+                        .monospaced()
+                        .font(.title)
+                        .fontWeight(.black)
+                        .onAppear {
+                            sensory.feedback(feedback: .press(.button))
+                        }
                 }
+            }
         }
         .chartScrollableAxes(.horizontal)
         .chartScrollPosition(x: $chartScrollPosition)
@@ -67,13 +86,17 @@ struct ChartView: View {
         .chartXScale(range: .plotDimension(padding: 12))
         .chartYScale(range: .plotDimension(padding: 12))
         .frame(height: 120)
-        .fixedSize(horizontal: false,
-                   vertical: true)
+        .fixedSize(
+            horizontal: false,
+            vertical: true
+        )
         .padding(.horizontal)
         .font(.system(size: 10))
         .task {
-            guard let dateMinusOne = Calendar.current.date(byAdding: DateComponents(day: -1),
-                                                           to: selected.date)
+            guard
+                let dateMinusOne = Calendar.current.date(
+                    byAdding: DateComponents(day: -1),
+                    to: selected.date)
             else {
                 return
             }
@@ -85,16 +108,19 @@ struct ChartView: View {
     // MARK: - Methods
 
     private func showAnnotation(date: Date) -> Bool {
-        date.formatted(date: .complete,
-                       time: .omitted) == selectedPointMarkDate?.formatted(date: .complete,
-                                                                           time: .omitted)
+        date.formatted(
+            date: .complete,
+            time: .omitted)
+            == selectedPointMarkDate?.formatted(
+                date: .complete,
+                time: .omitted)
     }
 
     private func chartXVisibleDomainLength(counters: [Counter]) -> Int {
         /// Calculate factor by multiplying seconds, minutes and hours together
         let factor = 60 * 60 * 24
         let count = counters.count
-        let range = 3 ... 4
+        let range = 3...4
         return range.contains(count) ? count * factor : range.upperBound * factor
     }
 
@@ -106,6 +132,8 @@ struct ChartView: View {
 #Preview {
     ChartView(selected: Selected())
         .environment(Sensory())
-        .modelContainer(for: [Counter.self],
-                        inMemory: true)
+        .modelContainer(
+            for: [Counter.self],
+            inMemory: true
+        )
 }

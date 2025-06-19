@@ -12,8 +12,10 @@ struct AverageView: View {
     // MARK: - Private Properties
 
     @Environment(Sensory.self) private var sensory
-    @Query(sort: \Counter.date,
-           order: .reverse) private var counters: [Counter]
+    @Query(
+        sort: \Counter.date,
+        order: .reverse
+    ) private var counters: [Counter]
     @State private var averageMessage: String?
     private let averages = [7, 30, 90]
     private var average: String {
@@ -36,7 +38,7 @@ struct AverageView: View {
         NavigationStack {
             VStack(alignment: .leading) {
                 if !counters.isEmpty,
-                   let averageMessage
+                    let averageMessage
                 {
                     Picker(selection: $selected.average) {
                         ForEach(averages, id: \.self) {
@@ -56,13 +58,17 @@ struct AverageView: View {
                         .accessibilityIdentifier("AverageMessage")
                 } else {
                     ContentUnavailableView {
-                        Label("EmptyAverage",
-                              systemImage: "divide")
+                        Label(
+                            "EmptyAverage",
+                            systemImage: "divide"
+                        )
                     } description: {
                         Text("EmptyCountersMessage")
                     }
-                    .symbolEffect(.bounce,
-                                  options: .nonRepeating)
+                    .symbolEffect(
+                        .bounce,
+                        options: .nonRepeating
+                    )
                     .symbolVariant(.fill)
                 }
 
@@ -80,11 +86,14 @@ struct AverageView: View {
                     .accessibilityIdentifier("CloseAverageButton")
                 }
             }
-            .onChange(of: selected.average,
-                      initial: true)
-            {
+            .onChange(
+                of: selected.average,
+                initial: true
+            ) {
                 withAnimation {
-                    averageMessage = String(localized: "AverageMessage\(selected.average)\(average)")
+                    averageMessage = String(
+                        localized: "AverageMessage\(selected.average)\(average)"
+                    )
                 }
                 sensory.feedback(feedback: .selection)
             }
@@ -94,9 +103,12 @@ struct AverageView: View {
 }
 
 #Preview {
-    AverageView(selected: Selected(),
-                showAverageSheet: .constant(true))
-        .environment(Sensory())
-        .modelContainer(for: [Counter.self],
-                        inMemory: true)
+    AverageView(
+        selected: Selected(),
+        showAverageSheet: .constant(true)
+    )
+    .environment(Sensory())
+    .modelContainer(
+        for: [Counter.self],
+        inMemory: true)
 }
