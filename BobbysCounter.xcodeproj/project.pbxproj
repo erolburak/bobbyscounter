@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 90;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -37,14 +37,12 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		BFF55E972A572B8D00EE0B3A /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 13;
+			dstSubfolder = PlugIns;
 			files = (
 				BFF55EC22A57315100EE0B3A /* BobbysCounterWidget.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -56,7 +54,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		BFA3D1092D2EBD5900077763 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		BFA3D1092D2EBD5900077763 /* Exceptions for "BobbysCounter" folder in "BobbysCounter" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Resource/BobbysCounter.xctestplan,
@@ -65,7 +63,7 @@
 			);
 			target = BF2C45332A4B3EB900D48C36 /* BobbysCounter */;
 		};
-		BFA3D10A2D2EBD5900077763 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		BFA3D10A2D2EBD5900077763 /* Exceptions for "BobbysCounter" folder in "BobbysCounterTests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Entity/Alert.swift,
@@ -81,7 +79,7 @@
 			);
 			target = BF2C45472A4B3EBA00D48C36 /* BobbysCounterTests */;
 		};
-		BFA3D10B2D2EBD5900077763 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		BFA3D10B2D2EBD5900077763 /* Exceptions for "BobbysCounter" folder in "BobbysCounterWidget" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Entity/Counter.swift,
@@ -93,7 +91,7 @@
 			);
 			target = BFF55EB32A57314E00EE0B3A /* BobbysCounterWidget */;
 		};
-		BFED56E72E04BB92009DFB2F /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		BFED56E72E04BB92009DFB2F /* Exceptions for "BobbysCounterWidget" folder in "BobbysCounterWidget" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Resource/Info.plist,
@@ -103,40 +101,56 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		BFA3D0E32D2EBD5900077763 /* BobbysCounter */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (BFA3D1092D2EBD5900077763 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, BFA3D10A2D2EBD5900077763 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, BFA3D10B2D2EBD5900077763 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = BobbysCounter; sourceTree = "<group>"; };
-		BFA3D1192D2EBD5D00077763 /* BobbysCounterTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = BobbysCounterTests; sourceTree = "<group>"; };
-		BFA3D12E2D2EBD6200077763 /* BobbysCounterUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = BobbysCounterUITests; sourceTree = "<group>"; };
-		BFA3D1412D2EBD6600077763 /* BobbysCounterWidget */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (BFED56E72E04BB92009DFB2F /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = BobbysCounterWidget; sourceTree = "<group>"; };
+		BFA3D0E32D2EBD5900077763 /* BobbysCounter */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				BFA3D1092D2EBD5900077763 /* Exceptions for "BobbysCounter" folder in "BobbysCounter" target */,
+				BFA3D10A2D2EBD5900077763 /* Exceptions for "BobbysCounter" folder in "BobbysCounterTests" target */,
+				BFA3D10B2D2EBD5900077763 /* Exceptions for "BobbysCounter" folder in "BobbysCounterWidget" target */,
+			);
+			path = BobbysCounter;
+			sourceTree = "<group>";
+		};
+		BFA3D1192D2EBD5D00077763 /* BobbysCounterTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = BobbysCounterTests;
+			sourceTree = "<group>";
+		};
+		BFA3D12E2D2EBD6200077763 /* BobbysCounterUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = BobbysCounterUITests;
+			sourceTree = "<group>";
+		};
+		BFA3D1412D2EBD6600077763 /* BobbysCounterWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				BFED56E72E04BB92009DFB2F /* Exceptions for "BobbysCounterWidget" folder in "BobbysCounterWidget" target */,
+			);
+			path = BobbysCounterWidget;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		BF2C45312A4B3EB900D48C36 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		BF2C45452A4B3EBA00D48C36 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		BF2C454F2A4B3EBA00D48C36 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		BFF55EB12A57314E00EE0B3A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
@@ -241,8 +255,6 @@
 			);
 			buildRules = (
 			);
-			dependencies = (
-			);
 			fileSystemSynchronizedGroups = (
 				BFA3D1412D2EBD6600077763 /* BobbysCounterWidget */,
 			);
@@ -278,7 +290,6 @@
 				};
 			};
 			buildConfigurationList = BF2C452F2A4B3EB900D48C36 /* Build configuration list for PBXProject "BobbysCounter" */;
-			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -289,6 +300,7 @@
 			mainGroup = BF2C452B2A4B3EB900D48C36;
 			packageReferences = (
 			);
+			preferredProjectObjectVersion = 90;
 			productRefGroup = BF2C45352A4B3EB900D48C36 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -304,31 +316,23 @@
 /* Begin PBXResourcesBuildPhase section */
 		BF2C45322A4B3EB900D48C36 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		BF2C45462A4B3EBA00D48C36 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		BF2C45502A4B3EBA00D48C36 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		BFF55EB22A57314E00EE0B3A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
@@ -336,52 +340,35 @@
 		BF5C95EB2E04761600026D92 /* Run Pre-Commit */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
 			name = "Run Pre-Commit";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "xcrun ./Scripts/pre-commit\n";
+			shellScript = (
+				"xcrun ./Scripts/pre-commit",
+				"",
+			);
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BF2C45302A4B3EB900D48C36 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		BF2C45442A4B3EBA00D48C36 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		BF2C454E2A4B3EBA00D48C36 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		BFF55EB02A57314E00EE0B3A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
@@ -404,7 +391,7 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		BF2C455A2A4B3EBA00D48C36 /* Debug */ = {
+		BF2C455A2A4B3EBA00D48C36 /* Debug configuration for PBXProject "BobbysCounter" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -480,7 +467,7 @@
 			};
 			name = Debug;
 		};
-		BF2C455B2A4B3EBA00D48C36 /* Release */ = {
+		BF2C455B2A4B3EBA00D48C36 /* Release configuration for PBXProject "BobbysCounter" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -548,10 +535,10 @@
 			};
 			name = Release;
 		};
-		BF2C455D2A4B3EBA00D48C36 /* Debug */ = {
+		BF2C455D2A4B3EBA00D48C36 /* Debug configuration for PBXNativeTarget "BobbysCounter" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BobbysCounter/Resource/BobbysCounter.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -599,10 +586,10 @@
 			};
 			name = Debug;
 		};
-		BF2C455E2A4B3EBA00D48C36 /* Release */ = {
+		BF2C455E2A4B3EBA00D48C36 /* Release configuration for PBXNativeTarget "BobbysCounter" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BobbysCounter/Resource/BobbysCounter.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -649,7 +636,7 @@
 			};
 			name = Release;
 		};
-		BF2C45602A4B3EBA00D48C36 /* Debug */ = {
+		BF2C45602A4B3EBA00D48C36 /* Debug configuration for PBXNativeTarget "BobbysCounterTests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -681,7 +668,7 @@
 			};
 			name = Debug;
 		};
-		BF2C45612A4B3EBA00D48C36 /* Release */ = {
+		BF2C45612A4B3EBA00D48C36 /* Release configuration for PBXNativeTarget "BobbysCounterTests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -713,7 +700,7 @@
 			};
 			name = Release;
 		};
-		BF2C45632A4B3EBA00D48C36 /* Debug */ = {
+		BF2C45632A4B3EBA00D48C36 /* Debug configuration for PBXNativeTarget "BobbysCounterUITests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -747,7 +734,7 @@
 			};
 			name = Debug;
 		};
-		BF2C45642A4B3EBA00D48C36 /* Release */ = {
+		BF2C45642A4B3EBA00D48C36 /* Release configuration for PBXNativeTarget "BobbysCounterUITests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -781,7 +768,7 @@
 			};
 			name = Release;
 		};
-		BFF55EC42A57315100EE0B3A /* Debug */ = {
+		BFF55EC42A57315100EE0B3A /* Debug configuration for PBXNativeTarget "BobbysCounterWidget" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -826,7 +813,7 @@
 			};
 			name = Debug;
 		};
-		BFF55EC52A57315100EE0B3A /* Release */ = {
+		BFF55EC52A57315100EE0B3A /* Release configuration for PBXNativeTarget "BobbysCounterWidget" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -878,46 +865,41 @@
 		BF2C452F2A4B3EB900D48C36 /* Build configuration list for PBXProject "BobbysCounter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BF2C455A2A4B3EBA00D48C36 /* Debug */,
-				BF2C455B2A4B3EBA00D48C36 /* Release */,
+				BF2C455A2A4B3EBA00D48C36 /* Debug configuration for PBXProject "BobbysCounter" */,
+				BF2C455B2A4B3EBA00D48C36 /* Release configuration for PBXProject "BobbysCounter" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		BF2C455C2A4B3EBA00D48C36 /* Build configuration list for PBXNativeTarget "BobbysCounter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BF2C455D2A4B3EBA00D48C36 /* Debug */,
-				BF2C455E2A4B3EBA00D48C36 /* Release */,
+				BF2C455D2A4B3EBA00D48C36 /* Debug configuration for PBXNativeTarget "BobbysCounter" */,
+				BF2C455E2A4B3EBA00D48C36 /* Release configuration for PBXNativeTarget "BobbysCounter" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		BF2C455F2A4B3EBA00D48C36 /* Build configuration list for PBXNativeTarget "BobbysCounterTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BF2C45602A4B3EBA00D48C36 /* Debug */,
-				BF2C45612A4B3EBA00D48C36 /* Release */,
+				BF2C45602A4B3EBA00D48C36 /* Debug configuration for PBXNativeTarget "BobbysCounterTests" */,
+				BF2C45612A4B3EBA00D48C36 /* Release configuration for PBXNativeTarget "BobbysCounterTests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		BF2C45622A4B3EBA00D48C36 /* Build configuration list for PBXNativeTarget "BobbysCounterUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BF2C45632A4B3EBA00D48C36 /* Debug */,
-				BF2C45642A4B3EBA00D48C36 /* Release */,
+				BF2C45632A4B3EBA00D48C36 /* Debug configuration for PBXNativeTarget "BobbysCounterUITests" */,
+				BF2C45642A4B3EBA00D48C36 /* Release configuration for PBXNativeTarget "BobbysCounterUITests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		BFF55EC32A57315100EE0B3A /* Build configuration list for PBXNativeTarget "BobbysCounterWidget" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BFF55EC42A57315100EE0B3A /* Debug */,
-				BFF55EC52A57315100EE0B3A /* Release */,
+				BFF55EC42A57315100EE0B3A /* Debug configuration for PBXNativeTarget "BobbysCounterWidget" */,
+				BFF55EC52A57315100EE0B3A /* Release configuration for PBXNativeTarget "BobbysCounterWidget" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
