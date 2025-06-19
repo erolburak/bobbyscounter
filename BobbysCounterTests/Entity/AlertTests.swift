@@ -18,7 +18,9 @@ struct AlertTests {
         // When
         alert = Alert()
         // Then
-        #expect(alert != nil,
-                "Alert initializing  failed!")
+        #expect(
+            alert != nil,
+            "Alert initializing  failed!"
+        )
     }
 }

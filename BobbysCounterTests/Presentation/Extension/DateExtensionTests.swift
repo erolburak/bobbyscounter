@@ -19,20 +19,27 @@ struct DateExtensionTests {
         // When
         let isDateToday = date.isDateToday
         // Then
-        #expect(isDateToday,
-                "DateExtension isDateToday with now failed!")
+        #expect(
+            isDateToday,
+            "DateExtension isDateToday with now failed!"
+        )
     }
 
     @Test("Check DateExtension isDateToday with tomorrow!")
     func isDateTodayWithTomorrow() {
         // Given
-        let date = Calendar.current.date(byAdding: DateComponents(day: +1),
-                                         to: .now) ?? .now
+        let date =
+            Calendar.current.date(
+                byAdding: DateComponents(day: +1),
+                to: .now
+            ) ?? .now
         // When
         let isDateToday = date.isDateToday
         // Then
-        #expect(!isDateToday,
-                "DateExtension isDateToday with tomorrow failed!")
+        #expect(
+            !isDateToday,
+            "DateExtension isDateToday with tomorrow failed!"
+        )
     }
 
     @Test("Check DateExtension toDateWithoutTime!")
@@ -44,15 +51,21 @@ struct DateExtensionTests {
         // When
         let dateWithoutTime = date.toDateWithoutTime
         // Then
-        #expect(calendar.component(.hour,
-                                   from: dateWithoutTime ?? .now) == .zero &&
-                calendar.component(.minute,
-                                   from: dateWithoutTime ?? .now) == .zero &&
-                calendar.component(.second,
-                                   from: dateWithoutTime ?? .now) == .zero &&
-                calendar.component(.nanosecond,
-                                   from: dateWithoutTime ?? .now) == .zero,
-            "DateExtension toDateWithoutTime failed!")
+        #expect(
+            calendar.component(
+                .hour,
+                from: dateWithoutTime ?? .now) == .zero
+                && calendar.component(
+                    .minute,
+                    from: dateWithoutTime ?? .now) == .zero
+                && calendar.component(
+                    .second,
+                    from: dateWithoutTime ?? .now) == .zero
+                && calendar.component(
+                    .nanosecond,
+                    from: dateWithoutTime ?? .now) == .zero,
+            "DateExtension toDateWithoutTime failed!"
+        )
     }
 
     @Test("Check DateExtension toRelative with now!")
@@ -63,20 +76,27 @@ struct DateExtensionTests {
         // When
         let relativeDate = date.toRelative
         // Then
-        #expect(relativeDate == relative,
-                "DateExtension toRelative with now failed!")
+        #expect(
+            relativeDate == relative,
+            "DateExtension toRelative with now failed!"
+        )
     }
 
     @Test("Check DateExtension toRelative with yesterday!")
     func toRelativeWithYesterday() {
         // Given
-        let date = Calendar.current.date(byAdding: DateComponents(day: -1),
-                                         to: .now) ?? .now
+        let date =
+            Calendar.current.date(
+                byAdding: DateComponents(day: -1),
+                to: .now
+            ) ?? .now
         let relative = "Yesterday"
         // When
         let relativeDate = date.toRelative
         // Then
-        #expect(relativeDate == relative,
-                "DateExtension toRelative with yesterday failed!")
+        #expect(
+            relativeDate == relative,
+            "DateExtension toRelative with yesterday failed!"
+        )
     }
 }

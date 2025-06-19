@@ -18,7 +18,9 @@ struct SettingsTipTests {
         // When
         settingsTip = SettingsTip()
         // Then
-        #expect(settingsTip != nil,
-                "SettingsTip initializing failed!")
+        #expect(
+            settingsTip != nil,
+            "SettingsTip initializing failed!"
+        )
     }
 }

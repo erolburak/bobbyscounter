@@ -21,9 +21,10 @@ struct BobbysCounterApp: App {
             ContentView()
                 .environment(alert)
                 .environment(sensory)
-                .alert(isPresented: $alert.show,
-                       error: alert.error)
-                { _ in
+                .alert(
+                    isPresented: $alert.show,
+                    error: alert.error
+                ) { _ in
                 } message: {
                     if let message = $0.recoverySuggestion {
                         Text(message)
@@ -33,13 +34,19 @@ struct BobbysCounterApp: App {
                     sensory.feedback
                 }
                 .task {
-                    guard let tipsConfigurationOptions: [Tips.ConfigurationOption] = try? [.displayFrequency(.immediate),
-                                                                                           .datastoreLocation(.groupContainer(identifier: "com.burakerol.BobbysCounter"))]
+                    guard
+                        let tipsConfigurationOptions: [Tips.ConfigurationOption] = try? [
+                            .displayFrequency(.immediate),
+                            .datastoreLocation(
+                                .groupContainer(identifier: "com.burakerol.BobbysCounter")),
+                        ]
                     else {
                         return
                     }
                     #if DEBUG
-                        CommandLine.arguments.contains("-Testing") ? Tips.hideAllTipsForTesting() : try? Tips.configure(tipsConfigurationOptions)
+                        CommandLine.arguments.contains("-Testing")
+                            ? Tips.hideAllTipsForTesting()
+                            : try? Tips.configure(tipsConfigurationOptions)
                     #else
                         try? Tips.configure(tipsConfigurationOptions)
                     #endif

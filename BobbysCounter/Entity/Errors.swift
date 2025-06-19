@@ -10,12 +10,13 @@ import Foundation
 enum Errors: LocalizedError {
     // MARK: - Properties
 
-    case error(String), fetch, insert
+    case error(String)
+    case fetch, insert
     case decrease, increase
 
     var errorDescription: String? {
         switch self {
-        case let .error(error):
+        case .error(let error):
             error.description
         case .fetch:
             String(localized: "ErrorDescriptionFetch")

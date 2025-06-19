@@ -17,72 +17,98 @@ struct CounterTests {
         // Given
         let counter: Counter?
         // When
-        counter = Counter(count: .zero,
-                          date: .now)
+        counter = Counter(
+            count: .zero,
+            date: .now
+        )
         // Then
-        #expect(counter != nil,
-                "Counter initializing failed!")
+        #expect(
+            counter != nil,
+            "Counter initializing failed!"
+        )
     }
 
     @Test("Check Counter decrease!")
     func decrease() throws {
         // Given
-        let counter = Counter(count: 1,
-                              date: .now)
+        let counter = Counter(
+            count: 1,
+            date: .now
+        )
         // When
         try counter.decrease()
         // Then
-        #expect(counter.count == .zero,
-                "Counter decrease failed!")
+        #expect(
+            counter.count == .zero,
+            "Counter decrease failed!"
+        )
     }
 
     @Test("Check Counter decrease with zero!")
     func decreaseWithZero() throws {
         // Given
-        let counter = Counter(count: .zero,
-                              date: .now)
+        let counter = Counter(
+            count: .zero,
+            date: .now
+        )
         // When
         try counter.decrease()
         // Then
-        #expect(counter.count == .zero,
-                "Counter decrease with zero failed!")
+        #expect(
+            counter.count == .zero,
+            "Counter decrease with zero failed!"
+        )
     }
 
     @Test("Check Counter increase!")
     func increase() throws {
         // Given
-        let counter = Counter(count: .zero,
-                              date: .now)
+        let counter = Counter(
+            count: .zero,
+            date: .now
+        )
         // When
         try counter.increase()
         // Then
-        #expect(counter.count == 1,
-                "Counter increase failed!")
+        #expect(
+            counter.count == 1,
+            "Counter increase failed!"
+        )
     }
 
     @Test("Check Counter fetch!")
     @MainActor
     func fetch() async throws {
         // Given
-        let date = Calendar.current.date(byAdding: DateComponents(day: +1),
-                                         to: .now) ?? .now
+        let date =
+            Calendar.current.date(
+                byAdding: DateComponents(day: +1),
+                to: .now
+            ) ?? .now
         // When
         let counter = try await Counter.fetch(date: date)
         // Then
-        #expect(counter == nil,
-                "Counter fetch failed!")
+        #expect(
+            counter == nil,
+            "Counter fetch failed!"
+        )
     }
 
     @Test("Check Counter insert!")
     @MainActor
     func insert() async throws {
         // Given
-        let date = Calendar.current.date(byAdding: DateComponents(day: -2),
-                                         to: .now) ?? .now
+        let date =
+            Calendar.current.date(
+                byAdding: DateComponents(day: -2),
+                to: .now
+            ) ?? .now
         // When
         let id = try await Counter.insert(date: date)
         // Then
-        #expect(id != nil,
-                "Counter insert failed!")
+        #expect(
+            id != nil,
+            "Counter insert failed!"
+        )
     }
 }

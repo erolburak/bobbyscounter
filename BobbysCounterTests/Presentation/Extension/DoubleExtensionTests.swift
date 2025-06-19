@@ -18,8 +18,10 @@ struct DoubleExtensionTests {
         // When
         let string = double.toString
         // Then
-        #expect(string == "0",
-                "DoubleExtension toString failed!")
+        #expect(
+            string == "0",
+            "DoubleExtension toString failed!"
+        )
     }
 
     @Test("Check DoubleExtension toString with three digits!")
@@ -29,7 +31,9 @@ struct DoubleExtensionTests {
         // When
         let string = double.toString
         // Then
-        #expect(string == "0.01",
-                "DoubleExtension toString with three digits failed!")
+        #expect(
+            string == "0.01",
+            "DoubleExtension toString with three digits failed!"
+        )
     }
 }

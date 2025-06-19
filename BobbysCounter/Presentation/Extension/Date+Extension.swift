@@ -33,10 +33,13 @@ extension Date {
 
     /// Formats date to date without time
     var toDateWithoutTime: Date? {
-        let dateComponents = Date.calendar.dateComponents([.day,
-                                                           .month,
-                                                           .year],
-                                                          from: self)
+        let dateComponents = Date.calendar.dateComponents(
+            [
+                .day,
+                .month,
+                .year,
+            ],
+            from: self)
         return Date.calendar.date(from: dateComponents)
     }
 

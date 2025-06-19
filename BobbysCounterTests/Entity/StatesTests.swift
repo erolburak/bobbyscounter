@@ -18,7 +18,9 @@ struct StatesTests {
         // When
         states = .isLoading
         // Then
-        #expect(states != nil,
-                "States initializing failed!")
+        #expect(
+            states != nil,
+            "States initializing failed!"
+        )
     }
 }

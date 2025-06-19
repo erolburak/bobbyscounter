@@ -49,6 +49,7 @@ final class SettingsViewTests: XCTestCase {
     @MainActor
     private func pressChartPointMark(with app: XCUIApplication) {
         /// Press chart point mark
-        app.scrollViews["Chart"].children(matching: .other).element.children(matching: .other).element(boundBy: .zero).press(forDuration: 1)
+        app.scrollViews["Chart"].children(matching: .other).element.children(matching: .other)
+            .element(boundBy: .zero).press(forDuration: 1)
     }
 }

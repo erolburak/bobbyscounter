@@ -17,9 +17,10 @@ final class Counter {
 
     // MARK: - Lifecycle
 
-    init(count: Int,
-         date: Date)
-    {
+    init(
+        count: Int,
+        date: Date
+    ) {
         self.count = count
         self.date = date.toDateWithoutTime
     }

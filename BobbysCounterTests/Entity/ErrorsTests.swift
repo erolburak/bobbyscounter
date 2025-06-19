@@ -19,18 +19,22 @@ struct ErrorsTests {
             // When
             newError = error
             // Then
-            #expect(newError != nil,
-                    "Error initializing failed!")
+            #expect(
+                newError != nil,
+                "Error initializing failed!"
+            )
         }
     }
 }
 
-private extension Errors {
+extension Errors {
     // MARK: - Properties
 
-    static let errors: [Errors] = [.error("Test"),
-                                   .fetch,
-                                   .insert,
-                                   .decrease,
-                                   .increase]
+    fileprivate static let errors: [Errors] = [
+        .error("Test"),
+        .fetch,
+        .insert,
+        .decrease,
+        .increase,
+    ]
 }

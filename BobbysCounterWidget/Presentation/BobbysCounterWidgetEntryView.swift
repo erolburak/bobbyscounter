@@ -11,8 +11,10 @@ import SwiftUI
 struct BobbysCounterWidgetEntryView: View {
     // MARK: - Private Properties
 
-    @Query(sort: \Counter.date,
-           order: .reverse) private var counters: [Counter]
+    @Query(
+        sort: \Counter.date,
+        order: .reverse
+    ) private var counters: [Counter]
     private var count: Int? {
         counters.lazy.first { $0.date == .now.toDateWithoutTime }?.count
     }
@@ -36,20 +38,24 @@ struct BobbysCounterWidgetEntryView: View {
             switch state {
             case .empty:
                 ContentUnavailableView {
-                    Label("EmptyCounter",
-                          systemImage: "plus")
-                        .imageScale(.small)
-                        .font(.caption)
+                    Label(
+                        "EmptyCounter",
+                        systemImage: "plus"
+                    )
+                    .imageScale(.small)
+                    .font(.caption)
                 } description: {
                     Text("EmptyCounterMessage")
                         .font(.caption2)
                         .fixedSize(horizontal: false, vertical: true)
                 } actions: {
-                    Button("Insert",
-                           intent: InsertIntent())
-                        .font(.footnote)
-                        .fontWeight(.bold)
-                        .textCase(.uppercase)
+                    Button(
+                        "Insert",
+                        intent: InsertIntent()
+                    )
+                    .font(.footnote)
+                    .fontWeight(.bold)
+                    .textCase(.uppercase)
                 }
                 .symbolVariant(.fill)
             default:
@@ -66,16 +72,20 @@ struct BobbysCounterWidgetEntryView: View {
                     .contentTransition(.numericText())
                     .overlay {
                         HStack {
-                            Button("Minus",
-                                   systemImage: "minus",
-                                   intent: DecreaseIntent())
-                                .disabled(count <= .zero)
+                            Button(
+                                "Minus",
+                                systemImage: "minus",
+                                intent: DecreaseIntent()
+                            )
+                            .disabled(count <= .zero)
 
                             Spacer()
 
-                            Button("Plus",
-                                   systemImage: "plus",
-                                   intent: IncreaseIntent())
+                            Button(
+                                "Plus",
+                                systemImage: "plus",
+                                intent: IncreaseIntent()
+                            )
                         }
                         .font(.system(size: 60))
                         .fontWeight(.bold)
@@ -83,8 +93,10 @@ struct BobbysCounterWidgetEntryView: View {
                     }
             }
         }
-        .frame(maxWidth: .infinity,
-               maxHeight: .infinity)
+        .frame(
+            maxWidth: .infinity,
+            maxHeight: .infinity
+        )
         .ignoresSafeArea()
         .overlay(alignment: .topLeading) {
             Text(entry.date.toRelative)

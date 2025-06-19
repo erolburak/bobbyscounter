@@ -13,8 +13,10 @@ struct CountersView: View {
 
     @Environment(Alert.self) private var alert
     @Environment(Sensory.self) private var sensory
-    @Query(sort: \Counter.date,
-           order: .reverse) private var counters: [Counter]
+    @Query(
+        sort: \Counter.date,
+        order: .reverse
+    ) private var counters: [Counter]
     @State private var showResetConfirmationDialog = false
     private var filteredCounters: [Counter] {
         counters.lazy.filter { $0.date != selected.date }
@@ -35,9 +37,11 @@ struct CountersView: View {
                     List {
                         if let counter = selected.counter {
                             Section {
-                                ListItem(selected: selected,
-                                         counter: counter,
-                                         dismiss: dismiss)
+                                ListItem(
+                                    selected: selected,
+                                    counter: counter,
+                                    dismiss: dismiss
+                                )
                             } header: {
                                 Text("SelectedCounter")
                             }
@@ -46,9 +50,11 @@ struct CountersView: View {
                         if !filteredCounters.isEmpty {
                             Section {
                                 ForEach(filteredCounters) {
-                                    ListItem(selected: selected,
-                                             counter: $0,
-                                             dismiss: dismiss)
+                                    ListItem(
+                                        selected: selected,
+                                        counter: $0,
+                                        dismiss: dismiss
+                                    )
                                 }
                             } header: {
                                 Text("Counters")
@@ -58,13 +64,17 @@ struct CountersView: View {
                     .listStyle(.insetGrouped)
                 } else {
                     ContentUnavailableView {
-                        Label("EmptyCounters",
-                              systemImage: "list.bullet")
+                        Label(
+                            "EmptyCounters",
+                            systemImage: "list.bullet"
+                        )
                     } description: {
                         Text("EmptyCountersMessage")
                     }
-                    .symbolEffect(.bounce,
-                                  options: .nonRepeating)
+                    .symbolEffect(
+                        .bounce,
+                        options: .nonRepeating
+                    )
                     .symbolVariant(.fill)
                 }
             }
@@ -77,15 +87,19 @@ struct CountersView: View {
                         sensory.feedback(feedback: .press(.button))
                     }
                     .tint(.red)
-                    .confirmationDialog("ResetConfirmationDialog",
-                                        isPresented: $showResetConfirmationDialog,
-                                        titleVisibility: .visible)
-                    {
-                        Button("Reset",
-                               role: .destructive)
-                        {
+                    .confirmationDialog(
+                        "ResetConfirmationDialog",
+                        isPresented: $showResetConfirmationDialog,
+                        titleVisibility: .visible
+                    ) {
+                        Button(
+                            "Reset",
+                            role: .destructive
+                        ) {
                             Task {
-                                try await CounterActor.shared.delete(ids: counters.lazy.map(\.persistentModelID))
+                                try await CounterActor.shared.delete(
+                                    ids: counters.lazy.map(\.persistentModelID)
+                                )
                                 do {
                                     selected.average = 7
                                     selected.counter = try await Counter.fetch(date: .now)
@@ -117,12 +131,16 @@ struct CountersView: View {
 }
 
 #Preview("CountersView") {
-    CountersView(selected: Selected(),
-                 showCountersSheet: .constant(true)) {}
-        .environment(Alert())
-        .environment(Sensory())
-        .modelContainer(for: [Counter.self],
-                        inMemory: true)
+    CountersView(
+        selected: Selected(),
+        showCountersSheet: .constant(true)
+    ) {}
+    .environment(Alert())
+    .environment(Sensory())
+    .modelContainer(
+        for: [Counter.self],
+        inMemory: true
+    )
 }
 
 private struct ListItem: View {
@@ -167,15 +185,17 @@ private struct ListItem: View {
         .contextMenu {
             DeleteButton(counter: counter)
         }
-        .swipeActions(edge: .trailing,
-                      allowsFullSwipe: true)
-        {
+        .swipeActions(
+            edge: .trailing,
+            allowsFullSwipe: true
+        ) {
             DeleteButton(counter: counter)
         }
-        .confirmationDialog("DeleteConfirmationDialog",
-                            isPresented: $showDeleteConfirmationDialog,
-                            titleVisibility: .visible)
-        {
+        .confirmationDialog(
+            "DeleteConfirmationDialog",
+            isPresented: $showDeleteConfirmationDialog,
+            titleVisibility: .visible
+        ) {
             Button(role: .destructive) {
                 guard let counterDelete else {
                     return
@@ -204,9 +224,10 @@ private struct ListItem: View {
     }
 
     private func DeleteButton(counter: Counter) -> some View {
-        Button("Delete",
-               systemImage: "trash")
-        {
+        Button(
+            "Delete",
+            systemImage: "trash"
+        ) {
             counterDelete = counter
             showDeleteConfirmationDialog = true
             sensory.feedback(feedback: .press(.button))
@@ -217,11 +238,16 @@ private struct ListItem: View {
 }
 
 #Preview("ListItem") {
-    ListItem(selected: Selected(),
-             counter: Counter(count: .zero,
-                              date: .now)) {}
-        .environment(Alert())
-        .environment(Sensory())
-        .modelContainer(for: [Counter.self],
-                        inMemory: true)
+    ListItem(
+        selected: Selected(),
+        counter: Counter(
+            count: .zero,
+            date: .now)
+    ) {}
+    .environment(Alert())
+    .environment(Sensory())
+    .modelContainer(
+        for: [Counter.self],
+        inMemory: true
+    )
 }
