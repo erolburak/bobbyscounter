@@ -93,13 +93,20 @@
 			);
 			target = BFF55EB32A57314E00EE0B3A /* BobbysCounterWidget */;
 		};
+		BFED56E72E04BB92009DFB2F /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Resource/Info.plist,
+			);
+			target = BFF55EB32A57314E00EE0B3A /* BobbysCounterWidget */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		BFA3D0E32D2EBD5900077763 /* BobbysCounter */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (BFA3D1092D2EBD5900077763 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, BFA3D10A2D2EBD5900077763 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, BFA3D10B2D2EBD5900077763 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = BobbysCounter; sourceTree = "<group>"; };
 		BFA3D1192D2EBD5D00077763 /* BobbysCounterTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = BobbysCounterTests; sourceTree = "<group>"; };
 		BFA3D12E2D2EBD6200077763 /* BobbysCounterUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = BobbysCounterUITests; sourceTree = "<group>"; };
-		BFA3D1412D2EBD6600077763 /* BobbysCounterWidget */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = BobbysCounterWidget; sourceTree = "<group>"; };
+		BFA3D1412D2EBD6600077763 /* BobbysCounterWidget */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (BFED56E72E04BB92009DFB2F /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = BobbysCounterWidget; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -786,7 +793,7 @@
 				ENABLE_APP_SANDBOX = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				GENERATE_PKGINFO_FILE = YES;
-				INFOPLIST_FILE = BobbysCounter/Resource/Info.plist;
+				INFOPLIST_FILE = BobbysCounterWidget/Resource/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = BobbysCounter;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_OUTPUT_FORMAT = "same-as-input";
@@ -831,7 +838,7 @@
 				ENABLE_APP_SANDBOX = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				GENERATE_PKGINFO_FILE = YES;
-				INFOPLIST_FILE = BobbysCounter/Resource/Info.plist;
+				INFOPLIST_FILE = BobbysCounterWidget/Resource/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = BobbysCounter;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_OUTPUT_FORMAT = "same-as-input";
