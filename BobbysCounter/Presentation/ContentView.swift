@@ -101,7 +101,6 @@ struct ContentView: View {
                                     .frame(minHeight: 80)
                                 }
                                 .disabled(count <= .zero)
-                                .accessibilityIdentifier("MinusButton")
 
                                 Spacer()
 
@@ -123,7 +122,6 @@ struct ContentView: View {
                                     )
                                     .frame(minHeight: 80)
                                 }
-                                .accessibilityIdentifier("PlusButton")
                             }
                             .buttonStyle(.glass)
                             .buttonRepeatBehavior(.enabled)
