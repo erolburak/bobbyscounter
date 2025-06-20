@@ -14,18 +14,13 @@
         "argument" : "-Testing"
       }
     ],
-    "distributor" : "com.apple.TestFlight",
-    "language" : "en-GB",
-    "locationScenario" : {
-      "identifier" : "London, England",
-      "referenceType" : "built-in"
-    },
-    "region" : "GB",
+    "language" : "en",
     "targetForVariableExpansion" : {
       "containerPath" : "container:BobbysCounter.xcodeproj",
       "identifier" : "BF2C45332A4B3EB900D48C36",
       "name" : "BobbysCounter"
-    }
+    },
+    "testTimeoutsEnabled" : true
   },
   "testTargets" : [
     {
