@@ -41,7 +41,11 @@ final class CountersViewTests: XCTestCase {
         /// Delete counter
         app.buttons["DeleteButton"].tap()
         /// Confirm delete
-        app.buttons["Delete"].buttons["DeleteConfirmationDialogButton"].tap()
+        let deleteConfirmationDialogButton = app
+            .buttons["DeleteConfirmationDialogButton"]
+            .firstMatch
+        deleteConfirmationDialogButton.waitForExistence(timeout: 5)
+            ? deleteConfirmationDialogButton.tap() : XCTFail()
     }
 
     @MainActor
@@ -55,7 +59,11 @@ final class CountersViewTests: XCTestCase {
         /// Show reset confirmation dialog
         app.buttons["ResetButton"].tap()
         /// Confirm reset
-        app.buttons["Reset"].buttons["ResetConfirmationDialogButton"].tap()
+        let resetConfirmationDialogButton = app
+            .buttons["ResetConfirmationDialogButton"]
+            .firstMatch
+        resetConfirmationDialogButton.waitForExistence(timeout: 5)
+            ? resetConfirmationDialogButton.tap() : XCTFail()
         /// Check if `InsertButton` exists
         XCTAssertTrue(app.buttons["InsertButton"].exists)
     }

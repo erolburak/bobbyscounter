@@ -30,7 +30,10 @@ final class ContentViewTests: XCTestCase {
         /// Decrease count
         app.buttons["Minus"].tap()
         /// Compare counts
-        XCTAssertEqual(count - 1, app.getCount(with: app))
+        XCTAssertEqual(
+            count - 1,
+            app.getCount(with: app)
+        )
     }
 
     @MainActor
@@ -40,6 +43,9 @@ final class ContentViewTests: XCTestCase {
         /// Increase count
         app.buttons["Plus"].tap()
         /// Compare counts
-        XCTAssertEqual(count + 1, app.getCount(with: app))
+        XCTAssertEqual(
+            count + 1,
+            app.getCount(with: app)
+        )
     }
 }
