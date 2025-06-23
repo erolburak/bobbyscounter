@@ -37,11 +37,12 @@ final class CountersViewTests: XCTestCase {
     @MainActor
     private func deleteCounter(with app: XCUIApplication) {
         /// Swipe to delete todays counter
-        app.buttons["ListItem"].swipeLeft()
+        app.buttons["CountersListItem"].swipeLeft()
         /// Delete counter
         app.buttons["DeleteButton"].tap()
         /// Confirm delete
-        let deleteConfirmationDialogButton = app
+        let deleteConfirmationDialogButton =
+            app
             .buttons["DeleteConfirmationDialogButton"]
             .firstMatch
         deleteConfirmationDialogButton.waitForExistence(timeout: 5)
@@ -59,7 +60,8 @@ final class CountersViewTests: XCTestCase {
         /// Show reset confirmation dialog
         app.buttons["ResetButton"].tap()
         /// Confirm reset
-        let resetConfirmationDialogButton = app
+        let resetConfirmationDialogButton =
+            app
             .buttons["ResetConfirmationDialogButton"]
             .firstMatch
         resetConfirmationDialogButton.waitForExistence(timeout: 5)
