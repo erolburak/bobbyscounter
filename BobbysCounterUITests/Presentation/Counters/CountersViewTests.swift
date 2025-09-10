@@ -31,42 +31,32 @@ final class CountersViewTests: XCTestCase {
     @MainActor
     private func closeCountersView(with app: XCUIApplication) {
         /// Close counters view
-        app.buttons["CloseCountersButton"].tap()
+        app.buttons["CloseCountersButton"].waitForExistence().tap()
     }
 
     @MainActor
     private func deleteCounter(with app: XCUIApplication) {
         /// Swipe to delete todays counter
-        app.buttons["CountersListItem"].swipeLeft()
+        app.buttons["CountersListItem"].waitForExistence().swipeLeft()
         /// Delete counter
-        app.buttons["DeleteButton"].tap()
+        app.buttons["DeleteButton"].waitForExistence().tap()
         /// Confirm delete
-        let deleteConfirmationDialogButton =
-            app
-            .buttons["DeleteConfirmationDialogButton"]
-            .firstMatch
-        deleteConfirmationDialogButton.waitForExistence(timeout: 5)
-            ? deleteConfirmationDialogButton.tap() : XCTFail()
+        app.buttons["DeleteConfirmationDialogButton"].firstMatch.waitForExistence().tap()
     }
 
     @MainActor
     private func showCountersView(with app: XCUIApplication) {
         /// Show counters view
-        app.buttons["CountersButton"].tap()
+        app.buttons["CountersButton"].waitForExistence().tap()
     }
 
     @MainActor
     private func resetApp(with app: XCUIApplication) {
         /// Show reset confirmation dialog
-        app.buttons["ResetButton"].tap()
+        app.buttons["ResetButton"].waitForExistence().tap()
         /// Confirm reset
-        let resetConfirmationDialogButton =
-            app
-            .buttons["ResetConfirmationDialogButton"]
-            .firstMatch
-        resetConfirmationDialogButton.waitForExistence(timeout: 5)
-            ? resetConfirmationDialogButton.tap() : XCTFail()
+        app.buttons["ResetConfirmationDialogButton"].firstMatch.waitForExistence().tap()
         /// Check if `InsertButton` exists
-        XCTAssertTrue(app.buttons["InsertButton"].exists)
+        app.buttons["InsertButton"].waitForExistence()
     }
 }

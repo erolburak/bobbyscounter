@@ -28,14 +28,14 @@ final class SettingsViewTests: XCTestCase {
     @MainActor
     private func checkTodayButton(with app: XCUIApplication) {
         /// Show date picker
-        app.datePickers["DatePicker"].tap()
+        app.datePickers["DatePicker"].waitForExistence().tap()
         /// Select first day of previous month
-        app.buttons["Previous Month"].tap()
-        app.staticTexts["1"].firstMatch.tap()
+        app.buttons["Previous Month"].waitForExistence().tap()
+        app.staticTexts["1"].firstMatch.waitForExistence().tap()
         /// Show settings view
         app.showSettingsView(with: app)
         /// Change selected date to `Today`
-        app.buttons["TodayButton"].tap()
+        app.buttons["TodayButton"].waitForExistence().tap()
         /// Check if `DateText` is `Today`
         app.checkDateText(with: app)
     }
@@ -43,7 +43,7 @@ final class SettingsViewTests: XCTestCase {
     @MainActor
     private func closeSettingsView(with app: XCUIApplication) {
         /// Close settings view
-        app.buttons["CloseSettingsButton"].tap()
+        app.buttons["CloseSettingsButton"].waitForExistence().tap()
     }
 
     @MainActor
