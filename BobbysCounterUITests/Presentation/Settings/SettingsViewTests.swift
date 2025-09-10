@@ -31,7 +31,7 @@ final class SettingsViewTests: XCTestCase {
         app.datePickers["DatePicker"].tap()
         /// Select first day of previous month
         app.buttons["Previous Month"].tap()
-        app.staticTexts["1"].tap()
+        app.staticTexts["1"].firstMatch.tap()
         /// Show settings view
         app.showSettingsView(with: app)
         /// Change selected date to `Today`
