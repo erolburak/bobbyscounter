@@ -28,7 +28,7 @@ final class ContentViewTests: XCTestCase {
         /// Get count
         let count = app.getCount(with: app)
         /// Decrease count
-        app.buttons["Minus"].tap()
+        app.buttons["Minus"].waitForExistence().tap()
         /// Compare counts
         XCTAssertEqual(
             count - 1,
@@ -41,7 +41,7 @@ final class ContentViewTests: XCTestCase {
         /// Get count
         let count = app.getCount(with: app)
         /// Increase count
-        app.buttons["Plus"].tap()
+        app.buttons["Plus"].waitForExistence().tap()
         /// Compare counts
         XCTAssertEqual(
             count + 1,

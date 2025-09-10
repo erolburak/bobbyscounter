@@ -19,7 +19,7 @@ extension XCUIApplication {
         XCUIDevice.shared.orientation = .portrait
         /// Insert new counter if needed
         let insertButton = buttons["InsertButton"]
-        if insertButton.exists {
+        if insertButton.waitForExistence(timeout: 5) {
             insertButton.tap()
         }
         return self
@@ -27,7 +27,10 @@ extension XCUIApplication {
 
     func checkDateText(with app: XCUIApplication) {
         /// Check if `DateText` is set to `Today`
-        XCTAssertEqual(app.staticTexts["DateText"].label, "Today")
+        XCTAssertEqual(
+            app.staticTexts["DateText"].label,
+            "Today"
+        )
     }
 
     func getCount(with app: XCUIApplication) -> Int {
@@ -37,6 +40,6 @@ extension XCUIApplication {
 
     func showSettingsView(with app: XCUIApplication) {
         /// Show settings view
-        app.buttons["SettingsButton"].tap()
+        app.buttons["SettingsButton"].waitForExistence().tap()
     }
 }
