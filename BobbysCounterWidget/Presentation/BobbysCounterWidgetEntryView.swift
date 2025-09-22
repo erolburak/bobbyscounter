@@ -88,7 +88,7 @@ struct BobbysCounterWidgetEntryView: View {
                             )
                         }
                         .font(.system(size: 60))
-                        .fontWeight(.bold)
+                        .fontWeight(.heavy)
                         .labelStyle(.iconOnly)
                     }
             }
