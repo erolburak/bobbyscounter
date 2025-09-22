@@ -110,5 +110,6 @@ struct AverageView: View {
     .environment(Sensory())
     .modelContainer(
         for: [Counter.self],
-        inMemory: true)
+        inMemory: true
+    )
 }
