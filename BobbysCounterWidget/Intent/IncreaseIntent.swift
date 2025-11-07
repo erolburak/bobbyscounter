@@ -16,7 +16,6 @@ struct IncreaseIntent: AppIntent {
 
     // MARK: - Methods
 
-    @MainActor
     func perform() async throws -> some IntentResult & ProvidesDialog {
         try await Counter.fetch(date: .now)?.increase()
         WidgetCenter.shared.reloadAllTimelines()

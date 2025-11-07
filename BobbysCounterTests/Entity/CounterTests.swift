@@ -77,7 +77,6 @@ struct CounterTests {
     }
 
     @Test("Check Counter fetch!")
-    @MainActor
     func fetch() async throws {
         // Given
         let date =
@@ -95,7 +94,6 @@ struct CounterTests {
     }
 
     @Test("Check Counter insert!")
-    @MainActor
     func insert() async throws {
         // Given
         let date =
