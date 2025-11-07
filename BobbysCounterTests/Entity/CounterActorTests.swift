@@ -14,7 +14,6 @@ struct CounterActorTests {
     // MARK: - Methods
 
     @Test("Check CounterActor delete!")
-    @MainActor
     func delete() async throws {
         // Given
         let date =

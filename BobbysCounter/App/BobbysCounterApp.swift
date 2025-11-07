@@ -30,7 +30,7 @@ struct BobbysCounterApp: App {
                         Text(message)
                     }
                 }
-                .sensoryFeedback(trigger: sensory.feedbackBool) { _, _ in
+                .sensoryFeedback(trigger: sensory.feedbackBool) {
                     sensory.feedback
                 }
                 .task {

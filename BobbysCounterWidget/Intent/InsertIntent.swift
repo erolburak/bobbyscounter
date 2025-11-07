@@ -16,7 +16,6 @@ struct InsertIntent: AppIntent {
 
     // MARK: - Methods
 
-    @MainActor
     func perform() async throws -> some IntentResult & ProvidesDialog {
         try await Counter.insert(date: .now)
         WidgetCenter.shared.reloadAllTimelines()

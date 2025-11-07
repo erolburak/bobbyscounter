@@ -14,7 +14,6 @@ final class AverageViewTests: XCTestCase {
         continueAfterFailure = false
     }
 
-    @MainActor
     func testAverageView() {
         /// Launch app
         let app = XCUIApplication().appLaunch()
@@ -24,13 +23,11 @@ final class AverageViewTests: XCTestCase {
         closeAverageView(with: app)
     }
 
-    @MainActor
     private func closeAverageView(with app: XCUIApplication) {
         /// Close average view
         app.buttons["CloseAverageButton"].waitForExistence().tap()
     }
 
-    @MainActor
     private func changeAverage(with app: XCUIApplication) {
         /// Change average to `30`
         app.buttons["30"].waitForExistence().tap()
@@ -38,7 +35,6 @@ final class AverageViewTests: XCTestCase {
         XCTAssertTrue(app.staticTexts["AverageMessage"].label.contains("30"))
     }
 
-    @MainActor
     private func showAverageView(with app: XCUIApplication) {
         /// Show average view
         app.buttons["AverageButton"].waitForExistence().tap()

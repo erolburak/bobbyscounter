@@ -39,7 +39,6 @@ final class Counter {
         try modelContext?.save()
     }
 
-    @MainActor
     static func fetch(date: Date) async throws -> Counter? {
         guard let id = try await CounterActor.shared.fetchID(date: date) else {
             return nil
@@ -48,7 +47,6 @@ final class Counter {
         return modelContext.model(for: id) as? Counter
     }
 
-    @MainActor
     @discardableResult
     static func insert(date: Date) async throws -> Counter? {
         let id = try await CounterActor.shared.insert(date: date)

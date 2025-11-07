@@ -14,7 +14,6 @@ final class ContentViewTests: XCTestCase {
         continueAfterFailure = false
     }
 
-    @MainActor
     func testContentView() {
         /// Launch app
         let app = XCUIApplication().appLaunch()
@@ -23,7 +22,6 @@ final class ContentViewTests: XCTestCase {
         decreaseCount(with: app)
     }
 
-    @MainActor
     private func decreaseCount(with app: XCUIApplication) {
         /// Get count
         let count = app.getCount(with: app)
@@ -36,7 +34,6 @@ final class ContentViewTests: XCTestCase {
         )
     }
 
-    @MainActor
     private func increaseCount(with app: XCUIApplication) {
         /// Get count
         let count = app.getCount(with: app)
