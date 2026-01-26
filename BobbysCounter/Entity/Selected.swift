@@ -12,6 +12,9 @@ class Selected {
     // MARK: - Properties
 
     var average = 7
+    var category: Category?
     var counter: Counter?
     var date = Date.now.toDateWithoutTime ?? .now
+    var decrementNegative = false
+    var step: Steps = .one
 }

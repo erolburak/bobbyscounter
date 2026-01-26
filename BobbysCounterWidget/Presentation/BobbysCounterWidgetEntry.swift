@@ -10,5 +10,6 @@ import WidgetKit
 struct BobbysCounterWidgetEntry: TimelineEntry {
     // MARK: - Properties
 
+    let categoryEntity: CategoryEntity?
     let date = Date.now
 }

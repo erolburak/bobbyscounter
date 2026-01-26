@@ -18,9 +18,9 @@ extension XCUIApplication {
         /// Set device orientation to `portrait`
         XCUIDevice.shared.orientation = .portrait
         /// Insert new counter if needed
-        let insertButton = buttons["InsertButton"]
-        if insertButton.waitForExistence(timeout: 5) {
-            insertButton.tap()
+        let insertCounterButton = buttons["InsertCounterButton"]
+        if insertCounterButton.waitForExistence(timeout: 5) {
+            insertCounterButton.tap()
         }
         return self
     }

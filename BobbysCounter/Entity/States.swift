@@ -11,5 +11,5 @@ enum States {
     /// General States
     case isLoading, loaded
     /// Empty States
-    case empty
+    case emptyCategory, emptyCounter
 }

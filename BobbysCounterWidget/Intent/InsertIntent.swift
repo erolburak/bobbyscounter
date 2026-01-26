@@ -17,8 +17,13 @@ struct InsertIntent: AppIntent {
     // MARK: - Methods
 
     func perform() async throws -> some IntentResult & ProvidesDialog {
-        try await Counter.insert(date: .now)
-        WidgetCenter.shared.reloadAllTimelines()
+        //        try await Counter.insert(
+        //            category: "",
+        //            date: .now,
+        //            decrementNegative: false,
+        //            step: .one
+        //        )
+        //        WidgetCenter.shared.reloadAllTimelines()
         return .result(dialog: "InsertDialog")
     }
 }

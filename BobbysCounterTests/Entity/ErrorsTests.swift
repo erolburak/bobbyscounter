@@ -34,7 +34,12 @@ extension Errors {
         .error("Test"),
         .fetch,
         .insert,
-        .decrease,
-        .increase,
+        .decrement,
+        .increment,
+        .categoryDuplicate,
+        .categoryEdit,
+        .decrementNegative,
+        .resetCount,
+        .step,
     ]
 }

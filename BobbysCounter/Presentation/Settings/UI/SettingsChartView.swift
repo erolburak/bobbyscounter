@@ -13,12 +13,11 @@ struct ChartView: View {
     // MARK: - Private Properties
 
     @Environment(Sensory.self) private var sensory
-    @Query(
-        sort: \Counter.date,
-        order: .reverse
-    ) private var counters: [Counter]
     @State private var chartScrollPosition = Date.now
     @State private var selectedPointMarkDate: Date?
+    private var counters: [Counter] {
+        selected.category?.countersSorted ?? []
+    }
 
     // MARK: - Properties
 
@@ -132,8 +131,4 @@ struct ChartView: View {
 #Preview {
     ChartView(selected: Selected())
         .environment(Sensory())
-        .modelContainer(
-            for: [Counter.self],
-            inMemory: true
-        )
 }

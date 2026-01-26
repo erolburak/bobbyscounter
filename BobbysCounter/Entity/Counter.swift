@@ -12,6 +12,7 @@ import SwiftData
 final class Counter {
     // MARK: - Properties
 
+    var category: Category?
     var count = 0
     var date: Date?
 
@@ -27,30 +28,18 @@ final class Counter {
 
     // MARK: - Methods
 
-    func decrease() throws {
-        if count > .zero {
-            count -= 1
-            try modelContext?.save()
-        }
-    }
-
-    func increase() throws {
-        count += 1
+    func decrement(_ value: Steps) throws {
+        count -= value.rawValue
         try modelContext?.save()
     }
 
-    static func fetch(date: Date) async throws -> Counter? {
-        guard let id = try await CounterActor.shared.fetchID(date: date) else {
-            return nil
-        }
-        let modelContext = ModelContext(CounterActor.shared.modelContainer)
-        return modelContext.model(for: id) as? Counter
+    func increment(_ value: Steps) throws {
+        count += value.rawValue
+        try modelContext?.save()
     }
 
-    @discardableResult
-    static func insert(date: Date) async throws -> Counter? {
-        let id = try await CounterActor.shared.insert(date: date)
-        let modelContext = ModelContext(CounterActor.shared.modelContainer)
-        return modelContext.model(for: id) as? Counter
+    func resetCount() throws {
+        count = .zero
+        try modelContext?.save()
     }
 }

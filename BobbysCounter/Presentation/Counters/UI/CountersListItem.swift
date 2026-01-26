@@ -56,7 +56,7 @@ struct CountersListItem: View {
             DeleteButton(counter: counter)
         }
         .confirmationDialog(
-            "DeleteConfirmationDialog",
+            "DeleteCounterConfirmationDialog",
             isPresented: $showDeleteConfirmationDialog,
             titleVisibility: .visible
         ) {
@@ -65,24 +65,15 @@ struct CountersListItem: View {
                     return
                 }
                 Task {
-                    try await CounterActor.shared.delete(ids: [counterDelete.persistentModelID])
+                    try await CategoryActor.shared.delete(ids: [counterDelete.persistentModelID])
+                    sensory.feedback(feedback: .success)
                     if counterDelete == selected.counter {
-                        do {
-                            selected.counter = try await Counter.fetch(date: .now)
-                            selected.date = .now.toDateWithoutTime ?? .now
-                            sensory.feedback(feedback: .success)
-                            dismiss()
-                        } catch {
-                            alert.error = .fetch
-                            alert.show = true
-                            sensory.feedback(feedback: .error)
-                        }
-                    } else {
-                        sensory.feedback(feedback: .success)
+                        selected.counter = nil
+                        dismiss()
                     }
                 }
             }
-            .accessibilityIdentifier("DeleteConfirmationDialogButton")
+            .accessibilityIdentifier("DeleteCounterConfirmationDialogButton")
         }
         .accessibilityIdentifier("CountersListItem")
     }
@@ -108,14 +99,11 @@ struct CountersListItem: View {
                 selected: Selected(),
                 counter: Counter(
                     count: .zero,
-                    date: .now)
+                    date: .now
+                )
             ) {}
             .environment(Alert())
             .environment(Sensory())
-            .modelContainer(
-                for: [Counter.self],
-                inMemory: true
-            )
         }
     }
 }

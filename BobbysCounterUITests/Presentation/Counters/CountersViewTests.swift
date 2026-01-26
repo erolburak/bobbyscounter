@@ -41,7 +41,7 @@ final class CountersViewTests: XCTestCase {
         /// Delete counter
         app.buttons["DeleteButton"].waitForExistence().tap()
         /// Confirm delete
-        app.buttons["DeleteConfirmationDialogButton"].firstMatch.waitForExistence().tap()
+        app.buttons["DeleteCounterConfirmationDialogButton"].firstMatch.waitForExistence().tap()
     }
 
     @MainActor
@@ -56,7 +56,7 @@ final class CountersViewTests: XCTestCase {
         app.buttons["ResetButton"].waitForExistence().tap()
         /// Confirm reset
         app.buttons["ResetConfirmationDialogButton"].firstMatch.waitForExistence().tap()
-        /// Check if `InsertButton` exists
-        app.buttons["InsertButton"].waitForExistence()
+        /// Check if `InsertCounterButton` exists
+        app.buttons["InsertCounterButton"].waitForExistence()
     }
 }

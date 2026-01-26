@@ -12,7 +12,9 @@ enum Errors: LocalizedError {
 
     case error(String)
     case fetch, insert
-    case decrease, increase
+    case decrement, increment
+    case categoryDuplicate, categoryEdit
+    case decrementNegative, resetCount, step
 
     var errorDescription: String? {
         switch self {
@@ -22,10 +24,20 @@ enum Errors: LocalizedError {
             String(localized: "ErrorDescriptionFetch")
         case .insert:
             String(localized: "ErrorDescriptionInsert")
-        case .decrease:
-            String(localized: "ErrorDescriptionDecrease")
-        case .increase:
-            String(localized: "ErrorDescriptionIncrease")
+        case .decrement:
+            String(localized: "ErrorDescriptionDecrement")
+        case .increment:
+            String(localized: "ErrorDescriptionIncrement")
+        case .categoryDuplicate:
+            String(localized: "ErrorDescriptionCategoryDuplicate")
+        case .categoryEdit:
+            String(localized: "ErrorDescriptionCategoryEdit")
+        case .decrementNegative:
+            String(localized: "ErrorDescriptionDecrementNegative")
+        case .resetCount:
+            String(localized: "ErrorDescriptionResetCount")
+        case .step:
+            String(localized: "ErrorDescriptionStep")
         }
     }
 
@@ -37,10 +49,20 @@ enum Errors: LocalizedError {
             String(localized: "ErrorRecoverySuggestionFetch")
         case .insert:
             String(localized: "ErrorRecoverySuggestionInsert")
-        case .decrease:
-            String(localized: "ErrorRecoverySuggestionDecrease")
-        case .increase:
-            String(localized: "ErrorRecoverySuggestionIncrease")
+        case .decrement:
+            String(localized: "ErrorRecoverySuggestionDecrement")
+        case .increment:
+            String(localized: "ErrorRecoverySuggestionIncrement")
+        case .categoryDuplicate:
+            String(localized: "ErrorRecoverySuggestionCategoryDuplicate")
+        case .categoryEdit:
+            String(localized: "ErrorRecoverySuggestionCategoryEdit")
+        case .decrementNegative:
+            String(localized: "ErrorRecoverySuggestionDecrementNegative")
+        case .resetCount:
+            String(localized: "ErrorRecoverySuggestionResetCount")
+        case .step:
+            String(localized: "ErrorRecoverySuggestionStep")
         }
     }
 }

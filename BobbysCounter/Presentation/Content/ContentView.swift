@@ -12,17 +12,29 @@ import WidgetKit
 struct ContentView: View {
     // MARK: - Private Properties
 
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
     @Environment(\.scenePhase) private var scenePhase
     @Environment(Alert.self) private var alert
     @Environment(Sensory.self) private var sensory
     @Query(
-        sort: \Counter.date,
-        order: .reverse
-    ) private var counters: [Counter]
+        sort: \Category.title,
+        order: .forward
+    ) private var categories: [Category]
+    @State private var categoryInsertAlertTitle: String = ""
     @State private var selected = Selected()
+    @State private var showCategoryInsertAlert = false
     @State private var showSettingsSheet = false
     @State private var state: States = .isLoading
     private let settingsTip = SettingsTip()
+    private var isDecrementDisabled: Bool {
+        guard let counter = selected.counter else {
+            return false
+        }
+        return !selected.decrementNegative && counter.count - selected.step.rawValue < .zero
+    }
+    private var isCategoryInsertAlertDisabled: Bool {
+        categoryInsertAlertTitle.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
     private var redactedReason: RedactionReasons {
         state == .isLoading ? .placeholder : []
     }
@@ -31,9 +43,35 @@ struct ContentView: View {
 
     var body: some View {
         NavigationStack {
+            Text(foo.description)
+                .font(.headline)
             Group {
                 switch state {
-                case .empty:
+                case .emptyCategory:
+                    ContentUnavailableView {
+                        Label(
+                            "EmptyCategories",
+                            systemImage: "plus"
+                        )
+                    } description: {
+                        Text("EmptyCategoriesMessage")
+                    } actions: {
+                        Button("Insert") {
+                            showCategoryInsertAlert = true
+                            sensory.feedback(feedback: .press(.button))
+                        }
+                        .buttonStyle(.glass)
+                        .font(.subheadline)
+                        .fontWeight(.bold)
+                        .textCase(.uppercase)
+                        .accessibilityIdentifier("ShowCategoryInsertButton")
+                    }
+                    .symbolEffect(
+                        .bounce,
+                        options: .nonRepeating
+                    )
+                    .symbolVariant(.fill)
+                case .emptyCounter:
                     ContentUnavailableView {
                         Label(
                             "EmptyCounter",
@@ -45,7 +83,14 @@ struct ContentView: View {
                         Button("Insert") {
                             Task {
                                 do {
-                                    selected.counter = try await Counter.insert(date: selected.date)
+                                    guard let categoryID = selected.category?.persistentModelID
+                                    else {
+                                        throw Errors.insert
+                                    }
+                                    selected.counter = try await Category.insertCounter(
+                                        categoryID: categoryID,
+                                        date: selected.date
+                                    )
                                     sensory.feedback(feedback: .success)
                                 } catch {
                                     alert.error = .insert
@@ -58,7 +103,7 @@ struct ContentView: View {
                         .font(.subheadline)
                         .fontWeight(.bold)
                         .textCase(.uppercase)
-                        .accessibilityIdentifier("InsertButton")
+                        .accessibilityIdentifier("InsertCounterButton")
                     }
                     .symbolEffect(
                         .bounce,
@@ -66,9 +111,7 @@ struct ContentView: View {
                     )
                     .symbolVariant(.fill)
                 default:
-                    let count = selected.counter?.count ?? .zero
-
-                    Text(count.description)
+                    Text((selected.counter?.count ?? .zero).description)
                         .frame(
                             maxWidth: .infinity,
                             maxHeight: .infinity
@@ -80,15 +123,15 @@ struct ContentView: View {
                         .lineLimit(1)
                         .opacity(0.25)
                         .contentTransition(.numericText())
-                        .overlay {
+                        .overlay(alignment: .bottom) {
                             HStack {
                                 Button {
                                     withAnimation {
                                         do {
-                                            try selected.counter?.decrease()
+                                            try selected.counter?.decrement(selected.step)
                                             sensory.feedback(feedback: .decrease)
                                         } catch {
-                                            alert.error = .decrease
+                                            alert.error = .decrement
                                             alert.show = true
                                             sensory.feedback(feedback: .error)
                                         }
@@ -100,17 +143,17 @@ struct ContentView: View {
                                     )
                                     .frame(minHeight: 80)
                                 }
-                                .disabled(count <= .zero)
+                                .disabled(isDecrementDisabled)
 
                                 Spacer()
 
                                 Button {
                                     withAnimation {
                                         do {
-                                            try selected.counter?.increase()
+                                            try selected.counter?.increment(selected.step)
                                             sensory.feedback(feedback: .increase)
                                         } catch {
-                                            alert.error = .increase
+                                            alert.error = .increment
                                             alert.show = true
                                             sensory.feedback(feedback: .error)
                                         }
@@ -129,14 +172,16 @@ struct ContentView: View {
                             .fontWeight(.bold)
                             .labelStyle(.iconOnly)
                             .padding()
+                            .padding(.bottom, verticalSizeClass == .compact ? 0 : 120)
                         }
                         .accessibilityIdentifier("CountText")
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
+            .navigationSubtitle(selected.date.toRelative)
             .toolbar {
                 ToolbarItem(placement: .title) {
-                    Text(selected.date.toRelative)
+                    Text(selected.category?.title ?? String(localized: "EmptyCategoryInsertTitle"))
                         .font(.caption)
                         .fontWeight(.semibold)
                         .accessibilityIdentifier("DateText")
@@ -155,37 +200,134 @@ struct ContentView: View {
                     .accessibilityIdentifier("SettingsButton")
                 }
             }
+            .toolbarTitleMenu {
+                Button("InsertCategory") {
+                    showCategoryInsertAlert = true
+                }
+
+                Picker(
+                    selected.category?.title ?? "EmptyCategoryInsertTitle",
+                    selection: $selected.category
+                ) {
+                    ForEach(categories) {
+                        Button($0.title ?? "") {
+                            sensory.feedback(feedback: .selection)
+                        }
+                        .tag($0)
+                    }
+                }
+                .pickerStyle(.automatic)
+            }
         }
         .sheet(isPresented: $showSettingsSheet) {
             SettingsView(selected: selected)
         }
-        .disabled(redactedReason == .placeholder)
-        .redacted(reason: redactedReason)
-        .onChange(of: selected.counter) { _, newValue in
-            withAnimation {
-                state = newValue == nil ? .empty : .loaded
-            }
-        }
-        .onChange(of: scenePhase) {
-            switch scenePhase {
-            case .active:
+        .alert(
+            "CategoryInsertAlert",
+            isPresented: $showCategoryInsertAlert
+        ) {
+            TextField(
+                "CategoryAlertTitlePlaceholder",
+                text: $categoryInsertAlertTitle
+            )
+
+            Button(role: .confirm) {
                 Task {
                     do {
-                        guard let counter = try await Counter.fetch(date: selected.date) else {
-                            state = .empty
-                            return
-                        }
-                        selected.counter = counter
+                        let categoryID = try await Category.insertCategory(
+                            decrementNegative: selected.decrementNegative,
+                            step: selected.step,
+                            title: categoryInsertAlertTitle
+                        )
+                        selected.category = categories.first { $0.persistentModelID == categoryID }
+                        categoryInsertAlertTitle.removeAll()
+                        sensory.feedback(feedback: .press(.button))
                     } catch {
-                        alert.error = .fetch
+                        categoryInsertAlertTitle.removeAll()
+                        alert.error = .categoryDuplicate
                         alert.show = true
                         sensory.feedback(feedback: .error)
                     }
                 }
+            }
+            .disabled(isCategoryInsertAlertDisabled)
+            .accessibilityIdentifier("CategoryInsertAlertButton")
+
+            Button(role: .cancel) {
+                sensory.feedback(feedback: .press(.button))
+            }
+        }
+        .disabled(redactedReason == .placeholder)
+        .redacted(reason: redactedReason)
+        .onChange(of: selected.category) {
+            refresh()
+        }
+        .onChange(of: selected.counter) {
+            refresh()
+        }
+        .onChange(of: scenePhase) {
+            switch scenePhase {
+            case .active:
+                refresh()
             case .background:
                 WidgetCenter.shared.reloadAllTimelines()
             default:
                 break
+            }
+        }
+    }
+
+    @State private var foo = 0
+
+    private func refresh() {
+        foo += 1
+        Task {
+            withAnimation {
+                if selected.category == nil {
+                    guard let category = categories.first else {
+                        state = .emptyCategory
+                        return
+                    }
+                    selected.category = category
+                }
+            }
+            guard let categoryID = selected.category?.persistentModelID else {
+                withAnimation {
+                    state = .emptyCategory
+                }
+                return
+            }
+            do {
+                guard
+                    let counter = try await Category.fetchCounter(
+                        categoryID: categoryID,
+                        date: selected.date
+                    )
+                else {
+                    withAnimation {
+                        state = .emptyCounter
+                    }
+                    return
+                }
+                withAnimation {
+                    selected.counter = counter
+                }
+            } catch {
+                alert.error = .fetch
+                alert.show = true
+                sensory.feedback(feedback: .error)
+            }
+            withAnimation {
+                selected.decrementNegative = selected.category?.decrementNegative ?? false
+                selected.step = selected.category?.step ?? .one
+                state =
+                    if categories.isEmpty {
+                        .emptyCategory
+                    } else if selected.counter == nil {
+                        .emptyCounter
+                    } else {
+                        .loaded
+                    }
             }
         }
     }
@@ -196,7 +338,7 @@ struct ContentView: View {
         .environment(Alert())
         .environment(Sensory())
         .modelContainer(
-            for: [Counter.self],
+            for: [Category.self],
             inMemory: true
         )
 }

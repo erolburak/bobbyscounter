@@ -1,5 +1,5 @@
 //
-//  BobbysCounterDecreaseControlWidget.swift
+//  BobbysCounterDecrementControlWidget.swift
 //  BobbysCounterWidget
 //
 //  Created by Burak Erol on 16.04.25.
@@ -8,23 +8,23 @@
 import SwiftUI
 import WidgetKit
 
-struct BobbysCounterDecreaseControlWidget: ControlWidget {
+struct BobbysCounterDecrementControlWidget: ControlWidget {
     // MARK: - Private Properties
 
-    private let kind = "BobbysCounterDecreaseControlWidget"
+    private let kind = "BobbysCounterDecrementControlWidget"
 
     // MARK: - Layouts
 
     var body: some ControlWidgetConfiguration {
         StaticControlConfiguration(kind: kind) {
-            ControlWidgetButton(action: DecreaseIntent()) {
+            ControlWidgetButton(action: DecrementIntent()) {
                 Label(
-                    "DecreaseTitle",
+                    "DecrementTitle",
                     systemImage: "minus"
                 )
             }
         }
-        .displayName("DecreaseTitle")
-        .description("DecreaseDescription")
+        .displayName("DecrementTitle")
+        .description("DecrementDescription")
     }
 }

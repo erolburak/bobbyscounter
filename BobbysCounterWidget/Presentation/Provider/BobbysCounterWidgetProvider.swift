@@ -7,29 +7,28 @@
 
 import WidgetKit
 
-struct BobbysCounterWidgetProvider: TimelineProvider {
+struct BobbysCounterWidgetProvider: AppIntentTimelineProvider {
     // MARK: - Methods
 
-    func getSnapshot(
-        in _: Context,
-        completion: @escaping (BobbysCounterWidgetEntry) -> Void
-    ) {
-        completion(BobbysCounterWidgetEntry())
+    func placeholder(in context: Context) -> BobbysCounterWidgetEntry {
+        BobbysCounterWidgetEntry(
+            categoryEntity: BobbysCounterWidgetConfigurationIntent().categoryEntity)
     }
 
-    func getTimeline(
-        in _: Context,
-        completion: @escaping (Timeline<BobbysCounterWidgetEntry>) -> Void
-    ) {
-        completion(
-            Timeline(
-                entries: [BobbysCounterWidgetEntry()],
-                policy: .atEnd
-            )
+    func snapshot(
+        for configuration: BobbysCounterWidgetConfigurationIntent,
+        in context: Context
+    ) async -> BobbysCounterWidgetEntry {
+        BobbysCounterWidgetEntry(categoryEntity: configuration.categoryEntity)
+    }
+
+    func timeline(
+        for configuration: BobbysCounterWidgetConfigurationIntent,
+        in context: Context
+    ) async -> Timeline<BobbysCounterWidgetEntry> {
+        Timeline(
+            entries: [BobbysCounterWidgetEntry(categoryEntity: configuration.categoryEntity)],
+            policy: .atEnd
         )
-    }
-
-    func placeholder(in _: Context) -> BobbysCounterWidgetEntry {
-        BobbysCounterWidgetEntry()
     }
 }

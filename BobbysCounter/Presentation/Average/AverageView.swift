@@ -5,26 +5,30 @@
 //  Created by Burak Erol on 15.01.24.
 //
 
-import SwiftData
 import SwiftUI
 
 struct AverageView: View {
     // MARK: - Private Properties
 
     @Environment(Sensory.self) private var sensory
-    @Query(
-        sort: \Counter.date,
-        order: .reverse
-    ) private var counters: [Counter]
     @State private var averageMessage: String?
     private let averages = [7, 30, 90]
     private var average: String {
         /// Calculate average for last X items of counters depending on selected average value
+        let counters = selected.category?.counters
         var value = 0.0
-        for counter in counters.prefix(selected.average) {
+        for counter in counters?.prefix(selected.average) ?? [] {
             value += Double(counter.count)
         }
-        return (value / Double(counters.count)).toString
+        return (value / Double(counters?.count ?? 0)).toString
+    }
+    private var presentationDetent: PresentationDetent {
+        guard let counters = selected.category?.counters,
+            !counters.isEmpty
+        else {
+            return .medium
+        }
+        return .fraction(0.25)
     }
 
     // MARK: - Properties
@@ -37,7 +41,7 @@ struct AverageView: View {
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
-                if !counters.isEmpty,
+                if selected.category?.counters?.isEmpty == false,
                     let averageMessage
                 {
                     Picker(selection: $selected.average) {
@@ -98,7 +102,7 @@ struct AverageView: View {
                 sensory.feedback(feedback: .selection)
             }
         }
-        .presentationDetents([.fraction(counters.isEmpty ? 0.5 : 0.25)])
+        .presentationDetents([presentationDetent])
     }
 }
 
@@ -108,8 +112,4 @@ struct AverageView: View {
         showAverageSheet: .constant(true)
     )
     .environment(Sensory())
-    .modelContainer(
-        for: [Counter.self],
-        inMemory: true
-    )
 }
