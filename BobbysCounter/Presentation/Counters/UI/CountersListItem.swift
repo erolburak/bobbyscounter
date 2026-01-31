@@ -41,8 +41,13 @@ struct CountersListItem: View {
                 Spacer()
 
                 Text(counter.count.description)
-                    .monospaced()
-                    .fontWeight(.black)
+                    .font(
+                        .system(
+                            .callout,
+                            weight: .black
+                        )
+                    )
+                    .monospacedDigit()
                     .lineLimit(1)
             }
         }
@@ -54,6 +59,7 @@ struct CountersListItem: View {
             allowsFullSwipe: true
         ) {
             DeleteButton(counter: counter)
+                .accessibilityIdentifier(Accessibility.deleteCounterButtonSwipeAction.id)
         }
         .confirmationDialog(
             "DeleteCounterConfirmationDialog",
@@ -65,17 +71,16 @@ struct CountersListItem: View {
                     return
                 }
                 Task {
-                    try await CategoryActor.shared.delete(ids: [counterDelete.persistentModelID])
+                    try await Counter.delete(ids: [counterDelete.id])
                     sensory.feedback(feedback: .success)
                     if counterDelete == selected.counter {
                         selected.counter = nil
-                        dismiss()
                     }
                 }
             }
-            .accessibilityIdentifier("DeleteCounterConfirmationDialogButton")
+            .accessibilityIdentifier(Accessibility.deleteCounterButtonConfirmationDialog.id)
         }
-        .accessibilityIdentifier("CountersListItem")
+        .accessibilityIdentifier(Accessibility.countersListItem.id)
     }
 
     private func DeleteButton(counter: Counter) -> some View {
@@ -88,7 +93,6 @@ struct CountersListItem: View {
             sensory.feedback(feedback: .press(.button))
         }
         .tint(.red)
-        .accessibilityIdentifier("DeleteButton")
     }
 }
 
@@ -97,10 +101,7 @@ struct CountersListItem: View {
         List {
             CountersListItem(
                 selected: Selected(),
-                counter: Counter(
-                    count: .zero,
-                    date: .now
-                )
+                counter: .preview
             ) {}
             .environment(Alert())
             .environment(Sensory())

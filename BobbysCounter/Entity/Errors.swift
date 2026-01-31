@@ -11,27 +11,28 @@ enum Errors: LocalizedError {
     // MARK: - Properties
 
     case error(String)
-    case fetch, insert
+    case addCategory, addCounter, editCategory, fetch, fetchWidget
     case decrement, increment
-    case categoryDuplicate, categoryEdit
     case decrementNegative, resetCount, step
 
     var errorDescription: String? {
         switch self {
         case .error(let error):
             error.description
+        case .addCategory:
+            String(localized: "ErrorDescriptionAddCategory")
+        case .addCounter:
+            String(localized: "ErrorDescriptionAddCounter")
+        case .editCategory:
+            String(localized: "ErrorDescriptionEditCategory")
         case .fetch:
             String(localized: "ErrorDescriptionFetch")
-        case .insert:
-            String(localized: "ErrorDescriptionInsert")
+        case .fetchWidget:
+            String(localized: "ErrorDescriptionFetchWidget")
         case .decrement:
             String(localized: "ErrorDescriptionDecrement")
         case .increment:
             String(localized: "ErrorDescriptionIncrement")
-        case .categoryDuplicate:
-            String(localized: "ErrorDescriptionCategoryDuplicate")
-        case .categoryEdit:
-            String(localized: "ErrorDescriptionCategoryEdit")
         case .decrementNegative:
             String(localized: "ErrorDescriptionDecrementNegative")
         case .resetCount:
@@ -45,18 +46,20 @@ enum Errors: LocalizedError {
         switch self {
         case .error:
             String(localized: "ErrorRecoverySuggestionError")
+        case .addCategory:
+            String(localized: "ErrorRecoverySuggestionAddCategory")
+        case .addCounter:
+            String(localized: "ErrorRecoverySuggestionAddCounter")
+        case .editCategory:
+            String(localized: "ErrorRecoverySuggestionEditCategory")
         case .fetch:
             String(localized: "ErrorRecoverySuggestionFetch")
-        case .insert:
-            String(localized: "ErrorRecoverySuggestionInsert")
+        case .fetchWidget:
+            String(localized: "ErrorRecoverySuggestionFetchWidget")
         case .decrement:
             String(localized: "ErrorRecoverySuggestionDecrement")
         case .increment:
             String(localized: "ErrorRecoverySuggestionIncrement")
-        case .categoryDuplicate:
-            String(localized: "ErrorRecoverySuggestionCategoryDuplicate")
-        case .categoryEdit:
-            String(localized: "ErrorRecoverySuggestionCategoryEdit")
         case .decrementNegative:
             String(localized: "ErrorRecoverySuggestionDecrementNegative")
         case .resetCount:

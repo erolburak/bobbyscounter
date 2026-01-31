@@ -52,14 +52,17 @@ struct AverageView: View {
                         Text("SelectedAverage")
                     }
                     .pickerStyle(.segmented)
-                    .accessibilityIdentifier("AveragePicker")
 
                     Text(averageMessage)
-                        .font(.subheadline)
-                        .fontWeight(.semibold)
+                        .font(
+                            .system(
+                                .subheadline,
+                                weight: .semibold
+                            )
+                        )
                         .padding(.vertical)
                         .contentTransition(.numericText())
-                        .accessibilityIdentifier("AverageMessage")
+                        .accessibilityIdentifier(Accessibility.averageMessage.id)
                 } else {
                     ContentUnavailableView {
                         Label(
@@ -87,7 +90,7 @@ struct AverageView: View {
                         showAverageSheet = false
                         sensory.feedback(feedback: .press(.button))
                     }
-                    .accessibilityIdentifier("CloseAverageButton")
+                    .accessibilityIdentifier(Accessibility.closeAverageButton.id)
                 }
             }
             .onChange(

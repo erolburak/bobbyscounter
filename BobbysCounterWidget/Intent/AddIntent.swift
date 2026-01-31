@@ -1,18 +1,18 @@
 //
-//  DecrementIntent.swift
+//  AddIntent.swift
 //  BobbysCounterWidget
 //
-//  Created by Burak Erol on 14.07.23.
+//  Created by Burak Erol on 19.02.25.
 //
 
 import AppIntents
 import WidgetKit
 
-struct DecrementIntent: AppIntent {
+struct AddIntent: AppIntent {
     // MARK: - Properties
 
-    static let description: IntentDescription = "DecrementDescription"
-    static let title: LocalizedStringResource = "DecrementTitle"
+    static let description: IntentDescription = "AddDescription"
+    static let title: LocalizedStringResource = "AddTitle"
     @Parameter(title: "Title")
     var title: String
 
@@ -29,16 +29,16 @@ struct DecrementIntent: AppIntent {
     func perform() async throws -> some IntentResult & ProvidesDialog {
         do {
             guard let categoryID = try await Category.fetchID(title: title) else {
-                throw Errors.decrement
+                throw Errors.addCounter
             }
-            try await Counter.fetch(
+            try await Counter.add(
                 categoryID: categoryID,
                 date: .now
-            )?.decrement()
+            )
             WidgetCenter.shared.reloadAllTimelines()
-            return .result(dialog: "DecrementDialog")
+            return .result(dialog: "AddDialog")
         } catch {
-            return .result(dialog: "DecrementDialogError")
+            return .result(dialog: "AddDialogError")
         }
     }
 }

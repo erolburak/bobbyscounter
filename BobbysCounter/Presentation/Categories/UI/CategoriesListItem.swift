@@ -12,13 +12,13 @@ struct CategoriesListItem: View {
 
     @Environment(Alert.self) private var alert
     @Environment(Sensory.self) private var sensory
+    @State private var categoryAlertTitle: String = ""
     @State private var categoryDelete: Category?
-    @State private var categoryEditAlertTitle: String = ""
-    @State private var showCategoryEditAlert = false
+    @State private var showCategoryAlert = false
     @State private var showDeleteConfirmationDialog = false
-    private var isCategoryEditAlertDisabled: Bool {
-        categoryEditAlertTitle.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-            || category.title == categoryEditAlertTitle
+    private var categoryAlertDisabled: Bool {
+        categoryAlertTitle.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+            || category.title == categoryAlertTitle
     }
 
     // MARK: - Properties
@@ -41,13 +41,19 @@ struct CategoriesListItem: View {
                 Spacer()
 
                 Text(category.counters?.count.description ?? "0")
-                    .monospaced()
-                    .fontWeight(.black)
+                    .font(
+                        .system(
+                            .callout,
+                            weight: .black
+                        )
+                    )
+                    .monospacedDigit()
                     .lineLimit(1)
             }
         }
         .contextMenu {
             EditButton(category: category)
+
             DeleteButton(category: category)
         }
         .swipeActions(
@@ -57,6 +63,7 @@ struct CategoriesListItem: View {
             EditButton(category: category)
 
             DeleteButton(category: category)
+                .accessibilityIdentifier(Accessibility.deleteCategoryButtonSwipeAction.id)
         }
         .confirmationDialog(
             "DeleteCategoryConfirmationDialog",
@@ -68,49 +75,48 @@ struct CategoriesListItem: View {
                     return
                 }
                 Task {
-                    try await CategoryActor.shared.delete(ids: [categoryDelete.persistentModelID])
+                    try await Category.delete(ids: [categoryDelete.id])
                     sensory.feedback(feedback: .success)
                     if categoryDelete == selected.category {
                         selected.category = nil
-                        dismiss()
                     }
                 }
             }
-            .accessibilityIdentifier("DeleteCategoryConfirmationDialogButton")
+            .accessibilityIdentifier(Accessibility.deleteCategoryButtonConfirmationDialog.id)
         }
         .alert(
-            "CategoryEditAlert",
-            isPresented: $showCategoryEditAlert
+            "CategoryAlert",
+            isPresented: $showCategoryAlert
         ) {
             TextField(
-                "CategoryAlertTitlePlaceholder",
-                text: $categoryEditAlertTitle
+                "CategoryAlertPlaceholder",
+                text: $categoryAlertTitle
             )
 
             Button(role: .confirm) {
                 Task {
                     do {
-                        try category.edit(title: categoryEditAlertTitle)
+                        try category.edit(title: categoryAlertTitle)
                         sensory.feedback(feedback: .press(.button))
                     } catch {
-                        categoryEditAlertTitle = category.title ?? ""
-                        alert.error = .categoryEdit
+                        categoryAlertTitle = category.title ?? ""
+                        alert.error = .editCategory
                         alert.show = true
                         sensory.feedback(feedback: .error)
                     }
                 }
             }
-            .disabled(isCategoryEditAlertDisabled)
-            .accessibilityIdentifier("CategoryEditAlertButton")
+            .disabled(categoryAlertDisabled)
+            .accessibilityIdentifier(Accessibility.categoryAlertConfirmButton.id)
 
             Button(role: .cancel) {
                 sensory.feedback(feedback: .press(.button))
             }
         }
         .onAppear {
-            categoryEditAlertTitle = category.title ?? ""
+            categoryAlertTitle = category.title ?? ""
         }
-        .accessibilityIdentifier("CategoriesListItem")
+        .accessibilityIdentifier(Accessibility.categoriesListItem.id)
     }
 
     private func DeleteButton(category: Category) -> some View {
@@ -123,7 +129,6 @@ struct CategoriesListItem: View {
             sensory.feedback(feedback: .press(.button))
         }
         .tint(.red)
-        .accessibilityIdentifier("DeleteButton")
     }
 
     private func EditButton(category: Category) -> some View {
@@ -131,10 +136,10 @@ struct CategoriesListItem: View {
             "Edit",
             systemImage: "pencil"
         ) {
-            showCategoryEditAlert = true
+            showCategoryAlert = true
             sensory.feedback(feedback: .press(.button))
         }
-        .accessibilityIdentifier("EditButton")
+        .accessibilityIdentifier(Accessibility.editButton.id)
     }
 }
 
@@ -143,17 +148,7 @@ struct CategoriesListItem: View {
         List {
             CategoriesListItem(
                 selected: Selected(),
-                category: Category(
-                    counters: [
-                        Counter(
-                            count: .zero,
-                            date: .now
-                        )
-                    ],
-                    decrementNegative: false,
-                    step: .one,
-                    title: "Title"
-                )
+                category: .preview
             ) {}
             .environment(Alert())
             .environment(Sensory())

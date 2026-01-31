@@ -28,13 +28,24 @@ final class Counter {
 
     // MARK: - Methods
 
-    func decrement(_ value: Steps) throws {
-        count -= value.rawValue
+    func decrement() throws {
+        guard let step = category?.step?.rawValue else {
+            throw Errors.step
+        }
+        if category?.decrementNegative == false,
+            count - step < .zero
+        {
+            throw Errors.decrement
+        }
+        count -= step
         try modelContext?.save()
     }
 
-    func increment(_ value: Steps) throws {
-        count += value.rawValue
+    func increment() throws {
+        guard let step = category?.step?.rawValue else {
+            throw Errors.step
+        }
+        count += step
         try modelContext?.save()
     }
 
@@ -42,4 +53,50 @@ final class Counter {
         count = .zero
         try modelContext?.save()
     }
+
+    @discardableResult
+    static func add(
+        categoryID: Category.ID,
+        date: Date
+    ) async throws -> Counter? {
+        let counterID = try await CategoryActor.shared.addCounter(
+            categoryID: categoryID,
+            date: date
+        )
+        let modelContext = ModelContext(CategoryActor.shared.modelContainer)
+        return modelContext.model(for: counterID) as? Counter
+    }
+
+    static func delete(ids: [Counter.ID]) async throws {
+        try await CategoryActor.shared.delete(ids: ids)
+    }
+
+    static func fetch(
+        categoryID: Category.ID,
+        date: Date
+    ) async throws -> Counter? {
+        guard
+            let counterID = try await CategoryActor.shared.fetchCounterID(
+                categoryID: categoryID,
+                date: date
+            )
+        else {
+            return nil
+        }
+        let modelContext = ModelContext(CategoryActor.shared.modelContainer)
+        return modelContext.model(for: counterID) as? Counter
+    }
 }
+
+#if DEBUG
+    extension Counter {
+        // MARK: - Properties
+
+        static var preview: Counter {
+            Counter(
+                count: 1,
+                date: .now
+            )
+        }
+    }
+#endif

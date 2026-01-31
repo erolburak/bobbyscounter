@@ -10,9 +10,28 @@ import AppIntents
 struct CategoryEntity: AppEntity {
     // MARK: - Properties
 
-    static let defaultQuery = CategoryQuery()
+    static let defaultQuery = CategoryEntityQuery()
     static let typeDisplayRepresentation: TypeDisplayRepresentation = "Category"
+    let count: Int?
+    let decrementNegative: Bool?
     let id: String
+    let step: Steps?
     let title: String
-    var displayRepresentation: DisplayRepresentation { DisplayRepresentation(title: "\(title)") }
+    var displayRepresentation: DisplayRepresentation {
+        DisplayRepresentation(title: "\(title)")
+    }
+}
+
+extension CategoryEntity {
+    // MARK: - Properties
+
+    static var preview: CategoryEntity? {
+        CategoryEntity(
+            count: .zero,
+            decrementNegative: false,
+            id: "Preview",
+            step: .one,
+            title: "Preview"
+        )
+    }
 }

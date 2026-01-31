@@ -13,7 +13,7 @@ struct CountersView: View {
 
     @Environment(Alert.self) private var alert
     @Environment(Sensory.self) private var sensory
-    @State private var showResetConfirmationDialog = false
+    @State private var showDeleteConfirmationDialog = false
     private var counters: [Counter] {
         selected.category?.countersSorted ?? []
     }
@@ -82,24 +82,23 @@ struct CountersView: View {
             .toolbar {
                 ToolbarItem(placement: .destructiveAction) {
                     Button(role: .destructive) {
-                        showResetConfirmationDialog = true
+                        showDeleteConfirmationDialog = true
                         sensory.feedback(feedback: .press(.button))
                     }
+                    .disabled(counters.isEmpty)
                     .tint(.red)
                     .confirmationDialog(
-                        "ResetCountersConfirmationDialog",
-                        isPresented: $showResetConfirmationDialog,
+                        "DeleteCountersConfirmationDialog",
+                        isPresented: $showDeleteConfirmationDialog,
                         titleVisibility: .visible
                     ) {
                         Button(
-                            "Reset",
+                            "Delete",
                             role: .destructive
                         ) {
                             Task {
                                 do {
-                                    try await CategoryActor.shared.delete(
-                                        ids: counters.lazy.map(\.persistentModelID)
-                                    )
+                                    try await Counter.delete(ids: counters.lazy.map(\.id))
                                     sensory.feedback(feedback: .success)
                                     selected.counter = nil
                                     dismiss()
@@ -110,16 +109,17 @@ struct CountersView: View {
                                 }
                             }
                         }
-                        .accessibilityIdentifier("ResetCountersConfirmationDialogButton")
+                        .accessibilityIdentifier(
+                            Accessibility.deleteCountersButtonConfirmationDialog.id)
                     }
-                    .accessibilityIdentifier("ResetButton")
+                    .accessibilityIdentifier(Accessibility.deleteCountersButton.id)
                 }
 
                 ToolbarItem(placement: .cancellationAction) {
                     Button(role: .cancel) {
                         showCountersSheet = false
                     }
-                    .accessibilityIdentifier("CloseCountersButton")
+                    .accessibilityIdentifier(Accessibility.closeCountersButton.id)
                 }
             }
         }

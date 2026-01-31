@@ -18,45 +18,47 @@ final class CountersViewTests: XCTestCase {
     func testCountersView() {
         /// Launch app
         let app = XCUIApplication().appLaunch()
-        app.showSettingsView(with: app)
         showCountersView(with: app)
-        closeCountersView(with: app)
+        deleteCounters(with: app)
+        app.addNewCounter(with: app)
         showCountersView(with: app)
         deleteCounter(with: app)
-        app.showSettingsView(with: app)
-        showCountersView(with: app)
-        resetApp(with: app)
+        closeCountersView(with: app)
     }
 
     @MainActor
     private func closeCountersView(with app: XCUIApplication) {
         /// Close counters view
-        app.buttons["CloseCountersButton"].waitForExistence().tap()
+        app.buttons[Accessibility.closeCountersButton.id].waitForExistence().tap()
     }
 
     @MainActor
     private func deleteCounter(with app: XCUIApplication) {
-        /// Swipe to delete todays counter
-        app.buttons["CountersListItem"].waitForExistence().swipeLeft()
+        /// Swipe to delete counter
+        app.buttons[Accessibility.countersListItem.id].waitForExistence().swipeLeft()
         /// Delete counter
-        app.buttons["DeleteButton"].waitForExistence().tap()
+        app.buttons[Accessibility.deleteCounterButtonSwipeAction.id].waitForExistence().tap()
         /// Confirm delete
-        app.buttons["DeleteCounterConfirmationDialogButton"].firstMatch.waitForExistence().tap()
+        app.buttons[Accessibility.deleteCounterButtonConfirmationDialog.id].firstMatch
+            .waitForExistence().tap()
+    }
+
+    @MainActor
+    private func deleteCounters(with app: XCUIApplication) {
+        /// Show delete counters
+        app.buttons[Accessibility.deleteCountersButton.id].waitForExistence().tap()
+        /// Confirm delete
+        app.buttons[Accessibility.deleteCountersButtonConfirmationDialog.id].firstMatch
+            .waitForExistence().tap()
+        /// Check if `AddCounterButton` exists
+        app.buttons[Accessibility.addCounterButton.id].waitForExistence()
     }
 
     @MainActor
     private func showCountersView(with app: XCUIApplication) {
+        /// Show settings menu
+        app.showSettingsMenu(with: app)
         /// Show counters view
-        app.buttons["CountersButton"].waitForExistence().tap()
-    }
-
-    @MainActor
-    private func resetApp(with app: XCUIApplication) {
-        /// Show reset confirmation dialog
-        app.buttons["ResetButton"].waitForExistence().tap()
-        /// Confirm reset
-        app.buttons["ResetConfirmationDialogButton"].firstMatch.waitForExistence().tap()
-        /// Check if `InsertCounterButton` exists
-        app.buttons["InsertCounterButton"].waitForExistence()
+        app.buttons[Accessibility.countersButton.id].waitForExistence().tap()
     }
 }

@@ -17,7 +17,7 @@ struct CategoriesView: View {
         sort: \Category.title,
         order: .forward
     ) private var categories: [Category]
-    @State private var showResetConfirmationDialog = false
+    @State private var showDeleteConfirmationDialog = false
     private var categoriesWithoutSelectedCategory: [Category] {
         categories.lazy.filter { $0.title != selected.category?.title }
     }
@@ -83,38 +83,38 @@ struct CategoriesView: View {
             .toolbar {
                 ToolbarItem(placement: .destructiveAction) {
                     Button(role: .destructive) {
-                        showResetConfirmationDialog = true
+                        showDeleteConfirmationDialog = true
                         sensory.feedback(feedback: .press(.button))
                     }
+                    .disabled(categories.isEmpty)
                     .tint(.red)
                     .confirmationDialog(
-                        "ResetCategoriesConfirmationDialog",
-                        isPresented: $showResetConfirmationDialog,
+                        "DeleteCategoriesConfirmationDialog",
+                        isPresented: $showDeleteConfirmationDialog,
                         titleVisibility: .visible
                     ) {
                         Button(
-                            "Reset",
+                            "Delete",
                             role: .destructive
                         ) {
                             Task {
-                                try await CategoryActor.shared.delete(
-                                    ids: categories.lazy.map(\.persistentModelID)
-                                )
+                                try await Category.delete(ids: categories.lazy.map(\.id))
                                 sensory.feedback(feedback: .success)
                                 selected.category = nil
                                 dismiss()
                             }
                         }
-                        .accessibilityIdentifier("ResetCategoriesConfirmationDialogButton")
+                        .accessibilityIdentifier(
+                            Accessibility.deleteCategoriesButtonConfirmationDialog.id)
                     }
-                    .accessibilityIdentifier("ResetButton")
+                    .accessibilityIdentifier(Accessibility.deleteCategoriesButton.id)
                 }
 
                 ToolbarItem(placement: .cancellationAction) {
                     Button(role: .cancel) {
                         showCategoriesSheet = false
                     }
-                    .accessibilityIdentifier("CloseCategoriesButton")
+                    .accessibilityIdentifier(Accessibility.closeCategoriesButton.id)
                 }
             }
         }

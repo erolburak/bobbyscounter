@@ -32,12 +32,13 @@ extension Errors {
 
     fileprivate static let errors: [Errors] = [
         .error("Test"),
+        .addCategory,
+        .addCounter,
+        .editCategory,
         .fetch,
-        .insert,
+        .fetchWidget,
         .decrement,
         .increment,
-        .categoryDuplicate,
-        .categoryEdit,
         .decrementNegative,
         .resetCount,
         .step,

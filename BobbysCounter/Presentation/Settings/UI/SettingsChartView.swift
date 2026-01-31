@@ -69,9 +69,13 @@ struct ChartView: View {
                     let selectedPointMarkCounter = selectedPointMarkCounter(counters: counters)
                 {
                     Text(selectedPointMarkCounter.count.description)
-                        .monospaced()
-                        .font(.title)
-                        .fontWeight(.black)
+                        .font(
+                            .system(
+                                .title,
+                                weight: .black
+                            )
+                        )
+                        .monospacedDigit()
                         .onAppear {
                             sensory.feedback(feedback: .press(.button))
                         }
@@ -101,7 +105,7 @@ struct ChartView: View {
             }
             chartScrollPosition = dateMinusOne
         }
-        .accessibilityIdentifier("Chart")
+        .accessibilityIdentifier(Accessibility.chart.id)
     }
 
     // MARK: - Methods

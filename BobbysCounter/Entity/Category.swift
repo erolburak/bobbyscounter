@@ -58,7 +58,7 @@ final class Category {
                 )
             ).isEmpty == true
         else {
-            throw Errors.categoryEdit
+            throw Errors.editCategory
         }
         self.title = title
         try modelContext?.save()
@@ -70,44 +70,38 @@ final class Category {
     }
 
     @discardableResult
-    static func insertCategory(
+    static func add(
         decrementNegative: Bool,
         step: Steps,
         title: String
     ) async throws -> Category.ID {
-        try await CategoryActor.shared.insertCategory(
+        try await CategoryActor.shared.addCategory(
             decrementNegative: decrementNegative,
             step: step,
             title: title
         )
     }
 
-    @discardableResult
-    static func insertCounter(
-        categoryID: Category.ID,
-        date: Date
-    ) async throws -> Counter? {
-        let id = try await CategoryActor.shared.insertCounter(
-            categoryID: categoryID,
-            date: date
-        )
-        let modelContext = ModelContext(CategoryActor.shared.modelContainer)
-        return modelContext.model(for: id) as? Counter
+    static func delete(ids: [Category.ID]) async throws {
+        try await CategoryActor.shared.delete(ids: ids)
     }
 
-    static func fetchCounter(
-        categoryID: Category.ID,
-        date: Date
-    ) async throws -> Counter? {
-        guard
-            let id = try await CategoryActor.shared.fetchCounterID(
-                categoryID: categoryID,
-                date: date
-            )
-        else {
-            return nil
-        }
-        let modelContext = ModelContext(CategoryActor.shared.modelContainer)
-        return modelContext.model(for: id) as? Counter
+    static func fetchID(title: String) async throws -> PersistentIdentifier? {
+        try await CategoryActor.shared.fetchCategoryID(title: title)
     }
 }
+
+#if DEBUG
+    extension Category {
+        // MARK: - Properties
+
+        static var preview: Category {
+            Category(
+                counters: [.preview],
+                decrementNegative: false,
+                step: .one,
+                title: "Preview"
+            )
+        }
+    }
+#endif

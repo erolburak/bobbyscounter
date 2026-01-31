@@ -14,15 +14,20 @@ struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(Alert.self) private var alert
     @Environment(Sensory.self) private var sensory
+    @Query(
+        sort: \Category.title,
+        order: .forward
+    ) private var categories: [Category]
     @State private var showAverageSheet = false
     @State private var showCategoriesSheet = false
     @State private var showCountersSheet = false
     @State private var showCountResetAlert = false
+    @State private var showResetConfirmationDialog = false
     private var counters: [Counter] {
         selected.category?.countersSorted ?? []
     }
     private var presentationDetent: PresentationDetent {
-        counters.isEmpty ? .fraction(0.6) : .medium
+        counters.isEmpty ? .fraction(0.75) : .medium
     }
 
     // MARK: - Properties
@@ -41,13 +46,14 @@ struct SettingsView: View {
                         in: ...Date.now,
                         displayedComponents: [.date]
                     )
+                    .disabled(selected.category == nil)
                     .datePickerStyle(.compact)
-                    .accessibilityIdentifier("DatePicker")
+                    .accessibilityIdentifier(Accessibility.datePicker.id)
 
                     Toggle(isOn: $selected.decrementNegative) {
                         Text("DecrementNegative")
                     }
-                    .accessibilityIdentifier("DecrementNegativeToggle")
+                    .accessibilityIdentifier(Accessibility.decrementNegativeToggle.id)
 
                     LabeledContent("SelectedStep") {
                         Picker(selection: $selected.step) {
@@ -61,7 +67,7 @@ struct SettingsView: View {
                         } label: {
                             EmptyView()
                         }
-                        .accessibilityIdentifier("StepsPicker")
+                        .accessibilityIdentifier(Accessibility.stepsPicker.id)
                     }
                 }
                 .padding()
@@ -89,35 +95,52 @@ struct SettingsView: View {
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button(
-                        "Average",
-                        systemImage: "divide"
-                    ) {
-                        showAverageSheet = true
-                        sensory.feedback(feedback: .press(.button))
-                    }
-                    .accessibilityIdentifier("AverageButton")
-                }
+                ToolbarItem(placement: .primaryAction) {
+                    Menu {
+                        ControlGroup {
+                            Button(
+                                "Categories",
+                                systemImage: "square.stack.3d.down.right"
+                            ) {
+                                showCategoriesSheet = true
+                                sensory.feedback(feedback: .press(.button))
+                            }
+                            .accessibilityIdentifier(Accessibility.categoriesButton.id)
 
-                ToolbarItemGroup(placement: .primaryAction) {
-                    Button(
-                        "Categories",
-                        systemImage: "square.stack.3d.down.right"
-                    ) {
-                        showCategoriesSheet = true
-                        sensory.feedback(feedback: .press(.button))
-                    }
-                    .accessibilityIdentifier("CategoriesButton")
+                            Button(
+                                "Counters",
+                                systemImage: "square.stack.3d.up"
+                            ) {
+                                showCountersSheet = true
+                                sensory.feedback(feedback: .press(.button))
+                            }
+                            .accessibilityIdentifier(Accessibility.countersButton.id)
 
-                    Button(
-                        "Counters",
-                        systemImage: "square.stack.3d.up"
-                    ) {
-                        showCountersSheet = true
-                        sensory.feedback(feedback: .press(.button))
+                            Button(
+                                "Average",
+                                systemImage: "divide"
+                            ) {
+                                showAverageSheet = true
+                                sensory.feedback(feedback: .press(.button))
+                            }
+                            .accessibilityIdentifier(Accessibility.averageButton.id)
+                        }
+
+                        Section {
+                            Button(
+                                "Reset",
+                                systemImage: "trash",
+                                role: .destructive
+                            ) {
+                                showResetConfirmationDialog = true
+                                sensory.feedback(feedback: .press(.button))
+                            }
+                            .accessibilityIdentifier(Accessibility.resetButton.id)
+                        }
+                    } label: {
+                        Image(systemName: "gearshape")
                     }
-                    .accessibilityIdentifier("CountersButton")
+                    .accessibilityIdentifier(Accessibility.settingsMenu.id)
                 }
 
                 ToolbarItem(placement: .cancellationAction) {
@@ -125,7 +148,7 @@ struct SettingsView: View {
                         sensory.feedback(feedback: .press(.button))
                         dismiss()
                     }
-                    .accessibilityIdentifier("CloseSettingsButton")
+                    .accessibilityIdentifier(Accessibility.closeSettingsButton.id)
                 }
 
                 ToolbarItem(placement: .bottomBar) {
@@ -136,8 +159,31 @@ struct SettingsView: View {
                         }
                     }
                     .disabled(selected.date.isDateToday)
-                    .accessibilityIdentifier("TodayButton")
+                    .accessibilityIdentifier(Accessibility.todayButton.id)
                 }
+            }
+            .confirmationDialog(
+                "ResetConfirmationDialog",
+                isPresented: $showResetConfirmationDialog,
+                titleVisibility: .visible
+            ) {
+                Button(
+                    "Reset",
+                    role: .destructive
+                ) {
+                    Task {
+                        try await Category.delete(ids: categories.lazy.map(\.id))
+                        selected.average = 7
+                        selected.category = nil
+                        selected.counter = nil
+                        selected.date = .now
+                        selected.decrementNegative = false
+                        selected.step = .one
+                        sensory.feedback(feedback: .success)
+                        dismiss()
+                    }
+                }
+                .accessibilityIdentifier(Accessibility.resetButtonConfirmationDialog.id)
             }
             .sheet(isPresented: $showAverageSheet) {
                 AverageView(
@@ -180,21 +226,19 @@ struct SettingsView: View {
                         }
                     }
                 }
-                .accessibilityIdentifier("ResetButton")
 
                 Button(role: .cancel) {
                     showCountResetAlert = false
                     sensory.feedback(feedback: .press(.button))
                 }
-                .accessibilityIdentifier("ResetCancelButton")
             }
             .onChange(of: selected.date) { _, newValue in
                 Task {
                     do {
-                        guard let categoryID = selected.category?.persistentModelID else {
-                            throw Errors.fetch
+                        guard let categoryID = selected.category?.id else {
+                            return
                         }
-                        selected.counter = try await Category.fetchCounter(
+                        selected.counter = try await Counter.fetch(
                             categoryID: categoryID,
                             date: newValue
                         )
@@ -216,7 +260,6 @@ struct SettingsView: View {
                     alert.show = true
                     sensory.feedback(feedback: .error)
                 }
-
                 if let count = selected.counter?.count,
                     count < .zero,
                     !newValue
@@ -248,4 +291,8 @@ struct SettingsView: View {
                 .environment(Alert())
                 .environment(Sensory())
         }
+        .modelContainer(
+            for: [Category.self],
+            inMemory: true
+        )
 }

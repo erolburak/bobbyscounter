@@ -41,32 +41,8 @@ actor CategoryActor {
 
     // MARK: - Methods
 
-    func delete(ids: [PersistentIdentifier?]) throws {
-        for id in ids {
-            guard let id else {
-                return
-            }
-            modelContext.delete(modelContext.model(for: id))
-        }
-        try modelContext.save()
-    }
-
-    func fetchCounterID(
-        categoryID: Category.ID,
-        date: Date
-    ) throws -> Counter.ID? {
-        let categories = try modelContext.fetch(
-            FetchDescriptor<Category>(
-                predicate: #Predicate {
-                    $0.persistentModelID == categoryID
-                }
-            )
-        )
-        return categories.first?.counters?.lazy.first { $0.date == date.toDateWithoutTime }?
-            .persistentModelID
-    }
-
-    func insertCategory(
+    @discardableResult
+    func addCategory(
         decrementNegative: Bool,
         step: Steps,
         title: String
@@ -80,9 +56,9 @@ actor CategoryActor {
                 )
             ).isEmpty
         else {
-            throw Errors.categoryDuplicate
+            throw Errors.addCategory
         }
-        /// Insert new category if no category with given title exists
+        /// Add new category if no category with given title exists
         let newCategory = Category(
             counters: [],
             decrementNegative: decrementNegative,
@@ -91,38 +67,71 @@ actor CategoryActor {
         )
         modelContext.insert(newCategory)
         try modelContext.save()
-        return newCategory.persistentModelID
+        return newCategory.id
     }
 
-    func insertCounter(
+    @discardableResult
+    func addCounter(
         categoryID: Category.ID,
         date: Date
     ) throws -> Counter.ID {
-        let category = try modelContext.fetch(
+        guard
+            try modelContext.fetch(
+                FetchDescriptor<Counter>(
+                    predicate: #Predicate {
+                        $0.category?.id == categoryID && $0.date == date.toDateWithoutTime
+                    }
+                )
+            ).isEmpty
+        else {
+            throw Errors.addCounter
+        }
+        /// Add new counter if no counter with given date exists
+        let newCounter = Counter(
+            count: .zero,
+            date: date
+        )
+        try modelContext.fetch(
             FetchDescriptor<Category>(
                 predicate: #Predicate {
-                    $0.persistentModelID == categoryID
+                    $0.id == categoryID
                 }
             )
-        ).first
-        /// Insert new counter if no counter with given date exists
-        guard
-            let counter = category?.counters?.lazy.first(where: {
-                $0.date == date.toDateWithoutTime
-            })
-        else {
-            let newCounter = Counter(
-                count: .zero,
-                date: date
+        ).first?.counters?.append(newCounter)
+        try modelContext.save()
+        return newCounter.id
+    }
+
+    func delete(ids: [PersistentIdentifier?]) throws {
+        for id in ids {
+            guard let id else {
+                return
+            }
+            modelContext.delete(modelContext.model(for: id))
+        }
+        try modelContext.save()
+    }
+
+    func fetchCategoryID(title: String) throws -> Category.ID? {
+        try modelContext.fetch(
+            FetchDescriptor<Category>(
+                predicate: #Predicate {
+                    $0.title == title
+                }
             )
-            category?.counters?.append(newCounter)
-            try modelContext.save()
-            return newCounter.persistentModelID
-        }
-        /// Delete duplicate counters while initializing new array without first item in counters array
-        if let duplicateCounters = category?.counters?.lazy.dropFirst() {
-            try delete(ids: Array(duplicateCounters.lazy.map(\.persistentModelID)))
-        }
-        return counter.persistentModelID
+        ).first?.id
+    }
+
+    func fetchCounterID(
+        categoryID: Category.ID,
+        date: Date
+    ) throws -> Counter.ID? {
+        try modelContext.fetch(
+            FetchDescriptor<Category>(
+                predicate: #Predicate {
+                    $0.id == categoryID
+                }
+            )
+        ).first?.counters?.lazy.first { $0.date == date.toDateWithoutTime }?.id
     }
 }

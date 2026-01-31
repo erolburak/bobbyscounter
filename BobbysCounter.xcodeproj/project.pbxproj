@@ -54,6 +54,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		BF32AE3C2F2C10BE00F72841 /* Exceptions for "BobbysCounter" folder in "BobbysCounterUITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Entity/Accessibility.swift,
+			);
+			target = BF2C45512A4B3EBA00D48C36 /* BobbysCounterUITests */;
+		};
 		BFA3D1092D2EBD5900077763 /* Exceptions for "BobbysCounter" folder in "BobbysCounter" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -66,6 +73,7 @@
 		BFA3D10A2D2EBD5900077763 /* Exceptions for "BobbysCounter" folder in "BobbysCounterTests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Entity/Accessibility.swift,
 				Entity/Alert.swift,
 				Entity/Category.swift,
 				Entity/CategoryActor.swift,
@@ -111,6 +119,7 @@
 			exceptions = (
 				BFA3D1092D2EBD5900077763 /* Exceptions for "BobbysCounter" folder in "BobbysCounter" target */,
 				BFA3D10A2D2EBD5900077763 /* Exceptions for "BobbysCounter" folder in "BobbysCounterTests" target */,
+				BF32AE3C2F2C10BE00F72841 /* Exceptions for "BobbysCounter" folder in "BobbysCounterUITests" target */,
 				BFA3D10B2D2EBD5900077763 /* Exceptions for "BobbysCounter" folder in "BobbysCounterWidget" target */,
 			);
 			path = BobbysCounter;

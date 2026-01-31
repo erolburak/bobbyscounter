@@ -2,7 +2,110 @@
   "sourceLanguage" : "en",
   "strings" : {
     "%@" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
+    },
+    "Add" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hinzufügen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add"
+          }
+        }
+      }
+    },
+    "AddCategory" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategorie hinzufügen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add category"
+          }
+        }
+      }
+    },
+    "AddDescription" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieser Kurzbefehl fügt den heutigen Zähler hinzu"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This shortcut will add today's counter"
+          }
+        }
+      }
+    },
+    "AddDialog" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Okay, füge den heutigen Zähler hinzu."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Okay, adding today's counter."
+          }
+        }
+      }
+    },
+    "AddDialogError" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heutigen Zähler hinzufügen fehlgeschlagen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adding today's counter failed."
+          }
+        }
+      }
+    },
+    "AddTitle" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zähler hinzufügen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add counter"
+          }
+        }
+      }
     },
     "Average" : {
       "localizations" : {
@@ -37,10 +140,36 @@
       }
     },
     "BobbysCounterWidgetConfigurationIntentDescription" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wähle eine valide Kategorie für dieses Widget aus."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select a valid category for this widget."
+          }
+        }
+      }
     },
     "BobbysCounterWidgetConfigurationIntentTitle" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategorie"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Category"
+          }
+        }
+      }
     },
     "Categories" : {
       "localizations" : {
@@ -74,50 +203,34 @@
         }
       }
     },
-    "CategoryAlertTitlePlaceholder" : {
+    "CategoryAlert" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Titel"
+            "value" : "Kategorie"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Title"
+            "value" : "Category"
           }
         }
       }
     },
-    "CategoryEditAlert" : {
+    "CategoryAlertPlaceholder" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kategorie bearbeiten"
+            "value" : "Gültige Kategorie hinzufügen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Edit category"
-          }
-        }
-      }
-    },
-    "CategoryInsertAlert" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kategorie hinzufügen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Insert category"
+            "value" : "Add valid category"
           }
         }
       }
@@ -202,6 +315,22 @@
         }
       }
     },
+    "DecrementDialogError" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heutigen Zähler verringern fehlgeschlagen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Decrementing today's counter failed."
+          }
+        }
+      }
+    },
     "DecrementNegative" : {
       "localizations" : {
         "de" : {
@@ -250,6 +379,22 @@
         }
       }
     },
+    "DeleteCategoriesConfirmationDialog" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle Kategorien, einschließlich aller Zähler, werden gelöscht."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All categories, including all counters, will be deleted."
+          }
+        }
+      }
+    },
     "DeleteCategoryConfirmationDialog" : {
       "localizations" : {
         "de" : {
@@ -278,6 +423,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Counter will be deleted."
+          }
+        }
+      }
+    },
+    "DeleteCountersConfirmationDialog" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle Zähler werden gelöscht."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All counters will be deleted."
           }
         }
       }
@@ -335,29 +496,61 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zum Hinzufügen von Zählern eine Kategorie hinzufügen."
+            "value" : "Füge eine valide Kategorie zum Hinzufügen von Zählern hinzu."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Insert a category to insert counters."
+            "value" : "Add a valid category to add counters."
           }
         }
       }
     },
-    "EmptyCategoryInsertTitle" : {
+    "EmptyCategoryAddTitle" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Keine Kategorie hinzugefügt"
+            "value" : "Keine Kategorie"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No category inserted"
+            "value" : "No category"
+          }
+        }
+      }
+    },
+    "EmptyCategoryMessageWidget" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wähle eine valide Kategorie in den Widget Einstellungen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select a valid category in the widget settings."
+          }
+        }
+      }
+    },
+    "EmptyCategoryWidget" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine Kategorie"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No category"
           }
         }
       }
@@ -405,7 +598,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Insert a counter to decrement or increment."
+            "value" : "Add a counter to decrement or increment."
           }
         }
       }
@@ -437,39 +630,39 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Counters for at least 1 day must be inserted."
+            "value" : "Counters for at least 1 day must be added."
           }
         }
       }
     },
-    "ErrorDescriptionCategoryDuplicate" : {
+    "ErrorDescriptionAddCategory" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kategorie Duplikat"
+            "value" : "Kategorie hinzufügen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Category duplicate"
+            "value" : "Add category"
           }
         }
       }
     },
-    "ErrorDescriptionCategoryEdit" : {
+    "ErrorDescriptionAddCounter" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kategorie bearbeiten"
+            "value" : "Zähler hinzufügen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Category edit"
+            "value" : "Add counter"
           }
         }
       }
@@ -506,6 +699,22 @@
         }
       }
     },
+    "ErrorDescriptionEditCategory" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategorie bearbeiten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit category"
+          }
+        }
+      }
+    },
     "ErrorDescriptionFetch" : {
       "localizations" : {
         "de" : {
@@ -522,6 +731,22 @@
         }
       }
     },
+    "ErrorDescriptionFetchWidget" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Widget Abfrage"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fetch widget"
+          }
+        }
+      }
+    },
     "ErrorDescriptionIncrement" : {
       "localizations" : {
         "de" : {
@@ -534,22 +759,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Increment"
-          }
-        }
-      }
-    },
-    "ErrorDescriptionInsert" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hinzufügen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Insert"
           }
         }
       }
@@ -586,34 +795,34 @@
         }
       }
     },
-    "ErrorRecoverySuggestionCategoryDuplicate" : {
+    "ErrorRecoverySuggestionAddCategory" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kategorie hinzufügen fehlgeschlagen. Kategorie mit diesem Titel existiert bereits. Bitte versuche es erneut mit einem anderen Titel."
+            "value" : "Kategorie hinzufügen fehlgeschlagen. Bitte versuche es erneut mit einem anderen Titel, falls Kategorie mit diesem Titel bereits existiert."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Failed to insert category. Category with this title already exists. Please try again with another title."
+            "value" : "Failed to add category. Please try again with different title if category with this title already exists."
           }
         }
       }
     },
-    "ErrorRecoverySuggestionCategoryEdit" : {
+    "ErrorRecoverySuggestionAddCounter" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kategorie bearbeiten fehlgeschlagen. Bitte versuche es erneut mit einem anderen Titel."
+            "value" : "Zähler hinzufügen fehlgeschlagen. Bitte versuche es erneut."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Failed to edit category. Please try again with another title."
+            "value" : "Failed to add counter. Please try again."
           }
         }
       }
@@ -646,6 +855,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Failed to decrement negative. Please try again."
+          }
+        }
+      }
+    },
+    "ErrorRecoverySuggestionEditCategory" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategorie bearbeiten fehlgeschlagen. Bitte versuche es erneut mit einem anderen Titel, falls Kategorie mit diesem Titel bereits existiert."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed to edit category. Please try again with different title if category with this title already exists."
           }
         }
       }
@@ -683,6 +908,22 @@
         }
       }
     },
+    "ErrorRecoverySuggestionFetchWidget" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Widget Abfrage fehlgeschlagen. Bitte versuche es erneut."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed to fetch widget. Please try again."
+          }
+        }
+      }
+    },
     "ErrorRecoverySuggestionIncrement" : {
       "localizations" : {
         "de" : {
@@ -695,22 +936,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Failed to increment. Please try again."
-          }
-        }
-      }
-    },
-    "ErrorRecoverySuggestionInsert" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hinzufügen fehlgeschlagen. Bitte versuche es erneut."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Failed to insert. Please try again."
           }
         }
       }
@@ -779,6 +1004,22 @@
         }
       }
     },
+    "IncrementDialogError" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heutigen Zähler erhöhen fehlgeschlagen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Incrementing today's counter failed."
+          }
+        }
+      }
+    },
     "IncrementTitle" : {
       "localizations" : {
         "de" : {
@@ -791,86 +1032,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Increment counter"
-          }
-        }
-      }
-    },
-    "Insert" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hinzufügen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Insert"
-          }
-        }
-      }
-    },
-    "InsertCategory" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kategorie hinzufügen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Insert category"
-          }
-        }
-      }
-    },
-    "InsertDescription" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dieser Kurzbefehl fügt den heutigen Zähler hinzu"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "This shortcut will insert today's counter"
-          }
-        }
-      }
-    },
-    "InsertDialog" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Okay, füge den heutigen Zähler hinzu."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Okay, inserting today's counter."
-          }
-        }
-      }
-    },
-    "InsertTitle" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Füge Zähler hinzu"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Insert counter"
           }
         }
       }
@@ -925,34 +1086,18 @@
         }
       }
     },
-    "ResetCategoriesConfirmationDialog" : {
+    "ResetConfirmationDialog" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Alle Kategorien, einschließlich aller Zähler, werden gelöscht."
+            "value" : "Gespeicherte Daten auf allen Geräten werden gelöscht und die App wird zurückgesetzt."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "All categories, including all counters, will be deleted."
-          }
-        }
-      }
-    },
-    "ResetCountersConfirmationDialog" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Alle Zähler werden gelöscht."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "All counters will be deleted."
+            "value" : "Saved data on all devices will be deleted and the app will be reset."
           }
         }
       }
@@ -1081,6 +1226,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "View and edit average, all categories, all counters, chart, selected date, negative decrement and step."
+          }
+        }
+      }
+    },
+    "Title" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Titel"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Titel"
           }
         }
       }

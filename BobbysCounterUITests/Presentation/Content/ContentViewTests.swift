@@ -18,7 +18,6 @@ final class ContentViewTests: XCTestCase {
     func testContentView() {
         /// Launch app
         let app = XCUIApplication().appLaunch()
-        app.checkDateText(with: app)
         incrementCount(with: app)
         decrementCount(with: app)
     }
