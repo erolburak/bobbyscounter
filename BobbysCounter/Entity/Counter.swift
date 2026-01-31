@@ -88,15 +88,13 @@ final class Counter {
     }
 }
 
-#if DEBUG
-    extension Counter {
-        // MARK: - Properties
+extension Counter {
+    // MARK: - Properties
 
-        static var preview: Counter {
-            Counter(
-                count: 1,
-                date: .now
-            )
-        }
+    static var preview: Counter {
+        Counter(
+            count: 1,
+            date: .now
+        )
     }
-#endif
+}
