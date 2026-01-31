@@ -13,12 +13,11 @@ struct ChartView: View {
     // MARK: - Private Properties
 
     @Environment(Sensory.self) private var sensory
-    @Query(
-        sort: \Counter.date,
-        order: .reverse
-    ) private var counters: [Counter]
     @State private var chartScrollPosition = Date.now
     @State private var selectedPointMarkDate: Date?
+    private var counters: [Counter] {
+        selected.category?.countersSorted ?? []
+    }
 
     // MARK: - Properties
 
@@ -70,9 +69,13 @@ struct ChartView: View {
                     let selectedPointMarkCounter = selectedPointMarkCounter(counters: counters)
                 {
                     Text(selectedPointMarkCounter.count.description)
-                        .monospaced()
-                        .font(.title)
-                        .fontWeight(.black)
+                        .font(
+                            .system(
+                                .title,
+                                weight: .black
+                            )
+                        )
+                        .monospacedDigit()
                         .onAppear {
                             sensory.feedback(feedback: .press(.button))
                         }
@@ -102,7 +105,7 @@ struct ChartView: View {
             }
             chartScrollPosition = dateMinusOne
         }
-        .accessibilityIdentifier("Chart")
+        .accessibilityIdentifier(Accessibility.chart.id)
     }
 
     // MARK: - Methods
@@ -132,8 +135,4 @@ struct ChartView: View {
 #Preview {
     ChartView(selected: Selected())
         .environment(Sensory())
-        .modelContainer(
-            for: [Counter.self],
-            inMemory: true
-        )
 }

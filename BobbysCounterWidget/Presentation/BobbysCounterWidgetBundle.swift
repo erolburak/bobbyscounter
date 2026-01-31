@@ -12,9 +12,9 @@ struct BobbysCounterWidgetBundle: WidgetBundle {
     // MARK: - Layouts
 
     var body: some Widget {
+        BobbysCounterAddControlWidget()
+        BobbysCounterDecrementControlWidget()
+        BobbysCounterIncrementControlWidget()
         BobbysCounterWidget()
-        BobbysCounterDecreaseControlWidget()
-        BobbysCounterIncreaseControlWidget()
-        BobbysCounterInsertControlWidget()
     }
 }

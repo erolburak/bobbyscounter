@@ -1,5 +1,5 @@
 //
-//  BobbysCounterInsertControlWidget.swift
+//  BobbysCounterAddControlWidget.swift
 //  BobbysCounterWidget
 //
 //  Created by Burak Erol on 16.04.25.
@@ -8,23 +8,23 @@
 import SwiftUI
 import WidgetKit
 
-struct BobbysCounterInsertControlWidget: ControlWidget {
+struct BobbysCounterAddControlWidget: ControlWidget {
     // MARK: - Private Properties
 
-    private let kind = "BobbysCounterInsertControlWidget"
+    private let kind = "BobbysCounterAddControlWidget"
 
     // MARK: - Layouts
 
     var body: some ControlWidgetConfiguration {
         StaticControlConfiguration(kind: kind) {
-            ControlWidgetButton(action: InsertIntent()) {
+            ControlWidgetButton(action: AddIntent()) {
                 Label(
-                    "InsertTitle",
+                    "AddTitle",
                     systemImage: "plus"
                 )
             }
         }
-        .displayName("InsertTitle")
-        .description("InsertDescription")
+        .displayName("AddTitle")
+        .description("AddDescription")
     }
 }

@@ -5,22 +5,34 @@
 //  Created by Burak Erol on 05.09.23.
 //
 
-import Foundation
 import Testing
 
 @Suite("Counter tests")
 struct CounterTests {
     // MARK: - Methods
 
+    @Test("Check Counter add!")
+    func add() async throws {
+        // Given
+        let category = Category.mock
+        // When
+        let id = try await Counter.add(
+            categoryID: category.id,
+            date: .now
+        )
+        // Then
+        #expect(
+            id != nil,
+            "Counter add failed!"
+        )
+    }
+
     @Test("Check Counter initializing!")
     func counter() {
         // Given
         let counter: Counter?
         // When
-        counter = Counter(
-            count: .zero,
-            date: .now
-        )
+        counter = Category.mock.counters?.first
         // Then
         #expect(
             counter != nil,
@@ -28,85 +40,76 @@ struct CounterTests {
         )
     }
 
-    @Test("Check Counter decrease!")
-    func decrease() throws {
+    @Test("Check Counter decrement!")
+    func decrement() throws {
         // Given
-        let counter = Counter(
-            count: 1,
-            date: .now
-        )
+        let counter = Category.mock.counters?.first
+        try counter?.increment()
         // When
-        try counter.decrease()
+        try counter?.decrement()
         // Then
         #expect(
-            counter.count == .zero,
-            "Counter decrease failed!"
+            counter?.count == 0,
+            "Counter decrement failed!"
         )
     }
 
-    @Test("Check Counter decrease with zero!")
-    func decreaseWithZero() throws {
+    @Test("Check Counter delete!")
+    func delete() async throws {
         // Given
-        let counter = Counter(
-            count: .zero,
-            date: .now
+        let id = try await CategoryActor.shared.addCategory(
+            decrementNegative: false,
+            step: .one,
+            title: "Delete"
         )
-        // When
-        try counter.decrease()
         // Then
-        #expect(
-            counter.count == .zero,
-            "Counter decrease with zero failed!"
-        )
-    }
-
-    @Test("Check Counter increase!")
-    func increase() throws {
-        // Given
-        let counter = Counter(
-            count: .zero,
-            date: .now
-        )
-        // When
-        try counter.increase()
-        // Then
-        #expect(
-            counter.count == 1,
-            "Counter increase failed!"
-        )
+        await #expect(
+            throws: Never.self,
+            "Counter delete failed!"
+        ) {
+            try await Counter.delete(ids: [id])
+        }
     }
 
     @Test("Check Counter fetch!")
     func fetch() async throws {
         // Given
-        let date =
-            Calendar.current.date(
-                byAdding: DateComponents(day: +1),
-                to: .now
-            ) ?? .now
+        let category = Category.mock
         // When
-        let counter = try await Counter.fetch(date: date)
+        let id = try await Counter.fetch(
+            categoryID: category.id,
+            date: .now
+        )
         // Then
         #expect(
-            counter == nil,
+            id == nil,
             "Counter fetch failed!"
         )
     }
 
-    @Test("Check Counter insert!")
-    func insert() async throws {
+    @Test("Check Counter increment!")
+    func increment() throws {
         // Given
-        let date =
-            Calendar.current.date(
-                byAdding: DateComponents(day: -2),
-                to: .now
-            ) ?? .now
+        let counter = Category.mock.counters?.first
         // When
-        let id = try await Counter.insert(date: date)
+        try counter?.increment()
         // Then
         #expect(
-            id != nil,
-            "Counter insert failed!"
+            counter?.count == 1,
+            "Counter increment failed!"
+        )
+    }
+
+    @Test("Check Counter resetCount!")
+    func resetCount() throws {
+        // Given
+        let counter = Category.mock.counters?.first
+        // When
+        try counter?.resetCount()
+        // Then
+        #expect(
+            counter?.count == .zero,
+            "Counter resetCount failed!"
         )
     }
 }

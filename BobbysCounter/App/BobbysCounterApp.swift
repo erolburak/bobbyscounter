@@ -51,7 +51,7 @@ struct BobbysCounterApp: App {
                         try? Tips.configure(tipsConfigurationOptions)
                     #endif
                 }
-                .modelContainer(CounterActor.shared.modelContainer)
+                .modelContainer(CategoryActor.shared.modelContainer)
         }
     }
 }

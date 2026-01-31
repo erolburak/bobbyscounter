@@ -1,5 +1,5 @@
 //
-//  BobbysCounterIncreaseControlWidget.swift
+//  BobbysCounterIncrementControlWidget.swift
 //  BobbysCounterWidget
 //
 //  Created by Burak Erol on 16.04.25.
@@ -8,23 +8,23 @@
 import SwiftUI
 import WidgetKit
 
-struct BobbysCounterIncreaseControlWidget: ControlWidget {
+struct BobbysCounterIncrementControlWidget: ControlWidget {
     // MARK: - Private Properties
 
-    private let kind = "BobbysCounterIncreaseControlWidget"
+    private let kind = "BobbysCounterIncrementControlWidget"
 
     // MARK: - Layouts
 
     var body: some ControlWidgetConfiguration {
         StaticControlConfiguration(kind: kind) {
-            ControlWidgetButton(action: IncreaseIntent()) {
+            ControlWidgetButton(action: IncrementIntent()) {
                 Label(
-                    "IncreaseTitle",
+                    "IncrementTitle",
                     systemImage: "plus"
                 )
             }
         }
-        .displayName("IncreaseTitle")
-        .description("IncreaseDescription")
+        .displayName("IncrementTitle")
+        .description("IncrementDescription")
     }
 }

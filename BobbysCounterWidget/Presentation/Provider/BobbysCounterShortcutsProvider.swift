@@ -14,32 +14,32 @@ struct BobbysCounterShortcutsProvider: AppShortcutsProvider {
 
     static var appShortcuts: [AppShortcut] {
         AppShortcut(
-            intent: DecreaseIntent(),
+            intent: AddIntent(),
             phrases: [
-                "\(.applicationName) decrease",
-                "\(.applicationName) verringern",
+                "\(.applicationName) add",
+                "\(.applicationName) hinzufügen",
             ],
-            shortTitle: "DecreaseTitle",
-            systemImageName: "minus"
-        )
-
-        AppShortcut(
-            intent: IncreaseIntent(),
-            phrases: [
-                "\(.applicationName) increase",
-                "\(.applicationName) erhöhen",
-            ],
-            shortTitle: "IncreaseTitle",
+            shortTitle: "AddTitle",
             systemImageName: "plus"
         )
 
         AppShortcut(
-            intent: InsertIntent(),
+            intent: DecrementIntent(),
             phrases: [
-                "\(.applicationName) insert",
-                "\(.applicationName) hinzufügen",
+                "\(.applicationName) decrement",
+                "\(.applicationName) verringern",
             ],
-            shortTitle: "InsertTitle",
+            shortTitle: "DecrementTitle",
+            systemImageName: "minus"
+        )
+
+        AppShortcut(
+            intent: IncrementIntent(),
+            phrases: [
+                "\(.applicationName) increment",
+                "\(.applicationName) erhöhen",
+            ],
+            shortTitle: "IncrementTitle",
             systemImageName: "plus"
         )
     }

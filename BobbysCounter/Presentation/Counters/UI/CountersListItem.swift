@@ -41,8 +41,13 @@ struct CountersListItem: View {
                 Spacer()
 
                 Text(counter.count.description)
-                    .monospaced()
-                    .fontWeight(.black)
+                    .font(
+                        .system(
+                            .callout,
+                            weight: .black
+                        )
+                    )
+                    .monospacedDigit()
                     .lineLimit(1)
             }
         }
@@ -54,9 +59,10 @@ struct CountersListItem: View {
             allowsFullSwipe: true
         ) {
             DeleteButton(counter: counter)
+                .accessibilityIdentifier(Accessibility.deleteCounterButtonSwipeAction.id)
         }
         .confirmationDialog(
-            "DeleteConfirmationDialog",
+            "DeleteCounterConfirmationDialog",
             isPresented: $showDeleteConfirmationDialog,
             titleVisibility: .visible
         ) {
@@ -65,26 +71,16 @@ struct CountersListItem: View {
                     return
                 }
                 Task {
-                    try await CounterActor.shared.delete(ids: [counterDelete.persistentModelID])
+                    try await Counter.delete(ids: [counterDelete.id])
+                    sensory.feedback(feedback: .success)
                     if counterDelete == selected.counter {
-                        do {
-                            selected.counter = try await Counter.fetch(date: .now)
-                            selected.date = .now.toDateWithoutTime ?? .now
-                            sensory.feedback(feedback: .success)
-                            dismiss()
-                        } catch {
-                            alert.error = .fetch
-                            alert.show = true
-                            sensory.feedback(feedback: .error)
-                        }
-                    } else {
-                        sensory.feedback(feedback: .success)
+                        selected.counter = nil
                     }
                 }
             }
-            .accessibilityIdentifier("DeleteConfirmationDialogButton")
+            .accessibilityIdentifier(Accessibility.deleteCounterButtonConfirmationDialog.id)
         }
-        .accessibilityIdentifier("CountersListItem")
+        .accessibilityIdentifier(Accessibility.countersListItem.id)
     }
 
     private func DeleteButton(counter: Counter) -> some View {
@@ -97,7 +93,6 @@ struct CountersListItem: View {
             sensory.feedback(feedback: .press(.button))
         }
         .tint(.red)
-        .accessibilityIdentifier("DeleteButton")
     }
 }
 
@@ -106,16 +101,10 @@ struct CountersListItem: View {
         List {
             CountersListItem(
                 selected: Selected(),
-                counter: Counter(
-                    count: .zero,
-                    date: .now)
+                counter: .preview
             ) {}
             .environment(Alert())
             .environment(Sensory())
-            .modelContainer(
-                for: [Counter.self],
-                inMemory: true
-            )
         }
     }
 }

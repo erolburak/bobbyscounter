@@ -1,30 +1,31 @@
 //
-//  CountersView.swift
+//  CategoriesView.swift
 //  BobbysCounter
 //
-//  Created by Burak Erol on 13.12.23.
+//  Created by Burak Erol on 26.01.26.
 //
 
 import SwiftData
 import SwiftUI
 
-struct CountersView: View {
+struct CategoriesView: View {
     // MARK: - Private Properties
 
     @Environment(Alert.self) private var alert
     @Environment(Sensory.self) private var sensory
+    @Query(
+        sort: \Category.title,
+        order: .forward
+    ) private var categories: [Category]
     @State private var showDeleteConfirmationDialog = false
-    private var counters: [Counter] {
-        selected.category?.countersSorted ?? []
-    }
-    private var countersWithoutSelectedDate: [Counter] {
-        counters.lazy.filter { $0.date != selected.date }
+    private var categoriesWithoutSelectedCategory: [Category] {
+        categories.lazy.filter { $0.title != selected.category?.title }
     }
 
     // MARK: - Properties
 
     @Bindable var selected: Selected
-    @Binding var showCountersSheet: Bool
+    @Binding var showCategoriesSheet: Bool
     let dismiss: () -> Void
 
     // MARK: - Layouts
@@ -32,31 +33,31 @@ struct CountersView: View {
     var body: some View {
         NavigationStack {
             Group {
-                if !counters.isEmpty {
+                if !categories.isEmpty {
                     List {
-                        if let counter = selected.counter {
+                        if let category = selected.category {
                             Section {
-                                CountersListItem(
+                                CategoriesListItem(
                                     selected: selected,
-                                    counter: counter,
+                                    category: category,
                                     dismiss: dismiss
                                 )
                             } header: {
-                                Text("SelectedCounter")
+                                Text("SelectedCategory")
                             }
                         }
 
-                        if !countersWithoutSelectedDate.isEmpty {
+                        if !categoriesWithoutSelectedCategory.isEmpty {
                             Section {
-                                ForEach(countersWithoutSelectedDate) {
-                                    CountersListItem(
+                                ForEach(categoriesWithoutSelectedCategory) { category in
+                                    CategoriesListItem(
                                         selected: selected,
-                                        counter: $0,
+                                        category: category,
                                         dismiss: dismiss
                                     )
                                 }
                             } header: {
-                                Text("Counters")
+                                Text("Categories")
                             }
                         }
                     }
@@ -64,11 +65,11 @@ struct CountersView: View {
                 } else {
                     ContentUnavailableView {
                         Label(
-                            "EmptyCounters",
-                            systemImage: "square.stack.3d.up"
+                            "EmptyCategories",
+                            systemImage: "square.stack.3d.down.right"
                         )
                     } description: {
-                        Text("EmptyCountersMessage")
+                        Text("EmptyCategoriesMessage")
                     }
                     .symbolEffect(
                         .bounce,
@@ -77,7 +78,7 @@ struct CountersView: View {
                     .symbolVariant(.fill)
                 }
             }
-            .navigationTitle("Counters")
+            .navigationTitle("Categories")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .destructiveAction) {
@@ -85,10 +86,10 @@ struct CountersView: View {
                         showDeleteConfirmationDialog = true
                         sensory.feedback(feedback: .press(.button))
                     }
-                    .disabled(counters.isEmpty)
+                    .disabled(categories.isEmpty)
                     .tint(.red)
                     .confirmationDialog(
-                        "DeleteCountersConfirmationDialog",
+                        "DeleteCategoriesConfirmationDialog",
                         isPresented: $showDeleteConfirmationDialog,
                         titleVisibility: .visible
                     ) {
@@ -97,29 +98,23 @@ struct CountersView: View {
                             role: .destructive
                         ) {
                             Task {
-                                do {
-                                    try await Counter.delete(ids: counters.lazy.map(\.id))
-                                    sensory.feedback(feedback: .success)
-                                    selected.counter = nil
-                                    dismiss()
-                                } catch {
-                                    alert.error = .fetch
-                                    alert.show = true
-                                    sensory.feedback(feedback: .error)
-                                }
+                                try await Category.delete(ids: categories.lazy.map(\.id))
+                                sensory.feedback(feedback: .success)
+                                selected.category = nil
+                                dismiss()
                             }
                         }
                         .accessibilityIdentifier(
-                            Accessibility.deleteCountersButtonConfirmationDialog.id)
+                            Accessibility.deleteCategoriesButtonConfirmationDialog.id)
                     }
-                    .accessibilityIdentifier(Accessibility.deleteCountersButton.id)
+                    .accessibilityIdentifier(Accessibility.deleteCategoriesButton.id)
                 }
 
                 ToolbarItem(placement: .cancellationAction) {
                     Button(role: .cancel) {
-                        showCountersSheet = false
+                        showCategoriesSheet = false
                     }
-                    .accessibilityIdentifier(Accessibility.closeCountersButton.id)
+                    .accessibilityIdentifier(Accessibility.closeCategoriesButton.id)
                 }
             }
         }
@@ -127,11 +122,15 @@ struct CountersView: View {
     }
 }
 
-#Preview("CountersView") {
-    CountersView(
+#Preview("CategoriesView") {
+    CategoriesView(
         selected: Selected(),
-        showCountersSheet: .constant(true)
+        showCategoriesSheet: .constant(true)
     ) {}
     .environment(Alert())
     .environment(Sensory())
+    .modelContainer(
+        for: [Category.self],
+        inMemory: true
+    )
 }

@@ -18,16 +18,15 @@ final class ContentViewTests: XCTestCase {
     func testContentView() {
         /// Launch app
         let app = XCUIApplication().appLaunch()
-        app.checkDateText(with: app)
-        increaseCount(with: app)
-        decreaseCount(with: app)
+        incrementCount(with: app)
+        decrementCount(with: app)
     }
 
     @MainActor
-    private func decreaseCount(with app: XCUIApplication) {
+    private func decrementCount(with app: XCUIApplication) {
         /// Get count
         let count = app.getCount(with: app)
-        /// Decrease count
+        /// Decrement count
         app.buttons["Minus"].waitForExistence().tap()
         /// Compare counts
         XCTAssertEqual(
@@ -37,10 +36,10 @@ final class ContentViewTests: XCTestCase {
     }
 
     @MainActor
-    private func increaseCount(with app: XCUIApplication) {
+    private func incrementCount(with app: XCUIApplication) {
         /// Get count
         let count = app.getCount(with: app)
-        /// Increase count
+        /// Increment count
         app.buttons["Plus"].waitForExistence().tap()
         /// Compare counts
         XCTAssertEqual(

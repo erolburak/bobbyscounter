@@ -12,6 +12,7 @@ import SwiftData
 final class Counter {
     // MARK: - Properties
 
+    var category: Category?
     var count = 0
     var date: Date?
 
@@ -27,30 +28,75 @@ final class Counter {
 
     // MARK: - Methods
 
-    func decrease() throws {
-        if count > .zero {
-            count -= 1
-            try modelContext?.save()
+    func decrement() throws {
+        guard let step = category?.step?.rawValue else {
+            throw Errors.step
         }
-    }
-
-    func increase() throws {
-        count += 1
+        if category?.decrementNegative == false,
+            count - step < .zero
+        {
+            throw Errors.decrement
+        }
+        count -= step
         try modelContext?.save()
     }
 
-    static func fetch(date: Date) async throws -> Counter? {
-        guard let id = try await CounterActor.shared.fetchID(date: date) else {
-            return nil
+    func increment() throws {
+        guard let step = category?.step?.rawValue else {
+            throw Errors.step
         }
-        let modelContext = ModelContext(CounterActor.shared.modelContainer)
-        return modelContext.model(for: id) as? Counter
+        count += step
+        try modelContext?.save()
+    }
+
+    func resetCount() throws {
+        count = .zero
+        try modelContext?.save()
     }
 
     @discardableResult
-    static func insert(date: Date) async throws -> Counter? {
-        let id = try await CounterActor.shared.insert(date: date)
-        let modelContext = ModelContext(CounterActor.shared.modelContainer)
-        return modelContext.model(for: id) as? Counter
+    static func add(
+        categoryID: Category.ID,
+        date: Date
+    ) async throws -> Counter? {
+        let counterID = try await CategoryActor.shared.addCounter(
+            categoryID: categoryID,
+            date: date
+        )
+        let modelContext = ModelContext(CategoryActor.shared.modelContainer)
+        return modelContext.model(for: counterID) as? Counter
+    }
+
+    static func delete(ids: [Counter.ID]) async throws {
+        try await CategoryActor.shared.delete(ids: ids)
+    }
+
+    static func fetch(
+        categoryID: Category.ID,
+        date: Date
+    ) async throws -> Counter? {
+        guard
+            let counterID = try await CategoryActor.shared.fetchCounterID(
+                categoryID: categoryID,
+                date: date
+            )
+        else {
+            return nil
+        }
+        let modelContext = ModelContext(CategoryActor.shared.modelContainer)
+        return modelContext.model(for: counterID) as? Counter
     }
 }
+
+#if DEBUG
+    extension Counter {
+        // MARK: - Properties
+
+        static var preview: Counter {
+            Counter(
+                count: 1,
+                date: .now
+            )
+        }
+    }
+#endif

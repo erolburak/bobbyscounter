@@ -1,5 +1,5 @@
 //
-//  BobbysCounterWidget.swift
+//  BobbysCounterControlWidget.swift
 //  BobbysCounterWidget
 //
 //  Created by Burak Erol on 06.07.23.
@@ -16,8 +16,9 @@ struct BobbysCounterWidget: Widget {
     // MARK: - Layouts
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(
+        AppIntentConfiguration(
             kind: kind,
+            intent: BobbysCounterWidgetConfigurationIntent.self,
             provider: BobbysCounterWidgetProvider()
         ) {
             BobbysCounterWidgetEntryView(entry: $0)
@@ -25,7 +26,6 @@ struct BobbysCounterWidget: Widget {
                     .widgetBackground,
                     for: .widget
                 )
-                .modelContainer(CounterActor.shared.modelContainer)
         }
         .configurationDisplayName("WidgetConfigurationDisplayName")
         .description("WidgetDescription")
@@ -38,7 +38,7 @@ struct BobbysCounterWidget: Widget {
 ) {
     BobbysCounterWidget()
 } timeline: {
-    BobbysCounterWidgetEntry()
+    BobbysCounterWidgetEntry(categoryEntity: CategoryEntity.preview)
 }
 
 #Preview(
@@ -47,7 +47,7 @@ struct BobbysCounterWidget: Widget {
 ) {
     BobbysCounterWidget()
 } timeline: {
-    BobbysCounterWidgetEntry()
+    BobbysCounterWidgetEntry(categoryEntity: CategoryEntity.preview)
 }
 
 #Preview(
@@ -56,7 +56,7 @@ struct BobbysCounterWidget: Widget {
 ) {
     BobbysCounterWidget()
 } timeline: {
-    BobbysCounterWidgetEntry()
+    BobbysCounterWidgetEntry(categoryEntity: CategoryEntity.preview)
 }
 
 #Preview(
@@ -65,5 +65,5 @@ struct BobbysCounterWidget: Widget {
 ) {
     BobbysCounterWidget()
 } timeline: {
-    BobbysCounterWidgetEntry()
+    BobbysCounterWidgetEntry(categoryEntity: CategoryEntity.preview)
 }

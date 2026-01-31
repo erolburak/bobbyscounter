@@ -5,26 +5,31 @@
 //  Created by Burak Erol on 18.07.23.
 //
 
-import SwiftData
 import SwiftUI
 
 struct BobbysCounterWidgetEntryView: View {
     // MARK: - Private Properties
 
-    @Query(
-        sort: \Counter.date,
-        order: .reverse
-    ) private var counters: [Counter]
-    private var count: Int? {
-        counters.lazy.first { $0.date == .now.toDateWithoutTime }?.count
+    private var count: Int {
+        entry.categoryEntity?.count ?? 0
     }
-
+    private var isDecrementDisabled: Bool {
+        guard let decrementNegative = entry.categoryEntity?.decrementNegative,
+            let step = entry.categoryEntity?.step?.rawValue
+        else {
+            return false
+        }
+        return !decrementNegative && count - step < .zero
+    }
     private var redactedReason: RedactionReasons {
         state == nil ? .placeholder : []
     }
-
     private var state: States? {
-        count == nil ? .empty : .loaded
+        entry.categoryEntity?.title == nil
+            ? .emptyCategory : entry.categoryEntity?.count == nil ? .emptyCounter : .loaded
+    }
+    private var title: String {
+        entry.categoryEntity?.title ?? ""
     }
 
     // MARK: - Properties
@@ -36,76 +41,126 @@ struct BobbysCounterWidgetEntryView: View {
     var body: some View {
         Group {
             switch state {
-            case .empty:
+            case .emptyCategory:
+                ContentUnavailableView {
+                    Label(
+                        "EmptyCategoryWidget",
+                        systemImage: "plus"
+                    )
+                    .imageScale(.small)
+                    .font(.system(.caption))
+                } description: {
+                    Text("EmptyCategoryMessageWidget")
+                        .font(.system(.caption))
+                        .fixedSize(
+                            horizontal: false,
+                            vertical: true
+                        )
+                }
+                .symbolVariant(.fill)
+            case .emptyCounter:
                 ContentUnavailableView {
                     Label(
                         "EmptyCounter",
                         systemImage: "plus"
                     )
                     .imageScale(.small)
-                    .font(.caption)
+                    .font(.system(.caption))
                 } description: {
                     Text("EmptyCounterMessage")
-                        .font(.caption2)
-                        .fixedSize(horizontal: false, vertical: true)
+                        .font(.system(.caption2))
+                        .fixedSize(
+                            horizontal: false,
+                            vertical: true
+                        )
                 } actions: {
                     Button(
-                        "Insert",
-                        intent: InsertIntent()
+                        "Add",
+                        intent: AddIntent(title: title)
                     )
-                    .font(.footnote)
-                    .fontWeight(.bold)
+                    .font(
+                        .system(
+                            .footnote,
+                            weight: .bold
+                        )
+                    )
                     .textCase(.uppercase)
                 }
                 .symbolVariant(.fill)
             default:
-                let count = count ?? .zero
-
                 Text(count.description)
-                    .frame(maxWidth: .infinity)
-                    .monospaced()
-                    .font(.system(size: 1000))
-                    .fontWeight(.black)
+                    .frame(
+                        maxWidth: .infinity,
+                        maxHeight: .infinity
+                    )
+                    .font(
+                        .system(
+                            size: 100,
+                            weight: .black
+                        )
+                    )
+                    .monospacedDigit()
                     .minimumScaleFactor(0.001)
                     .lineLimit(1)
                     .opacity(0.25)
                     .contentTransition(.numericText())
-                    .overlay {
+                    .overlay(alignment: .topLeading) {
+                        VStack(
+                            alignment: .leading,
+                            spacing: .none
+                        ) {
+                            Text(entry.date.toRelative)
+                                .font(
+                                    .system(
+                                        size: 8,
+                                        weight: .semibold
+                                    )
+                                )
+                                .foregroundStyle(.secondary)
+
+                            Text(entry.categoryEntity?.title ?? "")
+                                .font(
+                                    .system(
+                                        size: 10,
+                                        weight: .bold
+                                    )
+                                )
+                                .lineLimit(1)
+                        }
+                    }
+                    .overlay(alignment: .bottom) {
                         HStack {
                             Button(
                                 "Minus",
                                 systemImage: "minus",
-                                intent: DecreaseIntent()
+                                intent: DecrementIntent(title: title)
                             )
-                            .disabled(count <= .zero)
+                            .disabled(isDecrementDisabled)
 
                             Spacer()
 
                             Button(
                                 "Plus",
                                 systemImage: "plus",
-                                intent: IncreaseIntent()
+                                intent: IncrementIntent(title: title)
                             )
                         }
-                        .font(.system(size: 60))
-                        .fontWeight(.heavy)
+                        .font(
+                            .system(
+                                size: 40,
+                                weight: .heavy
+                            )
+                        )
                         .labelStyle(.iconOnly)
                     }
             }
-        }
-        .frame(
-            maxWidth: .infinity,
-            maxHeight: .infinity
-        )
-        .ignoresSafeArea()
-        .overlay(alignment: .topLeading) {
-            Text(entry.date.toRelative)
-                .font(.caption)
-                .fontWeight(.semibold)
         }
         .buttonStyle(.plain)
         .disabled(redactedReason == .placeholder)
         .redacted(reason: redactedReason)
         .widgetAccentable()
+        .widgetURL(
+            URL(string: "bobbyscounter://category?title=\(entry.categoryEntity?.title ?? "")")
+        )
     }
 }

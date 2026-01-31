@@ -12,17 +12,29 @@ import WidgetKit
 struct ContentView: View {
     // MARK: - Private Properties
 
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
     @Environment(\.scenePhase) private var scenePhase
     @Environment(Alert.self) private var alert
     @Environment(Sensory.self) private var sensory
     @Query(
-        sort: \Counter.date,
-        order: .reverse
-    ) private var counters: [Counter]
+        sort: \Category.title,
+        order: .forward
+    ) private var categories: [Category]
+    @State private var categoryAlertTitle: String = ""
     @State private var selected = Selected()
+    @State private var showCategoryAlert = false
     @State private var showSettingsSheet = false
     @State private var state: States = .isLoading
     private let settingsTip = SettingsTip()
+    private var isCategoryAlertDisabled: Bool {
+        categoryAlertTitle.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+    private var isDecrementDisabled: Bool {
+        guard let counter = selected.counter else {
+            return false
+        }
+        return !selected.decrementNegative && counter.count - selected.step.rawValue < .zero
+    }
     private var redactedReason: RedactionReasons {
         state == .isLoading ? .placeholder : []
     }
@@ -33,7 +45,35 @@ struct ContentView: View {
         NavigationStack {
             Group {
                 switch state {
-                case .empty:
+                case .emptyCategory:
+                    ContentUnavailableView {
+                        Label(
+                            "EmptyCategories",
+                            systemImage: "plus"
+                        )
+                    } description: {
+                        Text("EmptyCategoriesMessage")
+                    } actions: {
+                        Button("Add") {
+                            showCategoryAlert = true
+                            sensory.feedback(feedback: .press(.button))
+                        }
+                        .buttonStyle(.glass)
+                        .font(
+                            .system(
+                                .subheadline,
+                                weight: .bold
+                            )
+                        )
+                        .textCase(.uppercase)
+                        .accessibilityIdentifier(Accessibility.showCategoryAddButton.id)
+                    }
+                    .symbolEffect(
+                        .bounce,
+                        options: .nonRepeating
+                    )
+                    .symbolVariant(.fill)
+                case .emptyCounter:
                     ContentUnavailableView {
                         Label(
                             "EmptyCounter",
@@ -42,23 +82,34 @@ struct ContentView: View {
                     } description: {
                         Text("EmptyCounterMessage")
                     } actions: {
-                        Button("Insert") {
+                        Button("Add") {
                             Task {
                                 do {
-                                    selected.counter = try await Counter.insert(date: selected.date)
+                                    guard let categoryID = selected.category?.id
+                                    else {
+                                        throw Errors.addCounter
+                                    }
+                                    selected.counter = try await Counter.add(
+                                        categoryID: categoryID,
+                                        date: selected.date
+                                    )
                                     sensory.feedback(feedback: .success)
                                 } catch {
-                                    alert.error = .insert
+                                    alert.error = .addCounter
                                     alert.show = true
                                     sensory.feedback(feedback: .error)
                                 }
                             }
                         }
                         .buttonStyle(.glass)
-                        .font(.subheadline)
-                        .fontWeight(.bold)
+                        .font(
+                            .system(
+                                .subheadline,
+                                weight: .bold
+                            )
+                        )
                         .textCase(.uppercase)
-                        .accessibilityIdentifier("InsertButton")
+                        .accessibilityIdentifier(Accessibility.addCounterButton.id)
                     }
                     .symbolEffect(
                         .bounce,
@@ -66,29 +117,31 @@ struct ContentView: View {
                     )
                     .symbolVariant(.fill)
                 default:
-                    let count = selected.counter?.count ?? .zero
-
-                    Text(count.description)
+                    Text((selected.counter?.count ?? .zero).description)
                         .frame(
                             maxWidth: .infinity,
                             maxHeight: .infinity
                         )
-                        .monospaced()
-                        .font(.system(size: 1000))
-                        .fontWeight(.black)
+                        .font(
+                            .system(
+                                size: 1000,
+                                weight: .black
+                            )
+                        )
+                        .monospacedDigit()
                         .minimumScaleFactor(0.001)
                         .lineLimit(1)
                         .opacity(0.25)
                         .contentTransition(.numericText())
-                        .overlay {
+                        .overlay(alignment: .bottom) {
                             HStack {
                                 Button {
                                     withAnimation {
                                         do {
-                                            try selected.counter?.decrease()
+                                            try selected.counter?.decrement()
                                             sensory.feedback(feedback: .decrease)
                                         } catch {
-                                            alert.error = .decrease
+                                            alert.error = .decrement
                                             alert.show = true
                                             sensory.feedback(feedback: .error)
                                         }
@@ -100,17 +153,17 @@ struct ContentView: View {
                                     )
                                     .frame(minHeight: 80)
                                 }
-                                .disabled(count <= .zero)
+                                .disabled(isDecrementDisabled)
 
                                 Spacer()
 
                                 Button {
                                     withAnimation {
                                         do {
-                                            try selected.counter?.increase()
+                                            try selected.counter?.increment()
                                             sensory.feedback(feedback: .increase)
                                         } catch {
-                                            alert.error = .increase
+                                            alert.error = .increment
                                             alert.show = true
                                             sensory.feedback(feedback: .error)
                                         }
@@ -125,21 +178,30 @@ struct ContentView: View {
                             }
                             .buttonStyle(.glass)
                             .buttonRepeatBehavior(.enabled)
-                            .font(.system(size: 80))
-                            .fontWeight(.bold)
+                            .font(
+                                .system(
+                                    size: 80,
+                                    weight: .bold
+                                )
+                            )
                             .labelStyle(.iconOnly)
                             .padding()
+                            .padding(.bottom, verticalSizeClass == .compact ? 0 : 120)
                         }
-                        .accessibilityIdentifier("CountText")
+                        .accessibilityIdentifier(Accessibility.countText.id)
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
+            .navigationSubtitle(selected.date.toRelative)
             .toolbar {
                 ToolbarItem(placement: .title) {
-                    Text(selected.date.toRelative)
-                        .font(.caption)
-                        .fontWeight(.semibold)
-                        .accessibilityIdentifier("DateText")
+                    Text(selected.category?.title ?? String(localized: "EmptyCategoryAddTitle"))
+                        .font(
+                            .system(
+                                .caption,
+                                weight: .semibold
+                            )
+                        )
                 }
 
                 ToolbarItem(placement: .bottomBar) {
@@ -152,40 +214,157 @@ struct ContentView: View {
                     .onAppear {
                         SettingsTip.show = true
                     }
-                    .accessibilityIdentifier("SettingsButton")
+                    .accessibilityIdentifier(Accessibility.settingsButton.id)
                 }
+            }
+            .toolbarTitleMenu {
+                Button(
+                    "AddCategory",
+                    systemImage: "square.stack.3d.down.right"
+                ) {
+                    showCategoryAlert = true
+                }
+
+                Picker(
+                    selected.category?.title ?? "EmptyCategoryAddTitle",
+                    selection: $selected.category
+                ) {
+                    ForEach(categories) {
+                        Button($0.title ?? "") {
+                            sensory.feedback(feedback: .selection)
+                        }
+                        .tag($0)
+                    }
+                }
+                .pickerStyle(.automatic)
             }
         }
         .sheet(isPresented: $showSettingsSheet) {
             SettingsView(selected: selected)
         }
-        .disabled(redactedReason == .placeholder)
-        .redacted(reason: redactedReason)
-        .onChange(of: selected.counter) { _, newValue in
-            withAnimation {
-                state = newValue == nil ? .empty : .loaded
-            }
-        }
-        .onChange(of: scenePhase) {
-            switch scenePhase {
-            case .active:
+        .alert(
+            "CategoryAlert",
+            isPresented: $showCategoryAlert
+        ) {
+            TextField(
+                "CategoryAlertPlaceholder",
+                text: $categoryAlertTitle
+            )
+
+            Button(role: .confirm) {
                 Task {
                     do {
-                        guard let counter = try await Counter.fetch(date: selected.date) else {
-                            state = .empty
-                            return
+                        let categoryID = try await Category.add(
+                            decrementNegative: selected.decrementNegative,
+                            step: selected.step,
+                            title: categoryAlertTitle
+                        )
+                        selected.category = categories.first {
+                            $0.id == categoryID
                         }
-                        selected.counter = counter
+                        categoryAlertTitle.removeAll()
+                        sensory.feedback(feedback: .press(.button))
                     } catch {
-                        alert.error = .fetch
+                        categoryAlertTitle.removeAll()
+                        alert.error = .addCategory
                         alert.show = true
                         sensory.feedback(feedback: .error)
                     }
                 }
+            }
+            .disabled(isCategoryAlertDisabled)
+            .accessibilityIdentifier(Accessibility.categoryAlertConfirmButton.id)
+
+            Button(role: .cancel) {
+                categoryAlertTitle.removeAll()
+                sensory.feedback(feedback: .press(.button))
+            }
+        }
+        .disabled(redactedReason == .placeholder)
+        .redacted(reason: redactedReason)
+        .onChange(of: selected.category) {
+            refresh()
+        }
+        .onChange(of: selected.counter) {
+            refresh()
+        }
+        .onChange(of: scenePhase) {
+            switch scenePhase {
+            case .active:
+                refresh()
             case .background:
                 WidgetCenter.shared.reloadAllTimelines()
             default:
                 break
+            }
+        }
+        .onOpenURL { url in
+            let urlComponents = URLComponents(
+                url: url,
+                resolvingAgainstBaseURL: false
+            )
+            guard
+                let categoryTitle = urlComponents?.queryItems?.first(where: { $0.name == "title" })?
+                    .value
+            else {
+                alert.error = .fetchWidget
+                alert.show = true
+                sensory.feedback(feedback: .error)
+                return
+            }
+            selected.category = categories.first { $0.title == categoryTitle }
+            selected.date = .now
+        }
+    }
+
+    private func refresh() {
+        Task {
+            withAnimation {
+                if selected.category == nil {
+                    guard let category = categories.first else {
+                        state = .emptyCategory
+                        return
+                    }
+                    selected.category = category
+                }
+            }
+            guard let categoryID = selected.category?.id else {
+                withAnimation {
+                    state = .emptyCategory
+                }
+                return
+            }
+            do {
+                guard
+                    let counter = try await Counter.fetch(
+                        categoryID: categoryID,
+                        date: selected.date
+                    )
+                else {
+                    withAnimation {
+                        state = .emptyCounter
+                    }
+                    return
+                }
+                withAnimation {
+                    selected.counter = counter
+                }
+            } catch {
+                alert.error = .fetch
+                alert.show = true
+                sensory.feedback(feedback: .error)
+            }
+            withAnimation {
+                selected.decrementNegative = selected.category?.decrementNegative ?? false
+                selected.step = selected.category?.step ?? .one
+                state =
+                    if categories.isEmpty {
+                        .emptyCategory
+                    } else if selected.counter == nil {
+                        .emptyCounter
+                    } else {
+                        .loaded
+                    }
             }
         }
     }
@@ -196,7 +375,7 @@ struct ContentView: View {
         .environment(Alert())
         .environment(Sensory())
         .modelContainer(
-            for: [Counter.self],
+            for: [Category.self],
             inMemory: true
         )
 }

@@ -4,7 +4,7 @@
 BobbysCounter
 
 ## DESCRIPTION
-The **BobbysCounter** app is my own project, which can increase and deacrease a counter value. Such a value can be created for each day. The values entered for the last few days and weeks are visualized in a chart and displayed in a list. The average of the last 7, 30 and 90 counter values is displayed in a separate view. In addition, today's value can be edited in a widget.
+The **BobbysCounter** app is my own project, which can increase and deacrease a categories counter value. Such a value can be created for each day. The values entered for the last few days and weeks are visualized in a chart and displayed in a list. The average of the last 7, 30 and 90 counter values is displayed in a separate view. In addition, today's value can be edited in a widget.
 
 ## SETUP
 - [Xcode](https://developer.apple.com/xcode/)
