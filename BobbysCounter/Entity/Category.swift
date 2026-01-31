@@ -74,7 +74,7 @@ final class Category {
         decrementNegative: Bool,
         step: Steps,
         title: String
-    ) async throws -> Category.ID {
+    ) async throws -> PersistentIdentifier {
         try await CategoryActor.shared.addCategory(
             decrementNegative: decrementNegative,
             step: step,
@@ -82,7 +82,7 @@ final class Category {
         )
     }
 
-    static func delete(ids: [Category.ID]) async throws {
+    static func delete(ids: [PersistentIdentifier]) async throws {
         try await CategoryActor.shared.delete(ids: ids)
     }
 

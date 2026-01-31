@@ -75,7 +75,7 @@ struct CategoriesListItem: View {
                     return
                 }
                 Task {
-                    try await Category.delete(ids: [categoryDelete.id])
+                    try await Category.delete(ids: [categoryDelete.persistentModelID])
                     sensory.feedback(feedback: .success)
                     if categoryDelete == selected.category {
                         selected.category = nil

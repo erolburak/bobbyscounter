@@ -172,7 +172,7 @@ struct SettingsView: View {
                     role: .destructive
                 ) {
                     Task {
-                        try await Category.delete(ids: categories.lazy.map(\.id))
+                        try await Category.delete(ids: categories.lazy.map(\.persistentModelID))
                         selected.average = 7
                         selected.category = nil
                         selected.counter = nil
@@ -235,7 +235,7 @@ struct SettingsView: View {
             .onChange(of: selected.date) { _, newValue in
                 Task {
                     do {
-                        guard let categoryID = selected.category?.id else {
+                        guard let categoryID = selected.category?.persistentModelID else {
                             return
                         }
                         selected.counter = try await Counter.fetch(

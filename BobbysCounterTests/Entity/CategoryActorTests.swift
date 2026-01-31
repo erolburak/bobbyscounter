@@ -40,7 +40,7 @@ struct CategoryActorTests {
             "CategoryActor addCounter failed!"
         ) {
             try await CategoryActor.shared.addCounter(
-                categoryID: category.id,
+                categoryID: category.persistentModelID,
                 date: .now
             )
         }

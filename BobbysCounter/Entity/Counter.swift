@@ -56,7 +56,7 @@ final class Counter {
 
     @discardableResult
     static func add(
-        categoryID: Category.ID,
+        categoryID: PersistentIdentifier,
         date: Date
     ) async throws -> Counter? {
         let counterID = try await CategoryActor.shared.addCounter(
@@ -67,12 +67,12 @@ final class Counter {
         return modelContext.model(for: counterID) as? Counter
     }
 
-    static func delete(ids: [Counter.ID]) async throws {
+    static func delete(ids: [PersistentIdentifier]) async throws {
         try await CategoryActor.shared.delete(ids: ids)
     }
 
     static func fetch(
-        categoryID: Category.ID,
+        categoryID: PersistentIdentifier,
         date: Date
     ) async throws -> Counter? {
         guard

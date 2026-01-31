@@ -15,7 +15,7 @@ struct CategoryTests {
     @Test("Check Category add!")
     func add() async throws {
         // Given
-        let id: Category.ID?
+        let id: PersistentIdentifier?
         // When
         id = try await Category.add(
             decrementNegative: false,

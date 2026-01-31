@@ -85,7 +85,7 @@ struct ContentView: View {
                         Button("Add") {
                             Task {
                                 do {
-                                    guard let categoryID = selected.category?.id
+                                    guard let categoryID = selected.category?.persistentModelID
                                     else {
                                         throw Errors.addCounter
                                     }
@@ -260,7 +260,7 @@ struct ContentView: View {
                             title: categoryAlertTitle
                         )
                         selected.category = categories.first {
-                            $0.id == categoryID
+                            $0.persistentModelID == categoryID
                         }
                         categoryAlertTitle.removeAll()
                         sensory.feedback(feedback: .press(.button))
