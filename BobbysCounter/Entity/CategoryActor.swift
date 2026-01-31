@@ -46,7 +46,7 @@ actor CategoryActor {
         decrementNegative: Bool,
         step: Steps,
         title: String
-    ) throws -> Category.ID {
+    ) throws -> PersistentIdentifier {
         guard
             try modelContext.fetch(
                 FetchDescriptor<Category>(
@@ -67,19 +67,20 @@ actor CategoryActor {
         )
         modelContext.insert(newCategory)
         try modelContext.save()
-        return newCategory.id
+        return newCategory.persistentModelID
     }
 
     @discardableResult
     func addCounter(
-        categoryID: Category.ID,
+        categoryID: PersistentIdentifier,
         date: Date
-    ) throws -> Counter.ID {
+    ) throws -> PersistentIdentifier {
         guard
             try modelContext.fetch(
                 FetchDescriptor<Counter>(
                     predicate: #Predicate {
-                        $0.category?.id == categoryID && $0.date == date.toDateWithoutTime
+                        $0.category?.persistentModelID == categoryID
+                            && $0.date == date.toDateWithoutTime
                     }
                 )
             ).isEmpty
@@ -94,12 +95,12 @@ actor CategoryActor {
         try modelContext.fetch(
             FetchDescriptor<Category>(
                 predicate: #Predicate {
-                    $0.id == categoryID
+                    $0.persistentModelID == categoryID
                 }
             )
         ).first?.counters?.append(newCounter)
         try modelContext.save()
-        return newCounter.id
+        return newCounter.persistentModelID
     }
 
     func delete(ids: [PersistentIdentifier?]) throws {
@@ -112,26 +113,26 @@ actor CategoryActor {
         try modelContext.save()
     }
 
-    func fetchCategoryID(title: String) throws -> Category.ID? {
+    func fetchCategoryID(title: String) throws -> PersistentIdentifier? {
         try modelContext.fetch(
             FetchDescriptor<Category>(
                 predicate: #Predicate {
                     $0.title == title
                 }
             )
-        ).first?.id
+        ).first?.persistentModelID
     }
 
     func fetchCounterID(
-        categoryID: Category.ID,
+        categoryID: PersistentIdentifier,
         date: Date
-    ) throws -> Counter.ID? {
+    ) throws -> PersistentIdentifier? {
         try modelContext.fetch(
             FetchDescriptor<Category>(
                 predicate: #Predicate {
-                    $0.id == categoryID
+                    $0.persistentModelID == categoryID
                 }
             )
-        ).first?.counters?.lazy.first { $0.date == date.toDateWithoutTime }?.id
+        ).first?.counters?.lazy.first { $0.date == date.toDateWithoutTime }?.persistentModelID
     }
 }

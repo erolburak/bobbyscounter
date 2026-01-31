@@ -98,7 +98,8 @@ struct CountersView: View {
                         ) {
                             Task {
                                 do {
-                                    try await Counter.delete(ids: counters.lazy.map(\.id))
+                                    try await Counter.delete(
+                                        ids: counters.lazy.map(\.persistentModelID))
                                     sensory.feedback(feedback: .success)
                                     selected.counter = nil
                                     dismiss()

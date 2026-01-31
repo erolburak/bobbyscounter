@@ -71,7 +71,7 @@ struct CountersListItem: View {
                     return
                 }
                 Task {
-                    try await Counter.delete(ids: [counterDelete.id])
+                    try await Counter.delete(ids: [counterDelete.persistentModelID])
                     sensory.feedback(feedback: .success)
                     if counterDelete == selected.counter {
                         selected.counter = nil

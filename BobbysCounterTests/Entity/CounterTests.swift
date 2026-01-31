@@ -17,7 +17,7 @@ struct CounterTests {
         let category = Category.mock
         // When
         let id = try await Counter.add(
-            categoryID: category.id,
+            categoryID: category.persistentModelID,
             date: .now
         )
         // Then
@@ -77,7 +77,7 @@ struct CounterTests {
         let category = Category.mock
         // When
         let id = try await Counter.fetch(
-            categoryID: category.id,
+            categoryID: category.persistentModelID,
             date: .now
         )
         // Then
