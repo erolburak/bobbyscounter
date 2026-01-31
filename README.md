@@ -26,9 +26,9 @@ The **BobbysCounter** app is my own project, which can increase and deacrease a 
 - [XCTest](https://developer.apple.com/documentation/XCTest)
 
 ## SCREENSHOTS
-<img width="240" src="https://github.com/user-attachments/assets/9053ee7e-80e3-4f9a-bac6-646bfdbf3361#gh-light-mode-only">
-<img width="240" src="https://github.com/user-attachments/assets/22936181-8b9b-495f-9961-eabce7304466#gh-dark-mode-only">
-<img width="240" src="https://github.com/user-attachments/assets/d61f078b-e173-4a0a-97d9-9a5850fd9c46#gh-light-mode-only">
-<img width="240" src="https://github.com/user-attachments/assets/a7b8f180-55c7-4cf0-90be-8c628e1256a2#gh-dark-mode-only">
-<img width="240" src="https://github.com/user-attachments/assets/d1d6d606-e4f9-46a9-8135-f2ae5a006d34#gh-light-mode-only">
-<img width="240" src="https://github.com/user-attachments/assets/59dc36ae-84e6-42ad-b509-1f1be34e4dd8#gh-dark-mode-only">
+<img width="240" src="https://github.com/user-attachments/assets/215cbdc9-bfa0-4711-aa0e-7e38334d0d75#gh-light-mode-only">
+<img width="240" src="https://github.com/user-attachments/assets/5dcc69dd-ac7b-4652-ad5c-516149993a3e#gh-dark-mode-only">
+<img width="240" src="https://github.com/user-attachments/assets/bdc17832-2714-485d-a531-968a8e814e39#gh-light-mode-only">
+<img width="240" src="https://github.com/user-attachments/assets/86abca15-8995-4cec-a7ef-2f09f6b04106#gh-dark-mode-only">
+<img width="240" src="https://github.com/user-attachments/assets/24d925ef-2667-4fcf-ae78-1bee09e13ed6#gh-light-mode-only">
+<img width="240" src="https://github.com/user-attachments/assets/020f7d5e-5134-44d1-8082-c60bef871cff#gh-dark-mode-only">
