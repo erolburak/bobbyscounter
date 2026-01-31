@@ -91,17 +91,15 @@ final class Category {
     }
 }
 
-#if DEBUG
-    extension Category {
-        // MARK: - Properties
+extension Category {
+    // MARK: - Properties
 
-        static var preview: Category {
-            Category(
-                counters: [.preview],
-                decrementNegative: false,
-                step: .one,
-                title: "Preview"
-            )
-        }
+    static var preview: Category {
+        Category(
+            counters: [.preview],
+            decrementNegative: false,
+            step: .one,
+            title: "Preview"
+        )
     }
-#endif
+}
