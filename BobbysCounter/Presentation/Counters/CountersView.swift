@@ -83,7 +83,6 @@ struct CountersView: View {
                 ToolbarItem(placement: .destructiveAction) {
                     Button(role: .destructive) {
                         showDeleteConfirmationDialog = true
-                        sensory.feedback(feedback: .press(.button))
                     }
                     .disabled(counters.isEmpty)
                     .tint(.red)
@@ -100,13 +99,12 @@ struct CountersView: View {
                                 do {
                                     try await Counter.delete(
                                         ids: counters.lazy.map(\.persistentModelID))
-                                    sensory.feedback(feedback: .success)
                                     selected.counter = nil
                                     dismiss()
                                 } catch {
+                                    sensory.feedback(.error)
                                     alert.error = .fetch
                                     alert.show = true
-                                    sensory.feedback(feedback: .error)
                                 }
                             }
                         }
@@ -123,8 +121,16 @@ struct CountersView: View {
                     .accessibilityIdentifier(Accessibility.closeCountersButton.id)
                 }
             }
+            .onChange(of: showDeleteConfirmationDialog) {
+                sensory.feedback(.impact)
+            }
         }
-        .presentationDetents([.medium, .large])
+        .presentationDetents(
+            [
+                .medium,
+                .large,
+            ]
+        )
     }
 }
 

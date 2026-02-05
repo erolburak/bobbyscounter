@@ -31,7 +31,6 @@ struct CategoriesListItem: View {
 
     var body: some View {
         Button {
-            sensory.feedback(feedback: .selection)
             selected.category = category
             dismiss()
         } label: {
@@ -76,7 +75,6 @@ struct CategoriesListItem: View {
                 }
                 Task {
                     try await Category.delete(ids: [categoryDelete.persistentModelID])
-                    sensory.feedback(feedback: .success)
                     if categoryDelete == selected.category {
                         selected.category = nil
                     }
@@ -97,24 +95,27 @@ struct CategoriesListItem: View {
                 Task {
                     do {
                         try category.edit(title: categoryAlertTitle)
-                        sensory.feedback(feedback: .press(.button))
                     } catch {
+                        sensory.feedback(.error)
                         categoryAlertTitle = category.title ?? ""
                         alert.error = .editCategory
                         alert.show = true
-                        sensory.feedback(feedback: .error)
                     }
                 }
             }
             .disabled(categoryAlertDisabled)
             .accessibilityIdentifier(Accessibility.categoryAlertConfirmButton.id)
 
-            Button(role: .cancel) {
-                sensory.feedback(feedback: .press(.button))
-            }
+            Button(role: .cancel) {}
         }
         .onAppear {
             categoryAlertTitle = category.title ?? ""
+        }
+        .onChange(of: showCategoryAlert) {
+            sensory.feedback(.impact)
+        }
+        .onChange(of: showDeleteConfirmationDialog) {
+            sensory.feedback(.impact)
         }
         .accessibilityIdentifier(Accessibility.categoriesListItem.id)
     }
@@ -126,7 +127,6 @@ struct CategoriesListItem: View {
         ) {
             categoryDelete = category
             showDeleteConfirmationDialog = true
-            sensory.feedback(feedback: .press(.button))
         }
         .tint(.red)
     }
@@ -137,7 +137,6 @@ struct CategoriesListItem: View {
             systemImage: "pencil"
         ) {
             showCategoryAlert = true
-            sensory.feedback(feedback: .press(.button))
         }
         .accessibilityIdentifier(Accessibility.editButton.id)
     }

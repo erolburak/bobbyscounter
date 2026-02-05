@@ -28,7 +28,6 @@ struct CountersListItem: View {
             guard let date = counter.date else {
                 return
             }
-            sensory.feedback(feedback: .selection)
             if counter == selected.counter {
                 dismiss()
             } else {
@@ -72,13 +71,15 @@ struct CountersListItem: View {
                 }
                 Task {
                     try await Counter.delete(ids: [counterDelete.persistentModelID])
-                    sensory.feedback(feedback: .success)
                     if counterDelete == selected.counter {
                         selected.counter = nil
                     }
                 }
             }
             .accessibilityIdentifier(Accessibility.deleteCounterButtonConfirmationDialog.id)
+        }
+        .onChange(of: showDeleteConfirmationDialog) {
+            sensory.feedback(.impact)
         }
         .accessibilityIdentifier(Accessibility.countersListItem.id)
     }
@@ -90,7 +91,6 @@ struct CountersListItem: View {
         ) {
             counterDelete = counter
             showDeleteConfirmationDialog = true
-            sensory.feedback(feedback: .press(.button))
         }
         .tint(.red)
     }

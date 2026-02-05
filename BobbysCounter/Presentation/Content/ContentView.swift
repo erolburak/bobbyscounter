@@ -56,7 +56,6 @@ struct ContentView: View {
                     } actions: {
                         Button("Add") {
                             showCategoryAlert = true
-                            sensory.feedback(feedback: .press(.button))
                         }
                         .buttonStyle(.glass)
                         .font(
@@ -89,15 +88,15 @@ struct ContentView: View {
                                     else {
                                         throw Errors.addCounter
                                     }
+                                    sensory.feedback(.impact)
                                     selected.counter = try await Counter.add(
                                         categoryID: categoryID,
                                         date: selected.date
                                     )
-                                    sensory.feedback(feedback: .success)
                                 } catch {
+                                    sensory.feedback(.error)
                                     alert.error = .addCounter
                                     alert.show = true
-                                    sensory.feedback(feedback: .error)
                                 }
                             }
                         }
@@ -138,12 +137,12 @@ struct ContentView: View {
                                 Button {
                                     withAnimation {
                                         do {
+                                            sensory.feedback(.decrease)
                                             try selected.counter?.decrement()
-                                            sensory.feedback(feedback: .decrease)
                                         } catch {
+                                            sensory.feedback(.error)
                                             alert.error = .decrement
                                             alert.show = true
-                                            sensory.feedback(feedback: .error)
                                         }
                                     }
                                 } label: {
@@ -160,12 +159,12 @@ struct ContentView: View {
                                 Button {
                                     withAnimation {
                                         do {
+                                            sensory.feedback(.increase)
                                             try selected.counter?.increment()
-                                            sensory.feedback(feedback: .increase)
                                         } catch {
+                                            sensory.feedback(.error)
                                             alert.error = .increment
                                             alert.show = true
-                                            sensory.feedback(feedback: .error)
                                         }
                                     }
                                 } label: {
@@ -202,13 +201,15 @@ struct ContentView: View {
                                 weight: .semibold
                             )
                         )
+                        .onTapGesture {
+                            sensory.feedback(.impact)
+                        }
                 }
 
                 ToolbarItem(placement: .bottomBar) {
                     Button("Settings") {
                         showSettingsSheet = true
                         settingsTip.invalidate(reason: .actionPerformed)
-                        sensory.feedback(feedback: .press(.button))
                     }
                     .popoverTip(settingsTip)
                     .onAppear {
@@ -261,12 +262,11 @@ struct ContentView: View {
                             $0.persistentModelID == categoryID
                         }
                         categoryAlertTitle.removeAll()
-                        sensory.feedback(feedback: .press(.button))
                     } catch {
+                        sensory.feedback(.error)
                         categoryAlertTitle.removeAll()
                         alert.error = .addCategory
                         alert.show = true
-                        sensory.feedback(feedback: .error)
                     }
                 }
             }
@@ -275,20 +275,22 @@ struct ContentView: View {
 
             Button(role: .cancel) {
                 categoryAlertTitle.removeAll()
-                sensory.feedback(feedback: .press(.button))
             }
         }
         .disabled(redactedReason == .placeholder)
         .redacted(reason: redactedReason)
         .onChange(of: selected.category) {
+            sensory.feedback(.selection)
             refresh()
-            sensory.feedback(feedback: .selection)
         }
         .onChange(of: selected.counter) {
             refresh()
         }
-        .onChange(of: showSettingsSheet) { _, newValue in
-            sensory.feedback(feedback: .press(.button))
+        .onChange(of: showCategoryAlert) {
+            sensory.feedback(.impact)
+        }
+        .onChange(of: showSettingsSheet) {
+            sensory.feedback(.impact)
         }
         .onChange(of: scenePhase) {
             switch scenePhase {
@@ -309,9 +311,9 @@ struct ContentView: View {
                 let categoryTitle = urlComponents?.queryItems?.first(where: { $0.name == "title" })?
                     .value
             else {
+                sensory.feedback(.error)
                 alert.error = .fetchWidget
                 alert.show = true
-                sensory.feedback(feedback: .error)
                 return
             }
             selected.category = categories.first { $0.title == categoryTitle }
@@ -352,9 +354,9 @@ struct ContentView: View {
                     selected.counter = counter
                 }
             } catch {
+                sensory.feedback(.error)
                 alert.error = .fetch
                 alert.show = true
-                sensory.feedback(feedback: .error)
             }
             withAnimation {
                 selected.decrementNegative = selected.category?.decrementNegative ?? false

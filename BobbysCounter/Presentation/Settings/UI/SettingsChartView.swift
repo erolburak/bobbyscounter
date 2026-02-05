@@ -106,7 +106,7 @@ struct ChartView: View {
             if selectedPointMarkCounter != nil,
                 oldValue?.toDateWithoutTime != newValue?.toDateWithoutTime
             {
-                sensory.feedback(feedback: .selection)
+                sensory.feedback(.selection)
             }
         }
         .task {

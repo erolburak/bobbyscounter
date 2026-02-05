@@ -27,10 +27,12 @@ actor CategoryActor {
                 cloudKitDatabase: cloudKitDatabase
             )
             let modelContainer = try ModelContainer(
-                for: Schema([
-                    Category.self,
-                    Counter.self,
-                ]),
+                for: Schema(
+                    [
+                        Category.self,
+                        Counter.self,
+                    ]
+                ),
                 configurations: modelConfiguration
             )
             return CategoryActor(modelContainer: modelContainer)
