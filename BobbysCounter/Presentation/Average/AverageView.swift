@@ -47,6 +47,7 @@ struct AverageView: View {
                     Picker(selection: $selected.average) {
                         ForEach(averages, id: \.self) {
                             Text($0.description)
+                                .tag($0)
                         }
                     } label: {
                         Text("SelectedAverage")
@@ -93,6 +94,9 @@ struct AverageView: View {
                     .accessibilityIdentifier(Accessibility.closeAverageButton.id)
                 }
             }
+            .onChange(of: selected.average) {
+                sensory.feedback(feedback: .selection)
+            }
             .onChange(
                 of: selected.average,
                 initial: true
@@ -102,7 +106,6 @@ struct AverageView: View {
                         localized: "AverageMessage\(selected.average)\(average)"
                     )
                 }
-                sensory.feedback(feedback: .selection)
             }
         }
         .presentationDetents([presentationDetent])

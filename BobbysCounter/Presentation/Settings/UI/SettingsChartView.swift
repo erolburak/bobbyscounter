@@ -15,8 +15,18 @@ struct ChartView: View {
     @Environment(Sensory.self) private var sensory
     @State private var chartScrollPosition = Date.now
     @State private var selectedPointMarkDate: Date?
+    private var chartXVisibleDomainLength: Int {
+        /// Calculate factor by multiplying seconds, minutes and hours together
+        let factor = 60 * 60 * 24
+        let count = counters.count
+        let range = 3...4
+        return range.contains(count) ? count * factor : range.upperBound * factor
+    }
     private var counters: [Counter] {
         selected.category?.countersSorted ?? []
+    }
+    private var selectedPointMarkCounter: Counter? {
+        counters.lazy.first { $0.date == selectedPointMarkDate?.toDateWithoutTime }
     }
 
     // MARK: - Properties
@@ -66,7 +76,7 @@ struct ChartView: View {
                 )
             ) {
                 if showAnnotation(date: date),
-                    let selectedPointMarkCounter = selectedPointMarkCounter(counters: counters)
+                    let selectedPointMarkCounter
                 {
                     Text(selectedPointMarkCounter.count.description)
                         .font(
@@ -76,15 +86,12 @@ struct ChartView: View {
                             )
                         )
                         .monospacedDigit()
-                        .onAppear {
-                            sensory.feedback(feedback: .press(.button))
-                        }
                 }
             }
         }
         .chartScrollableAxes(.horizontal)
         .chartScrollPosition(x: $chartScrollPosition)
-        .chartXVisibleDomain(length: chartXVisibleDomainLength(counters: counters))
+        .chartXVisibleDomain(length: chartXVisibleDomainLength)
         .chartXSelection(value: $selectedPointMarkDate)
         .chartXScale(range: .plotDimension(padding: 12))
         .chartYScale(range: .plotDimension(padding: 12))
@@ -95,6 +102,13 @@ struct ChartView: View {
         )
         .padding(.horizontal)
         .font(.system(size: 10))
+        .onChange(of: selectedPointMarkDate) { oldValue, newValue in
+            if selectedPointMarkCounter != nil,
+                oldValue?.toDateWithoutTime != newValue?.toDateWithoutTime
+            {
+                sensory.feedback(feedback: .selection)
+            }
+        }
         .task {
             guard
                 let dateMinusOne = Calendar.current.date(
@@ -113,22 +127,12 @@ struct ChartView: View {
     private func showAnnotation(date: Date) -> Bool {
         date.formatted(
             date: .complete,
-            time: .omitted)
+            time: .omitted
+        )
             == selectedPointMarkDate?.formatted(
                 date: .complete,
-                time: .omitted)
-    }
-
-    private func chartXVisibleDomainLength(counters: [Counter]) -> Int {
-        /// Calculate factor by multiplying seconds, minutes and hours together
-        let factor = 60 * 60 * 24
-        let count = counters.count
-        let range = 3...4
-        return range.contains(count) ? count * factor : range.upperBound * factor
-    }
-
-    private func selectedPointMarkCounter(counters: [Counter]) -> Counter? {
-        counters.lazy.first { $0.date == selectedPointMarkDate?.toDateWithoutTime }
+                time: .omitted
+            )
     }
 }
 

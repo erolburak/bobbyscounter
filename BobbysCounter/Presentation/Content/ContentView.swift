@@ -230,10 +230,8 @@ struct ContentView: View {
                     selection: $selected.category
                 ) {
                     ForEach(categories) {
-                        Button($0.title ?? "") {
-                            sensory.feedback(feedback: .selection)
-                        }
-                        .tag($0)
+                        Text($0.title ?? "")
+                            .tag($0)
                     }
                 }
                 .pickerStyle(.automatic)
@@ -284,9 +282,13 @@ struct ContentView: View {
         .redacted(reason: redactedReason)
         .onChange(of: selected.category) {
             refresh()
+            sensory.feedback(feedback: .selection)
         }
         .onChange(of: selected.counter) {
             refresh()
+        }
+        .onChange(of: showSettingsSheet) { _, newValue in
+            sensory.feedback(feedback: .press(.button))
         }
         .onChange(of: scenePhase) {
             switch scenePhase {

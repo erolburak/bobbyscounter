@@ -35,6 +35,7 @@ struct IncrementIntent: AppIntent {
                 categoryID: categoryID,
                 date: .now
             )?.increment()
+            WidgetCenter.shared.reloadAllTimelines()
             return .result(dialog: "IncrementDialog")
         } catch {
             return .result(dialog: "IncrementDialogError")
