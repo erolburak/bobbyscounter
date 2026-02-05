@@ -29,7 +29,7 @@ struct SensoryTests {
         // Given
         let sensory = Sensory()
         // When
-        sensory.feedback(feedback: .error)
+        sensory.feedback(.error)
         // Then
         #expect(
             sensory.feedback == .error && sensory.feedbackBool,
@@ -42,7 +42,7 @@ struct SensoryTests {
         // Given
         let sensory = Sensory()
         // When
-        sensory.feedback(feedback: .success)
+        sensory.feedback(.success)
         // Then
         #expect(
             sensory.feedback == .success && sensory.feedbackBool,

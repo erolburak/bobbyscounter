@@ -103,7 +103,6 @@ struct SettingsView: View {
                                 systemImage: "square.stack.3d.down.right"
                             ) {
                                 showCategoriesSheet = true
-                                sensory.feedback(feedback: .press(.button))
                             }
                             .accessibilityIdentifier(Accessibility.categoriesButton.id)
 
@@ -112,7 +111,6 @@ struct SettingsView: View {
                                 systemImage: "square.stack.3d.up"
                             ) {
                                 showCountersSheet = true
-                                sensory.feedback(feedback: .press(.button))
                             }
                             .accessibilityIdentifier(Accessibility.countersButton.id)
 
@@ -121,7 +119,6 @@ struct SettingsView: View {
                                 systemImage: "divide"
                             ) {
                                 showAverageSheet = true
-                                sensory.feedback(feedback: .press(.button))
                             }
                             .accessibilityIdentifier(Accessibility.averageButton.id)
                         }
@@ -133,19 +130,20 @@ struct SettingsView: View {
                                 role: .destructive
                             ) {
                                 showResetConfirmationDialog = true
-                                sensory.feedback(feedback: .press(.button))
                             }
                             .accessibilityIdentifier(Accessibility.resetButton.id)
                         }
                     } label: {
                         Image(systemName: "gearshape")
+                            .onTapGesture {
+                                sensory.feedback(.impact)
+                            }
                     }
                     .accessibilityIdentifier(Accessibility.settingsMenu.id)
                 }
 
                 ToolbarItem(placement: .cancellationAction) {
                     Button(role: .close) {
-                        sensory.feedback(feedback: .press(.button))
                         dismiss()
                     }
                     .accessibilityIdentifier(Accessibility.closeSettingsButton.id)
@@ -155,7 +153,6 @@ struct SettingsView: View {
                     Button("Today") {
                         withAnimation {
                             selected.date = .now.toDateWithoutTime ?? .now
-                            sensory.feedback(feedback: .selection)
                         }
                     }
                     .disabled(selected.date.isDateToday)
@@ -179,7 +176,6 @@ struct SettingsView: View {
                         selected.date = .now
                         selected.decrementNegative = false
                         selected.step = .one
-                        sensory.feedback(feedback: .success)
                         dismiss()
                     }
                 }
@@ -218,18 +214,16 @@ struct SettingsView: View {
                     withAnimation {
                         do {
                             try selected.counter?.resetCount()
-                            sensory.feedback(feedback: .press(.button))
                         } catch {
+                            sensory.feedback(.error)
                             alert.error = .resetCount
                             alert.show = true
-                            sensory.feedback(feedback: .error)
                         }
                     }
                 }
 
                 Button(role: .cancel) {
                     showCountResetAlert = false
-                    sensory.feedback(feedback: .press(.button))
                 }
             }
             .onChange(of: selected.date) { _, newValue in
@@ -242,41 +236,54 @@ struct SettingsView: View {
                             categoryID: categoryID,
                             date: newValue
                         )
-                        sensory.feedback(feedback: .selection)
                         dismiss()
                     } catch {
+                        sensory.feedback(.error)
                         alert.error = .fetch
                         alert.show = true
-                        sensory.feedback(feedback: .error)
                     }
                 }
             }
             .onChange(of: selected.decrementNegative) { _, newValue in
                 do {
+                    sensory.feedback(.impact)
                     try selected.category?.decrementNegative(newValue)
-                    sensory.feedback(feedback: .press(.toggle))
                 } catch {
+                    sensory.feedback(.error)
                     alert.error = .decrementNegative
                     alert.show = true
-                    sensory.feedback(feedback: .error)
                 }
                 if let count = selected.counter?.count,
                     count < .zero,
                     !newValue
                 {
                     showCountResetAlert = true
-                    sensory.feedback(feedback: .warning)
                 }
             }
             .onChange(of: selected.step) { _, newValue in
                 do {
+                    sensory.feedback(.selection)
                     try selected.category?.step(newValue)
-                    sensory.feedback(feedback: .selection)
                 } catch {
+                    sensory.feedback(.error)
                     alert.error = .step
                     alert.show = true
-                    sensory.feedback(feedback: .error)
                 }
+            }
+            .onChange(of: showAverageSheet) {
+                sensory.feedback(.impact)
+            }
+            .onChange(of: showCategoriesSheet) {
+                sensory.feedback(.impact)
+            }
+            .onChange(of: showCountersSheet) {
+                sensory.feedback(.impact)
+            }
+            .onChange(of: showCountResetAlert) {
+                sensory.feedback(.impact)
+            }
+            .onChange(of: showResetConfirmationDialog) {
+                sensory.feedback(.impact)
             }
         }
         .presentationDetents([presentationDetent])

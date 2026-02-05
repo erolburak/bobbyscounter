@@ -89,13 +89,12 @@ struct AverageView: View {
                 ToolbarItem(placement: .cancellationAction) {
                     Button(role: .close) {
                         showAverageSheet = false
-                        sensory.feedback(feedback: .press(.button))
                     }
                     .accessibilityIdentifier(Accessibility.closeAverageButton.id)
                 }
             }
             .onChange(of: selected.average) {
-                sensory.feedback(feedback: .selection)
+                sensory.feedback(.selection)
             }
             .onChange(
                 of: selected.average,
