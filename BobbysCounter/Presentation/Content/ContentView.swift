@@ -201,9 +201,6 @@ struct ContentView: View {
                                 weight: .semibold
                             )
                         )
-                        .onTapGesture {
-                            sensory.feedback(.impact)
-                        }
                 }
 
                 ToolbarItem(placement: .bottomBar) {

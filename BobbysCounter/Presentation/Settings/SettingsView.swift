@@ -135,9 +135,6 @@ struct SettingsView: View {
                         }
                     } label: {
                         Image(systemName: "gearshape")
-                            .onTapGesture {
-                                sensory.feedback(.impact)
-                            }
                     }
                     .accessibilityIdentifier(Accessibility.settingsMenu.id)
                 }

@@ -58,6 +58,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Entity/Accessibility.swift,
+				Resource/AppIcon.icon,
 			);
 			target = BF2C45512A4B3EBA00D48C36 /* BobbysCounterUITests */;
 		};
@@ -86,6 +87,7 @@
 				Entity/Steps.swift,
 				"Presentation/Extension/Date+Extension.swift",
 				"Presentation/Extension/Double+Extension.swift",
+				Resource/AppIcon.icon,
 			);
 			target = BF2C45472A4B3EBA00D48C36 /* BobbysCounterTests */;
 		};
@@ -99,6 +101,7 @@
 				Entity/States.swift,
 				Entity/Steps.swift,
 				"Presentation/Extension/Date+Extension.swift",
+				Resource/AppIcon.icon,
 				Resource/Assets.xcassets,
 				Resource/Localizable.xcstrings,
 			);
