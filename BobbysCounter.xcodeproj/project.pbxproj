@@ -65,6 +65,7 @@
 		BFA3D1092D2EBD5900077763 /* Exceptions for "BobbysCounter" folder in "BobbysCounter" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Resource/AppIcon.fig,
 				Resource/BobbysCounter.xctestplan,
 				Resource/Info.plist,
 				Resource/PrivacyInfo.xcprivacy,
